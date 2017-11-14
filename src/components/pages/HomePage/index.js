@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { DropdownMenu } from 'components'
+import { Label } from 'components'
 
 const Warper = styled.div`
   width: 100vw;
@@ -12,14 +12,12 @@ const Warper = styled.div`
 
   display: flex;
   align-items: center;
-
 `
 
 const HomePage = () => {
-  let myArray = ['s','555','fsfsfdsfsdfsdf'];
   return (
     <Warper>
-      <DropdownMenu width="500px" height="50px" menu={myArray}/>
+      <Label size="36px" weight="500" color="#202020" error>เข้าสู่ระบบ Fit Start</Label>
     </Warper>
   )
 }

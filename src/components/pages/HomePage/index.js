@@ -16,7 +16,7 @@ const Warper = styled.div`
 const HomePage = () => {
   return (
     <Warper>
-      <Button to="" loginPage="true"> เข้าสู่ระบบ </Button>
+      <Button to="" cancleRegis="true" trainer> เข้าสู่ระบบ </Button>
     </Warper>
   )
 }

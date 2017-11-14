@@ -6,7 +6,6 @@ import { font } from 'styled-theme'
 import { Textfeild,Tooltip, ErrorIcon, CorrectIcon} from 'components'
 
 const Warper = styled.div`
-    margin: 0 8px 0 0;
 `
 const Select = styled.select`
     width: ${props => props.width};
@@ -25,7 +24,7 @@ const Select = styled.select`
     border-radius: 6px;
 
     padding: 2px 16px 4px 16px;
-    margin: 8px 0 0 0;
+    margin: 15px 0 0 0;
 
     outline: none;
 
@@ -52,7 +51,7 @@ class DropdownMenu extends React.Component {
     render() {
         return(
             <Warper>
-                <Select width={this.props.width} height= {this.props.height}>
+                <Select color={this.props.color} width={this.props.width} height= {this.props.height}>
                     <Option value="ps">pleast select ...</Option>
                     {this.props.menu.map(item => (
                         <Option value="{item}">{item}</Option>

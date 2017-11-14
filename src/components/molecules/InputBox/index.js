@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { Label, TextfeildWithIcon, DropdownMenu } from 'components'
+import { Label, TextfeildWithIcon, DropdownMenu, Textarea } from 'components'
 
 const Warper = styled.div`
   background-color: #F9FAFC;
@@ -19,10 +19,11 @@ class InputBox extends React.Component {
 
     render() {
         return(
-            <Warper>
+          <Warper>
             <Label textfeild> {this.props.label} </Label>
-            {!this.props.dropdown && <TextfeildWithIcon placeholder= {this.props.placeholder} width={this.props.width} height={this.props.height} color= {this.props.color}/> }
-            {this.props.dropdown && <DropdownMenu menu={this.props.menu} width={this.props.width} height={this.props.height} color= {this.props.color}/> }
+            {!this.props.dropdown && !this.props.textarea && <TextfeildWithIcon placeholder= {this.props.placeholder} width={this.props.width} height={this.props.height} color= {this.props.color}/> }
+            {this.props.dropdown && !this.props.textarea && <DropdownMenu menu={this.props.menu} width={this.props.width} height={this.props.height} color= {this.props.color}/> }
+            {!this.props.dropdown && this.props.textarea && <Textarea rows="4" cols="50" placeholder= {this.props.placeholder} color= {this.props.color}/>}
           </Warper>
         )
     }

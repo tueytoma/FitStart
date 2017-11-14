@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { TextfeildWithIcon } from 'components'
+import { Checkbox } from 'components'
 
 const Warper = styled.div`
   width: 100vw;
@@ -10,12 +10,16 @@ const Warper = styled.div`
   background-color: #F9FAFC;
   padding: 500px 0 0 0;
 
+  display: flex;
+  align-items: center;
+
 `
 
 const HomePage = () => {
   return (
     <Warper>
-      <TextfeildWithIcon width="300px" height="30px" error/>
+      <Checkbox/>
+      <span> dddd </span>
     </Warper>
   )
 }

@@ -11,7 +11,8 @@ const styles = css`
     font-style: normal;
     text-decoration: underline;
     font-size: ${props => props.cancleRegis ? "18px" : props.forgetPassword ? "12px" : props.size};
-    font-weight: 100;
+    font-weight: normal;
+    line-height: normal;
     color: #545454;
     opacity: 0.8;
     &:hover {

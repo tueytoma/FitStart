@@ -6,6 +6,7 @@ import { font } from 'styled-theme'
 import { Textfeild,Tooltip, ErrorIcon, CorrectIcon} from 'components'
 
 const Warper = styled.div`
+    margin: 0 8px 0 0;
 `
 const Select = styled.select`
     width: ${props => props.width};
@@ -24,6 +25,7 @@ const Select = styled.select`
     border-radius: 6px;
 
     padding: 2px 16px 4px 16px;
+    margin: 8px 0 0 0;
 
     outline: none;
 
@@ -31,8 +33,8 @@ const Select = styled.select`
         width: ${props => props.width};
         height: ${props => props.height};
 
-        border: 2px solid #F05939;
-        box-shadow: 0px 0px 4px #F05939;
+        border: 2px solid ${props => props.color};
+        box-shadow: 0px 0px 4px ${props => props.color};
         border-radius: 6px; 
     }
 `

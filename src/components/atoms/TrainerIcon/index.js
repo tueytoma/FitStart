@@ -1,10 +1,13 @@
 import React from 'react'
 
 export default class TrainerIcon extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
   render() {
     return (
-        <svg width="102.06px" height="138px" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 133.3 198.7" enable-background="new 0 0 133.3 198.7">
+        <svg opacity={this.props.opacity} width="163.296px" height="220.8px" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 133.3 198.7" enable-background="new 0 0 133.3 198.7">
             <g id="การสมัคร">
                 <g id="ประเภท">
                     <g>

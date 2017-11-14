@@ -31,8 +31,8 @@ const Textfeild = styled.input`
         width: ${props => props.width};
         height: ${props => props.height};
 
-        border: 2px solid #F05939;
-        box-shadow: 0px 0px 4px #F05939;
+        border: 2px solid ${props => props.color};
+        box-shadow: 0px 0px 4px ${props => props.color};
         border-radius: 6px; 
     }
 `

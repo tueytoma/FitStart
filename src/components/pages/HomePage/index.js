@@ -3,6 +3,7 @@ import React from 'react'
 
 import styled, { css } from 'styled-components'
 import { ImageSelectButton } from 'components'
+import { Link } from 'components'
 
 const Warper = styled.div`
   width: 100vw;
@@ -15,7 +16,7 @@ const Warper = styled.div`
 const HomePage = () => {
   return (
     <Warper>
-      <ImageSelectButton/>
+      <Link to="" size="50px"> hi </Link>
     </Warper>
   )
 }

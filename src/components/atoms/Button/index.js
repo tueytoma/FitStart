@@ -9,8 +9,8 @@ const Button = styled.button`
     border-radius: 100px;
 
     background-color: #F9FAFC;
-    width: ${props => props.cancleRegis ? "95" : props.loginPage ? "29" : props.width};
-    height: ${props => props.cancleRegis ? "175" : props.loginPage ? "40" : props.height};
+    height: ${props => props.cancleRegis ? "40px" : props.loginPage ? "29px" : props.width};
+    width: ${props => props.cancleRegis ? "175px" : props.loginPage ? "95px" : props.height};
     margin: 0 8px 0 0;
     
 

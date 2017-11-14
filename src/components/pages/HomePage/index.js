@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { Label } from 'components'
+import { InputBox } from 'components'
 
 const Warper = styled.div`
   width: 100vw;
@@ -17,7 +17,7 @@ const Warper = styled.div`
 const HomePage = () => {
   return (
     <Warper>
-      <Label size="36px" weight="500" color="#202020" error>เข้าสู่ระบบ Fit Start</Label>
+      <InputBox label="ชื่อผู้ใช้" width="400px" height="30px" placeholder="555"/>
     </Warper>
   )
 }

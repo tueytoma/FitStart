@@ -7,6 +7,8 @@ import { Textfeild,Tooltip, ErrorIcon, CorrectIcon} from 'components'
 const Warper = styled.div`
     display: flex;
     align-items: center;
+
+    margin: 14px 0 0 0;
 `
 
 class TextfeildWithIcon extends React.Component {

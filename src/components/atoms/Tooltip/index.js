@@ -39,7 +39,7 @@ const styles = css`
   &:hover:before,
   &:focus:before {
     opacity: 1;
-    ${opposite}: calc(100% + 1rem);
+    ${opposite}: calc(100% + 8px);
   }
 
   &:hover:after,
@@ -51,15 +51,18 @@ const styles = css`
   &:before {
     content: attr(data-title);
     font-family: ${font('primary')};
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    color: #F9FAFC;
     white-space: nowrap;
     text-transform: none;
-    font-size: 0.8125rem;
     line-height: 1.5;
     text-align: center;
-    color: ${ifProp('reverse', 'black', 'white')};
-    background-color: ${backgroundColor};
-    border-radius: 0.15384em;
-    padding: 0.75em 1em;
+    background: rgba(220, 68, 68, 0.9);
+    border-radius: 4px;
+    padding: 1px 9px;
     ${opposite}: calc(100% + 2rem);
     ${({ align }) => {
     switch (align) {
@@ -77,17 +80,6 @@ const styles = css`
   }}
   }
 
-  &:after {
-    ${opposite}: calc(100% + 1rem);
-    ${perpendicular}: 50%;
-    border: solid transparent;
-    content: '';
-    height: 0;
-    width: 0;
-    border-${({ position }) => position}-color: ${backgroundColor};
-    border-width: 0.5rem;
-    margin-${perpendicular}: -0.5rem;
-  }
   `
 
 const Tooltip = styled(({

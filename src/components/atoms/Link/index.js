@@ -14,7 +14,6 @@ const styles = css`
     font-weight: 100;
     color: #545454;
     opacity: 0.8;
-
     &:hover {
       color: #1A1A1A;
     }

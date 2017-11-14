@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { Checkbox } from 'components'
+import { DropdownMenu } from 'components'
 
 const Warper = styled.div`
   width: 100vw;
@@ -16,10 +16,10 @@ const Warper = styled.div`
 `
 
 const HomePage = () => {
+  let myArray = ['s','555','fsfsfdsfsdfsdf'];
   return (
     <Warper>
-      <Checkbox/>
-      <span> dddd </span>
+      <DropdownMenu width="500px" height="50px" menu={myArray}/>
     </Warper>
   )
 }

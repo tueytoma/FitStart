@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { ImageSelectButton, Label, InputBox, LinkAndButtonBox, LinkStyle } from 'components'
 import { Link } from 'react-router-dom';
 import api from '../../../api'
+import auth from '../../../auth'
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -81,6 +82,7 @@ class HomePage extends React.Component {
     api.signin({username : this.state.username, password: this.state.password})
       .then((res)=>{
         console.log(res)
+        auth.setCookieAndToken(res)
       },(err)=>{
         this.toggleError()
       })

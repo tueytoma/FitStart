@@ -5,12 +5,15 @@ import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 
 import { basename } from 'config'
+import { CookiesProvider } from 'react-cookie';
 import App from 'components/App'
 
 const renderApp = () => (
-  <BrowserRouter basename={basename}>
-    <App />
-  </BrowserRouter>
+  <CookiesProvider>
+    <BrowserRouter basename={basename}>
+      <App />
+    </BrowserRouter>
+  </CookiesProvider>
 )
 
 const root = document.getElementById('app')

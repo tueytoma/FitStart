@@ -78,8 +78,9 @@
   "dependencies": {
     "history": "^4.6.1",
     "lodash": "^4.17.4",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-cookie": "^2.1.1",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.1.1",
     "react-modal": "^2.0.6",

@@ -10,7 +10,7 @@ const config = {
     BACKURL: 'http://localhost:4000',
   },
   test: {},
-  development: {},
+  development: {DOMAIN: 'localhost',},
   production: {},
 }
 

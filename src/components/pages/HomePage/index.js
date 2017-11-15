@@ -2,8 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { ImageSelectButton } from 'components'
-import { Button } from 'components'
+import { ImageSelectButton, Button, CloseIcon, Logo, SelectIcon } from 'components'
 import api from '../../../api'
 
 const Warper = styled.div`
@@ -27,6 +26,9 @@ const HomePage = () => {
   return (
     <Warper>
       <Button onClick={doSomething} to="" cancleRegis="true" trainer> เข้าสู่ระบบ </Button>
+      <SelectIcon opactiy={1} fill='#FF0000'/>
+      <Logo width={50} height={50}/>
+      <CloseIcon/>
     </Warper>
   )
 }

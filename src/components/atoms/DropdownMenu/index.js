@@ -3,9 +3,9 @@ import React from 'react'
 
 import styled, { css } from 'styled-components'
 import { font } from 'styled-theme'
-import { Textfeild,Tooltip, ErrorIcon, CorrectIcon} from 'components'
+import { Textfield,Tooltip, ErrorIcon, CorrectIcon} from 'components'
 
-const Warper = styled.div`
+const Wrapper = styled.div`
 `
 const Select = styled.select`
     width: ${props => props.width};
@@ -50,14 +50,14 @@ class DropdownMenu extends React.Component {
 
     render() {
         return(
-            <Warper>
-                <Select color={this.props.color} width={this.props.width} height= {this.props.height}>
+            <Wrapper>
+                <Select onChange={this.props.onChange} color={this.props.color} width={this.props.width} height= {this.props.height}>
                     <Option value="ps">pleast select ...</Option>
                     {this.props.menu.map(item => (
-                        <Option value="{item}">{item}</Option>
+                        <Option value={item}>{item}</Option>
                     ))}
                 </Select>
-            </Warper>
+            </Wrapper>
         )
     }
 }

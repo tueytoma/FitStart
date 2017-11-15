@@ -4,7 +4,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { LinkStyle, Button } from 'components'
 
-const Warper = styled.div`
+const Wrapper = styled.div`
     display: flex;
     align-items: center;
 `
@@ -15,10 +15,10 @@ class LinkAndButtonBox extends React.Component {
     }
     render() {
         return (
-            <Warper>
+            <Wrapper>
                 <LinkStyle to={this.props.to} loginPage={this.props.loginPage} cancleRegis={this.props.cancleRegis}> <p>{this.props.linktext}</p> </LinkStyle> 
-                <Button color={this.props.color} style={{marginLeft: "16px"}} loginPage={this.props.loginPage} cancleRegis={this.props.cancleRegis}> {this.props.buttontext} </Button>
-            </Warper>
+                <Button onClick={this.props.onClick} color={this.props.color} style={{marginLeft: "16px"}} loginPage={this.props.loginPage} cancleRegis={this.props.cancleRegis}> {this.props.buttontext} </Button>
+            </Wrapper>
         )
     }
 }

@@ -7,9 +7,9 @@ import { ifProp } from 'styled-tools'
 const Label = styled.span`
     font-family: ${font('primary')};
     font-style: normal;
-    font-size: ${props => props.textfeild == true ? "18px" : props.error ? "12px" : props.size};
-    font-weight: ${props => props.textfeild == true ? "normal" : props.error ? "300" : props.weight};
-    color: ${props => props.textfeild == true ? "#545454" : props.error ? "#DC4444" : props.color};
+    font-size: ${props => props.textfield == true ? "18px" : props.error ? "12px" : props.size};
+    font-weight: ${props => props.textfield == true ? "normal" : props.error ? "300" : props.weight};
+    color: ${props => props.textfield == true ? "#545454" : props.error ? "#DC4444" : props.color};
 `
 
 export default Label;

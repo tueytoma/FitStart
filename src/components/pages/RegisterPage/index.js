@@ -4,8 +4,9 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { TraineeIcon, TrainerIcon, SelectIcon, Label, InputBox, Checkbox, Link, LinkAndButtonBox, LinkStyle} from 'components'
 import { Switch, Route } from 'react-router-dom'
+import api from '../../../api'
 
-const Warper = styled.div`
+const Wrapper = styled.div`
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -13,7 +14,7 @@ const Warper = styled.div`
     background-color: #F9FAFC;
 `
 
-const WarperInner = styled.div`
+const WrapperInner = styled.div`
     width: 70vw;
     display: flex;
     flex-flow: column;
@@ -76,7 +77,16 @@ class RegisterPage extends React.Component {
         super(props)
         this.state = {
             trainee: true,
-            trainer: false
+            trainer: false,
+            username: '',
+            password: '',
+            repassword: '',
+            email: '',
+            first_name: '',
+            last_name: '',
+            gender: '',
+            telephone_number: '',
+            address: '',
         };
     }
 
@@ -88,12 +98,67 @@ class RegisterPage extends React.Component {
         this.setState({trainee: false, trainer: true})
     }
 
+    changeUsername = e => {
+        this.setState({username : e.target.value})
+      }
+
+    changeEmail = e => {
+        this.setState({email : e.target.value})
+    }
+    
+    changePassword = e => {
+        this.setState({password : e.target.value})
+    }
+
+    changeRepassword = e => {
+        this.setState({repassword : e.target.value})
+    }
+
+    changeFirstname = e => {
+        this.setState({first_name : e.target.value})
+    }
+
+    changeLastname = e => {
+        this.setState({last_name : e.target.value})
+    }
+
+    changeTelephoneNumber = e => {
+        this.setState({telephone_number : e.target.value})
+    }
+
+    changeGender = e => {
+        this.setState({gender : e.target.value})
+    }
+
+    changeAddress = e => {
+        this.setState({address : e.target.value})
+    }
+
+    signup = e => {
+        let data = {
+            username : this.state.username,
+            password : this.state.password,
+            email : this.state.email,
+            first_name : this.state.first_name,
+            last_name : this.state.last_name,
+            gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
+            address : this.state.address,
+            telephone_number : this.state.telephone_number,
+            role : this.state.trainer ? 'Trainer' : 'Trainee',
+        }
+        console.log(data)
+        api.signup(data)
+            .then((res)=>{
+                console.log(res)
+            })
+    }
+
     render() {
         if(this.state.trainee) var col = "#F05939" 
         else var col = "#211F5E"
         return(
-            <Warper>
-                <WarperInner>
+            <Wrapper>
+                <WrapperInner>
                     <HeaderBlock>
                         <Label size="48px" weight="bolder" color="#202020">สมัครสมาชิก</Label>
                         <Label style={{marginTop: "-2px"}} size="24px" weight="500" color="rgba(32, 32, 32, 0.7)">เลือกประเภทของการสมัคร</Label>
@@ -107,22 +172,22 @@ class RegisterPage extends React.Component {
                     <InputBlock>
                         <LRBlock style={{marginRight: "8px"}}>
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
-                            <InputBox label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
-                            <InputBox label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
-                            <InputBox label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
-                            <InputBox label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changeUsername} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changeEmail} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changePassword} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changeRepassword} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
                         </LRBlock>
                         <LRBlock >
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>2. ข้อมูลส่วนตัวผู้ใช้</Label>
                             <Div>
-                                <InputBox error={true} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
-                                <InputBox label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
+                                <InputBox onChange={this.changeFirstname} error={true} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
+                                <InputBox onChange={this.changeLastname} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
-                                <InputBox style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                                <InputBox label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
+                                <InputBox onChange={this.changeGender} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                                <InputBox onChange={this.changeTelephoneNumber} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
-                            <InputBox label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
+                            <InputBox onChange={this.changeAddress} label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
                         </LRBlock>
                     </InputBlock>
                     <FooterBlock>
@@ -132,11 +197,11 @@ class RegisterPage extends React.Component {
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                            <LinkAndButtonBox to="/" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
+                            <LinkAndButtonBox onClick={this.signup} to="/" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
                         </LRBlock>
                     </FooterBlock >
-                </WarperInner>
-            </Warper>
+                </WrapperInner>
+            </Wrapper>
         )
     }
 }

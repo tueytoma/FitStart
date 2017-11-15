@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { font } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
-const Textarea = styled.textarea`
+const InputTextareaStyled = styled.textarea`
     border: ${props => props.error ? "1px solid #DC4444" : "1px solid #C4C3C3" };
     border-radius: 6px;
 
@@ -36,6 +36,18 @@ const Textarea = styled.textarea`
         border-radius: 6px; 
     }
 `
+
+class Textarea extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
+    render(){
+        return (
+            <InputTextareaStyled onChange={this.props.onChange} rows="4" cols="50" placeholder= {this.props.placeholder} color= {this.props.color}/>
+        )
+    }
+}
 
 export default Textarea;
 

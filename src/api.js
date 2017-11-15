@@ -3,6 +3,12 @@ var config = require('./config')
 
 let api = {}
 
+api.err = err => {
+    throw err.response
+	/*if (err.response && err.response.body.error) throw err.response.body.error
+	else throw err*/
+}
+
 api.getUserByName = username =>{
     return Request.get(config.BACKURL + '/search')
         .query({username : username})
@@ -27,7 +33,7 @@ api.signin = data => {
         .send(data)
 		.then(res => {
 			return res.body
-		})
+		},api.err)
 }
 
 module.exports = api

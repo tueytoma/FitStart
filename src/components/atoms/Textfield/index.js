@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import { font } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
-const Textfeild = styled.input`
+const InputTextStyled = styled.input`
     border: ${props => props.error ? "1px solid #DC4444" : "1px solid #C4C3C3" };
     border-radius: 6px;
 
@@ -37,5 +37,18 @@ const Textfeild = styled.input`
     }
 `
 
-export default Textfeild;
+class Textfield extends React.Component{
+    constructor(props){
+        super(props)
+    }
+
+    render(){
+        return (
+            <InputTextStyled onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
+            placeholder={this.props.placeholder} error={this.props.error} color={this.props.color}/>
+        )
+    }
+}
+
+export default Textfield;
 

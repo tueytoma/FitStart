@@ -1,12 +1,11 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
-
 import styled, { css } from 'styled-components'
 import { ImageSelectButton, Label, InputBox, LinkAndButtonBox, LinkStyle } from 'components'
 import { Link } from 'react-router-dom';
 import api from '../../../api'
 
-const Wraper = styled.div`
+const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: #F9FAFC;
@@ -66,17 +65,38 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        error: true
+        error: false,
+        username: '',
+        password: '',
     };
   }
 
   toggleError = e => {
-    this.setState({error: !this.state.error })
+    if(!this.state.error)
+      this.setState({error: true })
+  }
+
+  signin = e => {
+    e.preventDefault();
+    api.signin({username : this.state.username, password: this.state.password})
+      .then((res)=>{
+        console.log(res)
+      },(err)=>{
+        this.toggleError()
+      })
+  }
+
+  changeUsername = e => {
+    this.setState({username : e.target.value})
+  }
+
+  changePassword = e => {
+    this.setState({password : e.target.value})
   }
 
   render() {
     return (
-      <Wraper>
+      <Wrapper>
         <Left>
 
         </Left>
@@ -85,11 +105,11 @@ class HomePage extends React.Component {
             <Label size="36px" weight="900" color="#202020">เข้าสู่ระบบ Fit Start</Label>
           </Header>
           <Form>
-            <InputBox error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
-            <InputBox error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
+            <InputBox onChange={this.changeUsername} error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
+            <InputBox onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox to="/" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
+              <LinkAndButtonBox onClick={this.signin} to="/" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
             </LinkAndButtonDiv>
           </Form>
           <Footer>
@@ -100,7 +120,7 @@ class HomePage extends React.Component {
         <Right>
           
         </Right>
-      </Wraper>
+      </Wrapper>
     )
   }
 }

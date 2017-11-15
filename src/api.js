@@ -24,7 +24,7 @@ api.signup = data => {
         .send(data)
 		.then(res => {
 			return res.body
-		})
+		},api.err)
 }
 
 api.signin = data => {

@@ -154,14 +154,40 @@ class RegisterPage extends React.Component {
             gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
             address : this.state.address,
             telephone_number : this.state.telephone_number,
-            role : this.state.trainer ? 'Trainer' : 'Trainee',
+            role : this.state.trainer ? 'Trainer' : 'Trainee'
         }
         console.log(data)
+        this.validate()
         api.signup(data)
             .then((res)=>{
                 console.log(res)
             })
     }
+
+    checkEnglish = (input) => {
+        let check = /^[0-9a-zA-Z]+$/;  
+        if(input.match(check)) return true
+        else return false  
+    }
+
+    checkTelephoneNumber = (input) => {
+        let check = /[0-9][0-9][0-9]-[0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]/;  
+        if(input.match(check)) return true
+        else return false 
+    }
+    
+    checkEmail = (input) => {
+        let check = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;  
+        if(input.match(check)) return true
+        else return false 
+    }
+
+    checkAddress = (input) => {
+        let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ.,]+$/;  
+        if(input.match(check)) return true
+        else return false 
+    }
+
     
     /*
         validate list
@@ -175,16 +201,25 @@ class RegisterPage extends React.Component {
 
     */
     //validate
-    validate = () => {
-        if(this.state.first_name.length<1 || this.state.username.length>20 /*or non eng char*/) this.setState({firstNamePass : false})
-        if(this.state.last_name.length<1 || this.state.last_name.length>20 /*or non eng char*/) this.setState({lastNamePass : false})
-        if(this.state.gender != 'Male' && this.state.gender != 'Female' && this.state.gender!= 'Other')this.setState({genderPass : false})
-        if(this.state.address.length<1 || this.state.address.length >300 /*or special char*/) this.setState({addressPass : false})
-        if(this.state.telephone_number.length != 10 /*or non number*/)this.setState({telPass : false})
-        if(this.state.username.length <8 || this.state.username.length>15 /*or exist or non number or non char*/)this.setState({usernamePass : false})
-        if(this.state.password.legth <8 || this.state.password.length >20 /*or non char or non number*/)this.setState({passwordPass : false})
-        if(this.state.repassword !== this.state.password) this.setState({repasswordPass : false})
-        if(/*this.state.email is invalid*/)this.setState({emailPass:false})
+    validate = (e) => {
+        if(this.state.first_name.length<1 || this.state.first_name.length>20 || !this.checkEnglish(this.state.first_name)) this.setState({firstNamePass : false}) 
+        else this.setState({firstNamePass : true})
+        if(this.state.last_name.length<1 || this.state.last_name.length>20 || !this.checkEnglish(this.state.last_name)) this.setState({lastNamePass : false}) 
+        else this.setState({lastNamePass : true})
+        if(this.state.gender != 'ชาย' && this.state.gender != 'หญิง' && this.state.gender != 'อื่น ๆ')this.setState({genderPass : false}) 
+        else this.setState({genderPass : true})
+        if(this.state.address.length<1 || this.state.address.length >300 || !this.checkAddress(this.state.address)) this.setState({addressPass : false}) 
+        else this.setState({addressPass : true})
+        if(!this.checkTelephoneNumber(this.state.telephone_number)) this.setState({telPass : false}) 
+        else this.setState({telPass : true})
+        if(this.state.username.length <8 || this.state.username.length>15  || !this.checkEnglish(this.state.username)) this.setState({usernamePass : false}) 
+        else this.setState({usernamePass : true}) 
+        if(this.state.password.length <8 || this.state.password.length >20 || !this.checkEnglish(this.state.password)) this.setState({passwordPass : false}) 
+        else this.setState({passwordPass : true})
+        if(this.state.repassword !== this.state.password) this.setState({repasswordPass : false}) 
+        else this.setState({repasswordPass : true})
+        if(!this.checkEmail(this.state.email)) this.setState({emailPass:false})
+        else this.setState({emailPass:true})
     }
 
     render() {
@@ -206,22 +241,22 @@ class RegisterPage extends React.Component {
                     <InputBlock>
                         <LRBlock style={{marginRight: "8px"}}>
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
-                            <InputBox onChange={this.changeUsername} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
-                            <InputBox onChange={this.changeEmail} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
-                            <InputBox onChange={this.changePassword} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
-                            <InputBox onChange={this.changeRepassword} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
+                            <InputBox onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
                         </LRBlock>
                         <LRBlock >
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>2. ข้อมูลส่วนตัวผู้ใช้</Label>
                             <Div>
-                                <InputBox onChange={this.changeFirstname} error={true} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
-                                <InputBox onChange={this.changeLastname} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
+                                <InputBox onChange={this.changeFirstname} error={!this.state.firstNamePass} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
+                                <InputBox onChange={this.changeLastname} error={!this.state.lastNamePass} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
-                                <InputBox onChange={this.changeGender} error={true} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                                <InputBox onChange={this.changeTelephoneNumber} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
+                                <InputBox onChange={this.changeGender} error={!this.state.genderPass} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                                <InputBox onChange={this.changeTelephoneNumber} error={!this.state.telPass} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
-                            <InputBox onChange={this.changeAddress} label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
+                            <InputBox onChange={this.changeAddress} error={!this.state.addressPass} label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
                         </LRBlock>
                     </InputBlock>
                     <FooterBlock>

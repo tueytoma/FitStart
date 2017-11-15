@@ -4,15 +4,15 @@ import styled, { css } from 'styled-components'
 import { font } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
-const Textfeild = styled.input`
+const Textarea = styled.textarea`
     border: ${props => props.error ? "1px solid #DC4444" : "1px solid #C4C3C3" };
     border-radius: 6px;
 
     padding: 2px 16px 4px 16px;
     background-color: #F9FAFC;
-    width: ${props => props.width};
+    width: 455px;
     height: ${props => props.height};
-    margin: 0 8px 0 0;
+    margin: 8px 8px 0 0;
 
     font-family: ${font('primary')};
     font-style: normal;
@@ -28,7 +28,7 @@ const Textfeild = styled.input`
     }
 
     &:focus {
-        width: ${props => props.width};
+        width: 455px;
         height: ${props => props.height};
 
         border: 2px solid ${props => props.color};
@@ -37,5 +37,5 @@ const Textfeild = styled.input`
     }
 `
 
-export default Textfeild;
+export default Textarea;
 

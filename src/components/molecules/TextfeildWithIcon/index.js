@@ -19,7 +19,7 @@ class TextfeildWithIcon extends React.Component {
     render() {
         return(
             <Warper>
-                <Textfeild width={this.props.width} height={this.props.height} placeholder={this.props.placeholder} error={this.props.error}/> 
+                <Textfeild width={this.props.width} height={this.props.height} placeholder={this.props.placeholder} error={this.props.error} color={this.props.color}/> 
                 <Tooltip reverse data-title="รูปแบบไม่ถูกต้อง กรุณากรอกข้อมูลใหม่" >
                     {this.props.error ? <span > <ErrorIcon/> </span> : <span ></span > }
                 </Tooltip>

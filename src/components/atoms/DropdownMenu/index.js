@@ -24,6 +24,7 @@ const Select = styled.select`
     border-radius: 6px;
 
     padding: 2px 16px 4px 16px;
+    margin: 15px 0 0 0;
 
     outline: none;
 
@@ -31,8 +32,8 @@ const Select = styled.select`
         width: ${props => props.width};
         height: ${props => props.height};
 
-        border: 2px solid #F05939;
-        box-shadow: 0px 0px 4px #F05939;
+        border: 2px solid ${props => props.color};
+        box-shadow: 0px 0px 4px ${props => props.color};
         border-radius: 6px; 
     }
 `
@@ -50,7 +51,7 @@ class DropdownMenu extends React.Component {
     render() {
         return(
             <Warper>
-                <Select width={this.props.width} height= {this.props.height}>
+                <Select color={this.props.color} width={this.props.width} height= {this.props.height}>
                     <Option value="ps">pleast select ...</Option>
                     {this.props.menu.map(item => (
                         <Option value="{item}">{item}</Option>

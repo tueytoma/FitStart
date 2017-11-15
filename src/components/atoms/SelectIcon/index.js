@@ -2,6 +2,7 @@ import React from 'react'
 
 export default class SelectIcon extends React.Component {
 
+<<<<<<< HEAD
   render() {
     return (
         <svg width="81" height="81" viewBox="0 0 81 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -37,6 +38,29 @@ export default class SelectIcon extends React.Component {
 				<path id="path1_fill" d="M 27.4 3L 24.9 0.5C 24.6 0.2 24.2 3.8147e-07 23.7 3.8147e-07C 23.2 3.8147e-07 22.8 0.2 22.5 0.5L 10.7 12.4L 5.4 7.1C 5.1 6.8 4.7 6.6 4.2 6.6C 3.7 6.6 3.3 6.8 3 7.1L 0.5 9.6C 0.2 9.9 -3.8147e-07 10.3 -3.8147e-07 10.8C -3.8147e-07 11.3 0.2 11.7 0.5 12L 7 18.5L 9.5 21C 9.8 21.3 10.2 21.5 10.7 21.5C 11.2 21.5 11.6 21.3 11.9 21L 14.4 18.5L 27.5 5.4C 27.8 5.1 28 4.7 28 4.2C 28 3.7 27.7 3.3 27.4 3Z"/>
 			</defs>
 		</svg>
+=======
+    constructor(props) {
+        super(props)
+    }
+
+  render() {
+    return (
+        <svg opacity={this.props.opacity} width= "60.4px" height= "60.4px" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 61.7 61.7" enable-background="new 0 0 61.7 61.7" >
+            <g id="การสมัคร">
+                <g id="ประเภท">
+                    <circle fill={this.props.color} cx="30.8" cy="30.8" r="30.2"/>
+                    <g>
+                        <g>
+                            <path fill="#F7F8F8" d="M44.3,23.1l-2.5-2.5c-0.3-0.3-0.7-0.5-1.2-0.5c-0.5,0-0.9,0.2-1.2,0.5L27.6,32.5l-5.3-5.3
+                                c-0.3-0.3-0.7-0.5-1.2-0.5s-0.9,0.2-1.2,0.5l-2.5,2.5c-0.3,0.3-0.5,0.7-0.5,1.2c0,0.5,0.2,0.9,0.5,1.2l6.5,6.5l2.5,2.5
+                                c0.3,0.3,0.7,0.5,1.2,0.5s0.9-0.2,1.2-0.5l2.5-2.5l13.1-13.1c0.3-0.3,0.5-0.7,0.5-1.2S44.6,23.4,44.3,23.1L44.3,23.1z
+                                    M44.3,23.1"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </svg>
+>>>>>>> origin/master
     )
   }
 

@@ -4,6 +4,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { ImageSelectButton } from 'components'
 import { Button } from 'components'
+import api from '../../../api'
 
 const Warper = styled.div`
   width: 100vw;
@@ -13,10 +14,19 @@ const Warper = styled.div`
   align-items: center;
 `
 
+const doSomething = (e) => {
+  api.getUserByName('test2').then((err,res) => {
+    if(err)
+    console.log(err)
+    else
+    console.log(res)
+  })
+}
+
 const HomePage = () => {
   return (
     <Warper>
-      <Button to="" cancleRegis="true" trainer> เข้าสู่ระบบ </Button>
+      <Button onClick={doSomething} to="" cancleRegis="true" trainer> เข้าสู่ระบบ </Button>
     </Warper>
   )
 }

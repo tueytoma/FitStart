@@ -10,7 +10,7 @@ const InputTextStyled = styled.input`
 
     padding: 2px 16px 4px 16px;
     background-color: #F9FAFC;
-    width: calc(${props => props.width} - ${props => props.error ? "17px" : "0px" });
+    width: calc(${props => props.width} - ${props => props.error || props.correct ? "17px" : "0px" });
     ${props => props.width};
     height: ${props => props.height};
     margin: 0 8px 0 0;
@@ -29,7 +29,7 @@ const InputTextStyled = styled.input`
     }
 
     &:focus {
-        width: calc(${props => props.width} - ${props => props.error ? "17px" : "0px" });
+        width: calc(${props => props.width} - ${props => props.error || props.correct ? "17px" : "0px" });
         height: ${props => props.height};
 
         border: 2px solid ${props => props.color};
@@ -46,7 +46,7 @@ class Textfield extends React.Component{
     render(){
         return (
             <InputTextStyled type={this.props.type} onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
-            placeholder={this.props.placeholder} error={this.props.error} color={this.props.color}/>
+            placeholder={this.props.placeholder} correct={this.props.correct} error={this.props.error} color={this.props.color}/>
         )
     }
 }

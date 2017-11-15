@@ -96,8 +96,18 @@ class RegisterPage extends React.Component {
             passwordPass:true,
             repasswordPass:true,
             emailPass:true,
-
+            passEqualrepass: false,
         };
+    }
+
+    componentDidMount() {
+        if(!this.state.end) {this.interval = setInterval(() => this.tick(), 100);}
+        else {};
+    }
+
+    tick() {
+        if(this.state.password == this.state.repassword && this.state.passwordPass && this.state.passwordPass && this.state.password != '' && this.state.repassword != '') this.setState({passEqualrepass: true})
+        else this.setState({passEqualrepass: false})
     }
 
     traineeSelect = e => {
@@ -243,8 +253,8 @@ class RegisterPage extends React.Component {
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
                             <InputBox type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
                             <InputBox type="text" onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
-                            <InputBox type="password" onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
-                            <InputBox type="password"onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
+                            <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
+                            <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
                         </LRBlock>
                         <LRBlock >
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>2. ข้อมูลส่วนตัวผู้ใช้</Label>

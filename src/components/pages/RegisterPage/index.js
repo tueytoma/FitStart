@@ -87,6 +87,16 @@ class RegisterPage extends React.Component {
             gender: '',
             telephone_number: '',
             address: '',
+            firstNamePass: true,
+            lastNamePass: true,
+            genderPass:true,
+            telPass:true,
+            addressPass:true,
+            usernamePass:true,
+            passwordPass:true,
+            repasswordPass:true,
+            emailPass:true,
+
         };
     }
 
@@ -151,6 +161,31 @@ class RegisterPage extends React.Component {
             .then((res)=>{
                 console.log(res)
             })
+    }
+    
+    /*
+        input check list 
+
+        Name : english char length 1-20
+        Surname : english char length 1-20
+        address : length 1-300 no special char except . ,
+        tel : number 1-10 
+        ID : eng char or number, 8-15 char, not exist
+        password : eng char or number, 8-20 ????
+        email : *@*.* can be use
+
+    */
+    //validate
+    validate = () => {
+        if(this.state.first_name.length<1 || this.state.username.length>20 /*or non eng char*/) this.setState({firstNamePass : false})
+        if(this.state.last_name.length<1 || this.state.last_name.length>20 /*or non eng char*/) this.setState({lastNamePass : false})
+        if(this.state.gender != 'Male' && this.state.gender != 'Female' && this.state.gender!= 'Other')this.setState({genderPass : false})
+        if(this.state.address.length<1 || this.state.address.length >300 /*or special char*/) this.setState({addressPass : false})
+        if(this.state.telephone_number.length != 10 /*or non number*/)this.setState({telPass : false})
+        if(this.state.username.length <8 || this.state.username.length>15 /*or exist or non number or non char*/)this.setState({usernamePass : false})
+        if(this.state.password.legth <8 || this.state.password.length >20 /*or non char or non number*/)this.setState({passwordPass : false})
+        if(this.state.repassword !== this.state.password) this.setState({repasswordPass : false})
+        if(/*this.state.email is invalid*/)this.setState({emailPass:false})
     }
 
     render() {

@@ -184,7 +184,7 @@ class RegisterPage extends React.Component {
                                 <InputBox onChange={this.changeLastname} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
-                                <InputBox onChange={this.changeGender} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                                <InputBox onChange={this.changeGender} error={true} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
                                 <InputBox onChange={this.changeTelephoneNumber} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
                             <InputBox onChange={this.changeAddress} label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
@@ -197,7 +197,7 @@ class RegisterPage extends React.Component {
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                            <LinkAndButtonBox onClick={this.signup} to="/" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
+                            <LinkAndButtonBox onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
                         </LRBlock>
                     </FooterBlock >
                 </WrapperInner>

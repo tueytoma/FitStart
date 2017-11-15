@@ -19,7 +19,7 @@ const Select = styled.select`
     color: #202020;
 
     background-color: #F9FAFC;
-    border: 1px solid #C4C3C3;
+    border: ${props => props.error ? "1px solid #DC4444" : "1px solid #C4C3C3" };
     box-sizing: border-box;
     border-radius: 6px;
 
@@ -51,7 +51,7 @@ class DropdownMenu extends React.Component {
     render() {
         return(
             <Wrapper>
-                <Select onChange={this.props.onChange} color={this.props.color} width={this.props.width} height= {this.props.height}>
+                <Select onChange={this.props.onChange} error={this.props.error}  color={this.props.color} width={this.props.width} height= {this.props.height}>
                     <Option value="ps">pleast select ...</Option>
                     {this.props.menu.map(item => (
                         <Option value={item}>{item}</Option>

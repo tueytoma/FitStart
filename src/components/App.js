@@ -1,10 +1,10 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
-
-import { HomePage, RegisterPage, NotFoundPage } from 'components'
+import { HomePage, RegisterPage, NotFoundPage, LoginPage } from 'components'
 import { withCookies, Cookies } from 'react-cookie'
 import PropTypes, { instanceOf } from 'prop-types'
+
 
 // https://github.com/diegohaz/arc/wiki/Styling
 import theme from './themes/default'
@@ -32,7 +32,7 @@ class App extends React.Component{
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/register" component={RegisterPage} exact/>
-          {/* <Route path="/test-page" component={TestPage} /> */}
+          <Route path="/login" component={LoginPage} exact/>
           <Route component={NotFoundPage} />
         </Switch>
       </ThemeProvider>

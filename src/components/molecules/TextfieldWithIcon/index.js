@@ -19,10 +19,10 @@ class TextfieldWithIcon extends React.Component {
     render() {
         return(
             <Wrapper>
-                <Textfield onChange={this.props.onChange} width={this.props.width} height={this.props.height} placeholder={this.props.placeholder} error={this.props.error} color={this.props.color}/> 
-                <Tooltip reverse data-title="รูปแบบไม่ถูกต้อง กรุณากรอกข้อมูลใหม่" >
+                <Textfield error={this.props.error} onChange={this.props.onChange} width={this.props.width} height={this.props.height} placeholder={this.props.placeholder} error={this.props.error} color={this.props.color}/> 
+                {this.props.error==true && <Tooltip reverse data-title="รูปแบบไม่ถูกต้อง กรุณากรอกข้อมูลใหม่" >
                     {this.props.error==true ? <span > <ErrorIcon/> </span> : <span ></span > }
-                </Tooltip>
+                </Tooltip>}
                 {this.props.correct ? <span > <CorrectIcon/> </span> : <span ></span > }
             </Wrapper>
         )

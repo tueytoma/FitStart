@@ -96,6 +96,7 @@ class RegisterPage extends React.Component {
             passwordPass:true,
             repasswordPass:true,
             emailPass:true,
+            checkPass:true,
 
         };
     }
@@ -154,10 +155,14 @@ class RegisterPage extends React.Component {
             gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
             address : this.state.address,
             telephone_number : this.state.telephone_number,
-            role : this.state.trainer ? 'Trainer' : 'Trainee'
+            role : this.state.trainer ? 'Trainer' : 'Trainee',
+            checkPass: $(check).is(':checked')
         }
         console.log(data)
         this.validate()
+        while(!checkPass){
+            if(checkPass) break;
+        }
         api.signup(data)
             .then((res)=>{
                 console.log(res)
@@ -261,7 +266,7 @@ class RegisterPage extends React.Component {
                     </InputBlock>
                     <FooterBlock>
                         <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
-                            <Checkbox/> 
+                            <Checkbox name="check" id="check"/> 
                             <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ศึกษาข้อมูลเพิ่มเติม &nbsp;</Label>
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>

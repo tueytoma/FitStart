@@ -61,8 +61,8 @@ const ImageButton = styled.button`
     box-shadow: ${props => props.select ? `0px 0px 10px `+ props.color : `0px 0px 0px #C4C4C4`};
     box-sizing: border-box;
     border-radius: 10px;
-    width: 481.6px;
-    height: 273.6px;
+    width: 30vw;
+    height: 17vw;
     outline: none;
     cursor: pointer;
 
@@ -96,7 +96,6 @@ class RegisterPage extends React.Component {
             passwordPass:true,
             repasswordPass:true,
             emailPass:true,
-            checkPass:true,
 
         };
     }
@@ -155,14 +154,10 @@ class RegisterPage extends React.Component {
             gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
             address : this.state.address,
             telephone_number : this.state.telephone_number,
-            role : this.state.trainer ? 'Trainer' : 'Trainee',
-            checkPass: $(check).is(':checked')
+            role : this.state.trainer ? 'Trainer' : 'Trainee'
         }
         console.log(data)
         this.validate()
-        while(!checkPass){
-            if(checkPass) break;
-        }
         api.signup(data)
             .then((res)=>{
                 console.log(res)
@@ -239,35 +234,35 @@ class RegisterPage extends React.Component {
                     </HeaderBlock>
                     <SelectBlock>
                         {this.state.trainee ? <SelectIcon color="#F05939"/> : <SelectIcon opacity="0"/>}
-                        <ImageButton select={this.state.trainee} color="#F05939" onClick={this.traineeSelect} style={{margin: "0 60px 0 16px"}}><TraineeIcon opacity={this.state.trainee ? "1" : "0.4"}/></ImageButton>
-                        <ImageButton select={this.state.trainer} color="#211F5E" onClick={this.trainerSelect} style={{margin: "0 16px 0 0"}}><TrainerIcon opacity={this.state.trainer ? "1" : "0.4"}/></ImageButton>
+                        <ImageButton select={this.state.trainee} color="#F05939" onClick={this.traineeSelect} style={{margin: "0 60px 0 16px"}}><TraineeIcon width="10vw" opacity={this.state.trainee ? "1" : "0.4"}/></ImageButton>
+                        <ImageButton select={this.state.trainer} color="#211F5E" onClick={this.trainerSelect} style={{margin: "0 16px 0 0"}}><TrainerIcon width="10vw" opacity={this.state.trainer ? "1" : "0.4"}/></ImageButton>
                         {this.state.trainer ? <SelectIcon color="#211F5E"/> : <SelectIcon opacity="0"/>}
                     </SelectBlock>
                     <InputBlock>
                         <LRBlock style={{marginRight: "8px"}}>
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
-                            <InputBox onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
-                            <InputBox onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
-                            <InputBox onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
-                            <InputBox onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
+                            <InputBox type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
+                            <InputBox type="text" onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
+                            <InputBox type="password" onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
+                            <InputBox type="password"onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
                         </LRBlock>
                         <LRBlock >
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>2. ข้อมูลส่วนตัวผู้ใช้</Label>
                             <Div>
-                                <InputBox onChange={this.changeFirstname} error={!this.state.firstNamePass} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
-                                <InputBox onChange={this.changeLastname} error={!this.state.lastNamePass} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
+                                <InputBox type="text" onChange={this.changeFirstname} error={!this.state.firstNamePass} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
+                                <InputBox type="text" onChange={this.changeLastname} error={!this.state.lastNamePass} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
                                 <InputBox onChange={this.changeGender} error={!this.state.genderPass} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                                <InputBox onChange={this.changeTelephoneNumber} error={!this.state.telPass} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
+                                <InputBox type="text" onChange={this.changeTelephoneNumber} error={!this.state.telPass} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
                             <InputBox onChange={this.changeAddress} error={!this.state.addressPass} label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
                         </LRBlock>
                     </InputBlock>
                     <FooterBlock>
                         <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
-                            <Checkbox name="check" id="check"/> 
-                            <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ศึกษาข้อมูลเพิ่มเติม &nbsp;</Label>
+                            <Checkbox/> 
+                            <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ข้อมูลเพิ่มเติม &nbsp;</Label>
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>

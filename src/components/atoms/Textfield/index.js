@@ -45,7 +45,7 @@ class Textfield extends React.Component{
 
     render(){
         return (
-            <InputTextStyled onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
+            <InputTextStyled type={this.props.type} onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
             placeholder={this.props.placeholder} error={this.props.error} color={this.props.color}/>
         )
     }

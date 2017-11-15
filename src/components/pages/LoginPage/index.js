@@ -108,8 +108,8 @@ class LoginPage extends React.Component {
             <Label size="36px" weight="900" color="#202020">เข้าสู่ระบบ Fit Start</Label>
           </Header>
           <Form>
-            <InputBox onChange={this.changeUsername} error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
-            <InputBox onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
+            <InputBox type="text" onChange={this.changeUsername} error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
+            <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
               <LinkAndButtonBox onClick={this.signin} to="/" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>

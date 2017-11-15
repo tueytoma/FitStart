@@ -164,8 +164,7 @@ class RegisterPage extends React.Component {
     }
     
     /*
-        input check list 
-
+        validate list
         Name : english char length 1-20
         Surname : english char length 1-20
         address : length 1-300 no special char except . ,

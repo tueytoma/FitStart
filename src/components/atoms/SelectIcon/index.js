@@ -8,7 +8,7 @@ export default class SelectIcon extends React.Component {
 
   render() {
     return (
-        <svg opacity={this.props.opacity} width= "60.4px" height= "60.4px" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 61.7 61.7" enable-background="new 0 0 61.7 61.7" >
+        <svg opacity={this.props.opacity} width= "60.4px" height= "60.4px" version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 61.7 61.7" enableBackground="new 0 0 61.7 61.7" >
             <g id="การสมัคร">
                 <g id="ประเภท">
                     <circle fill={this.props.color} cx="30.8" cy="30.8" r="30.2"/>

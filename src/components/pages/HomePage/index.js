@@ -4,6 +4,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { ImageSelectButton, Label, InputBox, LinkAndButtonBox, LinkStyle } from 'components'
 import { Link } from 'react-router-dom';
+import api from '../../../api'
 
 const Wraper = styled.div`
   width: 100vw;
@@ -43,7 +44,6 @@ const Footer = styled.div`
   margin: auto 0 0 10%;
   width: 100%;
   height: 30vh;
-
   display: flex;
   align-items: center;
 `

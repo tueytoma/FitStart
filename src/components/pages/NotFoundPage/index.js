@@ -1,12 +1,10 @@
 import React from 'react'
 
-import { PageTemplate, Header, Footer, Heading } from 'components'
+import { Label } from 'components'
 
 const NotFoundPage = () => {
   return (
-    <PageTemplate header={<Header />} footer={<Footer />}>
-      <Heading>404 Not Found</Heading>
-    </PageTemplate>
+    <Label size="100px" weight="normal" color= "rgba(84, 84, 84, 0.8)">404</Label>
   )
 }
 

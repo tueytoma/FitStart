@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { Link, Button } from 'components'
+import { LinkStyle, Button } from 'components'
 
 const Warper = styled.div`
     display: flex;
@@ -16,8 +16,8 @@ class LinkAndButtonBox extends React.Component {
     render() {
         return (
             <Warper>
-                <Link to="#" cancleRegis> <p>ยกเลิกการสมัครสมาชิก</p> </Link> 
-                <Button color={this.props.color} style={{marginLeft: "16px"}} cancleRegis> ยืนยันการสมัคร </Button>
+                <LinkStyle to={this.props.to} loginPage={this.props.loginPage} cancleRegis={this.props.cancleRegis}> <p>{this.props.linktext}</p> </LinkStyle> 
+                <Button color={this.props.color} style={{marginLeft: "16px"}} loginPage={this.props.loginPage} cancleRegis={this.props.cancleRegis}> {this.props.buttontext} </Button>
             </Warper>
         )
     }

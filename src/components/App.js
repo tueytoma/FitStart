@@ -2,7 +2,8 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 
-import { HomePage, SamplePage, NotFoundPage, TestPage } from 'components'
+
+import { HomePage, RegisterPage, NotFoundPage } from 'components'
 
 // https://github.com/diegohaz/arc/wiki/Styling
 import theme from './themes/default'
@@ -18,8 +19,8 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Switch>
         <Route path="/" component={HomePage} exact />
-        <Route path="/sample-page" component={SamplePage} />
-        <Route path="/test-page" component={TestPage} />
+        <Route path="/register" component={RegisterPage} exact/>
+        {/* <Route path="/test-page" component={TestPage} /> */}
         <Route component={NotFoundPage} />
       </Switch>
     </ThemeProvider>

@@ -6,20 +6,20 @@ import { ifProp } from 'styled-tools'
 
 const Button = styled.button`
     padding: auto 30px;
-    border: 1px solid ${props => props.color};
+    border: 2px solid ${props => props.color};
     border-radius: 100px;
 
     background-color: #F9FAFC; 
-    height: ${props => props.cancleRegis ? "40px" : props.loginPage ? "29px" : props.height};
-    width: ${props => props.cancleRegis ? "175px" : props.loginPage ? "95px" : props.width};
+    height: ${props => props.cancleRegis ? "40px" : props.loginPage ? "40px" : props.height};
+    width: ${props => props.cancleRegis ? "175px" : props.loginPage ? "125px" : props.width};
     margin: 0 8px 0 0;
     
 
     font-family: ${font('primary')};
     font-style: normal;
-    font-weight: normal;
+    font-weight: 800;
     line-height: normal;
-    font-size: ${props => props.cancleRegis ? "18px" : props.loginPage ? "12px" : props.size};
+    font-size: ${props => props.cancleRegis ? "18px" : props.loginPage ? "16px" : props.size};
     color: ${props => props.color};
 
     outline: none;

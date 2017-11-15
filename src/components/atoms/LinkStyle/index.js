@@ -10,7 +10,7 @@ const styles = css`
     font-family: ${font('primary')};
     font-style: normal;
     text-decoration: underline;
-    font-size: ${props => props.cancleRegis ? "18px" : props.forgetPassword ? "12px" : props.size};
+    font-size: ${props => props.cancleRegis ? "18px" : props.loginPage ? "16px" : props.size};
     font-weight: normal;
     line-height: normal;
     color: #545454;
@@ -24,9 +24,9 @@ const StyledNavLink = styled(({
   ...props
 }) => <NavLink {...props} />)`${styles}`
 
-const Link = ({ ...props }) => {
+const LinkStyle = ({ ...props }) => {
       return <StyledNavLink {...props} />
   }
 
-export default Link;
+export default LinkStyle;
 

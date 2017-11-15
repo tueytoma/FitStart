@@ -2,13 +2,15 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { TraineeIcon, TrainerIcon, SelectIcon, Label, InputBox, Checkbox, Link, LinkAndButtonBox} from 'components'
+import { TraineeIcon, TrainerIcon, SelectIcon, Label, InputBox, Checkbox, Link, LinkAndButtonBox, LinkStyle} from 'components'
+import { Switch, Route } from 'react-router-dom'
 
 const Warper = styled.div`
     width: 100vw;
     display: flex;
     justify-content: center;
     align-self: flex-start;
+    background-color: #F9FAFC;
 `
 
 const WarperInner = styled.div`
@@ -69,7 +71,7 @@ const ImageButton = styled.button`
     }
 `
 
-class ImageSelectButton extends React.Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -113,11 +115,11 @@ class ImageSelectButton extends React.Component {
                         <LRBlock >
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>2. ข้อมูลส่วนตัวผู้ใช้</Label>
                             <Div>
-                                <InputBox label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
+                                <InputBox error={true} label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
                                 <InputBox label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
-                                <InputBox dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                                <InputBox style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
                                 <InputBox label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
                             <InputBox label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
@@ -126,10 +128,11 @@ class ImageSelectButton extends React.Component {
                     <FooterBlock>
                         <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
                             <Checkbox/> 
-                            <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ศึกษาข้อมูลเพิ่มเติม คลิกที่นี่</Label>
+                            <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ศึกษาข้อมูลเพิ่มเติม &nbsp;</Label>
+                            <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                            <LinkAndButtonBox color={col}/>
+                            <LinkAndButtonBox to="/" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
                         </LRBlock>
                     </FooterBlock >
                 </WarperInner>
@@ -138,4 +141,4 @@ class ImageSelectButton extends React.Component {
     }
 }
 
-export default ImageSelectButton
+export default RegisterPage

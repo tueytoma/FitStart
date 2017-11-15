@@ -2,7 +2,7 @@
 import React from 'react'
 
 import styled, { css } from 'styled-components'
-import { TraineeIcon, TrainerIcon, SelectIcon, Label, InputBox} from 'components'
+import { TraineeIcon, TrainerIcon, SelectIcon, Label, InputBox, Checkbox, Link, LinkAndButtonBox} from 'components'
 
 const Warper = styled.div`
     width: 100vw;
@@ -19,7 +19,7 @@ const WarperInner = styled.div`
 
 const HeaderBlock = styled.div`
     align-self: flex-start;
-    margin: 36px 0 16px 0;
+    margin: 36px 0 35px 0;
     display: flex;
     flex-flow: column;
 `
@@ -41,6 +41,12 @@ const LRBlock = styled.div`
     flex-flow: column;
     flex: 1;
 `
+
+const FooterBlock = styled.div`
+    margin: 64px 0 53px 0;
+    display:flex;
+`
+
 
 const Div = styled.div`
     display: flex;
@@ -87,7 +93,7 @@ class ImageSelectButton extends React.Component {
             <Warper>
                 <WarperInner>
                     <HeaderBlock>
-                        <Label size="48px" weight="bold" color="#202020">สมัครสมาชิก</Label>
+                        <Label size="48px" weight="bolder" color="#202020">สมัครสมาชิก</Label>
                         <Label style={{marginTop: "-2px"}} size="24px" weight="500" color="rgba(32, 32, 32, 0.7)">เลือกประเภทของการสมัคร</Label>
                     </HeaderBlock>
                     <SelectBlock>
@@ -98,24 +104,34 @@ class ImageSelectButton extends React.Component {
                     </SelectBlock>
                     <InputBlock>
                         <LRBlock style={{marginRight: "8px"}}>
-                            <Label style={{marginBottom: "32px"}} size="24px" weight="500" color= {col}>ข้อมูลบัญชี</Label>
+                            <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
                             <InputBox label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
                             <InputBox label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
                             <InputBox label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
                             <InputBox label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
                         </LRBlock>
                         <LRBlock >
-                            <Label style={{marginBottom: "32px"}} size="24px" weight="500" color= {col}>ข้อมูลส่วนตัวผู้ใช้</Label>
+                            <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>2. ข้อมูลส่วนตัวผู้ใช้</Label>
                             <Div>
                                 <InputBox label="ชื่อจริง" placeholder="firstname" color={col} width="200px" height="30px"/>
                                 <InputBox label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
-                                <InputBox dropdown label="ชื่อจริง" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                                <InputBox label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
+                                <InputBox dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                                <InputBox label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
+                            <InputBox label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>
                         </LRBlock>
                     </InputBlock>
+                    <FooterBlock>
+                        <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
+                            <Checkbox/> 
+                            <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ศึกษาข้อมูลเพิ่มเติม คลิกที่นี่</Label>
+                        </LRBlock>
+                        <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
+                            <LinkAndButtonBox color={col}/>
+                        </LRBlock>
+                    </FooterBlock >
                 </WarperInner>
             </Warper>
         )

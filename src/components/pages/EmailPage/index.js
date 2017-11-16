@@ -71,27 +71,22 @@ class EmailPage extends React.Component {
     };
   }
 
-  toggleError = e => {
-    if(!this.state.error)
-      this.setState({error: true })
+  sendEmail = e => {
+    if(this.checkEmail(this.state.email)) this.setState({error: false})
+    else this.setState({error: true })
+    
+
   }
 
-  signin = e => {
-    e.preventDefault();
-    api.signin({username : this.state.username, password: this.state.password})
-      .then((res)=>{
-        console.log(res)
-        auth.setCookieAndToken(res)
-        this.props.history.push('/')
-      },(err)=>{
-        this.toggleError()
-      })
+  checkEmail = (input) => {
+    let check = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;  
+    if(input.match(check)) return true
+    else return false   
   }
 
-  changeUsername = e => {
+  changeEmail = e => {
     this.setState({email : e.target.value})
   }
-
 
   render() {
     return (
@@ -104,10 +99,10 @@ class EmailPage extends React.Component {
             <Label size="36px" weight="900" color="#202020">กรอกอีเมลของคุณ</Label>
           </Header>
           <Form>
-            <InputBox type="text" onChange={this.changeUsername} error={this.state.error} label="อีเมล" placeholder="email" color="#F05939" width="500px" height="30px"/>
-            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
+            <InputBox type="text" onChange={this.changeEmail} error={this.state.error} label="อีเมล" placeholder="email" color="#F05939" width="500px" height="30px"/>
+            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ไม่มีอีเมลนี้ในระบบ หรือ อีเมลผิดรูปแบบ</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick={this.signin} to="/login" loginPage color="#F05939" linktext="กลับไปหน้าล็อคอิน" buttontext="ส่งคำขอ"/>
+              <LinkAndButtonBox onClick={this.sendEmail} to="/login" loginPage color="#F05939" linktext="กลับไปหน้าล็อคอิน" buttontext="ส่งคำขอ"/>
             </LinkAndButtonDiv>
           </Form>
         </Middle>

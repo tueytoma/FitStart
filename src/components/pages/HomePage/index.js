@@ -1,16 +1,17 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { ImageSelectButton, Label, InputBox, LinkAndButtonBox, LinkStyle } from 'components'
+import { Topbar } from 'components'
 import { Link } from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
+  height: 200vh;
   background-color: #F9FAFC;
   display: flex;
+
+  margin: 0;
 `
 
 class HomePage extends React.Component {
@@ -30,7 +31,7 @@ class HomePage extends React.Component {
   render() {
     return (
       <Wrapper>
-        <LinkStyle to="/login" size="13px"><p>LOGIN</p></LinkStyle>
+        <Topbar/>
       </Wrapper>
     )
   }

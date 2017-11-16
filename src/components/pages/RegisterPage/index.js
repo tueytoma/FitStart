@@ -183,6 +183,7 @@ class RegisterPage extends React.Component {
         api.signup(data)
             .then((res)=>{
                 console.log(res)
+                this.props.history.push('/registersuccess')
             })
     }
 

@@ -69,8 +69,14 @@ class NewPasswordPage extends React.Component {
         error: false,
         password: '',
         rePassword: '',
+        passEqualrepass: false,
     };
   }
+
+    tick() {
+        if(this.state.password == this.state.rePassword && this.state.password != '' && this.state.password != '' && !this.state.error ) this.setState({passEqualrepass: true})
+        else this.setState({passEqualrepass: false})
+    }
 
   toggleError = e => {
     if(!this.state.error)
@@ -92,7 +98,7 @@ class NewPasswordPage extends React.Component {
       api.resetPassword({token : this.props.match.params.token, password : this.state.password})
         .then((res)=>{
           if(res.success){
-            this.props.history.push('/login')
+            this.props.history.push('/registersuccess')
           } 
         })
       }
@@ -106,6 +112,8 @@ class NewPasswordPage extends React.Component {
 
   componentDidMount(){
     this.checkToken(this.props.match.params.token)
+    if(!this.state.end) {this.interval = setInterval(() => this.tick(), 100);}
+    else {};
   }
 
   changePassword = e => {
@@ -127,8 +135,8 @@ class NewPasswordPage extends React.Component {
             <Label size="36px" weight="900" color="#202020">ตั้งรหัสผ่านใหม่</Label>
           </Header>
           <Form>
-            <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
-            <InputBox type="password" onChange={this.changeRePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
+            <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
+            <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changeRePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">รหัสผ่านและยืนยันรหัสผ่านมีค่าไม่ตรงกัน หรือจำนวนตัวอักษรไม่ตรงตามรูปแบบ กรุณากรอกใหม่</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
               <LinkAndButtonBox onClick={this.resetPassword} to="/login" loginPage color="#F05939" linktext="" buttontext="ยืนยัน"/>

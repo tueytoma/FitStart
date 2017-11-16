@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
-import { HomePage, RegisterPage, NotFoundPage, LoginPage, EmailPage,NewPasswordPage  } from 'components'
+import { HomePage, RegisterPage, NotFoundPage, LoginPage, EmailPage,NewPasswordPage,RegisterSuccessPage, EmailCheckPage } from 'components'
 import { withCookies, Cookies } from 'react-cookie'
 import PropTypes, { instanceOf } from 'prop-types'
 
@@ -32,6 +32,8 @@ class App extends React.Component{
         <Switch>
           <Route path="/" component={HomePage} exact />
           <Route path="/register" component={RegisterPage} exact/>
+          <Route path="/registersuccess" component={RegisterSuccessPage} exact/>
+          <Route path="/emailcheck" component={EmailCheckPage} exact/>
           <Route path="/login" component={LoginPage} exact/>
           <Route path="/resetpassword" component={EmailPage} exact/>
           <Route path="/newpassword/:token" component={NewPasswordPage} exact/>

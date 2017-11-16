@@ -56,10 +56,10 @@ class Topbar extends React.Component {
                 </WrapperInner>
                     {auth.isLoggedIn() ? 
                     <a onClick={auth.logout}><LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Logout</LinkStyle></a>
-                    : 
+                    :
                     <LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Login</LinkStyle>}
                 <WrapperSide>
-
+                    
                 </WrapperSide>
           </Wrapper>
         )

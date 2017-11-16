@@ -89,7 +89,7 @@ class EmailPage extends React.Component {
         if(res.hasEmail){
           api.forgetPassword({email : this.state.email})
             .then((res)=>{
-              this.props.history.push('/login')
+              this.props.history.push('/emailcheck')
             })
           
         } else {
@@ -117,7 +117,7 @@ class EmailPage extends React.Component {
             <InputBox type="text" onChange={this.changeEmail} error={this.state.error} label="อีเมล" placeholder="email" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ไม่มีอีเมลนี้ในระบบ หรือ อีเมลผิดรูปแบบ</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick={this.checkEmail} to="/login" loginPage color="#F05939" linktext="กลับไปหน้าล็อคอิน" buttontext="ส่งคำขอ"/>
+              <LinkAndButtonBox onClick={this.checkEmail} to="/login" loginPage color="#F05939" linktext="กลับไปยังหน้าเข้าสู่ระบบ" buttontext="ส่งคำขอ"/>
             </LinkAndButtonDiv>
           </Form>
         </Middle>

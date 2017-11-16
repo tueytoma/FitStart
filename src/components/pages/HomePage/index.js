@@ -7,11 +7,11 @@ import api from '../../../api'
 import auth from '../../../auth'
 
 const Wrapper = styled.div`
+`
+const InnerWrapper = styled.div`
   height: 200vh;
   background-color: #F9FAFC;
   display: flex;
-
-  margin: 0;
 `
 
 class HomePage extends React.Component {
@@ -32,6 +32,9 @@ class HomePage extends React.Component {
     return (
       <Wrapper>
         <Topbar/>
+        <InnerWrapper>
+
+        </InnerWrapper>
       </Wrapper>
     )
   }

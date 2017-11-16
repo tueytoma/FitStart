@@ -23,6 +23,12 @@ auth = {
             return true
         } else
             return false
+    },
+    isTrainer(){
+        if(cookieService.get('user').role.equals('Trainer')){
+            return true
+        } else 
+            return false
     }
 }
 

@@ -88,12 +88,17 @@ class NewPasswordPage extends React.Component {
 
   resetPassword = () => {
     if(this.state.password == this.state.rePassword){
+      if(this.state.password.length >=8 && this.state.password.length <=20){
       api.resetPassword({token : this.props.match.params.token, password : this.state.password})
         .then((res)=>{
           if(res.success){
             this.props.history.push('/login')
           } 
         })
+      }
+      else {
+        this.setState({error : true})
+      }
     } else {
       this.setState({error : true})
     }
@@ -124,7 +129,7 @@ class NewPasswordPage extends React.Component {
           <Form>
             <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
             <InputBox type="password" onChange={this.changeRePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
-            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">รหัสผ่านและยืนยันรหัสผ่านมีค่าไม่ตรงกัน กรุณากรอกใหม่</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
+            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">รหัสผ่านและยืนยันรหัสผ่านมีค่าไม่ตรงกัน หรือจำนวนตัวอักษรไม่ตรงตามรูปแบบ กรุณากรอกใหม่</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
               <LinkAndButtonBox onClick={this.resetPassword} to="/login" loginPage color="#F05939" linktext="" buttontext="ยืนยัน"/>
             </LinkAndButtonDiv>

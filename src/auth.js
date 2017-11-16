@@ -11,11 +11,10 @@ auth = {
     return cookieService.get('user');
     },
 
-    logout(cb) {
+    logout() {
     cookieService.remove('token');
     cookieService.remove('user');
     cookieService.remove('roles');
-    if (cb) cb();
     },
 
     isLoggedIn(){

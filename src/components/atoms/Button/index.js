@@ -29,7 +29,7 @@ const Button = styled.button`
     &:hover {
         color: ${props => props.disabled ? "#c4c4c4" : "#F9FAFC"}; 
         background-color: ${props => props.disabled ? "#F9FAFC" : props.color}; 
-        cursor: default;
+        cursor: ${props => props.disabled ? "default" : "pointer"};
     }
 `
   

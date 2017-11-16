@@ -97,6 +97,8 @@ class RegisterPage extends React.Component {
             repasswordPass:true,
             emailPass:true,
             passEqualrepass: false,
+            checkboxPass: false,
+            disableCheckbox: true,
         };
     }
 
@@ -108,6 +110,7 @@ class RegisterPage extends React.Component {
     tick() {
         if(this.state.password == this.state.repassword && this.state.passwordPass && this.state.passwordPass && this.state.password != '' && this.state.repassword != '') this.setState({passEqualrepass: true})
         else this.setState({passEqualrepass: false})
+        this.setState({disableCheckbox: !this.state.checkboxPass})
     }
 
     traineeSelect = e => {
@@ -152,6 +155,14 @@ class RegisterPage extends React.Component {
 
     changeAddress = e => {
         this.setState({address : e.target.value})
+    }
+
+    changeCheckbox = e => {
+        this.setState({checkboxPass : e.target.value})
+    }
+
+    toggleIsChecked = e => {
+        this.setState({checkboxPass: !this.state.checkboxPass});
     }
 
     signup = e => {
@@ -271,12 +282,12 @@ class RegisterPage extends React.Component {
                     </InputBlock>
                     <FooterBlock>
                         <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
-                            <Checkbox/> 
+                            <Checkbox checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> 
                             <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ข้อมูลเพิ่มเติม &nbsp;</Label>
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                            <LinkAndButtonBox onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
+                            <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
                         </LRBlock>
                     </FooterBlock >
                 </WrapperInner>

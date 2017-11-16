@@ -61,14 +61,14 @@ const Right = styled.div`
 
 `
 
-class NewPasswprdPage extends React.Component {
+class NewPasswordPage extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
         error: false,
-        username: '',
         password: '',
+        rePassword: '',
     };
   }
 
@@ -77,24 +77,38 @@ class NewPasswprdPage extends React.Component {
       this.setState({error: true })
   }
 
-  signin = e => {
-    e.preventDefault();
-    api.signin({username : this.state.username, password: this.state.password})
+  checkToken = token => {
+    api.hasToken(token)
       .then((res)=>{
-        console.log(res)
-        auth.setCookieAndToken(res)
-        this.props.history.push('/')
-      },(err)=>{
-        this.toggleError()
+        if(!res.hasToken){
+          this.props.history.push('/404')
+        }
       })
   }
 
-  changeUsername = e => {
-    this.setState({username : e.target.value})
+  resetPassword = () => {
+    if(this.state.password == this.state.rePassword){
+      api.resetPassword({token : this.props.match.params.token, password : this.state.password})
+        .then((res)=>{
+          if(res.success){
+            this.props.history.push('/login')
+          } 
+        })
+    } else {
+      this.setState({error : true})
+    }
+  }
+
+  componentDidMount(){
+    this.checkToken(this.props.match.params.token)
   }
 
   changePassword = e => {
     this.setState({password : e.target.value})
+  }
+
+  changeRePassword = e => {
+    this.setState({rePassword : e.target.value})
   }
 
   render() {
@@ -109,10 +123,10 @@ class NewPasswprdPage extends React.Component {
           </Header>
           <Form>
             <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
-            <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
+            <InputBox type="password" onChange={this.changeRePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">รหัสผ่านและยืนยันรหัสผ่านมีค่าไม่ตรงกัน กรุณากรอกใหม่</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick="" to="/login" loginPage color="#F05939" linktext="" buttontext="ยืนยัน"/>
+              <LinkAndButtonBox onClick={this.resetPassword} to="/login" loginPage color="#F05939" linktext="" buttontext="ยืนยัน"/>
             </LinkAndButtonDiv>
           </Form>
         </Middle>
@@ -123,4 +137,4 @@ class NewPasswprdPage extends React.Component {
     )
   }
 }
-export default NewPasswprdPage
+export default NewPasswordPage

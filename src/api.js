@@ -36,4 +36,38 @@ api.signin = data => {
 		},api.err)
 }
 
+api.hasEmail = email =>{
+    return Request.get(config.BACKURL + '/users/' + email)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        })
+}
+
+api.forgetPassword = email =>{
+    return Request.post(config.BACKURL + '/forgetPassword')
+        .set('Accept', 'application/json')
+        .send(email)
+        .then(res => {
+            return res.body
+        })
+}
+
+api.hasToken = token =>{
+    return Request.get(config.BACKURL + '/reset/' + token)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        })
+}
+
+api.resetPassword = data =>{
+    return Request.post(config.BACKURL + '/resetPassword')
+        .set('Accept', 'application/json')
+        .send(data)
+        .then(res => {
+            return res.body
+        })
+}
+
 module.exports = api

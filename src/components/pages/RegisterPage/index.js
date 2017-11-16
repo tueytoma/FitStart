@@ -245,7 +245,8 @@ class RegisterPage extends React.Component {
 
     render() {
         if(this.state.trainee) var col = "#F05939" 
-        else var col = "#211F5E"
+        else if(this.state.trainer) var col = "#211F5E"
+        else var col = "#c4c4c4"
         return(
             <Wrapper>
                 <WrapperInner>

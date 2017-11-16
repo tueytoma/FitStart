@@ -61,14 +61,13 @@ const Right = styled.div`
 
 `
 
-class LoginPage extends React.Component {
+class EmailPage extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
         error: false,
-        username: '',
-        password: '',
+        email: '',
     };
   }
 
@@ -90,12 +89,9 @@ class LoginPage extends React.Component {
   }
 
   changeUsername = e => {
-    this.setState({username : e.target.value})
+    this.setState({email : e.target.value})
   }
 
-  changePassword = e => {
-    this.setState({password : e.target.value})
-  }
 
   render() {
     return (
@@ -105,20 +101,15 @@ class LoginPage extends React.Component {
         </Left>
         <Middle>
           <Header>
-            <Label size="36px" weight="900" color="#202020">เข้าสู่ระบบ Fit Start</Label>
+            <Label size="36px" weight="900" color="#202020">กรอกอีเมลของคุณ</Label>
           </Header>
           <Form>
-            <InputBox type="text" onChange={this.changeUsername} error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
-            <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
+            <InputBox type="text" onChange={this.changeUsername} error={this.state.error} label="อีเมล" placeholder="email" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick={this.signin} to="/resetpassword" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
+              <LinkAndButtonBox onClick={this.signin} to="/login" loginPage color="#F05939" linktext="กลับไปหน้าล็อคอิน" buttontext="ส่งคำขอ"/>
             </LinkAndButtonDiv>
           </Form>
-          <Footer>
-            <Label size="13px" weight="normal" color="#211F5E">ยังไม่มีบัญชีผู้ใช้งานระบบใช่ไหม?&nbsp;</Label>
-            <LinkStyle to="/register" size="13px"><p>สมัครสมาชิก</p></LinkStyle>
-          </Footer>
         </Middle>
         <Right>
           
@@ -127,4 +118,4 @@ class LoginPage extends React.Component {
     )
   }
 }
-export default LoginPage
+export default EmailPage

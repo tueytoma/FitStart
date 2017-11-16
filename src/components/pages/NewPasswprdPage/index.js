@@ -61,7 +61,7 @@ const Right = styled.div`
 
 `
 
-class LoginPage extends React.Component {
+class NewPasswprdPage extends React.Component {
 
   constructor(props) {
     super(props)
@@ -105,20 +105,16 @@ class LoginPage extends React.Component {
         </Left>
         <Middle>
           <Header>
-            <Label size="36px" weight="900" color="#202020">เข้าสู่ระบบ Fit Start</Label>
+            <Label size="36px" weight="900" color="#202020">ตั้งรหัสผ่านใหม่</Label>
           </Header>
           <Form>
-            <InputBox type="text" onChange={this.changeUsername} error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
             <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
-            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
+            <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
+            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">รหัสผ่านและยืนยันรหัสผ่านมีค่าไม่ตรงกัน กรุณากรอกใหม่</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick={this.signin} to="/resetpassword" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
+              <LinkAndButtonBox onClick="" to="/login" loginPage color="#F05939" linktext="" buttontext="ยืนยัน"/>
             </LinkAndButtonDiv>
           </Form>
-          <Footer>
-            <Label size="13px" weight="normal" color="#211F5E">ยังไม่มีบัญชีผู้ใช้งานระบบใช่ไหม?&nbsp;</Label>
-            <LinkStyle to="/register" size="13px"><p>สมัครสมาชิก</p></LinkStyle>
-          </Footer>
         </Middle>
         <Right>
           
@@ -127,4 +123,4 @@ class LoginPage extends React.Component {
     )
   }
 }
-export default LoginPage
+export default NewPasswprdPage

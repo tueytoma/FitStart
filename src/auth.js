@@ -18,6 +18,12 @@ auth = {
     if (cb) cb();
     },
 
+    isLoggedIn(){
+        if(cookieService.get('user')){
+            return true
+        } else
+            return false
+    }
 }
 
 module.exports = auth;

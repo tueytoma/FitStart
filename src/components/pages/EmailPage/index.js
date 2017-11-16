@@ -71,13 +71,19 @@ class EmailPage extends React.Component {
     };
   }
 
-  toggleError = e => {
-    if(!this.state.error)
-      this.setState({error: true })
+  sendEmail = e => {
+    if(this.checkEmail(this.state.email)) this.setState({error: false})
+    else this.setState({error: true })
+    
+
   }
 
   checkEmail = e => {
     e.preventDefault();
+    let check = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;  
+    if(!this.state.email.match(check)){
+      this.setState({error : true})
+    } else {
     api.hasEmail(this.state.email)
       .then((res)=>{
         if(res.hasEmail){
@@ -90,12 +96,12 @@ class EmailPage extends React.Component {
           this.setState({error : true})
         }
       })
+    }
   }
 
   changeEmail = e => {
     this.setState({email : e.target.value})
   }
-
 
   render() {
     return (
@@ -109,7 +115,7 @@ class EmailPage extends React.Component {
           </Header>
           <Form>
             <InputBox type="text" onChange={this.changeEmail} error={this.state.error} label="อีเมล" placeholder="email" color="#F05939" width="500px" height="30px"/>
-            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
+            {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ไม่มีอีเมลนี้ในระบบ หรือ อีเมลผิดรูปแบบ</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
               <LinkAndButtonBox onClick={this.checkEmail} to="/login" loginPage color="#F05939" linktext="กลับไปหน้าล็อคอิน" buttontext="ส่งคำขอ"/>
             </LinkAndButtonDiv>

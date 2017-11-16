@@ -110,7 +110,8 @@ class RegisterPage extends React.Component {
     tick() {
         if(this.state.password == this.state.repassword && this.state.passwordPass && this.state.passwordPass && this.state.password != '' && this.state.repassword != '') this.setState({passEqualrepass: true})
         else this.setState({passEqualrepass: false})
-        this.setState({disableCheckbox: !this.state.checkboxPass})
+        let check = this.state.checkboxPass && (this.state.trainee || this.state.trainer)
+        this.setState({disableCheckbox: !check})
     }
 
     traineeSelect = e => {

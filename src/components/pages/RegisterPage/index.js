@@ -76,7 +76,7 @@ class RegisterPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            trainee: true,
+            trainee: false,
             trainer: false,
             username: '',
             password: '',
@@ -255,11 +255,11 @@ class RegisterPage extends React.Component {
                     </HeaderBlock>
                     <SelectBlock>
                         {this.state.trainee ? <SelectIcon color="#F05939"/> : <SelectIcon opacity="0"/>}
-                        <ImageButton select={this.state.trainee} color="#F05939" onClick={this.traineeSelect} style={{margin: "0 60px 0 16px"}}><TraineeIcon width="10vw" opacity={this.state.trainee ? "1" : "0.4"}/></ImageButton>
-                        <ImageButton select={this.state.trainer} color="#211F5E" onClick={this.trainerSelect} style={{margin: "0 16px 0 0"}}><TrainerIcon width="10vw" opacity={this.state.trainer ? "1" : "0.4"}/></ImageButton>
+                        <a href="#inputblock" style={{transition: "height 4s"}}> <ImageButton select={this.state.trainee} color="#F05939" onClick={this.traineeSelect} style={{margin: "0 60px 0 16px"}}><TraineeIcon width="10vw" opacity={this.state.trainee ? "1" : "0.4"}/></ImageButton> </a>
+                        <a href="#inputblock" style={{transition: "height 4s"}}><ImageButton select={this.state.trainer} color="#211F5E" onClick={this.trainerSelect} style={{margin: "0 16px 0 0"}}><TrainerIcon width="10vw" opacity={this.state.trainer ? "1" : "0.4"}/></ImageButton> </a>
                         {this.state.trainer ? <SelectIcon color="#211F5E"/> : <SelectIcon opacity="0"/>}
                     </SelectBlock>
-                    <InputBlock>
+                    <InputBlock id="inputblock">
                         <LRBlock style={{marginRight: "8px"}}>
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
                             <InputBox type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>

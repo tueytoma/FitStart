@@ -1,94 +1,89 @@
-<p align="center">
-  <img alt="arclogo" src="https://cloud.githubusercontent.com/assets/3068563/23199029/55e9d55a-f8aa-11e6-91a2-74b82db3813c.png"><br><br>
-  <a href="https://github.com/diegohaz/arc/releases/latest"><img src="https://github-release-version.herokuapp.com/github/diegohaz/arc/release.svg?style=flat-square" alt="Latest release" /></a>
-  <a href="https://travis-ci.org/diegohaz/arc"><img src="https://img.shields.io/travis/diegohaz/arc/master.svg?style=flat-square" alt="Build Status" /></a>
-  <a href="https://codecov.io/gh/diegohaz/arc"><img src="https://img.shields.io/codecov/c/github/diegohaz/arc.svg?style=flat-square" alt="Coverage Status" /></a>
-  <a href="https://gitter.im/diegohaz/arc"><img src="https://img.shields.io/badge/chat-on%20gitter-1dce73.svg?style=flat-square" alt="Gitter chat" /></a>
-</p>
+# Untitled TEAM : ระบบนัดหมายเทรนเนอร์กับลูกค้า FIT START
+[![section 1](https://img.shields.io/badge/section-1-ff69b4.svg?style=flat-square)](https://github.com/we-inc/mms-se-untitled-1)
 
-<br />
-<p>
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/tyWoocmAMXP82QQzh26Huzgu/diegohaz/arc'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/tyWoocmAMXP82QQzh26Huzgu/diegohaz/arc.svg' />
-</a>
-</p>
-<br />
+> <span><b>mms-hired-me created by GitHub Classroom</b></span> <br>2110423 Software Engineering (SE) course 1/2017
 
-**ARc** (Atomic React) is a React starter kit based on the [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) methodology. It's progressive, which means that you can start with the basic boilerplate and try the other features when you are comfortable.
+## Table of Contents
+* [Background](#background)
 
-- **[Demo](https://arc.js.org)**
-- **[Documentation](https://github.com/diegohaz/arc/wiki)**
+* [Documents](#documents)
 
-## Branches
+* [Installation](#installation)
 
-- ### [`master`](https://github.com/diegohaz/arc)
+* [Usage](#usage)
 
-  The basic stack with [React](https://facebook.github.io/react/), [Webpack](https://github.com/webpack/webpack), [react-router](https://github.com/ReactTraining/react-router) and [Jest](https://facebook.github.io/jest/).
+* [Contributors](#contributors)
 
-  - ### [`redux`](https://github.com/diegohaz/arc/tree/redux) <sup><sub>([compare](https://github.com/diegohaz/arc/compare/master...redux?diff=split#files_bucket))</sub></sup>
+* [License](#license)
 
-    Master plus [redux](https://github.com/reactjs/redux), [redux-saga](https://github.com/yelouafi/redux-saga) and [redux-form](https://github.com/erikras/redux-form).
+## Background
 
-    - ### [`redux-ssr`](https://github.com/diegohaz/arc/tree/redux-ssr) <sup><sub>([compare](https://github.com/diegohaz/arc/compare/redux...redux-ssr?diff=split#files_bucket))</sub></sup>
+## Documents
 
-      Redux plus [Server Side Rendering](https://github.com/reactjs/redux/blob/master/docs/recipes/ServerRendering.md)
+* [Problem Statement](./doc/Problem-Statement.pdf)
+* [Requirements Specification](./doc/Requirements-Specification.pdf)
 
-## Why
+## Installation
 
-I've been a web developer for the past 14 years and after dealing with IE vs. Netscape wars, `<table>` layouts and flash websites, I can say that we are now living in the best moment in web development. Web components are awesome and React makes it better.
+## Usage
 
-React encourages you to create very small and pure components. However, as your project grows, you will have an increasingly complex components folder. At some point, this will be really huge and hard to maintain.
-
-I had a React project with more than 100 components in the `components` folder. The first approach I tried to organize it was separating the components by domain (described [here](http://marmelab.com/blog/2015/12/17/react-directory-structure.html)), but I realized that most of my components didn't belong to any domain, but were shared. This meant that my problems just moved to the `commons` folder.
-
-The [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) approach comes handy to solve this problem because it considers the reusability through composition, *which is actually what React is*. You will have your minimal/stylish components in one folder, pages in another and so on.
-
-## Setup
-
-### 1. Get the source code
-
-Just clone one of the ARc [branches](#branches):
-```sh
-$ git clone -b master https://github.com/diegohaz/arc my-app
-$ cd my-app
-```
-
-You will probably want to remove ARc git history and start a brand new repository:
-```sh
-$ rm -rf .git
-$ git init
-```
-
-### 2. Install dependencies
-
-```sh
-$ npm install
-```
-
-### 3. Run the app
-
-```sh
-$ npm run dev
-```
-
-It will start the development server with [HMR](https://webpack.github.io/docs/hot-module-replacement) on top of it.
-
-> [http://localhost:3000](http://localhost:3000) — Development server<br>
-> [http://localhost:3001](http://localhost:3001) — Webpack assets server (for `redux-ssr` only)<br>
-
-Now you can open [http://localhost:3000](http://localhost:3000) in browser and start developing.
-
-## Contributing
-
-When submitting an issue, use the following patterns in the title for better understanding:
-```bash
-[v0.3.1-redux] Something wrong is not right # the v0.3.1 release of the redux branch
-[redux] Something wrong is not right # the actual code of the redux branch
-Something wrong is right # general, related to master or not directly related to any branch
-```
-
-PRs are very appreciated. For bugs/features consider creating an issue before sending a PR.
+## Contributors
+<div>
+    <a href="https://github.com/5730321421-PW"><img align="left" src="https://avatars.githubusercontent.com/5730321421-PW" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Panida wiriyachaiporn</b><br>
+    Student ID: 5730321421<br>
+    GitHub Account: <a href="https://github.com/5730321421-PW">@5730321421-PW</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/Peeranut-J"><img align="left" src="https://avatars.githubusercontent.com/Peeranut-J" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Peeranut Jariyarakvarakul</b><br>
+    Student ID: 5730411221<br>
+    GitHub Account: <a href="https://github.com/Peeranut-J">@Peeranut-J</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/stepboom"><img align="left" src="https://avatars.githubusercontent.com/stepboom" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Supakrit Paoliwat</b><br>
+    Student ID: 5730593821<br>
+    GitHub Account: <a href="https://github.com/stepboom">@stepboom</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/5730611421-SP"><img align="left" src="https://avatars.githubusercontent.com/5730611421-SP" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Sorachach Panomchaisawang</b><br>
+    Student ID: 5730611421<br>
+    GitHub Account: <a href="https://github.com/5730611421-SP">@5730611421-SP</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/tueytoma"><img align="left" src="https://avatars.githubusercontent.com/tueytoma" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Sitthichai Saejia</b><br>
+    Student ID: 5730625221<br>
+    GitHub Account: <a href="https://github.com/tueytoma">@tueytoma</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/tmark-s"><img align="left" src="https://avatars.githubusercontent.com/tmark-s" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Thanapon Sirisompark</b><br>
+    Student ID: 5731042521<br>
+    GitHub Account: <a href="https://github.com/tmark-s">@tmark-s</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/trr-noppawit"><img align="left" src="https://avatars.githubusercontent.com/trr-noppawit" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Noppawit Thairungroj</b><br>
+    Student ID: 5731062021<br>
+    GitHub Account: <a href="https://github.com/trr-noppawit">@trr-noppawit</a>
+</div>
+<br>
+<div>
+    <a href="https://github.com/apiruj"><img align="left" src="https://avatars.githubusercontent.com/apiruj" width="68px;" style="margin: 0px 20px 0 0;"/></a>
+    <b>Apiruj Choomwattana</b><br>
+    Student ID: 5731113421<br>
+    GitHub Account: <a href="https://github.com/apiruj">@apiruj</a>
+</div>
 
 ## License
 
-MIT © [Diego Haz](https://github.com/diegohaz)
+[MIT](LICENSE) © 2017 Untitled

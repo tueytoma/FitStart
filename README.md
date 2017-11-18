@@ -1,6 +1,6 @@
 
 # FIT START 
-ระบบนัดหมายเทรนเนอร์กับลูกค้า by Untitled TEAM 
+ระบบนัดหมายเทรนเนอร์กับลูกค้า by [Untitled TEAM](#contributors)
 
 [![section 1](https://img.shields.io/badge/section-1-ff69b4.svg?style=flat-square)](https://github.com/we-inc/mms-se-untitled-1)
 
@@ -62,7 +62,7 @@ npm install
 npm start
 ```
 
-* **2.3. View Website**
+* **2.4. View Website**
 ```vim
 localhost:3000
 ```

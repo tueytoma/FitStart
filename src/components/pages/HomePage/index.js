@@ -29,9 +29,10 @@ class HomePage extends React.Component {
   }
 
   render() {
+    let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     return (
       <Wrapper>
-        <Topbar/>
+        <Topbar color={color}/>
         <InnerWrapper>
 
         </InnerWrapper>

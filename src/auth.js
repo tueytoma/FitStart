@@ -24,11 +24,18 @@ auth = {
             return false
     },
     isTrainer(){
-        if(cookieService.get('user').role.equals('Trainer')){
+        if(cookieService.get('user').role == 'Trainer'){
+            return true
+        } else 
+            return false
+    },
+    isTrainee(){
+        if(cookieService.get('user').role == 'Trainee'){
             return true
         } else 
             return false
     }
+
 }
 
 module.exports = auth;

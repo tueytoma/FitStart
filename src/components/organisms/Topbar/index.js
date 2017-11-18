@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import auth from '../../../auth'
 
 const Wrapper = styled.div`
-    background: #F05939;
+    background: ${props => props.color};
     position: fixed;
     top: 0;
     width: 100vw;
@@ -37,12 +37,12 @@ class Topbar extends React.Component {
   }
 
     Search = e => {
-        alert('dsdfsfsf')
+        // alert('dsdfsfsf')
     }
 
     render() {
         return(
-          <Wrapper>
+          <Wrapper color={this.props.color}>
                 <WrapperSide>
                     <Div margin="2px 0 0 22px">
                         <LinkStyle to= "/" style={{opacity: "1"}}> <Logo color="#F9FAFC" width="91.5px" height="40.5px"/> </LinkStyle>
@@ -50,7 +50,7 @@ class Topbar extends React.Component {
                 </WrapperSide>
                 <WrapperInner>
                     <Div>
-                        <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F05939"/>
+                        <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
                     </Div>
                     <Link to= "/search" style={{textDecoration: "none"}}><a onClick={this.Search}><SearchIcon /></a> </Link>
                 </WrapperInner>

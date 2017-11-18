@@ -1,17 +1,18 @@
 # FIT START 
-
 ระบบนัดหมายเทรนเนอร์กับลูกค้า by Untitled TEAM 
 
 [![section 1](https://img.shields.io/badge/section-1-ff69b4.svg?style=flat-square)](https://github.com/we-inc/mms-se-untitled-1)
 
-> <span><b>mms-hired-me created by GitHub Classroom</b></span> <br>2110423 Software Engineering (SE) course 1/2017
+<p align="center">
+    <img height="100px" weight="auto" src="https://i.imgur.com/uYB2UoY.png"></img><br><br>
+    <span><b>mms-hired-me created by GitHub Classroom</b></span> <br>2110423 Software Engineering (SE) course 1/2017
+</p>
 
 ## Table of Contents
-
-* [Background](#background)
 * [Respository](#respository)
 * [Installation](#installation)
 * [Contributors](#contributors)
+* [Reference](#reference)
 * [License](#license)
 
 ## Respository
@@ -21,6 +22,46 @@
 * **Back-End**    https://github.com/stepboom/FitStarAPI
 
 ## Installation
+
+* **1.1. Clone project API**
+```vim
+git clone https://github.com/stepboom/FitStartAPI.git
+```
+* **1.2. Install module (in API folder)**
+```vim
+npm install
+```
+* **1.3. Run mongoDB**
+```vim
+mongod
+```
+* **1.4. Run project**
+```vim
+node index
+```
+* **1.5. Open localhost:4000 and mockup data**
+```vim
+localhost:4000/mock
+```
+
+* **2.1. Clone project front-end**
+```vim
+git clone https://github.com/stepboom/FitStart.git
+```
+* **2.2. Install module (in front-end folder)**
+```vim
+npm install
+```
+* **2.3. Run project**
+```vim
+npm start
+```
+
+* **2.3. View Website**
+```vim
+localhost:3000
+```
+
 
 ## Contributors
 <div>
@@ -78,6 +119,19 @@
     Student ID: 5731113421<br>
     GitHub Account: <a href="https://github.com/apiruj">@apiruj</a>
 </div>
+
+## Reference
+### Front-End
+* `Nodejs V.6` https://blog.risingstack.com/whats-new-in-node-v6/
+* `Reactjs` https://facebook.github.io/react/
+* `React Router` https://reacttraining.com/react-router/web/guides/quick-start
+* `Styled-Components` https://www.styled-components.com/
+* `Atomic Design` http://bradfrost.com/blog/post/atomic-web-design/
+* `Demo Atomic Design` https://github.com/diegohaz/arc
+
+### Back-End
+* `MongoDB` 
+
 
 ## License
 

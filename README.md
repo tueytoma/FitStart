@@ -1,31 +1,26 @@
-# Untitled TEAM : ระบบนัดหมายเทรนเนอร์กับลูกค้า FIT START
+# FIT START 
+
+ระบบนัดหมายเทรนเนอร์กับลูกค้า by Untitled TEAM 
+
 [![section 1](https://img.shields.io/badge/section-1-ff69b4.svg?style=flat-square)](https://github.com/we-inc/mms-se-untitled-1)
 
 > <span><b>mms-hired-me created by GitHub Classroom</b></span> <br>2110423 Software Engineering (SE) course 1/2017
 
 ## Table of Contents
+
 * [Background](#background)
-
-* [Documents](#documents)
-
+* [Respository](#respository)
 * [Installation](#installation)
-
-* [Usage](#usage)
-
 * [Contributors](#contributors)
-
 * [License](#license)
 
-## Background
+## Respository
 
-## Documents
-
-* [Problem Statement](./doc/Problem-Statement.pdf)
-* [Requirements Specification](./doc/Requirements-Specification.pdf)
+* **Main**        https://github.com/we-inc/mms-se-untitled-1
+* **Front-End**   https://github.com/stepboom/FitStar
+* **Back-End**    https://github.com/stepboom/FitStarAPI
 
 ## Installation
-
-## Usage
 
 ## Contributors
 <div>

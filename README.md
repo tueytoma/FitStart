@@ -1,3 +1,4 @@
+
 # FIT START 
 ระบบนัดหมายเทรนเนอร์กับลูกค้า by Untitled TEAM 
 
@@ -9,11 +10,15 @@
 </p>
 
 ## Table of Contents
+* [Design](#design)
 * [Respository](#respository)
 * [Installation](#installation)
 * [Contributors](#contributors)
 * [Reference](#reference)
 * [License](#license)
+
+## Design
+* https://www.figma.com/file/B1rtte7urDzQupuXsTzrzZ70/Website-Fit-Start
 
 ## Respository
 
@@ -66,7 +71,7 @@ localhost:3000
 ## Contributors
 <div>
     <a href="https://github.com/5730321421-PW"><img align="left" src="https://avatars.githubusercontent.com/5730321421-PW" width="68px;" style="margin: 0px 20px 0 0;"/></a>
-    <b>Panida wiriyachaiporn</b><br>
+    <b>Panida wiriyachaiporn</b> Front-End<br>
     Student ID: 5730321421<br>
     GitHub Account: <a href="https://github.com/5730321421-PW">@5730321421-PW</a>
 </div>

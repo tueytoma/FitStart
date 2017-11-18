@@ -23,8 +23,8 @@
 ## Respository
 
 * **Main**        https://github.com/we-inc/mms-se-untitled-1
-* **Front-End**   https://github.com/stepboom/FitStar
-* **Back-End**    https://github.com/stepboom/FitStarAPI
+* **Front-End**   https://github.com/stepboom/FitStart
+* **Back-End**    https://github.com/stepboom/FitStartAPI
 
 ## Installation
 

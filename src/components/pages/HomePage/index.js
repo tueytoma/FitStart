@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Label, Textfield, SearchIcon, HeartIcon, SubHeader, QuestionIcon, Button, Footer, LinkStyle } from 'components'
+import { Topbar, Label, Textfield, SearchIcon, HeartIcon, SubHeader, QuestionIcon, Button, Footer, LinkStyle, ServiceBox } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -55,6 +55,10 @@ const Howto = styled.div`
   align-items: center;
 `
 
+const ServiceList = styled.div`
+
+`
+
 const HowtoInner = styled.div`
   display: flex; 
   width: 100%;
@@ -82,27 +86,42 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        
+        results: '',
     };
   }
 
+  componentDidMount() {
+    api.getServiceByKeyword("")
+    .then((res)=>{
+      this.setState({results : res})
+    })
+	}
+
   Search = e => {
-    // alert('dsdfsfsf')
+    console.log(this.state.results)
   }
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+    var resultFeed = []
+    for (var i = 0 ; i < this.state.results.length ; i++)
+    resultFeed.push(<ServiceBox /*final={i == this.props.result.length - 1}*/ service={this.state.results[i]} key={i}/>)
+
     return (
       <Wrapper id="top">
         <Topbar color={color}/>
         <InnerWrapper >
           <Header>
             <Left>
-              <Label size="64px" weight="bolder" color="#202020">ยินดีต้อนรับเข้าสู่</Label>
-              <Label size="32px" weight="normal" color="#202020">ระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>
+              {auth.isLoggedIn() && <Label size="64px" weight="bolder" color="#202020">ยินดีต้อนรับเข้าสู่</Label>}
+              {auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">ระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
+              {!auth.isLoggedIn() && <Label size="64px" weight="bolder" color="#202020">กรุณาเข้าสู่ระบบก่อน</Label>}
+              {!auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">นี่คือระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
               <SearchBox>
                 <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
-                <Link to= "/search" style={{textDecoration: "none"}}><a onClick={this.Search}><SearchIcon opacity="0.5" color="#545454"/></a> </Link>
+                <Link to= "/search" style={{textDecoration: "none"}}>
+                  <a onClick={this.Search}><SearchIcon opacity="0.5" color="#545454"/></a> 
+                </Link>
               </SearchBox>
             </Left>
             <Right>
@@ -110,6 +129,9 @@ class HomePage extends React.Component {
             </Right>
           </Header>
           <SubHeader text="บริการล่าสุด"/>
+          <ServiceList>
+            {resultFeed}
+          </ServiceList>
           <SubHeader text="อยากรู้จังว่าระบบ Fit Start ใช้งานอย่างไร ?"/>
           <Howto>
             <HowtoInner>
@@ -117,10 +139,10 @@ class HomePage extends React.Component {
                 <QuestionIcon />
               </Left2>
               <Right2>
-                <Label style={{marginBottom: "16px"}} size="18px" weight="bold" color="rgba(32, 32, 32, 0.8)">1. ค้นหาเทรนเนอร์ / บริการที่ต้องการ</Label>
-                <Label style={{marginBottom: "16px"}} size="18px" weight="bold" color="rgba(32, 32, 32, 0.8)">2. เลือกช่วงเวลาที่ต้องการฝึก และ ส่งคำขอ</Label>
-                <Label style={{marginBottom: "16px"}} size="18px" weight="bold" color="rgba(32, 32, 32, 0.8)">3. เมื่อเทรนเนอร์อนุมติขอแล้วทำการชำระค่าใช้จ่ายตามข้อกำหนด</Label>
-                <Label style={{marginBottom: "16px"}} size="18px" weight="bold" color="rgba(32, 32, 32, 0.8)">4. ศึกษาข้อมูลเพิ่มเติม <LinkStyle to="/detail" size="18px">คลิกที่นี่</LinkStyle></Label>
+                <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">1. ค้นหาเทรนเนอร์ / บริการที่ต้องการ</Label>
+                <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">2. เลือกช่วงเวลาที่ต้องการฝึก และ ส่งคำขอ</Label>
+                <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">3. เมื่อเทรนเนอร์อนุมติขอแล้วทำการชำระค่าใช้จ่ายตามข้อกำหนด</Label>
+                <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">4. ศึกษาข้อมูลเพิ่มเติม <LinkStyle to="/detail" size="18px">คลิกที่นี่</LinkStyle></Label>
               </Right2>
             </HowtoInner>
             <a href="#top"><Button height="40px" width="145px" size="เริ่มค้นหา" color={color}>เริ่มค้นหา</Button></a>

@@ -18,6 +18,15 @@ api.getUserById = id =>{
         })
 }
 
+api.getTrainerByName = name =>{
+    return Request.get(config.BACKURL + '/trainers/search')
+        .query({name : name})
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.trainers
+        })
+}
+
 api.getServiceByKeyword = keyword =>{
     return Request.post(config.BACKURL + '/services/search')
         .send({keyword : keyword})

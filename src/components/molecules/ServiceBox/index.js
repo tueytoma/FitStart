@@ -45,23 +45,25 @@ class ServiceBox extends React.Component {
     super(props)
     this.state = {
         trainerName: '',
+        trainerRating: '',
     };
   }
 
   componentDidMount() {
-    api.getServiceOfTrainer(this.props.service.trainer)
+    api.getUserById(this.props.service.trainer)
         .then((res)=>{
-        this.setState({trainerName : res})
-        console.log(this.state.trainerName)
+            let name = `${res[0].first_name} ${res[0].last_name}`
+            this.setState({trainerName : name, trainerRating : res[0].rating})
         })
+
     }
 
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var starBox = []
-    // for (var i = 0 ; i < this.state.results.length ; i++)
-    // starBox.push(<StarIcon />)
+    for (var i = 0 ; i < this.state.trainerRating ; i++)
+    starBox.push(<StarIcon />)
 
     return (
       <Wrapper>
@@ -70,14 +72,14 @@ class ServiceBox extends React.Component {
         <Result>
             <Label style={{margin: "4px 0 0 0"}} size="32px" weight="bolder" color="#202020">{this.props.service.name} </Label>
             <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">เทรนเนอร์ </Label>
+                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">เทรนเนอร์ {this.state.trainerName}</Label>
             </Label>
             <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
                 <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.service.price} บาท</Label>
             </Label>
             <Rating>
                 <Label style={{margin: "0 16px 0 0"}} size="18px" weight="600" color="#202020">คะแนน</Label>
-            <StarIcon/><StarIcon/><StarIcon/>
+            {starBox}
             </Rating>
         </Result>
       </Wrapper>

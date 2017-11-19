@@ -113,8 +113,10 @@ class HomePage extends React.Component {
         <InnerWrapper >
           <Header>
             <Left>
-              <Label size="64px" weight="bolder" color="#202020">ยินดีต้อนรับเข้าสู่</Label>
-              <Label size="32px" weight="normal" color="#202020">ระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>
+              {auth.isLoggedIn() && <Label size="64px" weight="bolder" color="#202020">ยินดีต้อนรับเข้าสู่</Label>}
+              {auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">ระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
+              {!auth.isLoggedIn() && <Label size="64px" weight="bolder" color="#202020">กรุณาเข้าสู่ระบบก่อน</Label>}
+              {!auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">นี่คือระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
               <SearchBox>
                 <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
                 <Link to= "/search" style={{textDecoration: "none"}}>

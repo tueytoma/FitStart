@@ -10,7 +10,7 @@ api.err = err => {
 }
 
 api.getUserByName = username =>{
-    return Request.get(config.BACKURL + '/search')
+    return Request.get(config.BACKURL + '/users/search')
         .query({username : username})
         .set('Accept', 'application/json')
         .then(res => {
@@ -18,8 +18,34 @@ api.getUserByName = username =>{
         })
 }
 
+api.getServiceByKeyword = keyword =>{
+    return Request.post(config.BACKURL + '/services/search')
+        .send({keyword : keyword})
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.services
+        })
+}
+
+api.getServiceOfTrainer = trainerId =>{
+    return Request.get(config.BACKURL + '/services/' + trainerId)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        })
+}
+
 api.signup = data => {
 	return Request.post(config.BACKURL + '/signup')
+        .set('Accept', 'application/json')
+        .send(data)
+		.then(res => {
+			return res.body
+		},api.err)
+}
+
+api.createService = data => {
+	return Request.post(config.BACKURL + '/service')
         .set('Accept', 'application/json')
         .send(data)
 		.then(res => {

@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     background: ${props => props.color};
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: calc(100vw - 15px);
     height: 60px;
     display: flex;
     align-items: center;
@@ -19,6 +19,7 @@ const Wrapper = styled.div`
 const WrapperSide = styled.div`
     width: 15vw;
     display: flex;
+
 `
 
 const WrapperInner = styled.div`
@@ -44,22 +45,21 @@ class Topbar extends React.Component {
         return(
           <Wrapper color={this.props.color}>
                 <WrapperSide>
-                    <Div margin="2px 0 0 22px">
-                        <LinkStyle to= "/" style={{opacity: "1"}}> <Logo color="#F9FAFC" width="91.5px" height="40.5px"/> </LinkStyle>
+                    <Div margin="4.5px 5px 0 22px">
+                        <LinkStyle to= "/" style={{opacity: "1"}}> <Logo color="#F9FAFC" width="91.5px" height="39px"/> </LinkStyle>
                     </Div>
                 </WrapperSide>
                 <WrapperInner>
                     <Div>
                         <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
                     </Div>
-                    <Link to= "/search" style={{textDecoration: "none"}}><a onClick={this.Search}><SearchIcon /></a> </Link>
+                    <Link to= "/search" style={{textDecoration: "none"}}><a onClick={this.Search}><SearchIcon opacity="1" color="#F9FAFC"/></a> </Link>
                 </WrapperInner>
+                <WrapperSide style={{justifyContent: "center"}}>
                     {auth.isLoggedIn() ? 
                     <a onClick={auth.logout}><LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Logout</LinkStyle></a>
                     :
                     <LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Login</LinkStyle>}
-                <WrapperSide>
-                    
                 </WrapperSide>
           </Wrapper>
         )

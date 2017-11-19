@@ -9,12 +9,12 @@ api.err = err => {
 	else throw err*/
 }
 
-api.getUserByName = username =>{
+api.getUserById = id =>{
     return Request.get(config.BACKURL + '/users/search')
-        .query({username : username})
+        .query({id : id})
         .set('Accept', 'application/json')
         .then(res => {
-            return res.body.users
+            return res.body.user
         })
 }
 

@@ -34,11 +34,19 @@ const Div = styled.div`
 
 class Topbar extends React.Component {
     constructor(props) {
-    super(props)
-  }
-
+        super(props)
+        this.state = {
+            search:'',
+        };
+    }
+    
     Search = e => {
-        // alert('dsdfsfsf')
+        location.reload();
+        // this.props.history.push({pathname: '/search/service', search: "?keyword=" + this.state.search})
+    }
+
+    changeSearch = e => {
+        this.setState({search : e.target.value})
     }
 
     render() {
@@ -51,9 +59,11 @@ class Topbar extends React.Component {
                 </WrapperSide>
                 <WrapperInner>
                     <Div>
-                        <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
+                        <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
                     </Div>
-                    <Link to= "/search" style={{textDecoration: "none"}}><a onClick={this.Search}><SearchIcon opacity="1" color="#F9FAFC"/></a> </Link>
+                    <Link to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
+                        <a onClick={this.Search}><SearchIcon opacity="1" color="#F9FAFC"/></a>
+                    </Link>
                 </WrapperInner>
                 <WrapperSide style={{justifyContent: "center"}}>
                     {auth.isLoggedIn() ? 

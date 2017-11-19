@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Label } from 'components'
 import styled, { css } from 'styled-components'
+import auth from '../../../auth'
 
 const Wrapper = styled.div`
   width: 100w;
@@ -13,9 +14,10 @@ const Wrapper = styled.div`
 `
 
 const NotFoundPage = () => {
+  let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
   return (
     <Wrapper>
-      <Label size="50vh" weight="normal" color= "rgba(84, 84, 84, 0.8)">404</Label>
+      <Label size="50vh" weight="normal" color= {color}>404</Label>
     </Wrapper>
   )
 }

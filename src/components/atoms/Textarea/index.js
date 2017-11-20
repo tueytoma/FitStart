@@ -10,7 +10,8 @@ const InputTextareaStyled = styled.textarea`
 
     padding: 2px 16px 4px 16px;
     background-color: #F9FAFC;
-    width: calc(455px - ${props => props.error ? "17px" : "0px" });
+    width: calc(${props => props.width} - ${props => props.error || props.correct ? "17px" : "0px" });
+    ${props => props.width};
     height: ${props => props.height};
     margin: 8px 8px 0 0;
 
@@ -28,7 +29,7 @@ const InputTextareaStyled = styled.textarea`
     }
 
     &:focus {
-        width: calc(455px - ${props => props.error ? "17px" : "0px" });
+        width: calc(${props => props.width} - ${props => props.error || props.correct ? "17px" : "0px" });
         height: ${props => props.height};
 
         border: 2px solid ${props => props.color};

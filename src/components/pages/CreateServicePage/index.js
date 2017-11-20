@@ -63,7 +63,16 @@ class CreateServicePage extends React.Component {
       serviceMaxCost: '',
       experience: '',
       serviceType: '',
-      serviceTime:''
+      serviceTime:'',
+      namePass: true,
+      detailPass: true,
+      provincePass: true,
+      placePass: true,
+      minPass: true,
+      maxPass: true,
+      expPass: true,
+      typePass: true,
+      timePass: true
     };
   }
   changeServiceName = e => {
@@ -102,7 +111,9 @@ class CreateServicePage extends React.Component {
     this.setState({serviceTime : e.target.value})
   }
 
+  validate = (e) => {
 
+  }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
 

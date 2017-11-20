@@ -65,7 +65,7 @@ class CreateServicePage extends React.Component {
             <InputBlock id = "inputblock">
               <LRBlock>
                 <InputBox type="text" label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
-                <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} textarea/>
+                <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} width="345px" height="30px" textarea />
                 <InputBox style={{marginRight: "16px"}} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
                 <InputBox type="text" label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
                 <LRBlock>

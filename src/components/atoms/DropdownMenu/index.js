@@ -52,7 +52,7 @@ class DropdownMenu extends React.Component {
         return(
             <Wrapper>
                 <Select onChange={this.props.onChange} error={this.props.error}  color={this.props.color} width={this.props.width} height= {this.props.height}>
-                    <Option value="ps">pleast select ...</Option>
+                    <Option value="ps">please select ...</Option>
                     {this.props.menu.map(item => (
                         <Option value={item}>{item}</Option>
                     ))}

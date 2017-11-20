@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer} from 'components'
+import { Topbar, Footer, Label} from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom';
@@ -13,18 +13,17 @@ const Wrapper = styled.div`
   width: calc(100vw - 15px);
   display: flex;
   justify-content: center;
-
+  
   align-self: center;
 `
 const InnerWrapper = styled.div`
   width: 70vw;
-
   display: flex;
   flex-direction: column;
   margin-top: 60px;
 `
 
-class CreateServicetPage extends React.Component {
+class CreateServicePage extends React.Component {
 
   constructor(props) {
     super(props)
@@ -39,11 +38,18 @@ class CreateServicetPage extends React.Component {
     return (
       <Wrapper>
         <Topbar color={color}/>
+        {auth.isLoggedIn() && auth.isTrainer() ?
         <InnerWrapper >
             <Footer color={color} />
         </InnerWrapper>
+        :
+        <InnerWrapper >
+            <Label style={{marginTop: "32px"}} size="64px" weight="bolder" color="#202020">คุณไม่มีสิทธิ์ในหน้านี้</Label>
+            <Footer color={color} />
+        </InnerWrapper>
+        }
       </Wrapper>
     )
   }
 }
-export default CreateServicetPage
+export default CreateServicePage

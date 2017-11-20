@@ -45,7 +45,7 @@ class Textarea extends React.Component{
 
     render(){
         return (
-            <InputTextareaStyled error={this.props.error} onChange={this.props.onChange} rows="4" cols="50" placeholder= {this.props.placeholder} color= {this.props.color}/>
+            <InputTextareaStyled onChange={this.props.onChange} error={this.props.error} width={this.props.width} height={this.props.height} placeholder= {this.props.placeholder} color= {this.props.color}/>
         )
     }
 }

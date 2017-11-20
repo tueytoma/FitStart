@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, InputBox} from 'components'
+import { Topbar, Footer, Label, InputBox, Checkbox, LinkStyle, LinkAndButtonBox} from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom';
@@ -41,6 +41,14 @@ display:flex;
 flex-flow: column;
 flex: 1;
 `
+const FooterBlock = styled.div`
+margin: 64px 0 53px 0;
+display:flex;
+`
+
+const Div = styled.div`
+display: flex;
+`
 
 class CreateServicePage extends React.Component {
 
@@ -59,26 +67,48 @@ class CreateServicePage extends React.Component {
         <Topbar color={color}/>
         {auth.isLoggedIn() && auth.isTrainer() ?
         <InnerWrapper>
+            <HeaderBlock><Label size="48px" weight="bolder" color="#202020">สร้างบริการใหม่</Label></HeaderBlock>
             <InputBlock id = "inputblock">
               <LRBlock>
-              <Label size="48px" weight="bolder" color="#202020">สร้างบริการใหม่</Label>
-                <InputBox type="text" label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
-                <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
-                <InputBox style={{marginRight: "16px"}} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                <InputBox type="text" label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
                 <LRBlock>
-                  <span>
-                    <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา</Label> <Label size="12px" color="#545454">(บาท)</Label>
-                  </span>
-                  <span>
-                    <InputBox type = "number" placeholder="xx.xx" width ="15px" height="30px"/><InputBox type = "number" placeholder="xx.xx" width ="15px" height="30px"/>
-                  </span>  
+                  <InputBox type="text" label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
+                  <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
+                </LRBlock>
+                <LRBlock>
+                  <InputBox style={{marginRight: "16px"}} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox type="text" label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
+                  <LRBlock>
+                    <span>
+                      <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา</Label> <Label size="12px" color="#545454">(บาท)</Label>
+                    </span>
+                    <Div>
+                      <InputBox type = "number" placeholder="xx.xx" width ="155px" height="30px"/><InputBox type = "number" placeholder="xx.xx" width ="155px" height="30px"/>
+                    </Div>  
+                  </LRBlock>
                 </LRBlock>
               </LRBlock>
               <LRBlock>
-                
+                <LRBlock>
+                  <InputBox style={{marginRight: "16px"}} dropdown label="ประสบการณ์" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox style={{marginRight: "16px"}} dropdown label="ประเภทบริการ" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                </LRBlock>
+                <LRBlock>
+                  <span>
+                    <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">วันที่และเวลา</Label> <Label size="12px" color="#545454">(สามารถเลือกได้มากกว่า 1)</Label>
+                    <InputBox type="text" placeholder="CHANGE THIS TO TIME SLOT SELECTOR" color={color} width="345px" height="30px"/>
+                  </span>
+                </LRBlock>
               </LRBlock>
             </InputBlock>
+            <FooterBlock>
+              <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
+                <Checkbox checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> 
+                <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ข้อมูลเพิ่มเติม &nbsp;</Label>
+                <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
+              </LRBlock>
+              <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
+              </LRBlock>
+            </FooterBlock>
             <Footer color={color} />
         </InnerWrapper>
         :

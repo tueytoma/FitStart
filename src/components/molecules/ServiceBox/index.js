@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Label, LinkStyle, StarIcon } from 'components'
+import { Label, LinkStyle2, StarIcon } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -46,6 +46,7 @@ class ServiceBox extends React.Component {
     this.state = {
         trainerName: '',
         trainerRating: '',
+        trainerUsername: '',
     };
   }
 
@@ -53,7 +54,10 @@ class ServiceBox extends React.Component {
     api.getUserById(this.props.service.trainer)
         .then((res)=>{
             let name = `${res[0].first_name} ${res[0].last_name}`
-            this.setState({trainerName : name, trainerRating : res[0].rating})
+            this.setState({trainerName : name, 
+                trainerRating : res[0].rating,
+                trainerUsername : res[0].username,
+             })
         })
 
     }
@@ -64,15 +68,21 @@ class ServiceBox extends React.Component {
     var starBox = []
     for (var i = 0 ; i < this.state.trainerRating ; i++)
     starBox.push(<StarIcon />)
+    let linkService = `/` + this.state.trainerUsername + `/` + this.props.service._id;
+    let linkTrainer = `/` + this.state.trainerUsername;
 
     return (
       <Wrapper>
         <TrainerPic />
         <ServicePic />
         <Result>
-            <Label style={{margin: "4px 0 0 0"}} size="32px" weight="bolder" color="#202020">{this.props.service.name} </Label>
+            <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorHover={color} size="32px" weight="bolder">
+                {this.props.service.name}
+            </LinkStyle2>
             <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">เทรนเนอร์ {this.state.trainerName}</Label>
+            <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorHover={color} size="18px" weight="normal">
+                เทรนเนอร์ {this.state.trainerName}
+            </LinkStyle2>
             </Label>
             <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
                 <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.service.price} บาท</Label>

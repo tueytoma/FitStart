@@ -56,7 +56,11 @@ const Howto = styled.div`
 `
 
 const ServiceList = styled.div`
-
+  margin-Bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const HowtoInner = styled.div`
@@ -81,12 +85,19 @@ const Right2 = styled.div`
   align-items: flex-start;
 `
 
+const A = styled.a`
+  &:hover {
+    cursor:pointer;
+  }
+`
+
 class HomePage extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
         results: '',
+        search:'',
     };
   }
 
@@ -97,15 +108,25 @@ class HomePage extends React.Component {
     })
 	}
 
+  changeSearch = e => {
+    this.setState({search : e.target.value})
+  }
+
+  fetchAll = e => {
+    this.props.history.push({pathname: '/search/service', search: "?keyword="})
+    location.reload();
+  }
+
   Search = e => {
-    console.log(this.state.results)
+    this.props.history.push({pathname: '/search/service', search: "?keyword=" + this.state.search})
+    location.reload();
   }
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var resultFeed = []
     for (var i = 0 ; i < this.state.results.length ; i++)
-    resultFeed.push(<ServiceBox /*final={i == this.props.result.length - 1}*/ service={this.state.results[i]} key={i}/>)
+    if(i < 5) resultFeed.push(<ServiceBox /*final={i == this.props.result.length - 1}*/ service={this.state.results[i]} key={i}/>)
 
     return (
       <Wrapper id="top">
@@ -118,10 +139,8 @@ class HomePage extends React.Component {
               {!auth.isLoggedIn() && <Label size="64px" weight="bolder" color="#202020">กรุณาเข้าสู่ระบบก่อน</Label>}
               {!auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">นี่คือระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
               <SearchBox>
-                <Textfield placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
-                <Link to= "/search" style={{textDecoration: "none"}}>
-                  <a onClick={this.Search}><SearchIcon opacity="0.5" color="#545454"/></a> 
-                </Link>
+                <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
+                  <A onClick={this.Search}> <SearchIcon opacity="0.5" color="#545454"/> </A>
               </SearchBox>
             </Left>
             <Right>
@@ -131,6 +150,9 @@ class HomePage extends React.Component {
           <SubHeader text="บริการล่าสุด"/>
           <ServiceList>
             {resultFeed}
+            {this.state.results.length > 5 && 
+                <Button onClick={this.fetchAll} height="40px" width="145px" size="เริ่มค้นหา" color={color}>เพิ่มเติม</Button>
+            }
           </ServiceList>
           <SubHeader text="อยากรู้จังว่าระบบ Fit Start ใช้งานอย่างไร ?"/>
           <Howto>

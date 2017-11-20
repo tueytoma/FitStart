@@ -133,7 +133,8 @@ createService = e => {
 }
 
   validate = (e) => {
-
+    if(this.state.serviceName.length<1||this.state.serviceName.length>20) this.setState({namePass:false})
+    else this.setState({namePass:true})
   }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";

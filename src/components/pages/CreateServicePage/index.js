@@ -24,30 +24,30 @@ const InnerWrapper = styled.div`
 `
 
 const HeaderBlock = styled.div`
-align-self: flex-start;
-margin: 36px 0 35px 0;
-display: flex;
-flex-flow: column;
+  align-self: flex-start;
+  margin: 36px 0 35px 0;
+  display: flex;
+  flex-flow: column;
 `
 
 const InputBlock = styled.div`
-display:flex;
-justify-content: center;
-margin-top: 48px;
+  display:flex;
+  justify-content: center;
+  margin-top: 48px;
 `
 
 const LRBlock = styled.div`
-display:flex;
-flex-flow: column;
-flex: 1;
+  display:flex;
+  flex-flow: column;
+  flex: 1;
 `
 const FooterBlock = styled.div`
-margin: 64px 0 53px 0;
-display:flex;
+  margin: 64px 0 0 0;
+  display:flex;
 `
 
 const Div = styled.div`
-display: flex;
+  display: flex;
 `
 
 class CreateServicePage extends React.Component {
@@ -138,6 +138,14 @@ createService = e => {
   }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+    let province = ['กรุงเทพมหานคร ', 'กระบี่', 'กาญจนบุรี ', 'กาฬสินธุ์ ', 'กำแพงเพชร ', 'ขอนแก่น ', 'จันทบุรี ', 'ฉะเชิงเทรา ', 
+    'ชลบุรี ', 'ชัยนาท', 'ชัยภูมิ', 'ชุมพร', 'เชียงราย', 'เชียงใหม่', 'ตรัง', 'ตราด', 'ตาก', 'นครนายก', 'นครปฐม', 'นครพนม', 
+    'นครราชสีมา', 'นครศรีธรรมราช', 'นครสวรรค์', 'นนทบุรี', 'นราธิวาส', 'น่าน', 'บึงกาฬ', 'บุรีรัมย์', 'ปทุมธานี', 'ประจวบคีรีขันธ์', 
+    'ปราจีนบุรี', 'ปัตตานี', 'พระนครศรีอยุธยา', 'พังงา', 'พัทลุง', 'พิจิตร', 'พิษณุโลก', 'เพชรบุรี', 'เพชรบูรณ์', 'แพร่', 'พะเยา', 
+    'ภูเก็ต', 'มหาสารคาม', 'มุกดาหาร', 'แม่ฮ่องสอน', 'ยะลา', 'ยโสธร', 'ร้อยเอ็ด', 'ระนอง', 'ระยอง', 'ราชบุรี', 'ลพบุรี', 'ลำปาง', 
+    'ลำพูน', 'เลย', 'ศรีสะเกษ', 'สกลนคร', 'สงขลา', 'สตูล', 'สมุทรปราการ', 'สมุทรสงคราม', 'สมุทรสาคร', 'สระแก้ว', 'สระบุรี', 
+    'สิงห์บุรี', 'สุโขทัย', 'สุพรรณบุรี', 'สุราษฎร์ธานี', 'สุรินทร์', 'หนองคาย', 'หนองบัวลำภู', 'อ่างทอง', 'อุดรธานี', 'อุทัยธานี', 
+    'อุตรดิตถ์', 'อุบลราชธานี', 'อำนาจเจริญ'];
 
     return (
       <Wrapper>
@@ -148,26 +156,28 @@ createService = e => {
             <InputBlock id = "inputblock">
               <LRBlock>
                 <LRBlock>
-                  <InputBox type="text" onChange={this.changeServiceName} label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
-                  <InputBox type="text" onChange={this.changeServiceDetail} label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
+                  <InputBox type="text" onChange={this.changeServiceName} label="ชื่อบริการ" placeholder="Service name" color={color} width="400px" height="30px"/>
+                  <InputBox type="text" onChange={this.changeServiceDetail} label="รายละเอียด" placeholder="Details" color={color} width="400px" height="80px" textarea />
                 </LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                  <InputBox type="text" onChange={this.changeServicePlace} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
+                  <InputBox type="text" onChange={this.changeServicePlace} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="400px" height="30px"/>
+                  <Label size="18px" style={{margin: "0 6px 6px 20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา
+                        <Label weight="normal" size="12px" color="#545454">   (บาท)</Label>
+                  </Label> 
                   <LRBlock>
-                    <span>
-                      <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา</Label> <Label size="12px" color="#545454">(บาท)</Label>
-                    </span>
-                    <Div>
-                      <InputBox type = "number" onChange={this.changeServiceMinCost} placeholder="xx.xx" width ="155px" height="30px"/><InputBox type = "number" onChange={this.changeServiceMaxCost} placeholder="xx.xx" width ="155px" height="30px"/>
+                    <Div style={{alignItems: "center"}}>
+                      <InputBox  type = "number" onChange={this.changeServiceMinCost} placeholder="xx.xx" width ="155px" height="30px"/>
+                      <Label style={{marginLeft: "12px"}}weight="bolder" size="30px" color="#545454">-</Label>
+                      <InputBox type = "number" onChange={this.changeServiceMaxCost} placeholder="xx.xx" width ="155px" height="30px"/>
                     </Div>  
                   </LRBlock>
                 </LRBlock>
               </LRBlock>
               <LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeExperience} dropdown label="ประสบการณ์" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceType} dropdown label="ประเภทบริการ" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeExperience} dropdown label="ประสบการณ์ (ปี)" color={color} width="435px" height="30px" menu={['น้อยกว่า 1','1 - 5','5 - 10', 'มากกว่า 10']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceType} dropdown label="ประเภทบริการ" color={color} width="435px" height="30px" menu={['Freelance','ประจำฟิตเนส']}/>
                 </LRBlock>
                 <LRBlock>
                   <span>

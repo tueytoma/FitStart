@@ -67,7 +67,7 @@ class ServiceBox extends React.Component {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var starBox = []
     for (var i = 0 ; i < this.state.trainerRating ; i++)
-    starBox.push(<StarIcon />)
+    starBox.push(<StarIcon height="24px"/>)
     let linkService = `/` + this.state.trainerUsername + `/` + this.props.service._id;
     let linkTrainer = `/` + this.state.trainerUsername;
 

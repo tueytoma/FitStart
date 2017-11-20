@@ -55,9 +55,53 @@ class CreateServicePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      serviceName: '',
+      serviceDetail: '',
+      serviceProvince: '',
+      servicePlace: '',
+      serviceMinCost: '',
+      serviceMaxCost: '',
+      experience: '',
+      serviceType: '',
+      serviceTime:''
     };
   }
+  changeServiceName = e => {
+    this.setState({serviceName : e.target.value})
+  }
+
+  changeServiceDetail = e => {
+    this.setState({serviceDetail : e.target.value})
+  }
+
+  changeServicProvince = e => {
+    this.setState({serviceProvince : e.target.value})
+  }
+
+  changeServicePlace = e => {
+    this.setState({servicePlace : e.target.value})
+  }
+
+  changeServiceMinCost = e => {
+    this.setState({serviceMinCost : e.target.value})
+  }
+
+  changeServiceMaxCost = e => {
+    this.setState({serviceMaxCost : e.target.value})
+  }
+
+  changeExperience = e => {
+    this.setState({experience : e.target.value})
+  }
+
+  changeServiceType = e => {
+    this.setState({serviceType : e.target.value})
+  }
+
+  changeServiceTime = e => {
+    this.setState({serviceTime : e.target.value})
+  }
+
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
@@ -71,31 +115,31 @@ class CreateServicePage extends React.Component {
             <InputBlock id = "inputblock">
               <LRBlock>
                 <LRBlock>
-                  <InputBox type="text" label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
-                  <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
+                  <InputBox type="text" onChange={this.changeServiceName} label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
+                  <InputBox type="text" onChange={this.changeServiceDetail} label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
                 </LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                  <InputBox type="text" label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox type="text" onChange={this.changeServicePlace} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
                   <LRBlock>
                     <span>
                       <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา</Label> <Label size="12px" color="#545454">(บาท)</Label>
                     </span>
                     <Div>
-                      <InputBox type = "number" placeholder="xx.xx" width ="155px" height="30px"/><InputBox type = "number" placeholder="xx.xx" width ="155px" height="30px"/>
+                      <InputBox type = "number" onChange={this.changeServiceMinCost} placeholder="xx.xx" width ="155px" height="30px"/><InputBox type = "number" onChange={this.changeServiceMaxCost} placeholder="xx.xx" width ="155px" height="30px"/>
                     </Div>  
                   </LRBlock>
                 </LRBlock>
               </LRBlock>
               <LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} dropdown label="ประสบการณ์" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
-                  <InputBox style={{marginRight: "16px"}} dropdown label="ประเภทบริการ" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeExperience} dropdown label="ประสบการณ์" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceType} dropdown label="ประเภทบริการ" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
                 </LRBlock>
                 <LRBlock>
                   <span>
                     <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">วันที่และเวลา</Label> <Label size="12px" color="#545454">(สามารถเลือกได้มากกว่า 1)</Label>
-                    <InputBox type="text" placeholder="CHANGE THIS TO TIME SLOT SELECTOR" color={color} width="345px" height="30px"/>
+                    <InputBox type="text" onchange={this.changeServiceTime} placeholder="CHANGE THIS TO TIME SLOT SELECTOR" color={color} width="345px" height="30px"/>
                   </span>
                 </LRBlock>
               </LRBlock>
@@ -107,6 +151,7 @@ class CreateServicePage extends React.Component {
                 <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
               </LRBlock>
               <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
+                
               </LRBlock>
             </FooterBlock>
             <Footer color={color} />

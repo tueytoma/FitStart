@@ -65,6 +65,9 @@ class Topbar extends React.Component {
                     <Link to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
                         <a onClick={this.Search}><SearchIcon opacity="1" color="#F9FAFC"/></a>
                     </Link>
+                    {auth.isLoggedIn() && auth.isTrainer() && <Div>
+                        <LinkStyle to="/createservice" size="30px" style={{color: "#FFF", opacity: "1", marginLeft: "32px"}}>สร้างบริการ</LinkStyle>
+                    </Div>}
                 </WrapperInner>
                 <WrapperSide style={{justifyContent: "center"}}>
                     {auth.isLoggedIn() ? 

@@ -111,6 +111,27 @@ class CreateServicePage extends React.Component {
     this.setState({serviceTime : e.target.value})
   }
 
+createService = e => {
+    let data = {
+        serviceName : this.state.serviceName,
+        serviceDetail : this.state.serviceDetail,
+        serviceProvince : this.state.serviceProvince,
+        servicePlace : this.state.servicePlace,
+        serviceMinCost : this.state.last_name,
+        serviceMaxCost : this.state.serviceMaxCost,
+        experience : this.state.experience,
+        serviceType : this.state.serviceType,
+        serviceTime : this.state.serviceTime
+    }
+    console.log(data)
+    this.validate()
+    api.createService(data)
+        .then((res)=>{
+            console.log(res)
+            this.props.history.push('/createServiceSuccess')
+        })
+}
+
   validate = (e) => {
 
   }

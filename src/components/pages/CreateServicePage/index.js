@@ -59,13 +59,11 @@ class CreateServicePage extends React.Component {
         <Topbar color={color}/>
         {auth.isLoggedIn() && auth.isTrainer() ?
         <InnerWrapper>
-            <HeaderBlock>
-              <Label size="48px" weight="bolder" color="#202020">สร้างบริการใหม่</Label>
-            </HeaderBlock>
             <InputBlock id = "inputblock">
               <LRBlock>
+              <Label size="48px" weight="bolder" color="#202020">สร้างบริการใหม่</Label>
                 <InputBox type="text" label="ชื่อบริการ" placeholder="Service name" color={color} width="345px" height="30px"/>
-                <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} width="3px" height="30px" textarea />
+                <InputBox type="text" label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
                 <InputBox style={{marginRight: "16px"}} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
                 <InputBox type="text" label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
                 <LRBlock>
@@ -73,7 +71,7 @@ class CreateServicePage extends React.Component {
                     <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา</Label> <Label size="12px" color="#545454">(บาท)</Label>
                   </span>
                   <span>
-                    <InputBox type = "number" placeholder="xx.xx" width ="155px" height="30px"/><InputBox type = "number" placeholder="xx.xx" width ="155px" height="30px"/>
+                    <InputBox type = "number" placeholder="xx.xx" width ="15px" height="30px"/><InputBox type = "number" placeholder="xx.xx" width ="15px" height="30px"/>
                   </span>  
                 </LRBlock>
               </LRBlock>

@@ -52,8 +52,8 @@ class TrainerBox extends React.Component {
   componentDidMount() {
     api.getServiceOfTrainer(this.props.trainer._id)
         .then((res)=>{
-            this.setState({trainerService : res.services[0].name,
-                ServiceID : res.services[0]._id
+            this.setState({trainerService : res[0].name,
+                ServiceID : res[0]._id
             })
         })
     }

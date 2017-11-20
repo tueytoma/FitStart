@@ -27,6 +27,14 @@ api.getTrainerByName = name =>{
         })
 }
 
+api.getServiceById = serviceId =>{
+    return Request.get(config.BACKURL + '/services/' + serviceId)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.service
+        })
+}
+
 api.getServiceByKeyword = keyword =>{
     return Request.post(config.BACKURL + '/services/search')
         .send({keyword : keyword})
@@ -37,10 +45,10 @@ api.getServiceByKeyword = keyword =>{
 }
 
 api.getServiceOfTrainer = trainerId =>{
-    return Request.get(config.BACKURL + '/services/' + trainerId)
+    return Request.get(config.BACKURL + '/services/trainer/' + trainerId)
         .set('Accept', 'application/json')
         .then(res => {
-            return res.body
+            return res.body.services
         })
 }
 

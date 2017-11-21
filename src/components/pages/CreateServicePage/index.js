@@ -57,12 +57,12 @@ class CreateServicePage extends React.Component {
     this.state = {
       serviceName: '',
       serviceDetail: '',
-      serviceProvince: '',
+      serviceProvince: 'ps',
       servicePlace: '',
       serviceMinCost: '',
       serviceMaxCost: '',
-      experience: '',
-      serviceType: '',
+      experience: 'ps',
+      serviceType: 'ps',
       serviceTime:'',
       namePass: true,
       detailPass: true,
@@ -144,7 +144,7 @@ createService = e => {
     else this.setState({namePass:true})
     if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300) this.setState({detailPass:false})
     else this.setState({detailPass:true})
-    if(this.state.province = ps) this.setState({provincePass:false})
+    if(this.state.province == 'ps') this.setState({provincePass:false})
     else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
@@ -152,7 +152,10 @@ createService = e => {
     else this.setState({minPass:true})
     if(this.state.serviceMaxCost < 0) this.setState({maxPass:false})
     else this.setState({maxPass:true})
-    //check type
+    if(this.state.serviceType == 'ps') this.setState({typePass:false})
+    else this.setState({typePass:true})
+    if(this.state.experience == 'ps') this.setState({expPass:false})
+    else this.setState({expPass:true})
     //check time
   }
   render() {

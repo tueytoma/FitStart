@@ -163,7 +163,7 @@ class HomePage extends React.Component {
               <Right2>
                 <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">1. ค้นหาเทรนเนอร์ / บริการที่ต้องการ</Label>
                 <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">2. เลือกช่วงเวลาที่ต้องการฝึก และ ส่งคำขอ</Label>
-                <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">3. เมื่อเทรนเนอร์อนุมติขอแล้วทำการชำระค่าใช้จ่ายตามข้อกำหนด</Label>
+                <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">3. เมื่อเทรนเนอร์อนุมัติคำขอแล้วทำการชำระค่าใช้จ่ายตามข้อกำหนด</Label>
                 <Label style={{marginBottom: "16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">4. ศึกษาข้อมูลเพิ่มเติม <LinkStyle to="/detail" size="18px">คลิกที่นี่</LinkStyle></Label>
               </Right2>
             </HowtoInner>

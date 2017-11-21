@@ -164,33 +164,33 @@ createService = e => {
             <InputBlock id = "inputblock">
               <LRBlock>
                 <LRBlock>
-                  <InputBox type="text" onChange={this.changeServiceName} label="ชื่อบริการ" placeholder="Service name" color={color} width="400px" height="30px"/>
-                  <InputBox type="text" onChange={this.changeServiceDetail} label="รายละเอียด" placeholder="Details" color={color} width="400px" height="80px" textarea />
+                  <InputBox type="text" onChange={this.changeServiceName} error={!this.state.namePass} label="ชื่อบริการ" placeholder="Service name" color={color} width="400px" height="30px"/>
+                  <InputBox type="text" onChange={this.changeServiceDetail} error={!this.state.detailPass} label="รายละเอียด" placeholder="Details" color={color} width="400px" height="80px" textarea />
                 </LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
-                  <InputBox type="text" onChange={this.changeServicePlace} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="400px" height="30px"/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} error={!this.state.provincePass} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
+                  <InputBox type="text" onChange={this.changeServicePlace} error={!this.state.placePass} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="400px" height="30px"/>
                   <Label size="18px" style={{margin: "0 6px 6px 20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา
                         <Label weight="normal" size="12px" color="#545454">   (บาท)</Label>
                   </Label> 
                   <LRBlock>
                     <Div style={{alignItems: "center"}}>
-                      <InputBox  type = "number" onChange={this.changeServiceMinCost} placeholder="xx.xx" width ="155px" height="30px"/>
+                      <InputBox  type = "number" onChange={this.changeServiceMinCost} error={!this.state.minPass} placeholder="xx.xx" width ="155px" height="30px"/>
                       <Label style={{marginLeft: "12px"}}weight="bolder" size="30px" color="#C4C3C3">-</Label>
-                      <InputBox type = "number" onChange={this.changeServiceMaxCost} placeholder="xx.xx" width ="155px" height="30px"/>
+                      <InputBox type = "number" onChange={this.changeServiceMaxCost} error={!this.state.maxPass} placeholder="xx.xx" width ="155px" height="30px"/>
                     </Div>  
                   </LRBlock>
                 </LRBlock>
               </LRBlock>
               <LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeExperience} dropdown label="ประสบการณ์ (ปี)" color={color} width="435px" height="30px" menu={['น้อยกว่า 1','1 - 5','5 - 10', 'มากกว่า 10']}/>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceType} dropdown label="ประเภทบริการ" color={color} width="435px" height="30px" menu={['Freelance','ประจำฟิตเนส']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeExperience} error={!this.state.expPass} dropdown label="ประสบการณ์ (ปี)" color={color} width="435px" height="30px" menu={['น้อยกว่า 1','1 - 5','5 - 10', 'มากกว่า 10']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceType} error={!this.state.typePass} dropdown label="ประเภทบริการ" color={color} width="435px" height="30px" menu={['Freelance','ประจำฟิตเนส']}/>
                 </LRBlock>
                 <LRBlock>
                   <span>
                     <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">วันที่และเวลา</Label> <Label size="12px" color="#545454">(สามารถเลือกได้มากกว่า 1)</Label>
-                    <InputBox type="text" onchange={this.changeServiceTime} placeholder="CHANGE THIS TO TIME SLOT SELECTOR" color={color} width="345px" height="30px"/>
+                    <InputBox type="text" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="CHANGE THIS TO TIME SLOT SELECTOR" color={color} width="345px" height="30px"/>
                   </span>
                 </LRBlock>
               </LRBlock>

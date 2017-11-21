@@ -89,6 +89,10 @@ class LoginPage extends React.Component {
       })
   }
 
+  gotoHome = e => {
+    this.props.history.push('/')
+  }
+
   changeUsername = e => {
     this.setState({username : e.target.value})
   }
@@ -111,9 +115,17 @@ class LoginPage extends React.Component {
             <InputBox type="text" onChange={this.changeUsername} error={this.state.error} label="ชื่อผู้ใช้งาน" placeholder="username" color="#F05939" width="500px" height="30px"/>
             <InputBox type="password" onChange={this.changePassword} error={this.state.error} label="รหัสผ่าน" placeholder="password" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">ชื่อผู้ใช้งานที่คุณป้อนไม่ตรงกับบัญชีผู้ใช้ใด ๆ หรือ รหัสผ่านที่คุณป้อนไม่ถูกต้อง</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
+            {this.state.username==''&&this.state.password=='' ? <LinkAndButtonDiv>
+              <LinkAndButtonBox onClick={this.gotoHome} to="/resetpassword" color="#F05939" linktext="ลืมรหัสผ่าน" width="220px" height="40px" size="16px" buttontext="เข้าสู่ระบบในฐานะผู้ใช้ภายนอก" />
+            </LinkAndButtonDiv>
+            :
             <LinkAndButtonDiv>
               <LinkAndButtonBox onClick={this.signin} to="/resetpassword" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
             </LinkAndButtonDiv>
+            }
+            
+            
+
           </Form>
           <Footer>
             <Label size="13px" weight="normal" color="#211F5E">ยังไม่มีบัญชีผู้ใช้งานระบบใช่ไหม?&nbsp;</Label>

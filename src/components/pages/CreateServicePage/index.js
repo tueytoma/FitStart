@@ -124,7 +124,7 @@ class CreateServicePage extends React.Component {
   }
 
   checkNumber = (input) => {
-    let check = /^[+-]?\d+(\.\d+)?$/;
+    let check = /\d*(\.\d+)/;
     if(input.match(check)) return true
     else return false
   }
@@ -160,9 +160,9 @@ createService = e => {
     else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
-    if(this.state.serviceMinCost < 0 || !this.checkNumber(this.serviceMinCost)) this.setState({minPass:false})
+    if(this.state.serviceMinCost < 0) this.setState({minPass:false})
     else this.setState({minPass:true})
-    if(this.state.serviceMaxCost < this.state.serviceMinCost) this.setState({maxPass:false})
+    if(this.state.serviceMaxCost < this.state.serviceMinCost || this.state.serviceMaxCost < 0) this.setState({maxPass:false})
     else this.setState({maxPass:true})
     if(this.state.serviceType == 'ps') this.setState({typePass:false})
     else this.setState({typePass:true})

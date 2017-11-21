@@ -117,7 +117,7 @@ createService = e => {
         serviceDetail : this.state.serviceDetail,
         serviceProvince : this.state.serviceProvince,
         servicePlace : this.state.servicePlace,
-        serviceMinCost : this.state.last_name,
+        serviceMinCost : this.state.serviceMinCost,
         serviceMaxCost : this.state.serviceMaxCost,
         experience : this.state.experience,
         serviceType : this.state.serviceType,
@@ -135,6 +135,14 @@ createService = e => {
   validate = (e) => {
     if(this.state.serviceName.length<1||this.state.serviceName.length>20) this.setState({namePass:false})
     else this.setState({namePass:true})
+    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300) this.setState({detailPass:false})
+    else this.setState({detailPass:true})
+    //check dropdown province
+    if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
+    else this.setState({placePass:true})
+    //check cost
+    //check type
+    //check time
   }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
@@ -152,14 +160,14 @@ createService = e => {
                   <InputBox type="text" onChange={this.changeServiceDetail} label="รายละเอียด" placeholder="Details" color={color} width="345px" height="80px" textarea />
                 </LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} dropdown label="จังหวัด" color={color} width="345px" height="30px" menu={['กรุงเทพมหานคร','กระบี่','กาญจนบุรี','กาฬสินธุ์','กำแพงเพชร','ขอนแก่น','จันทบุรี','ฉะเชิงเทรา','ชลบุรี','ชัยนาท','ชัยภูมิ','ชุมพร','เชียงราย','เชียงใหม่','ตรัง','ตราด','ตาก','นครนายก','นครปฐม','นครพนม','นครราชสีมา','นครศรีธรรมราช','นครสวรรค์','นนทบุรี','นราธิวาส','น่าน','บึงกาฬ','บุรีรัมย์','ปทุมธานี','ประจวบคีรีขันธ์','ปราจีนบุรี','ปัตตานี','พระนครศรีอยุธยา','พังงา','พัทลุง','พิจิตร','พิษณุโลก','เพชรบุรี','เพชรบูรณ์','แพร่','พะเยา','ภูเก็ต','มหาสารคาม','มุกดาหาร','แม่ฮ่องสอน','ยะลา','ยโสธร','ร้อยเอ็ด','ระนอง','ระยอง','ราชบุรี','ลพบุรี','ลำปาง','ลำพูน','เลย','ศรีสะเกษ','สกลนคร','สงขลา','สตูล','สมุทรปราการ','สมุทรสงคราม','สมุทรสาคร','สระแก้ว','สระบุรี','สิงห์บุรี','สุโขทัย','สุพรรณบุรี','สุราษฎร์ธานี','สุรินทร์','หนองคาย','หนองบัวลำภู','อ่างทอง','อุดรธานี','อุทัยธานี','อุตรดิตถ์','อุบลราชธานี','อำนาจเจริญ']}/>
                   <InputBox type="text" onChange={this.changeServicePlace} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="345px" height="30px"/>
                   <LRBlock>
                     <span>
                       <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา</Label> <Label size="12px" color="#545454">(บาท)</Label>
                     </span>
                     <Div>
-                      <InputBox type = "number" onChange={this.changeServiceMinCost} placeholder="xx.xx" width ="155px" height="30px"/><InputBox type = "number" onChange={this.changeServiceMaxCost} placeholder="xx.xx" width ="155px" height="30px"/>
+                      <InputBox type = "number" onChange={this.changeServiceMinCost} placeholder="xx.xx" width ="155px" height="30px"/><Label size="30px">   -</Label><InputBox type = "number" onChange={this.changeServiceMaxCost} placeholder="xx.xx" width ="155px" height="30px"/>
                     </Div>  
                   </LRBlock>
                 </LRBlock>

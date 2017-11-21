@@ -183,7 +183,9 @@ class RegisterPage extends React.Component {
         api.signup(data)
             .then((res)=>{
                 console.log(res)
-                this.props.history.push('/registersuccess')
+                if(this.state.firstNamePass && this.state.lastNamePass && this.state.genderPass && this.state.telPass && this.state.addressPass 
+                    && this.state.usernamePass && this.state.passwordPass && this.state.repasswordPass && this.state.emailPass && this.state.passEqualrepass 
+                    && this.state.checkboxPass ) this.props.history.push('/registersuccess')
             })
     }
 

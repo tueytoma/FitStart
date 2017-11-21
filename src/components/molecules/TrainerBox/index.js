@@ -11,7 +11,10 @@ const Wrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin: 24px 0 24px 0;
+    padding: 24px 0 24px 0;
+
+    &:hover {
+      background-color: #F0f0f0;
 `
 
 const TrainerPic = styled.div`

@@ -123,6 +123,12 @@ class CreateServicePage extends React.Component {
     else return false 
   }
 
+  checkNumber = (input) => {
+    let check = /^-?\d*(\.\d+)?$/;
+    if(input.match(check)) return true
+    else return false
+  }
+
 createService = e => {
     let data = {
         serviceName : this.state.serviceName,

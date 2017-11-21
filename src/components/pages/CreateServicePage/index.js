@@ -134,6 +134,7 @@ createService = e => {
     api.createService(data)
         .then((res)=>{
             console.log(res)
+            if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) 
             this.props.history.push('/createServiceSuccess')
         })
 }
@@ -143,10 +144,14 @@ createService = e => {
     else this.setState({namePass:true})
     if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300) this.setState({detailPass:false})
     else this.setState({detailPass:true})
-    //check dropdown province
+    if(this.state.province = ps) this.setState({provincePass:false})
+    else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
-    //check cost
+    if(this.state.serviceMinCost < 0) this.setState({minPass:false})
+    else this.setState({minPass:true})
+    if(this.state.serviceMaxCost < 0) this.setState({maxPass:false})
+    else this.setState({maxPass:true})
     //check type
     //check time
   }

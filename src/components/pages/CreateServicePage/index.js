@@ -57,12 +57,12 @@ class CreateServicePage extends React.Component {
     this.state = {
       serviceName: '',
       serviceDetail: '',
-      serviceProvince: '',
+      serviceProvince: 'ps',
       servicePlace: '',
-      serviceMinCost: '',
-      serviceMaxCost: '',
-      experience: '',
-      serviceType: '',
+      serviceMinCost: 0,
+      serviceMaxCost: 0,
+      experience: 'ps',
+      serviceType: 'ps',
       serviceTime:'',
       namePass: true,
       detailPass: true,
@@ -85,7 +85,7 @@ class CreateServicePage extends React.Component {
     this.setState({serviceDetail : e.target.value})
   }
 
-  changeServicProvince = e => {
+  changeServiceProvince = e => {
     this.setState({serviceProvince : e.target.value})
   }
 
@@ -117,6 +117,18 @@ class CreateServicePage extends React.Component {
     this.setState({checkboxPass: !this.state.checkboxPass});
 }
 
+  checkFormat = (input) => {
+    let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ.,]+$/;  
+    if(input.match(check)) return true
+    else return false 
+  }
+
+  checkNumber = (input) => {
+    let check = /\d*(\.\d+)+$|\d*/g;
+    if(input.match(check)) return true
+    else return false
+  }
+
 createService = e => {
     let data = {
         serviceName : this.state.serviceName,
@@ -140,19 +152,22 @@ createService = e => {
 }
 
   validate = (e) => {
-    if(this.state.serviceName.length<1||this.state.serviceName.length>20) this.setState({namePass:false})
+    if(this.state.serviceName.length<1||this.state.serviceName.length>300 || !this.checkFormat(this.state.serviceName)) this.setState({namePass:false})
     else this.setState({namePass:true})
-    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300) this.setState({detailPass:false})
+    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300 || !this.checkFormat(this.state.serviceDetail)) this.setState({detailPass:false})
     else this.setState({detailPass:true})
-    if(this.state.province = ps) this.setState({provincePass:false})
+    if(this.state.serviceProvince == 'ps') this.setState({provincePass:false})
     else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
-    if(this.state.serviceMinCost < 0) this.setState({minPass:false})
+    if(this.state.serviceMinCost < 0 || !this.checkNumber(this.serviceMinCost)) this.setState({minPass:false})
     else this.setState({minPass:true})
-    if(this.state.serviceMaxCost < 0) this.setState({maxPass:false})
+    if(this.state.serviceMaxCost < this.state.serviceMinCost) this.setState({maxPass:false})
     else this.setState({maxPass:true})
-    //check type
+    if(this.state.serviceType == 'ps') this.setState({typePass:false})
+    else this.setState({typePass:true})
+    if(this.state.experience == 'ps') this.setState({expPass:false})
+    else this.setState({expPass:true})
     //check time
   }
   render() {
@@ -179,7 +194,7 @@ createService = e => {
                   <InputBox type="text" onChange={this.changeServiceDetail} error={!this.state.detailPass} label="รายละเอียด" placeholder="Details" color={color} width="400px" height="80px" textarea />
                 </LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} error={!this.state.provincePass} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceProvince} error={!this.state.provincePass} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
                   <InputBox type="text" onChange={this.changeServicePlace} error={!this.state.placePass} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="400px" height="30px"/>
                   <Label size="18px" style={{margin: "0 6px 6px 20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา
                         <Label weight="normal" size="12px" color="#545454">   (บาท)</Label>

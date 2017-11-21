@@ -85,7 +85,7 @@ class CreateServicePage extends React.Component {
     this.setState({serviceDetail : e.target.value})
   }
 
-  changeServicProvince = e => {
+  changeServiceProvince = e => {
     this.setState({serviceProvince : e.target.value})
   }
 

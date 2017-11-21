@@ -72,9 +72,11 @@ class CreateServicePage extends React.Component {
       maxPass: true,
       expPass: true,
       typePass: true,
-      timePass: true
+      timePass: true,
+      checkboxPass: false,
     };
   }
+  
   changeServiceName = e => {
     this.setState({serviceName : e.target.value})
   }
@@ -110,6 +112,10 @@ class CreateServicePage extends React.Component {
   changeServiceTime = e => {
     this.setState({serviceTime : e.target.value})
   }
+
+  toggleIsChecked = e => {
+    this.setState({checkboxPass: !this.state.checkboxPass});
+}
 
 createService = e => {
     let data = {
@@ -202,7 +208,7 @@ createService = e => {
                 <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
               </LRBlock>
               <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                <LinkAndButtonBox disabled onClick={this.createService} to="/login" cancleRegis color={color} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
+                <LinkAndButtonBox disabled={!this.state.checkboxPass} onClick={this.createService} to="/login" cancleRegis color={color} linktext="ยกเลิกการสร้างบริการ" buttontext="สร้างบริการ"/>
               </LRBlock>
             </FooterBlock>
             <Footer color={color} />

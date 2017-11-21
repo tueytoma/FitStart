@@ -117,6 +117,12 @@ class CreateServicePage extends React.Component {
     this.setState({checkboxPass: !this.state.checkboxPass});
 }
 
+  checkFormat = (input) => {
+    let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ.,]+$/;  
+    if(input.match(check)) return true
+    else return false 
+  }
+
 createService = e => {
     let data = {
         serviceName : this.state.serviceName,
@@ -140,15 +146,15 @@ createService = e => {
 }
 
   validate = (e) => {
-    if(this.state.serviceName.length<1||this.state.serviceName.length>20) this.setState({namePass:false})
+    if(this.state.serviceName.length<1||this.state.serviceName.length>300 || !this.checkFormat(this.state.serviceName)) this.setState({namePass:false})
     else this.setState({namePass:true})
-    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300) this.setState({detailPass:false})
+    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300 || !this.checkFormat(this.state.serviceDetail)) this.setState({detailPass:false})
     else this.setState({detailPass:true})
     if(this.state.serviceProvince == 'ps') this.setState({provincePass:false})
     else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
-    if(this.state.serviceMinCost < 0) this.setState({minPass:false})
+    if(this.state.serviceMinCost < 0 || !this.checkNumber(this.serviceMinCost)) this.setState({minPass:false})
     else this.setState({minPass:true})
     if(this.state.serviceMaxCost < this.state.serviceMinCost) this.setState({maxPass:false})
     else this.setState({maxPass:true})

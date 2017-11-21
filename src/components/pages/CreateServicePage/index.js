@@ -124,7 +124,7 @@ class CreateServicePage extends React.Component {
   }
 
   checkNumber = (input) => {
-    let check = /\d*(\.\d+)/;
+    let check = /\d*(\.\d+)+$|\d*/g;
     if(input.match(check)) return true
     else return false
   }

@@ -144,7 +144,7 @@ createService = e => {
     else this.setState({namePass:true})
     if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300) this.setState({detailPass:false})
     else this.setState({detailPass:true})
-    if(this.state.province == 'ps') this.setState({provincePass:false})
+    if(this.state.serviceProvince == 'ps') this.setState({provincePass:false})
     else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
@@ -182,7 +182,7 @@ createService = e => {
                   <InputBox type="text" onChange={this.changeServiceDetail} error={!this.state.detailPass} label="รายละเอียด" placeholder="Details" color={color} width="400px" height="80px" textarea />
                 </LRBlock>
                 <LRBlock>
-                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServicProvince} error={!this.state.provincePass} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
+                  <InputBox style={{marginRight: "16px"}} onChange={this.changeServiceProvince} error={!this.state.provincePass} dropdown label="จังหวัด" color={color} width="435px" height="30px" menu={province}/>
                   <InputBox type="text" onChange={this.changeServicePlace} error={!this.state.placePass} label="บริเวณที่ให้บริการ" placeholder="Service Place" color={color} width="400px" height="30px"/>
                   <Label size="18px" style={{margin: "0 6px 6px 20px"}} /*how much margin??*/ color ="#545454">ช่วงราคา
                         <Label weight="normal" size="12px" color="#545454">   (บาท)</Label>

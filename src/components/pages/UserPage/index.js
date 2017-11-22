@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkAndButtonBox } from 'components'
+import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle2, LinkAndButtonBox, ServiceBox, Button } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom';
@@ -73,35 +73,27 @@ class UserPage extends React.Component {
     super(props)
     this.state = {
         userName: this.props.match.params.user,
-        serviceID: this.props.match.params.service,
-        service: '',
         trainer: '',
-        checkTrainerHaveService: true,
+        service: '',
     };
   }
 
   componentDidMount() {
-      console.log(this.state.userName)
-    // api.getServiceById(this.state.serviceID)
-    // .then((res)=>{
-    //     // console.log(res)
-    //     this.setState({service : res})
-    //     console.log(this.state.service.trainer)
-    //     api.getUserById(res.trainer)
-    //     .then((res2)=>{
-    //       this.setState({trainer : res2[0]})
-    //       console.log(this.state.userName)
-    //       console.log(this.state.trainer.username)
-    //     })  
-    // })
+    // console.log(this.state.userName)
+    api.getUserByUsername(this.state.userName)
+    .then((res)=>{
+        this.setState({trainer: res});
+        api.getServiceOfTrainer(this.state.trainer._id)
+        .then((res2)=>{
+            this.setState({service: res2});
+            console.log(this.state.service)
+        })
+        
+    })
   }
 
-  changeCheckbox = e => {
-    this.setState({checkboxPass : e.target.value})
-  }
-
-  toggleIsChecked = e => {
-    this.setState({checkboxPass: !this.state.checkboxPass});
+  onClick = e => {
+    this.props.history.push('/')
   }
 
   render() {
@@ -109,6 +101,12 @@ class UserPage extends React.Component {
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
     starBox.push(<StarIcon height="40px"/>)
+    var resultFeed = []
+    if(this.state.trainer.role == 'Trainer') {
+        for (var i = 0 ; i < this.state.service.length ; i++) {
+            resultFeed.push(<ServiceBox service={this.state.service[i]} key={i}/>)
+        }
+    }
     return (
       <Wrapper>
         <Topbar color={color}/>
@@ -120,16 +118,17 @@ class UserPage extends React.Component {
             <PicBlock>
                 <TrainerPic />
             </PicBlock>
-            <DataBox style={{marginBottom: "16px"}} textTitle="ชื่อผู้งาน" textDetail="" color={color}/>
-            <DataBox styled={{marginTop: "16px"}} textTitle="รายละเอียด" textDetail=""color={color}/>
-            <DataBox textTitle="ชื่อจริง" textDetail=""  color={color}/>
-            <DataBox textTitle="นามสกุล" textDetail=""  color={color}/>
-            <DataBox textTitle="ประเภทผู้ใช้งาน" textDetail=""  color={color}/>
-            <DataBox styled={{marginTop: "16px"}} textTitle="เพศ" textDetail=""  color={color}/>
-            <DataBox textTitle="อีเมล" textDetail=""  color={color}/>
-            <DataBox textTitle="เบอร์โทรศัพท์" textDetail=""  color={color}/>
-            <DataBox textTitle="ที่อยู่อาศัย" textDetail=""  color={color}/>
-            <DataBox textTitle="ช่วงราคา" textDetail=""  color={color}/>
+            <DataBox style={{marginBottom: "16px"}} textTitle="ชื่อผู้งาน" textDetail={this.state.trainer.username} color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="ชื่อจริง" textDetail={this.state.trainer.firstName}  color={color}/>
+            <DataBox textTitle="นามสกุล" textDetail={this.state.trainer.lastName}  color={color}/>
+            <DataBox textTitle="ประเภทผู้ใช้งาน" textDetail={this.state.trainer.role}  color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="เพศ" textDetail={this.state.trainer.gender}  color={color}/>
+            <DataBox textTitle="อีเมล" textDetail={this.state.trainer.email}  color={color}/>
+            <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
+            <DataBox textTitle="ที่อยู่อาศัย" textDetail={this.state.trainer.address}  color={color}/>
+            {this.state.trainer.role == 'Trainer' && <Label style={{margin: "24px 0 8px 24px"}} size="20px" weight="normal" color="rgba(84, 84, 84, 0.8)">บริกาารที่สร้าง</Label>}
+            {this.state.trainer.role == 'Trainer' && resultFeed}
+            <Button onClick={this.onClick} color={color} style={{alignSelf: "center", marginTop: "24px"}} height="40px" width="170px" size="20px">กลับสู่หน้าหลัก</Button>
             <Footer color={color} />
         </InnerWrapper>
     

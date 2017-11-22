@@ -50,6 +50,10 @@ class Topbar extends React.Component {
         this.setState({search : e.target.value})
     }
 
+    onLogout = e => {
+        auth.logout()
+    }
+
     render() {
         return(
           <Wrapper color={this.props.color}>
@@ -71,7 +75,7 @@ class Topbar extends React.Component {
                 </WrapperInner>
                 <WrapperSide style={{justifyContent: "center"}}>
                     {auth.isLoggedIn() ? 
-                    <a onClick={auth.logout}><LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Logout</LinkStyle></a>
+                    <a onClick={auth.logout}><LinkStyle to="/" size="30px" style={{color: "#FFF", opacity: "1"}}>Logout</LinkStyle></a>
                     :
                     <LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Login</LinkStyle>}
                 </WrapperSide>

@@ -216,7 +216,12 @@ createService = e => {
                 <LRBlock>
                   <span>
                     <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">วันที่และเวลา</Label> <Label size="12px" color="#545454">(สามารถเลือกได้มากกว่า 1)</Label>
-                    <InputBox type="text" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="CHANGE THIS TO TIME SLOT SELECTOR" color={color} width="345px" height="30px"/>
+                    <Div style={{alignItems:"center"}}>
+                      <InputBox type="date" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="DD/MM/YY" color={color} width="131px" height="30px"/>
+                      <InputBox type="text" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="81px" height="30px"/>
+                      <Label style={{marginLeft: "12px"}}weight="bolder" size="30px" color="#C4C3C3">-</Label>
+                      <InputBox type="text" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="81px" height="30px"/>
+                    </Div>
                   </span>
                 </LRBlock>
               </LRBlock>

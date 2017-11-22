@@ -1,0 +1,142 @@
+// https://github.com/diegohaz/arc/wiki/Atomic-Design
+import React from 'react'
+import styled, { css } from 'styled-components'
+import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkAndButtonBox } from 'components'
+import { font } from 'styled-theme'
+
+import { Link} from 'react-router-dom';
+import api from '../../../api'
+import auth from '../../../auth'
+
+const Wrapper = styled.div`
+  background-color: #F9FAFC;
+  width: calc(100vw - 15px);
+  display: flex;
+  justify-content: center;
+  
+  align-self: center;
+`
+
+const InnerWrapper = styled.div`
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+`
+
+const HeaderBlock = styled.div`
+    align-self: flex-start;
+    margin: 36px 0 24px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+
+const PicBlock = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 0 24px 0;
+`
+
+const TrainerPic = styled.div`
+    height: 40vh;
+    width: 56.32vh;
+    margin: 0 24px 0 0;
+    background-color: #C4C4C4;
+`
+
+const ServicePic = styled.div`
+    height: 40vh;
+    width: 76.5vh;
+    background-color: #C4C4C4;
+`
+
+const LRBlock = styled.div`
+    display:flex;
+    flex-flow: column;
+    flex: 1;
+`
+
+const FooterBlock = styled.div`
+    margin: 64px 0 0 0;
+    display:flex;
+`
+
+const queryString = require('query-string');
+const parsed = queryString.parse(location.search)
+
+class UserPage extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+        userName: this.props.match.params.user,
+        serviceID: this.props.match.params.service,
+        service: '',
+        trainer: '',
+        checkTrainerHaveService: true,
+    };
+  }
+
+  componentDidMount() {
+      console.log(this.state.userName)
+    // api.getServiceById(this.state.serviceID)
+    // .then((res)=>{
+    //     // console.log(res)
+    //     this.setState({service : res})
+    //     console.log(this.state.service.trainer)
+    //     api.getUserById(res.trainer)
+    //     .then((res2)=>{
+    //       this.setState({trainer : res2[0]})
+    //       console.log(this.state.userName)
+    //       console.log(this.state.trainer.username)
+    //     })  
+    // })
+  }
+
+  changeCheckbox = e => {
+    this.setState({checkboxPass : e.target.value})
+  }
+
+  toggleIsChecked = e => {
+    this.setState({checkboxPass: !this.state.checkboxPass});
+  }
+
+  render() {
+    let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+    var starBox = []
+    for (var i = 0 ; i < this.state.trainer.rating ; i++)
+    starBox.push(<StarIcon height="40px"/>)
+    return (
+      <Wrapper>
+        <Topbar color={color}/>
+        <InnerWrapper >
+            <HeaderBlock>
+                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">ข้อมูลผู้ใช้งาน</Label>
+                {starBox}
+            </HeaderBlock>
+            <PicBlock>
+                <TrainerPic />
+            </PicBlock>
+            <DataBox style={{marginBottom: "16px"}} textTitle="ชื่อผู้งาน" textDetail="" color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="รายละเอียด" textDetail=""color={color}/>
+            <DataBox textTitle="ชื่อจริง" textDetail=""  color={color}/>
+            <DataBox textTitle="นามสกุล" textDetail=""  color={color}/>
+            <DataBox textTitle="ประเภทผู้ใช้งาน" textDetail=""  color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="เพศ" textDetail=""  color={color}/>
+            <DataBox textTitle="อีเมล" textDetail=""  color={color}/>
+            <DataBox textTitle="เบอร์โทรศัพท์" textDetail=""  color={color}/>
+            <DataBox textTitle="ที่อยู่อาศัย" textDetail=""  color={color}/>
+            <DataBox textTitle="ช่วงราคา" textDetail=""  color={color}/>
+            <Footer color={color} />
+        </InnerWrapper>
+    
+        }
+        
+      </Wrapper>
+    )
+  }
+}
+export default UserPage

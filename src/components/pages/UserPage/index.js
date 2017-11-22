@@ -36,7 +36,7 @@ const PicBlock = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0 0 24px 0;
 `
 
@@ -112,50 +112,28 @@ class UserPage extends React.Component {
     return (
       <Wrapper>
         <Topbar color={color}/>
-        {/* {this.state.userName == this.state.trainer.username ?
         <InnerWrapper >
             <HeaderBlock>
-                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">ข้อมูลบริการ</Label>
+                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">ข้อมูลผู้ใช้งาน</Label>
                 {starBox}
             </HeaderBlock>
             <PicBlock>
                 <TrainerPic />
-                <ServicePic />
             </PicBlock>
-            <Label style={{marginBottom: "16px"}} size="32px" weight="bolder" color="#202020">1. ข้อมูลบริการ</Label>
-            <DataBox textTitle="ชื่อบริการ" textDetail={this.state.service.name} color={color}/>
-            <DataBox textTitle="รายละเอียด" textDetail={this.state.service.description} color={color}/>
-            <DataBox textTitle="ประสบการณ์" textDetail={this.state.service.experience + " ปี"}  color={color}/>
-            <DataBox textTitle="ประเภทบริการ" textDetail={this.state.service.type}  color={color}/>
-            <DataBox textTitle="ช่วงราคา" textDetail={this.state.service.price  + " บาท"}  color={color}/>
-            <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">2. ข้อมูลเทรนเนอร์</Label>
-            <DataBox textTitle="สอนโดย" textDetail={"เทรนเนอร์ " + this.state.trainer.first_name + " " + this.state.trainer.last_name} color={color}/>
-            <DataBox textTitle="เพศ" textDetail={this.state.trainer.gender} color={color}/>
-            <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephone_number}  color={color}/>
-            <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
-            <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>
-            <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={this.state.service.preferredLocation} color={color}/>
-            <FooterBlock>
-                <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
-                    {auth.isLoggedIn() && auth.isTrainee() && <Checkbox checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> }
-                    {auth.isLoggedIn() && auth.isTrainee() && <Label size="13px" weight="normal" color= "rgba(84, 84, 84, 0.8)">ยอมรับในข้อตกลงของผู้ให้บริการ Fit Start ข้อมูลเพิ่มเติม &nbsp;</Label> }
-                    {auth.isLoggedIn() && auth.isTrainee() && <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle> }
-                </LRBlock>
-                <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
-                </LRBlock>
-            </FooterBlock >
-            <Footer color={color} />
-        </InnerWrapper>
-        :
-        <InnerWrapper >
-            <HeaderBlock>
-                <Label size="48px" weight="bolder" color="#202020">เกิดข้อผิดพลาด</Label>
-            </HeaderBlock>
+            <DataBox style={{marginBottom: "16px"}} textTitle="ชื่อผู้งาน" textDetail="" color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="รายละเอียด" textDetail=""color={color}/>
+            <DataBox textTitle="ชื่อจริง" textDetail=""  color={color}/>
+            <DataBox textTitle="นามสกุล" textDetail=""  color={color}/>
+            <DataBox textTitle="ประเภทผู้ใช้งาน" textDetail=""  color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="เพศ" textDetail=""  color={color}/>
+            <DataBox textTitle="อีเมล" textDetail=""  color={color}/>
+            <DataBox textTitle="เบอร์โทรศัพท์" textDetail=""  color={color}/>
+            <DataBox textTitle="ที่อยู่อาศัย" textDetail=""  color={color}/>
+            <DataBox textTitle="ช่วงราคา" textDetail=""  color={color}/>
             <Footer color={color} />
         </InnerWrapper>
     
-        } */}
+        }
         
       </Wrapper>
     )

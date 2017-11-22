@@ -43,7 +43,7 @@ class DataBox extends React.Component {
   render() {
 
     return (
-        <Wrapper>
+        <Wrapper style={this.props.styled}>
             <DataLeft>
                 <Label size="20px" weight="normal" color="rgba(84, 84, 84, 0.8)">{this.props.textTitle}</Label>
             </DataLeft>

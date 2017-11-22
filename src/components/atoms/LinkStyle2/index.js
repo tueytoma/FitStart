@@ -14,10 +14,11 @@ const styles = css`
     font-weight: ${props => props.weight};
     line-height: normal;
     color: ${props => props.color};
-    opacity: 0.8;
+    opacity: ${props => props.decoration ? "1": "0.8"};
     z-index: 10;
     &:hover {
         opacity: 1;
+        text-decoration: ${props => props.decoration ? "underline": "none"};
         color: ${props => props.colorHover};
     }
 `

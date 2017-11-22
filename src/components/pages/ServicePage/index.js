@@ -85,8 +85,8 @@ class ServicePage extends React.Component {
     .then((res)=>{
         // console.log(res)
         this.setState({service : res})
-        console.log(this.state.service.trainer)
-        api.getUserById(res.trainer)
+        console.log(this.state.service.trainerId)
+        api.getUserById(res.trainerId)
         .then((res2)=>{
           this.setState({trainer : res2[0]})
           console.log(this.state.userName)

@@ -54,7 +54,7 @@ class ServiceBox extends React.Component {
   }
 
   componentDidMount() {
-    api.getUserById(this.props.service.trainer)
+    api.getUserById(this.props.service.trainerId)
         .then((res)=>{
             let name = `${res[0].first_name} ${res[0].last_name}`
             this.setState({trainerName : name, 

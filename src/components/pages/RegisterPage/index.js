@@ -82,10 +82,10 @@ class RegisterPage extends React.Component {
             password: '',
             repassword: '',
             email: '',
-            first_name: '',
-            last_name: '',
+            firstName: '',
+            lastName: '',
             gender: '',
-            telephone_number: '',
+            telephoneNumber: '',
             address: '',
             firstNamePass: true,
             lastNamePass: true,
@@ -139,15 +139,15 @@ class RegisterPage extends React.Component {
     }
 
     changeFirstname = e => {
-        this.setState({first_name : e.target.value})
+        this.setState({firstName : e.target.value})
     }
 
     changeLastname = e => {
-        this.setState({last_name : e.target.value})
+        this.setState({lastName : e.target.value})
     }
 
     changeTelephoneNumber = e => {
-        this.setState({telephone_number : e.target.value})
+        this.setState({telephoneNumber : e.target.value})
     }
 
     changeGender = e => {
@@ -171,11 +171,11 @@ class RegisterPage extends React.Component {
             username : this.state.username,
             password : this.state.password,
             email : this.state.email,
-            first_name : this.state.first_name,
-            last_name : this.state.last_name,
+            firstName : this.state.firstName,
+            lastName : this.state.lastName,
             gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
             address : this.state.address,
-            telephone_number : this.state.telephone_number,
+            telephoneNumber : this.state.telephoneNumber,
             role : this.state.trainer ? 'Trainer' : 'Trainee'
         }
         console.log(data)
@@ -227,15 +227,15 @@ class RegisterPage extends React.Component {
     */
     //validate
     validate = (e) => {
-        if(this.state.first_name.length<1 || this.state.first_name.length>20 || !this.checkEnglish(this.state.first_name)) this.setState({firstNamePass : false}) 
+        if(this.state.firstName.length<1 || this.state.firstName.length>20 || !this.checkEnglish(this.state.firstName)) this.setState({firstNamePass : false}) 
         else this.setState({firstNamePass : true})
-        if(this.state.last_name.length<1 || this.state.last_name.length>20 || !this.checkEnglish(this.state.last_name)) this.setState({lastNamePass : false}) 
+        if(this.state.lastName.length<1 || this.state.lastName.length>20 || !this.checkEnglish(this.state.lastName)) this.setState({lastNamePass : false}) 
         else this.setState({lastNamePass : true})
         if(this.state.gender != 'ชาย' && this.state.gender != 'หญิง' && this.state.gender != 'อื่น ๆ')this.setState({genderPass : false}) 
         else this.setState({genderPass : true})
         if(this.state.address.length<1 || this.state.address.length >300 || !this.checkAddress(this.state.address)) this.setState({addressPass : false}) 
         else this.setState({addressPass : true})
-        if(!this.checkTelephoneNumber(this.state.telephone_number)) this.setState({telPass : false}) 
+        if(!this.checkTelephoneNumber(this.state.telephoneNumber)) this.setState({telPass : false}) 
         else this.setState({telPass : true})
         if(this.state.username.length <8 || this.state.username.length>15  || !this.checkEnglish(this.state.username)) this.setState({usernamePass : false}) 
         else this.setState({usernamePass : true}) 

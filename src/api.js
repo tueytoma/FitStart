@@ -9,29 +9,23 @@ api.err = err => {
 	else throw err*/
 }
 
-api.getUserById = id =>{
-    return Request.get(config.BACKURL + '/users/search')
-        .query({id : id})
+/* SEARCH PART */
+
+api.getUserByName = name =>{
+    return Request.post(config.BACKURL + '/users/search')
+        .send({name : name})
         .set('Accept', 'application/json')
         .then(res => {
-            return res.body.user
+            return res.body.users
         })
 }
 
 api.getTrainerByName = name =>{
-    return Request.get(config.BACKURL + '/trainers/search')
-        .query({name : name})
+    return Request.post(config.BACKURL + '/trainers/search')
+        .send({name : name})
         .set('Accept', 'application/json')
         .then(res => {
             return res.body.trainers
-        })
-}
-
-api.getServiceById = serviceId =>{
-    return Request.get(config.BACKURL + '/services/' + serviceId)
-        .set('Accept', 'application/json')
-        .then(res => {
-            return res.body.service
         })
 }
 
@@ -44,6 +38,32 @@ api.getServiceByKeyword = keyword =>{
         })
 }
 
+/* GET PART */
+
+api.getUserById = id =>{
+    return Request.get(config.BACKURL + '/users/' + id)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.user
+        })
+}
+
+api.getUserByUsername = username =>{
+    return Request.get(config.BACKURL + '/users/username/' + username)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.user
+        })
+}
+
+api.getServiceById = serviceId =>{
+    return Request.get(config.BACKURL + '/services/' + serviceId)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.service
+        })
+}
+
 api.getServiceOfTrainer = trainerId =>{
     return Request.get(config.BACKURL + '/services/trainer/' + trainerId)
         .set('Accept', 'application/json')
@@ -51,6 +71,16 @@ api.getServiceOfTrainer = trainerId =>{
             return res.body.services
         })
 }
+
+api.getTimeSlotOfService = serviceId => {
+    return Request.get(config.BACKURL + '/timeSlots/service/' + serviceId)
+        .set('Accdept','application/json')
+        .then(res => {
+            return res.body.timeSlots
+        })
+}
+
+/* CREATION PART */
 
 api.signup = data => {
 	return Request.post(config.BACKURL + '/signup')
@@ -70,6 +100,8 @@ api.createService = data => {
 		},api.err)
 }
 
+/* AUTHENTICATION PART */
+
 api.signin = data => {
 	return Request.post(config.BACKURL + '/signin')
         .set('Accept', 'application/json')
@@ -80,7 +112,7 @@ api.signin = data => {
 }
 
 api.hasEmail = email =>{
-    return Request.get(config.BACKURL + '/users/' + email)
+    return Request.get(config.BACKURL + '/users/hasEmail/' + email)
         .set('Accept', 'application/json')
         .then(res => {
             return res.body

@@ -86,9 +86,9 @@ class ServicePage extends React.Component {
         // console.log(res)
         this.setState({service : res})
         console.log(this.state.service.trainer)
-        api.getUserById(res.trainer)
+        api.getUserById(res.trainerId)
         .then((res2)=>{
-          this.setState({trainer : res2[0]})
+          this.setState({trainer : res2})
           console.log(this.state.userName)
           console.log(this.state.trainer.username)
         })  
@@ -128,9 +128,9 @@ class ServicePage extends React.Component {
             <DataBox textTitle="ประเภทบริการ" textDetail={this.state.service.type}  color={color}/>
             <DataBox textTitle="ช่วงราคา" textDetail={this.state.service.price  + " บาท"}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">2. ข้อมูลเทรนเนอร์</Label>
-            <DataBox textTitle="สอนโดย" textDetail={"เทรนเนอร์ " + this.state.trainer.first_name + " " + this.state.trainer.last_name} color={color}/>
+            <DataBox textTitle="สอนโดย" textDetail={"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName} color={color}/>
             <DataBox textTitle="เพศ" textDetail={this.state.trainer.gender} color={color}/>
-            <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephone_number}  color={color}/>
+            <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
             <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>
             <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={this.state.service.preferredLocation} color={color}/>

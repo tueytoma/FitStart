@@ -72,10 +72,10 @@ class TrainerBox extends React.Component {
         <TrainerPic />
         <Result>
             <LinkStyle2 to={linkTrainer} style={{margin: "4px 0 0 0"}} color="#202020" colorHover={color} size="32px" weight="bolder">
-                เทรนเนอร์ {this.props.trainer.first_name} {this.props.trainer.last_name} 
+                เทรนเนอร์ {this.props.trainer.firstName} {this.props.trainer.lastName} 
             </LinkStyle2>
             <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">เบอร์โทรศัพท์
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.telephone_number}</Label>
+                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.telephoneNumber}</Label>
             </Label>
             <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">เพศ
                 <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.gender}</Label>

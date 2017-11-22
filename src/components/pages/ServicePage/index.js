@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkAndButtonBox } from 'components'
+import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom';
@@ -77,6 +77,7 @@ class ServicePage extends React.Component {
         service: '',
         trainer: '',
         checkTrainerHaveService: true,
+        time: '',
     };
   }
 
@@ -85,13 +86,18 @@ class ServicePage extends React.Component {
     .then((res)=>{
         // console.log(res)
         this.setState({service : res})
-        console.log(this.state.service.trainerId)
+        // console.log(this.state.service.trainerId)
         api.getUserById(res.trainerId)
         .then((res2)=>{
           this.setState({trainer : res2})
-          console.log(this.state.userName)
-          console.log(this.state.trainer.username)
+        //   console.log(this.state.userName)
+        //   console.log(this.state.trainer.username)
         })  
+        api.getTimeSlotOfService(this.state.serviceID)
+        .then((res3)=>{
+            this.setState({time : res3})
+            console.log(this.state.time)
+        })
     })
   }
 
@@ -108,6 +114,9 @@ class ServicePage extends React.Component {
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
     starBox.push(<StarIcon height="40px"/>)
+    var timeslot = []
+    for (var i = 0 ; i < this.state.time.length ; i++)
+    timeslot.push(<CheckBoxAndLabel disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
     return (
       <Wrapper>
         <Topbar color={color}/>
@@ -134,6 +143,7 @@ class ServicePage extends React.Component {
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
             <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>
             <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={this.state.service.preferredLocation} color={color}/>
+            <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={timeslot} color={color}/> 
             <FooterBlock>
                 <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
                     {auth.isLoggedIn() && auth.isTrainee() && <Checkbox checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> }
@@ -141,7 +151,7 @@ class ServicePage extends React.Component {
                     {auth.isLoggedIn() && auth.isTrainee() && <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle> }
                 </LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    {/* <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/> */}
+                    <LinkAndButtonBox disabled={color != "#F05939"} onClick="" to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
                 </LRBlock>
             </FooterBlock >
             <Footer color={color} />

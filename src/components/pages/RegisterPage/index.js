@@ -173,7 +173,7 @@ class RegisterPage extends React.Component {
             email : this.state.email,
             firstName : this.state.firstName,
             lastName : this.state.lastName,
-            gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
+            gender : this.state.gender == 'ชาย' ? 1 : (this.state.gender == 'หญิง' ? 2 : 0),
             address : this.state.address,
             telephoneNumber : this.state.telephoneNumber,
             role : this.state.trainer ? 'Trainer' : 'Trainee'

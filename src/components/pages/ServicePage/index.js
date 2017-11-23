@@ -4,9 +4,10 @@ import styled, { css } from 'styled-components'
 import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
 import { font } from 'styled-theme'
 
-import { Link} from 'react-router-dom';
+import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
+import utils from '../../../utils'
 
 const Wrapper = styled.div`
   background-color: #F9FAFC;
@@ -138,7 +139,7 @@ class ServicePage extends React.Component {
             <DataBox textTitle="ช่วงราคา" textDetail={this.state.service.price  + " บาท"}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">2. ข้อมูลเทรนเนอร์</Label>
             <DataBox textTitle="สอนโดย" textDetail={<LinkStyle2 decoration to={"/users/" + this.state.trainer.username} color={color} colorHover={color}>{"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName}</LinkStyle2>} color={color}/>
-            <DataBox textTitle="เพศ" textDetail={this.state.trainer.gender} color={color}/>
+            <DataBox textTitle="เพศ" textDetail={utils.getGender(this.state.trainer.gender)} color={color}/>
             <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
             <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>

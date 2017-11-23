@@ -4,9 +4,10 @@ import styled, { css } from 'styled-components'
 import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle2, LinkAndButtonBox, ServiceBox, Button } from 'components'
 import { font } from 'styled-theme'
 
-import { Link} from 'react-router-dom';
+import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
+import utils from '../../../utils'
 
 const Wrapper = styled.div`
   background-color: #F9FAFC;
@@ -122,7 +123,7 @@ class UserPage extends React.Component {
             <DataBox styled={{marginTop: "16px"}} textTitle="ชื่อจริง" textDetail={this.state.trainer.firstName}  color={color}/>
             <DataBox textTitle="นามสกุล" textDetail={this.state.trainer.lastName}  color={color}/>
             <DataBox textTitle="ประเภทผู้ใช้งาน" textDetail={this.state.trainer.role}  color={color}/>
-            <DataBox styled={{marginTop: "16px"}} textTitle="เพศ" textDetail={this.state.trainer.gender}  color={color}/>
+            <DataBox styled={{marginTop: "16px"}} textTitle="เพศ" textDetail={utils.getGender(this.state.trainer.gender)}  color={color}/>
             <DataBox textTitle="อีเมล" textDetail={this.state.trainer.email}  color={color}/>
             <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
             <DataBox textTitle="ที่อยู่อาศัย" textDetail={this.state.trainer.address}  color={color}/>

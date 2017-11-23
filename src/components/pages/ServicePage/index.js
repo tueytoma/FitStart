@@ -78,6 +78,8 @@ class ServicePage extends React.Component {
         trainer: '',
         checkTrainerHaveService: true,
         time: '',
+        selectedTime: [],
+
     };
   }
 
@@ -109,14 +111,37 @@ class ServicePage extends React.Component {
     this.setState({checkboxPass: !this.state.checkboxPass});
   }
 
+  onClick = e => {
+    console.log(this.state.selectedTime)  }
+
+  onValue = (id, check) => {
+     var temp = this.state.selectedTime
+    if(check == false) {
+        temp.push(id)
+        console.log(id + "== true")
+        
+    } else {
+        // console.log(this.state.selectedTime.indexOf(id) + "ddd");
+        // console.log(temp.indexOf(id))
+        if(temp.indexOf(id)!=-1){
+            console.log(temp.indexOf(id))
+            temp.splice(temp.indexOf(id),1)
+        }
+        console.log(id + "== false")
+    }
+    this.setState({selectedTime : temp})
+  }
+
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
     starBox.push(<StarIcon height="40px"/>)
     var timeslot = []
-    for (var i = 0 ; i < this.state.time.length ; i++)
-    timeslot.push(<CheckBoxAndLabel disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
+    for (var i = 0 ; i < this.state.time.length ; i++) {
+        timeslot.push(<CheckBoxAndLabel onValue={this.onValue} id={this.state.time[i]._id} key={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
+        // console.log(this.state.time[i]._id)
+    }
     return (
       <Wrapper>
         <Topbar color={color}/>
@@ -151,7 +176,7 @@ class ServicePage extends React.Component {
                     {auth.isLoggedIn() && auth.isTrainee() && <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle> }
                 </LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox disabled={color != "#F05939"} onClick="" to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
+                    <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.onClick} to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
                 </LRBlock>
             </FooterBlock >
             <Footer color={color} />

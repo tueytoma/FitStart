@@ -10,7 +10,7 @@ const styles = css`
     font-family: ${font('primary')};
     font-style: normal;
     text-decoration: underline;
-    font-size: ${props => props.cancleRegis ? "18px" : props.loginPage ? "16px" : props.size};
+    font-size: ${props => props.cancelregis ? "18px" : props.loginpage ? "16px" : props.size};
     font-weight: normal;
     line-height: normal;
     color: #545454;

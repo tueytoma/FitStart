@@ -70,7 +70,7 @@ class ServiceBox extends React.Component {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var starBox = []
     for (var i = 0 ; i < this.state.trainerRating ; i++)
-    starBox.push(<StarIcon height="24px"/>)
+    starBox.push(<StarIcon key={i} height="24px"/>)
     let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.service._id;
     let linkTrainer = `/users/` + this.state.trainerUsername;
 
@@ -79,11 +79,11 @@ class ServiceBox extends React.Component {
         <TrainerPic />
         <ServicePic />
         <Result>
-            <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorHover={color} size="32px" weight="bolder">
+            <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                 {this.props.service.name}
             </LinkStyle2>
             <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
-            <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorHover={color} size="18px" weight="normal">
+            <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
                 เทรนเนอร์ {this.state.trainerName}
             </LinkStyle2>
             </Label>

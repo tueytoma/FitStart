@@ -8,7 +8,7 @@ export default class TraineeIcon extends React.Component {
   render() {
     let h = 1.5 * this.props.width
     return (
-        <svg opacity={this.props.opacity} width={this.props.width} height={this.h} version="1.1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 133.3 198.7" enable-background="new 0 0 133.3 198.7">
+        <svg opacity={this.props.opacity} width={this.props.width} height={this.h} version="1.1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 133.3 198.7" enableBackground="new 0 0 133.3 198.7">
             <g id="การสมัคร">
                 <g id="ประเภท">
                     <g>

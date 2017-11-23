@@ -139,7 +139,7 @@ class NewPasswordPage extends React.Component {
             <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changeRePassword} error={this.state.error} label="ยืนยันรหัสผ่าน" placeholder="repassword" color="#F05939" width="500px" height="30px"/>
             {this.state.error ? <Label style={{margin: "12px 0 32px 0"}} size="12px" weight="500" color="#DC4444">รหัสผ่านและยืนยันรหัสผ่านมีค่าไม่ตรงกัน หรือจำนวนตัวอักษรไม่ตรงตามรูปแบบ กรุณากรอกใหม่</Label> : <Label style={{margin: "12px 0 32px 0"}} size="12px"></Label>}
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick={this.resetPassword} to="/login" loginPage color="#F05939" linktext="" buttontext="ยืนยัน"/>
+              <LinkAndButtonBox onClick={this.resetPassword} to="/login" loginpage={1} color="#F05939" linktext="" buttontext="ยืนยัน"/>
             </LinkAndButtonDiv>
           </Form>
         </Middle>

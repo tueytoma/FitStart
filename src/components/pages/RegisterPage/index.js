@@ -293,7 +293,7 @@ class RegisterPage extends React.Component {
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                            <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
+                            <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancelregis={1} color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
                         </LRBlock>
                     </FooterBlock >
                 </WrapperInner>

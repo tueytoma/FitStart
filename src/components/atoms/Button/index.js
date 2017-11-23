@@ -11,8 +11,8 @@ const Button = styled.button`
     border-radius: 100px;
 
     background-color: #F9FAFC;
-    height: ${props => props.cancleRegis ? "40px" : props.loginPage ? "40px" : props.height};
-    width: ${props => props.cancleRegis ? "175px" : props.loginPage ? "125px" : props.width};
+    height: ${props => props.cancelregis ? "40px" : props.loginpage ? "40px" : props.height};
+    width: ${props => props.cancelregis ? "175px" : props.loginpage ? "125px" : props.width};
     margin: 0 8px 0 0;
     
 
@@ -20,7 +20,7 @@ const Button = styled.button`
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    font-size: ${props => props.cancleRegis ? "18px" : props.loginPage ? "16px" : props.size};
+    font-size: ${props => props.cancelregis ? "18px" : props.loginpage ? "16px" : props.size};
     color: ${props => props.disabled ? "#c4c4c4" : props.color}; 
 
     outline: none;

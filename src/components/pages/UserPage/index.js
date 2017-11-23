@@ -101,7 +101,7 @@ class UserPage extends React.Component {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
-    starBox.push(<StarIcon height="40px"/>)
+    starBox.push(<StarIcon key={i} height="40px"/>)
     var resultFeed = []
     if(this.state.trainer.role == 'Trainer') {
         for (var i = 0 ; i < this.state.service.length ; i++) {

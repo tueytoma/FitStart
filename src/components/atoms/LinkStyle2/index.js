@@ -19,7 +19,7 @@ const styles = css`
     &:hover {
         opacity: 1;
         text-decoration: ${props => props.decoration ? "underline": "none"};
-        color: ${props => props.colorHover};
+        color: ${props => props.colorhover};
     }
 `
 

@@ -120,7 +120,7 @@ class LoginPage extends React.Component {
             </LinkAndButtonDiv>
             :
             <LinkAndButtonDiv>
-              <LinkAndButtonBox onClick={this.signin} to="/resetpassword" loginPage color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
+              <LinkAndButtonBox onClick={this.signin} to="/resetpassword" loginpage={1} color="#F05939" linktext="ลืมรหัสผ่าน" buttontext="เข้าสู่ระบบ"/>
             </LinkAndButtonDiv>
             }
             

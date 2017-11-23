@@ -8,7 +8,7 @@ export default class QuestionIcon extends React.Component {
 
   render() {
     return (
-        <svg width="33.855vh" height="30vh" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" space="preserve">
+        <svg width="33.855vh" height="30vh" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512" space="preserve">
             <path fill="#70E5CF" d="M280.165,70.535l0.778,104.665c0.05,6.708-1.476,13.061-4.227,18.716l-53.784,0.4
                 c-18.026,0.134-33.786,9.606-42.743,23.784l-26.013,0.193l-72.934,47.974l1.684-47.444l-39.685,0.295
                 c-23.283,0.173-42.289-18.566-42.462-41.835L0.001,72.617c-0.173-23.295,18.554-42.301,41.835-42.474l195.853-1.455

@@ -208,7 +208,7 @@ class RegisterPage extends React.Component {
     }
 
     checkAddress = (input) => {
-        let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ.,]+$/;  
+        let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ., ]+$/;  
         if(input.match(check)) return true
         else return false 
     }
@@ -231,7 +231,8 @@ class RegisterPage extends React.Component {
         else this.setState({firstNamePass : true})
         if(this.state.lastName.length<1 || this.state.lastName.length>20 || !this.checkEnglish(this.state.lastName)) this.setState({lastNamePass : false}) 
         else this.setState({lastNamePass : true})
-        if(this.state.gender != 'ชาย' && this.state.gender != 'หญิง' && this.state.gender != 'อื่น ๆ')this.setState({genderPass : false}) 
+        //if(this.state.gender != 'ชาย' && this.state.gender != 'หญิง' && this.state.gender != 'อื่น ๆ')this.setState({genderPass : false}) 
+        if(this.state.gender == 'ps')this.setState({genderPass : false})
         else this.setState({genderPass : true})
         if(this.state.address.length<1 || this.state.address.length >300 || !this.checkAddress(this.state.address)) this.setState({addressPass : false}) 
         else this.setState({addressPass : true})

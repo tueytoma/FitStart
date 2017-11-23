@@ -50,9 +50,10 @@ class App extends React.Component{
           <Route path="/newpassword/:token" component={NewPasswordPage} exact/>
           <Route path="/search/:type" component={SearchResultPage} exact/>
           <Route path="/createservice" component={CreateServicePage} exact/>
+          <Route component={NotFoundPage} />
           <Route path="/:user" component={UserPage} exact/>
           <Route path="/:user/:service" component={ServicePage} exact/>
-          <Route component={NotFoundPage} />
+          
         </Switch>
       </ThemeProvider>
     )

@@ -108,14 +108,14 @@ class SearchResultPage extends React.Component {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var resultFeed = []
     if(this.state.results.length == 0) 
-    resultFeed.push(<Label style={{marginTop: "48px"}} size="24px" weight="normal" color="#545454">ไม่ค้นพบสิ่งที่ต้องการในหมวดนี้ ...</Label>)
+    resultFeed.push(<Label key={0} style={{marginTop: "48px"}} size="24px" weight="normal" color="#545454">ไม่ค้นพบสิ่งที่ต้องการในหมวดนี้ ...</Label>)
    
     if(this.state.type == 'service' ) {
         for (var i = 0 ; i < this.state.results.length ; i++)
-        resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
+        resultFeed.push(<ServiceBox service={this.state.results[i]} key={this.state.results[i]._id}/>)
     } else {
         for (var i = 0 ; i < this.state.results.length ; i++)
-        resultFeed.push(<TrainerBox trainer={this.state.results[i]} key={i}/>)
+        resultFeed.push(<TrainerBox trainer={this.state.results[i]} key={this.state.results[i]._id}/>)
     }
 
     return (

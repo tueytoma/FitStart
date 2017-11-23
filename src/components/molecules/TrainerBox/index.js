@@ -2,9 +2,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Label, LinkStyle2, StarIcon } from 'components'
-import { Link} from 'react-router-dom';
+import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
+import utils from '../../../utils'
 
 const Wrapper = styled.div`
     background-color: #F9FAFC;
@@ -71,17 +72,17 @@ class TrainerBox extends React.Component {
       <Wrapper>
         <TrainerPic />
         <Result>
-            <LinkStyle2 to={linkTrainer} style={{margin: "4px 0 0 0"}} color="#202020" colorHover={color} size="32px" weight="bolder">
+            <LinkStyle2 to={linkTrainer} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                 เทรนเนอร์ {this.props.trainer.firstName} {this.props.trainer.lastName} 
             </LinkStyle2>
             <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">เบอร์โทรศัพท์
                 <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.telephoneNumber}</Label>
             </Label>
             <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">เพศ
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.gender}</Label>
+                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{utils.getGender(this.props.trainer.gender)}</Label>
             </Label>
             <Label size="18px" weight="600" color="#202020">บริการที่เคยสร้างมาล่าสุด
-                <LinkStyle2 to={linkService} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorHover={color} size="18px" weight="normal">
+                <LinkStyle2 to={linkService} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
                     {this.state.trainerService}
                 </LinkStyle2>
             </Label>

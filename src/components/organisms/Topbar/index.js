@@ -66,8 +66,8 @@ class Topbar extends React.Component {
                     <Div>
                         <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
                     </Div>
-                    <Link to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
-                        <a onClick={this.Search}><SearchIcon opacity="1" color="#F9FAFC"/></a>
+                    <Link onClick={this.Search} to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
+                        <SearchIcon opacity="1" color="#F9FAFC"/>
                     </Link>
                     {auth.isLoggedIn() && auth.isTrainer() && <Div>
                         <LinkStyle to="/createservice" size="30px" style={{color: "#FFF", opacity: "1", marginLeft: "32px"}}>สร้างบริการ</LinkStyle>
@@ -75,7 +75,7 @@ class Topbar extends React.Component {
                 </WrapperInner>
                 <WrapperSide style={{justifyContent: "center"}}>
                     {auth.isLoggedIn() ? 
-                    <a onClick={auth.logout}><LinkStyle to="/" size="30px" style={{color: "#FFF", opacity: "1"}}>Logout</LinkStyle></a>
+                    <LinkStyle onClick={auth.logout} to="/" size="30px" style={{color: "#FFF", opacity: "1"}}>Logout</LinkStyle>
                     :
                     <LinkStyle to="/login" size="30px" style={{color: "#FFF", opacity: "1"}}>Login</LinkStyle>}
                 </WrapperSide>

@@ -8,7 +8,7 @@ export default class EmailSuccessIcon extends React.Component {
 
   render() {
     return (
-        <svg width={this.props.width} height={this.props.height} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 530 332" enable-background="new 0 0 530 332" >
+        <svg width={this.props.width} height={this.props.height} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 530 332" enableBackground="new 0 0 530 332" >
             <g id="ยืนยัน">
                 <g>
                     <g>

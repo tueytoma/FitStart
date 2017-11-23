@@ -4,9 +4,10 @@ import styled, { css } from 'styled-components'
 import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
 import { font } from 'styled-theme'
 
-import { Link} from 'react-router-dom';
+import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
+import utils from '../../../utils'
 
 const Wrapper = styled.div`
   background-color: #F9FAFC;
@@ -79,7 +80,7 @@ class ServicePage extends React.Component {
         checkTrainerHaveService: true,
         time: '',
         selectedTime: [],
-
+        failure: false,
     };
   }
 
@@ -92,6 +93,7 @@ class ServicePage extends React.Component {
         api.getUserById(res.trainerId)
         .then((res2)=>{
           this.setState({trainer : res2})
+          this.validateUsername()
         //   console.log(this.state.userName)
         //   console.log(this.state.trainer.username)
         })  
@@ -112,11 +114,12 @@ class ServicePage extends React.Component {
   }
 
   onClick = e => {
-    console.log(this.state.selectedTime)  }
+    console.log(this.state.selectedTime)  
+  }
 
   onValue = (id, check) => {
      var temp = this.state.selectedTime
-    if(check == false) {
+     if(check == false) {
         temp.push(id)
         console.log(id + "== true")
         
@@ -130,13 +133,18 @@ class ServicePage extends React.Component {
         console.log(id + "== false")
     }
     this.setState({selectedTime : temp})
+}
+  validateUsername = () => {
+      if(this.state.userName != this.state.trainer.username){
+        this.setState({failure : true})
+      }
   }
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
-    starBox.push(<StarIcon height="40px"/>)
+    starBox.push(<StarIcon key={i} height="40px"/>)
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
         timeslot.push(<CheckBoxAndLabel onValue={this.onValue} id={this.state.time[i]._id} key={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
@@ -145,7 +153,7 @@ class ServicePage extends React.Component {
     return (
       <Wrapper>
         <Topbar color={color}/>
-        {this.state.userName == this.state.trainer.username ?
+        {!this.state.failure ?
         <InnerWrapper >
             <HeaderBlock>
                 <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">ข้อมูลบริการ</Label>
@@ -162,8 +170,8 @@ class ServicePage extends React.Component {
             <DataBox textTitle="ประเภทบริการ" textDetail={this.state.service.type}  color={color}/>
             <DataBox textTitle="ช่วงราคา" textDetail={this.state.service.price  + " บาท"}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">2. ข้อมูลเทรนเนอร์</Label>
-            <DataBox textTitle="สอนโดย" textDetail={<LinkStyle2 decoration to={"/users/" + this.state.trainer.username} color={color} colorHover={color}>{"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName}</LinkStyle2>} color={color}/>
-            <DataBox textTitle="เพศ" textDetail={this.state.trainer.gender} color={color}/>
+            <DataBox textTitle="สอนโดย" textDetail={<LinkStyle2 decoration={1} to={"/users/" + this.state.trainer.username} color={color} colorhover={color}>{"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName}</LinkStyle2>} color={color}/>
+            <DataBox textTitle="เพศ" textDetail={utils.getGender(this.state.trainer.gender)} color={color}/>
             <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
             <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>

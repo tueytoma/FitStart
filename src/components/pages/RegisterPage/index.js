@@ -173,7 +173,7 @@ class RegisterPage extends React.Component {
             email : this.state.email,
             firstName : this.state.firstName,
             lastName : this.state.lastName,
-            gender : this.state.gender == 'ชาย' ? 'Male' : (this.state.gender == 'หญิง' ? 'Female' : 'Other'),
+            gender : this.state.gender == 'ชาย' ? 1 : (this.state.gender == 'หญิง' ? 2 : 0),
             address : this.state.address,
             telephoneNumber : this.state.telephoneNumber,
             role : this.state.trainer ? 'Trainer' : 'Trainee'
@@ -293,7 +293,7 @@ class RegisterPage extends React.Component {
                             <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
                         </LRBlock>
                         <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                            <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancleRegis color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
+                            <LinkAndButtonBox disabled={this.state.disableCheckbox} onClick={this.signup} to="/login" cancelregis={1} color={col} linktext="ยกเลิกการสมัครสมาชิก" buttontext="ยืนยันการสมัคร"/>
                         </LRBlock>
                     </FooterBlock >
                 </WrapperInner>

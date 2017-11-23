@@ -246,7 +246,7 @@ createService = e => {
                 <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle>
               </LRBlock>
               <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                <LinkAndButtonBox disabled={!this.state.checkboxPass} onClick={this.createService} to="/login" cancleRegis color={color} linktext="ยกเลิกการสร้างบริการ" buttontext="สร้างบริการ"/>
+                <LinkAndButtonBox disabled={!this.state.checkboxPass} onClick={this.createService} to="/login" cancelregis={1} color={color} linktext="ยกเลิกการสร้างบริการ" buttontext="สร้างบริการ"/>
               </LRBlock>
             </FooterBlock>
             <Footer color={color} />

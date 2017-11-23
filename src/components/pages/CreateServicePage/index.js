@@ -131,7 +131,7 @@ class CreateServicePage extends React.Component {
 }
 
   checkFormat = (input) => {
-    let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ.,]+$/;  
+    let check = /^[0-9a-zA-Zก-ฮๆไำะัี้่าิืใๅุึ+๐-๙ู"ํ๊ฯ,/ฤโ็๋()ฺ์?ฦ., ]+$/;  
     if(input.match(check)) return true
     else return false 
   }

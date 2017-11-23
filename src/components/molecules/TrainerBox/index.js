@@ -64,8 +64,8 @@ class TrainerBox extends React.Component {
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
-    let linkService = `/` + this.props.trainer.username + `/` + this.state.ServiceID;
-    let linkTrainer = `/` + this.props.trainer.username;
+    let linkService = `/users/` + this.props.trainer.username + `/` + this.state.ServiceID;
+    let linkTrainer = `/users/` + this.props.trainer.username;
 
     return (
       <Wrapper>

@@ -137,7 +137,7 @@ class ServicePage extends React.Component {
             <DataBox textTitle="ประเภทบริการ" textDetail={this.state.service.type}  color={color}/>
             <DataBox textTitle="ช่วงราคา" textDetail={this.state.service.price  + " บาท"}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">2. ข้อมูลเทรนเนอร์</Label>
-            <DataBox textTitle="สอนโดย" textDetail={<LinkStyle2 decoration to={"/" + this.state.trainer.username} color={color} colorHover={color}>{"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName}</LinkStyle2>} color={color}/>
+            <DataBox textTitle="สอนโดย" textDetail={<LinkStyle2 decoration to={"/users/" + this.state.trainer.username} color={color} colorHover={color}>{"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName}</LinkStyle2>} color={color}/>
             <DataBox textTitle="เพศ" textDetail={this.state.trainer.gender} color={color}/>
             <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>

@@ -71,8 +71,8 @@ class ServiceBox extends React.Component {
     var starBox = []
     for (var i = 0 ; i < this.state.trainerRating ; i++)
     starBox.push(<StarIcon height="24px"/>)
-    let linkService = `/` + this.state.trainerUsername + `/` + this.props.service._id;
-    let linkTrainer = `/` + this.state.trainerUsername;
+    let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.service._id;
+    let linkTrainer = `/users/` + this.state.trainerUsername;
 
     return (
       <Wrapper>

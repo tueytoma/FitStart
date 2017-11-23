@@ -63,7 +63,9 @@ class CreateServicePage extends React.Component {
       serviceMaxCost: 0,
       experience: 'ps',
       serviceType: 'ps',
-      serviceTime:'',
+      serviceDate:'2017-11-02',
+      serviceStartTime:'',
+      serviceEndTime:'',
       namePass: true,
       detailPass: true,
       provincePass: true,
@@ -109,8 +111,19 @@ class CreateServicePage extends React.Component {
     this.setState({serviceType : e.target.value})
   }
 
-  changeServiceTime = e => {
-    this.setState({serviceTime : e.target.value})
+  changeServiceDate = e => {
+    this.setState({serviceDate : e.target.value})
+    console.log(this.state.serviceDate)
+  }
+  
+  changeServiceStartTime = e => {
+    this.setState({serviceStartTime : e.target.value})
+    console.log(this.state.serviceStartTime)
+  }
+
+  changeServiceEndTime = e => {
+    this.setState({serviceEndTime : e.target.value})
+    console.log(this.state.serviceEndTime)
   }
 
   toggleIsChecked = e => {
@@ -217,10 +230,10 @@ createService = e => {
                   <span>
                     <Label size="18px"  style={{marginLeft: "20px"}} /*how much margin??*/ color ="#545454">วันที่และเวลา</Label> <Label size="12px" color="#545454">(สามารถเลือกได้มากกว่า 1)</Label>
                     <Div style={{alignItems:"center"}}>
-                      <InputBox type="date" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="DD/MM/YY" color={color} width="131px" height="30px"/>
-                      <InputBox type="text" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="81px" height="30px"/>
+                      <InputBox style={{margin: "0 -10px 16px 20px"}} type="date" onChange={this.changeServiceDate} error={!this.state.timePass} placeholder="DD/MM/YY" color={color} width="150px" height="30px"/>
+                      <InputBox type="time" onChange={this.changeServiceStartTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="70px" height="30px"/>
                       <Label style={{marginLeft: "12px"}}weight="bolder" size="30px" color="#C4C3C3">-</Label>
-                      <InputBox type="text" onchange={this.changeServiceTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="81px" height="30px"/>
+                      <InputBox type="time" onChange={this.changeServiceEndTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="70px" height="30px"/>
                     </Div>
                   </span>
                 </LRBlock>

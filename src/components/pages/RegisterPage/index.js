@@ -103,8 +103,8 @@ class RegisterPage extends React.Component {
     }
 
     componentDidMount() {
-        if(!this.state.end) {this.interval = setInterval(() => this.tick(), 100);}
-        else {};
+        if(!this.state.end) {this.interval = setInterval(() => this.tick(), 100)}
+        else {}
     }
 
     tick() {

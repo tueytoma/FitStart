@@ -35,7 +35,7 @@ const Div = styled.div`
     margin: ${props => props.margin};
 `
 
-const Block = styled.a`
+const Block = styled.div`
     width: 100%;
     height: 60px;
     /* background-color: #780000; */
@@ -71,14 +71,19 @@ class Topbar extends React.Component {
         auth.logout()
     }
 
-    handleToggle = () => this.setState({open: !this.state.open});
+    handleToggle = (item, e) => {
+        if(item == "logout"){
+            auth.logout()
+        }
+        this.setState({open: !this.state.open});
+    }
 
     render() {
         var username = auth.isLoggedIn() ? auth.getUser().username : '';
         return(
             <MuiThemeProvider>
           <Wrapper color={this.props.color}>
-                <WrapperSide>
+          <WrapperSide>
                     <Div margin="4.5px 5px 0 22px">
                         <LinkStyle to= "/" style={{opacity: "1"}}> <Logo color="#F9FAFC" width="91.5px" height="39px"/> </LinkStyle>
                     </Div>
@@ -95,7 +100,7 @@ class Topbar extends React.Component {
                     </Div>}
                 </WrapperInner>
                 <WrapperSide style={{justifyContent: "center", borderLeft: "1px solid #F9FAFC"}}>
-                    {auth.isLoggedIn() ? 
+                {auth.isLoggedIn() ? 
                     <Block onClick={this.handleToggle}>
                         <Label size="16px" weight="bolder" color= "#F9FAFC">แถบเมนูหลัก</Label>
                     </Block>
@@ -118,19 +123,19 @@ class Topbar extends React.Component {
                             <a onClick={this.handleToggle}><Label style={{margin: "auto 16px auto 16px"}} hover colorhover={this.props.color} size="32px" weight="bold" color="#a9a9a9"> X </Label></a>
                             <Label size="16px" weight="bolder" color= "#a9a9a9">แถบเมนูหลัก</Label>
                         </Div>
-                        <LinkStyle2 color="rgba(32, 32, 32, 0.8)" to={"/users/" + username}>
-                            <a onClick={this.handleToggle}><MenuItem text="ภาพรวมของคุณ"/></a>
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/users/" + username}>
+                            <MenuItem text="ภาพรวมของคุณ"/>
                         </LinkStyle2>
-                        <LinkStyle2 color="rgba(32, 32, 32, 0.8)" to="/edit">
-                            <a onClick={this.handleToggle}><MenuItem text="แก้ไขข้อมูลส่วนตัว"/></a>
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/edit">
+                           <MenuItem text="แก้ไขข้อมูลส่วนตัว"/>
                         </LinkStyle2>
-                        <LinkStyle2 color="rgba(32, 32, 32, 0.8)" to="/listofservices">
-                            <a onClick={this.handleToggle}><MenuItem text="รายการบริการ"/></a>
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/listofservices">
+                           <MenuItem text="รายการบริการ"/>
                         </LinkStyle2>
                         <Div style={{height:"100%", display:"flex", flexDirection: "column", justifyContent: "flex-end"}} margin="0">
-                            <a onClick={this.handleToggle}><LinkStyle2 onClick={auth.logout} color="rgba(32, 32, 32, 0.8)" to="/">
+                            <LinkStyle2 onClick={(e) => this.handleToggle("logout", e)} color="rgba(32, 32, 32, 0.8)" to="/">
                                 <MenuItem text="ออกจากระบบ" linkto="/listofservices"/>
-                            </LinkStyle2></a>
+                            </LinkStyle2>
                         </Div>
                     </Drawer>
                     

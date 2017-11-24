@@ -85,12 +85,6 @@ const Right2 = styled.div`
   align-items: flex-start;
 `
 
-const A = styled.a`
-  &:hover {
-    cursor:pointer;
-  }
-`
-
 class HomePage extends React.Component {
 
   constructor(props) {
@@ -140,7 +134,7 @@ class HomePage extends React.Component {
               {!auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">นี่คือระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
               <SearchBox>
                 <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
-                  <A onClick={this.Search}> <SearchIcon opacity="0.5" color="#545454"/> </A>
+                  <SearchIcon onClick={this.Search} opacity="0.5" color="#545454"/>
               </SearchBox>
             </Left>
             <Right>

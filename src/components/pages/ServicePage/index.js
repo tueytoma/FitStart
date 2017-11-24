@@ -121,7 +121,7 @@ class ServicePage extends React.Component {
      var temp = this.state.selectedTime
      if(check == false) {
         temp.push(id)
-        console.log(id + "== true")
+        // console.log(id + "== true")
         
     } else {
         // console.log(this.state.selectedTime.indexOf(id) + "ddd");
@@ -130,7 +130,7 @@ class ServicePage extends React.Component {
             console.log(temp.indexOf(id))
             temp.splice(temp.indexOf(id),1)
         }
-        console.log(id + "== false")
+        // console.log(id + "== false")
     }
     this.setState({selectedTime : temp})
 }

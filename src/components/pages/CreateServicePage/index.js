@@ -217,12 +217,14 @@ createService = e => {
     }
     console.log(data)
     this.validate()
-    api.createService(data)
-        .then((res)=>{
-            console.log(res)
-            if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) 
-            this.props.history.push('/')
-        })
+    if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) {
+      api.createService(data)
+          .then((res)=>{
+              console.log(res)
+              if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass)
+              this.props.history.push('/')
+          })
+      }
 }
 
   validate = (e) => {
@@ -236,7 +238,7 @@ createService = e => {
     else this.setState({placePass:true})
     if(this.state.serviceMinCost <= 0 || !this.checkNumber(this.state.serviceMinCost)) this.setState({minPass:false})
     else this.setState({minPass:true})
-    if(this.state.serviceMaxCost <= 0 || this.state.serviceMaxCost < this.state.serviceMinCost || !this.state.minPass) this.setState({maxPass:false})
+    if(this.state.serviceMaxCost <= 0 || this.state.serviceMaxCost < this.state.serviceMinCost) this.setState({maxPass:false})
     else this.setState({maxPass:true})
     if(this.state.serviceType == 'ps') this.setState({typePass:false})
     else this.setState({typePass:true})

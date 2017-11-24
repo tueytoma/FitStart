@@ -12,8 +12,8 @@ api.err = err => {
 /* SEARCH PART */
 
 api.getUserByName = name =>{
-    return Request.post(config.BACKURL + '/users/search')
-        .send({name : name})
+    return Request.get(config.BACKURL + '/users/search/items')
+        .query({name : name})
         .set('Accept', 'application/json')
         .then(res => {
             return res.body.users
@@ -21,8 +21,8 @@ api.getUserByName = name =>{
 }
 
 api.getTrainerByName = name =>{
-    return Request.post(config.BACKURL + '/trainers/search')
-        .send({name : name})
+    return Request.get(config.BACKURL + '/trainers/search/items')
+        .query({name : name})
         .set('Accept', 'application/json')
         .then(res => {
             return res.body.trainers
@@ -30,8 +30,8 @@ api.getTrainerByName = name =>{
 }
 
 api.getServiceByKeyword = keyword =>{
-    return Request.post(config.BACKURL + '/services/search')
-        .send({keyword : keyword})
+    return Request.get(config.BACKURL + '/services/search/items')
+        .query({keyword : keyword})
         .set('Accept', 'application/json')
         .then(res => {
             return res.body.services
@@ -98,6 +98,44 @@ api.createService = data => {
 		.then(res => {
 			return res.body
 		},api.err)
+}
+
+/* PATCH PART */
+
+api.editUserById = (id, data) => {
+    return Request.patch(config.BACKURL + '/users/' + id)
+        .set('Accept', 'application/json')
+        .send(data)
+        .then(res => {
+            return res.body.user
+        },api.err)
+}
+
+api.editServiceById = (id, data) => {
+    return Request.patch(config.BACKURL + '/services/' + id)
+        .set('Accept', 'application/json')
+        .send(data)
+        .then(res => {
+            return res.body.service
+        },api.err)
+}
+
+/* DELETE PART */
+
+api.removeUserById = id => {
+    return Request.delete(config.BACKURL + '/users/' + id)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        },api.err)
+}
+
+api.removeServiceById = id => {
+    return Request.delete(config.BACKURL + '/services/' + id)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        },api.err)
 }
 
 /* AUTHENTICATION PART */

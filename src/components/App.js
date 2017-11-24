@@ -49,6 +49,14 @@ class App extends React.Component{
           <Route path="/resetpassword" component={EmailPage} exact/>
           <Route path="/newpassword/:token" component={NewPasswordPage} exact/>
           <Route path="/search/:type" component={SearchResultPage} exact/>
+
+          <Route path="/serviceedit/:service" component={NotFoundPage} exact/>
+          <Route path="/useredit" component={NotFoundPage} exact/>
+          <Route path="/servicewarning" component={NotFoundPage} exact/>
+          <Route path="/servicesuccess" component={NotFoundPage} exact/>
+          <Route path="/services/:status" component={NotFoundPage} exact/>
+          <Route path="/services/:service/:status" component={NotFoundPage} exact/>
+
           <Route path="/createservice" component={CreateServicePage} exact/>
           <Route path="/users/:user" component={UserPage} exact/>
           <Route path="/users/:user/:service" component={ServicePage} exact/>

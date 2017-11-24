@@ -152,7 +152,9 @@ createService = e => {
         serviceMaxCost : this.state.serviceMaxCost,
         experience : this.state.experience,
         serviceType : this.state.serviceType,
-        serviceTime : this.state.serviceTime
+        serviceStartTime : this.state.serviceStartTime,
+        serviceEndTime : this.state.serviceEndTime,
+        serviceDate : this.state.serviceDate
     }
     console.log(data)
     this.validate()
@@ -181,7 +183,7 @@ createService = e => {
     else this.setState({typePass:true})
     if(this.state.experience == 'ps') this.setState({expPass:false})
     else this.setState({expPass:true})
-    //check time
+    //check service date time
   }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";

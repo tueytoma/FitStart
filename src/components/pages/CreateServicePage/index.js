@@ -204,6 +204,7 @@ createService = e => {
     let priceString = this.state.serviceMinCost + " - " + this.state.serviceMaxCost
     console.log(this.state.serviceStartTime)
     let data = {
+<<<<<<< HEAD
       trainerId : auth.getUser()._id,
       name : this.state.serviceName,
       description : this.state.serviceDetail,
@@ -214,6 +215,19 @@ createService = e => {
       type : this.state.serviceType, 
       timeSlots : this.state.timeSlotTemp,
 
+=======
+        serviceName : this.state.serviceName,
+        serviceDetail : this.state.serviceDetail,
+        serviceProvince : this.state.serviceProvince,
+        servicePlace : this.state.servicePlace,
+        serviceMinCost : this.state.serviceMinCost,
+        serviceMaxCost : this.state.serviceMaxCost,
+        experience : this.state.experience,
+        serviceType : this.state.serviceType,
+        serviceStartTime : this.state.serviceStartTime,
+        serviceEndTime : this.state.serviceEndTime,
+        serviceDate : this.state.serviceDate
+>>>>>>> d7773103fc287361c1163acaa14b0e38bc887581
     }
     console.log(data)
     this.validate()
@@ -242,8 +256,12 @@ createService = e => {
     else this.setState({typePass:true})
     if(this.state.experience == 'ps') this.setState({expPass:false})
     else this.setState({expPass:true})
+<<<<<<< HEAD
     if(this.state.slot.length == 0) this.setState({timePass:false})
     else this.setState({timePass: true})
+=======
+    //check service date time
+>>>>>>> d7773103fc287361c1163acaa14b0e38bc887581
   }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";

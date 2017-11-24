@@ -88,6 +88,10 @@ class CreateServicePage extends React.Component {
     else {}
   }
 
+  componentWillUnmount(){
+    clearInterval(this.interval)
+  }
+
   tick() {
       let tempSlot  = []
       for (var i = 0 ; i < this.state.timeSlotTemp.length ; i++)

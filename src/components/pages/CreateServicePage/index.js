@@ -292,10 +292,10 @@ createService = e => {
                   <Div style={{flexDirection: "column", marginBottom: "-10px"}}>
                     <Label size="18px" color ="#545454">วันที่และเวลา <Label size="12px" color="#545454">(สามารถเลือกได้มากกว่า 1)</Label></Label> 
                     <Div style={{alignItems:"center", marginTop: "-17px"}}>
-                      <InputBox noneToolTip style={{margin: "0 -10px 16px 0"}} type="date" onChange={this.changeServiceDate} error={!this.state.timePass} placeholder="DD/MM/YY" color={color} width="170px" height="30px"/>
-                      <InputBox noneToolTip type="time" onChange={this.changeServiceStartTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="100px" height="30px"/>
+                      <InputBox noneToolTip style={{margin: "0 -10px 16px 0"}} type="date" onChange={this.changeServiceDate} error={!this.state.timePass} placeholder="DD/MM/YY" color={color} width="153px" height="30px"/>
+                      <InputBox noneToolTip type="time" onChange={this.changeServiceStartTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="83px" height="30px"/>
                       <Label style={{marginLeft: "12px"}}weight="bolder" size="30px" color="#C4C3C3">-</Label>
-                      <InputBox noneToolTip type="time" onChange={this.changeServiceEndTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="100px" height="30px"/>
+                      <InputBox noneToolTip type="time" onChange={this.changeServiceEndTime} error={!this.state.timePass} placeholder="HH.MM" color={color} width="83px" height="30px"/>
                       <Label onClick={this.plus} hover style={{marginLeft: "12px",marginBottom: "13px"}} weight="bolder" size="60px" colorhover="#73C276" color="rgba(115, 194, 118, 0.5)">+</Label>
                     </Div>
                   </Div>

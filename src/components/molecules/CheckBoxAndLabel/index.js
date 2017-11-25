@@ -52,7 +52,7 @@ class CheckBoxAndLabel extends React.Component {
 
     return (
         <Wrapper style={this.props.styled}>
-            <Checkbox id={this.props.key} disabled={this.props.disabled} style={{marginRight: "16px"}} checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> 
+            <Checkbox id={this.props.id} disabled={this.props.disabled} style={{marginRight: "16px"}} checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> 
             <Label size="20px" weight="bold" color={this.props.color}>{output}</Label>
         </Wrapper>
     )

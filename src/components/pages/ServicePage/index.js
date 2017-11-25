@@ -147,7 +147,7 @@ class ServicePage extends React.Component {
     starBox.push(<StarIcon key={i} height="40px"/>)
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
-        timeslot.push(<CheckBoxAndLabel onValue={this.onValue} id={this.state.time[i]._id} key={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
+        timeslot.push(<CheckBoxAndLabel key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
     return (
@@ -171,7 +171,7 @@ class ServicePage extends React.Component {
             <DataBox textTitle="ช่วงราคา" textDetail={this.state.service.price  + " บาท"}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">2. ข้อมูลเทรนเนอร์</Label>
             <DataBox textTitle="สอนโดย" textDetail={<LinkStyle2 decoration={1} to={"/users/" + this.state.trainer.username} color={color} colorhover={color}>{"เทรนเนอร์ " + this.state.trainer.firstName + " " + this.state.trainer.lastName}</LinkStyle2>} color={color}/>
-            <DataBox textTitle="เพศ" textDetail={utils.getGender(this.state.trainer.gender)} color={color}/>
+            <DataBox textTitle="เพศ" textDetail={utils.getGenderText(this.state.trainer.gender)} color={color}/>
             <DataBox textTitle="เบอร์โทรศัพท์" textDetail={this.state.trainer.telephoneNumber}  color={color}/>
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
             <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>

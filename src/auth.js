@@ -4,17 +4,21 @@ const config = require('./config')
 let auth = {}
 auth = {
     setCookieAndToken(cookieAndToken) {
-    if (cookieAndToken.user) cookieService.set('user', cookieAndToken.user);
+    if (cookieAndToken.user) cookieService.set('user', cookieAndToken.user)
+    if (cookieAndToken.token) cookieService.set('token', cookieAndToken.token)
     },
 
     getUser() {
-    return cookieService.get('user');
+        return cookieService.get('user');
+    },
+
+    getToken(){
+        return cookieService.get('token'); 
     },
 
     logout() {
-    cookieService.remove('token');
-    cookieService.remove('user');
-    cookieService.remove('roles');
+        cookieService.remove('user');
+        cookieService.remove('token');
     },
 
     isLoggedIn(){

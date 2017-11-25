@@ -104,6 +104,7 @@ api.createService = data => {
 
 api.editUserById = (id, data) => {
     return Request.patch(config.BACKURL + '/users/' + id)
+        .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .send(data)
         .then(res => {
@@ -113,6 +114,7 @@ api.editUserById = (id, data) => {
 
 api.editServiceById = (id, data) => {
     return Request.patch(config.BACKURL + '/services/' + id)
+        .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .send(data)
         .then(res => {

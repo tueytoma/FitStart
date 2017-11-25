@@ -221,8 +221,11 @@ createService = e => {
       api.createService(data)
           .then((res)=>{
               console.log(res)
-              if(this.validate())
-              this.props.history.push('/')
+              if(this.validate()) {
+              // this.props.history.push('/')
+                this.setState({open: true})
+                this.setState({idService: res.service._id})
+              }
           })
     }
 }

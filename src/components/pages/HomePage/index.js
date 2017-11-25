@@ -111,11 +111,6 @@ class HomePage extends React.Component {
     location.reload();
   }
 
-  Search = e => {
-    this.props.history.push({pathname: '/search/service', search: "?keyword=" + this.state.search})
-    location.reload();
-  }
-
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var resultFeed = []
@@ -134,7 +129,10 @@ class HomePage extends React.Component {
               {!auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">นี่คือระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
               <SearchBox>
                 <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
-                  <SearchIcon onClick={this.Search} opacity="0.5" color="#545454"/>
+                <Link onClick="" to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
+                    <SearchIcon opacity="0.5" color="#545454"/>
+                </Link>
+                  
               </SearchBox>
             </Left>
             <Right>

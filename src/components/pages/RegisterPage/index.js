@@ -268,7 +268,7 @@ class RegisterPage extends React.Component {
                     <InputBlock id="inputblock">
                         <LRBlock style={{marginRight: "8px"}}>
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
-                            <InputBox type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
+                            <InputBox value={this.state.username} type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
                             <InputBox type="text" onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
                             <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
                             <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>

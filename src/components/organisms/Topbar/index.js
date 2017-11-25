@@ -3,7 +3,6 @@ import React from 'react'
 
 import styled, { css } from 'styled-components'
 import { Logo, LinkStyle, LinkStyle2, Textfield, SearchIcon, Label, MenuItem } from 'components'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Drawer from 'material-ui/Drawer';
 import { Link } from 'react-router-dom'
 import auth from '../../../auth'
@@ -81,7 +80,7 @@ class Topbar extends React.Component {
     render() {
         var username = auth.isLoggedIn() ? auth.getUser().username : '';
         return(
-            <MuiThemeProvider>
+
           <Wrapper color={this.props.color}>
           <WrapperSide>
                     <Div margin="4.5px 5px 0 22px">
@@ -142,7 +141,6 @@ class Topbar extends React.Component {
                 </WrapperSide>
                 
           </Wrapper>
-          </MuiThemeProvider>
         )
     }
 }

@@ -1,9 +1,9 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, InputBox, Checkbox, LinkStyle, LinkAndButtonBox, DateItems} from 'components'
+import { Topbar, Footer, Label, InputBox, Checkbox, LinkStyle, LinkAndButtonBox, DateItems, Button, CreateSuccessIcon} from 'components'
 import { font } from 'styled-theme'
-
+import Dialog from 'material-ui/Dialog';
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -80,6 +80,9 @@ class CreateServicePage extends React.Component {
       timeSlotTemp: [],
       timeDesc: [],
       slot:[],
+      open: false,
+      start: true,
+      idService: '', 
     };
   }
 
@@ -221,15 +224,35 @@ createService = e => {
     }
     
     this.validate() 
-    if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) {
+    
+    console.log(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass)
+    console.log(this.state.start)
+    if(!this.state.start && (this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass)) {
       api.createService(data)
           .then((res)=>{
               console.log(res)
-              if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass)
-              this.props.history.push('/')
+              
+              if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) {
+                this.setState({open: true})
+                this.setState({idService: res.service._id})
+              }
           })
-      }
+    }
+    this.setState({start: false})
 }
+
+  handleOpen = () => {
+    this.setState({open: true});
+  }
+
+  handleClose = () => {
+    this.setState({open: false});
+  }
+
+  warp = () => {
+    this.setState({open: false});
+    this.props.history.push('/users/' + auth.getUser().username + '/' + this.state.idService)
+  }
 
   validate = () => {
     if(this.state.serviceName.length<1||this.state.serviceName.length>300 || !this.checkFormat(this.state.serviceName)) this.setState({namePass:false})
@@ -262,11 +285,29 @@ createService = e => {
     'สิงห์บุรี', 'สุโขทัย', 'สุพรรณบุรี', 'สุราษฎร์ธานี', 'สุรินทร์', 'หนองคาย', 'หนองบัวลำภู', 'อ่างทอง', 'อุดรธานี', 'อุทัยธานี', 
     'อุตรดิตถ์', 'อุบลราชธานี', 'อำนาจเจริญ'];
 
+    const actions = [
+      <Button style={{marginBottom: "32px"}} onClick={this.warp} color="#211F5E" height="40px" width="231px" size="18px">ตรวจสอบบริการที่สร้าง</Button>,
+    ];
+
     return (
       <Wrapper>
+
+        <Dialog
+          actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+          actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: "#F9FAFC"}}
+          bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#F9FAFC"}}
+          contentStyle={{width:'60%',maxWidth: 'none'}}
+        >
+          <CreateSuccessIcon />
+          <Label style={{marginLeft: "12px"}} weight="bolder" size="48px" color="#211F5E">สร้างบริการเสร็จสมบูรณ์</Label>
+        </Dialog>
         <Topbar color={color}/>
         {auth.isLoggedIn() && auth.isTrainer() ?
         <InnerWrapper>
+          
             <HeaderBlock><Label size="48px" weight="bolder" color="#202020">สร้างบริการใหม่</Label></HeaderBlock>
             <InputBlock id = "inputblock">
               <Div>

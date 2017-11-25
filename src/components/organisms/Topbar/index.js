@@ -78,7 +78,8 @@ class Topbar extends React.Component {
     }
 
     render() {
-        var username = auth.isLoggedIn() ? auth.getUser().username : '';
+        var username = auth.isLoggedIn() ? (auth.getUser() ? auth.getUser().username : '' ) : '';
+        
         return(
 
           <Wrapper color={this.props.color}>
@@ -125,7 +126,7 @@ class Topbar extends React.Component {
                         <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/users/" + username}>
                             <MenuItem text="ภาพรวมของคุณ"/>
                         </LinkStyle2>
-                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/edit/users/" + auth.getUser().username}>
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/edit/users/" + username}>
                            <MenuItem text="แก้ไขข้อมูลส่วนตัว"/>
                         </LinkStyle2>
                         <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/listofservices">

@@ -122,6 +122,15 @@ api.editServiceById = (id, data) => {
         },api.err)
 }
 
+api.resetPassword = data => {
+    return Request.post(config.BACKURL + '/renewPassword')
+        .set('x-access-token', auth.getToken() || '')
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        },api.err)
+}
+
 /* DELETE PART */
 
 api.removeUserById = id => {

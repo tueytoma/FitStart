@@ -13,7 +13,8 @@ import { HomePage,
   CreateServicePage,
   ServicePage,
   UserPage,
-  EditProfilePage } from 'components'
+  EditProfilePage,
+  EnsureServicePage } from 'components'
 import { withCookies, Cookies } from 'react-cookie'
 import PropTypes, { instanceOf } from 'prop-types'
 

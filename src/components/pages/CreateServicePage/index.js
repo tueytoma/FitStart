@@ -86,33 +86,22 @@ class CreateServicePage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if(!this.state.end) {this.interval = setInterval(() => this.tick(), 100)}
-    else {}
-  }
-
-  componentWillUnmount(){
-    clearInterval(this.interval)
-  }
-
-  tick() {
-      let tempSlot  = []
-      for (var i = 0 ; i < this.state.timeSlotTemp.length ; i++)
-      tempSlot.push(<DateItems onDelete={this.onDelete} id={this.state.timeDesc[i]} time={this.state.timeSlotTemp[i]} key={i} />)
-      this.setState({slot: tempSlot})
-  }
-
   onDelete = (id) => {
     let tempTimeDesc = this.state.timeDesc
-    let temptimeSlotTemp  = this.state.timeSlotTemp
+    let tempTimeSlotTemp  = this.state.timeSlotTemp
 
     if(tempTimeDesc.indexOf(id)!=-1){
       
-      temptimeSlotTemp.splice(tempTimeDesc.indexOf(id),1)
+      tempTimeSlotTemp.splice(tempTimeDesc.indexOf(id),1)
       tempTimeDesc.splice(tempTimeDesc.indexOf(id),1)   
 
       this.setState({timeDesc: tempTimeDesc})
-      this.setState({timeSlotTemp: temptimeSlotTemp})
+      this.setState({timeSlotTemp: tempTimeSlotTemp})
+
+      var tempSlot = []
+      for (var i = 0 ; i < tempTimeSlotTemp.length ; i++)
+        tempSlot.push(<DateItems onDelete={this.onDelete} id={tempTimeDesc[i]} time={tempTimeSlotTemp[i]} key={i} />)
+      this.setState({slot: tempSlot})
       // console.log(this.state.timeDesc)
     }
   }
@@ -183,7 +172,7 @@ class CreateServicePage extends React.Component {
 
   plus = e => { 
     let tempTimeDesc = this.state.timeDesc
-    let temptimeSlotTemp  = this.state.timeSlotTemp
+    let tempTimeSlotTemp  = this.state.timeSlotTemp
     let date = this.state.serviceDate
     let start = this.state.serviceStartTime
     let end = this.state.serviceEndTime
@@ -196,14 +185,19 @@ class CreateServicePage extends React.Component {
       else return false;
     }
 
-    if(temptimeSlotTemp.findIndex(haveDate)==-1 && end > start) {
-      temptimeSlotTemp.push(state)    
+    if(tempTimeSlotTemp.findIndex(haveDate)==-1 && end > start) {
+      tempTimeSlotTemp.push(state)    
       tempTimeDesc.push(startTemp + endTemp)
       this.setState({timePass: true})
     } else this.setState({timePass: false})
 
     this.setState({timeDesc: tempTimeDesc})
-    this.setState({timeSlotTemp: temptimeSlotTemp})
+    this.setState({timeSlotTemp: tempTimeSlotTemp})
+
+    var tempSlot = []
+    for (var i = 0 ; i < tempTimeSlotTemp.length ; i++)
+      tempSlot.push(<DateItems onDelete={this.onDelete} id={tempTimeDesc[i]} time={tempTimeSlotTemp[i]} key={i} />)
+    this.setState({slot: tempSlot})
     // console.log(this.state.timeSlotTemp)
   }
 
@@ -223,22 +217,14 @@ createService = e => {
 
     }
     
-    this.validate() 
-    
-    console.log(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass)
-    console.log(this.state.start)
-    if(!this.state.start && (this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass)) {
+    if(this.validate()){
       api.createService(data)
           .then((res)=>{
               console.log(res)
-              
-              if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) {
-                this.setState({open: true})
-                this.setState({idService: res.service._id})
-              }
+              if(this.validate())
+              this.props.history.push('/')
           })
     }
-    this.setState({start: false})
 }
 
   handleOpen = () => {
@@ -255,24 +241,61 @@ createService = e => {
   }
 
   validate = () => {
-    if(this.state.serviceName.length<1||this.state.serviceName.length>300 || !this.checkFormat(this.state.serviceName)) this.setState({namePass:false})
-    else this.setState({namePass:true})
-    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300 || !this.checkFormat(this.state.serviceDetail)) this.setState({detailPass:false})
-    else this.setState({detailPass:true})
-    if(this.state.serviceProvince == 'ps' || this.state.serviceProvince == '') this.setState({provincePass:false})
-    else this.setState({provincePass:true})
-    if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
-    else this.setState({placePass:true})
-    if(this.state.serviceMinCost <= 0 || !this.checkNumber(this.state.serviceMinCost)) this.setState({minPass:false})
-    else this.setState({minPass:true})
-    if(this.state.serviceMaxCost <= 0 || this.state.serviceMaxCost < this.state.serviceMinCost) this.setState({maxPass:false})
-    else this.setState({maxPass:true})
-    if(this.state.serviceType == 'ps' || this.state.serviceType == '') this.setState({typePass:false})
-    else this.setState({typePass:true})
-    if(this.state.experience == 'ps' || this.state.experience == '') this.setState({expPass:false})
-    else this.setState({expPass:true})
-    if(this.state.slot.length == 0) this.setState({timePass:false})
-    else this.setState({timePass: true})
+    var check = 0
+    if(this.state.serviceName.length<1||this.state.serviceName.length>300 || !this.checkFormat(this.state.serviceName)) {
+      this.setState({namePass:false}) 
+      check--
+    } else {this.setState({namePass:true})
+    }
+    if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300 || !this.checkFormat(this.state.serviceDetail)) {
+      this.setState({detailPass:false})
+      check--
+    }  else {
+      this.setState({detailPass:true})
+    }
+    if(this.state.serviceProvince == 'ps' || this.state.serviceProvince == '') {
+      this.setState({provincePass:false})
+      check--
+    } else {
+      this.setState({provincePass:true})
+    }
+    if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) {
+      this.setState({placePass:false})
+      check--
+    } else {
+      this.setState({placePass:true})
+    }
+    if(this.state.serviceMinCost <= 0 || !this.checkNumber(this.state.serviceMinCost)) {
+      this.setState({minPass:false})
+      check--
+    } else {
+      this.setState({minPass:true})
+    }
+    if(this.state.serviceMaxCost <= 0 || this.state.serviceMaxCost < this.state.serviceMinCost) {
+      this.setState({maxPass:false})
+      check--
+    } else {
+      this.setState({maxPass:true})
+    }
+    if(this.state.serviceType == 'ps' || this.state.serviceType == '') {
+      this.setState({typePass:false})
+      check--
+    } else {
+      this.setState({typePass:true})
+    }
+    if(this.state.experience == 'ps' || this.state.experience == '') {
+      this.setState({expPass:false})
+      check--
+    } else {
+      this.setState({expPass:true})
+    }
+    if(this.state.slot.length == 0) {
+      this.setState({timePass:false})
+      check--
+    } else {
+      this.setState({timePass: true})
+    }
+    return check==0
   }
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";

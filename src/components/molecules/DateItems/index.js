@@ -31,7 +31,7 @@ class DateItems extends React.Component {
 
   render() {
     var weekday = ['วันอาทิตย์', 'วันจันทร์', 'วันอังคาร', 'วันพุธ', 'วันพฤหัสบดี', 'วันศุกร์', 'วันเสาร์' ]
-    var monthyear = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตถลาคม', 'พฤศจิกายน', 'ธันวาคม']
+    var monthyear = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
     var start = new Date(this.props.time.startTime)
     var end = new Date(this.props.time.endTime)
     var day  = weekday[start.getDay()]

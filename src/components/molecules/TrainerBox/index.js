@@ -79,7 +79,7 @@ class TrainerBox extends React.Component {
                 <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.telephoneNumber}</Label>
             </Label>
             <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">เพศ
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{utils.getGender(this.props.trainer.gender)}</Label>
+                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{utils.getGenderText(this.props.trainer.gender)}</Label>
             </Label>
             <Label size="18px" weight="600" color="#202020">บริการที่เคยสร้างมาล่าสุด
                 <LinkStyle2 to={linkService} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">

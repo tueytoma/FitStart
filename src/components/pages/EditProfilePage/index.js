@@ -5,6 +5,7 @@ import { Topbar, Label, InputBox, Footer, LinkAndButtonBox, Button } from 'compo
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
+import utils from '../../../utils'
 
 const Wrapper = styled.div`
     background-color: #F9FAFC;
@@ -58,11 +59,10 @@ class EditProfilePage extends React.Component {
             _id: auth.getUser()._id,
             role: auth.getUser().role,
             username : auth.getUser().username,
-            // password : auth.getUser().password,
             email : auth.getUser().email,
             firstName : auth.getUser().firstName,
             lastName : auth.getUser().lastName,
-            gender : auth.getUser().gender == 1 ? "ชาย" : (auth.getUser().gender == 2 ? "หญิง" : "อื่น ๆ"),
+            gender : utils.getGenderText(auth.getUser().gender),
             address : auth.getUser().address,
             telephoneNumber : auth.getUser().telephoneNumber,
             firstNamePass: true,
@@ -73,12 +73,12 @@ class EditProfilePage extends React.Component {
             usernamePass:true,
             emailPass:true,
 
-            oldpassword:'',
-            newpassword:'',
-            repassword:'',
-            oldpasswordPass:true,
-            repasswordPass:true,
-            newpasswordPass:true,
+            currentPassword:'',
+            newPassword:'',
+            veriyfyPassword:'',
+            currentPasswordPass:true,
+            verifyPasswordPass:true,
+            newPasswordPass:true,
             passEqualrepass:false,
         };
     }
@@ -89,13 +89,54 @@ class EditProfilePage extends React.Component {
     }
 
     tick() {
-        if(this.state.newpassword == this.state.repassword && this.state.newpasswordPass && this.state.repasswordPass && this.state.newpassword != '' && this.state.repassword != '') 
+        if(this.state.newPassword == this.state.verifyPassword && this.state.newPasswordPass && this.state.verifyPasswordPass && this.state.newPassword != '' && this.state.verifyPassword != '') 
         this.setState({passEqualrepass: true})
         else this.setState({passEqualrepass: false})
     }
 
     componentWillUnmount(){		
         clearInterval(this.interval)		
+    }
+
+    saveDetail = () => {
+        let data = {
+            email : this.state.email,
+            firstName : this.state.firstName,
+            lastName : this.state.lastName,
+            gender : utils.getGenderCode(this.state.gender),
+            address : this.state.address,
+            telephoneNumber : this.state.telephoneNumber,
+        }
+        api.editUserById(this.state._id, data).then(res=>{
+            if(res.success){
+                auth.setCookieAndToken(res)
+                alert('success')
+            } 
+        },err => {alert('failure')})
+    }
+
+    savePassword = () => {
+        let data = {
+            currentPassword : this.state.currentPassword,
+            newPassword : this.state.newPassword,
+            verifyPassword : this.state.verifyPassword,
+        }
+        if(this.state.passEqualrepass){
+            api.renewPassword(data).then(res=>{
+                if(res.success){
+                    alert('success')
+                }
+            },err => { this.setState({currentPasswordPass : false})})
+        }
+    }
+
+    deletePassword = () => {
+        api.removeUserById(this.state._id).then(res=>{
+            if(res.success){
+                this.props.history.push('/')
+                auth.logout()
+            } 
+        },err => {alert('failure')})
     }
 
     changeUsername = e => {
@@ -126,16 +167,16 @@ class EditProfilePage extends React.Component {
         this.setState({address : e.target.value})
     }
 
-    changeOldPassword = e => {
-        this.setState({oldpassword : e.target.value})
+    changeCurrentPassword = e => {
+        this.setState({currentPassword : e.target.value})
     }
 
     changeNewPassword = e => {
-        this.setState({newpassword : e.target.value})
+        this.setState({newPassword : e.target.value})
     }
 
-    changeRePassword = e => {
-        this.setState({repassword : e.target.value})
+    changeVerifyPassword = e => {
+        this.setState({verifyPassword : e.target.value})
     }
 
   render() {
@@ -172,7 +213,7 @@ class EditProfilePage extends React.Component {
             <FooterBlock>
                 <LRBlock style={{flexFlow: "row", alignItems: "center"}}></LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox onClick="" to="/" color={color} 
+                    <LinkAndButtonBox onClick={this.saveDetail} to="/" color={color} 
                     height="40px" width="210px" size="18px" sizeLink="18px"
                     linktext="ยกเลิกการแก้ไข" buttontext="ยืนยันการแก้ไข"/>
                 </LRBlock>
@@ -180,22 +221,22 @@ class EditProfilePage extends React.Component {
             <InputBlock>
             <LRBlock style={{marginRight: "8px"}}>
                 <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {color}>3. รหัสผ่านเข้าสู่ระบบ</Label>
-                <InputBox onChange={this.changeOldPassword} error={!this.state.oldpasswordPass} type="password" label="รหัสผ่านเดิม" placeholder="old-password" color={color} width="400px" height="30px"/>
+                <InputBox onChange={this.changeCurrentPassword} error={!this.state.currentPasswordPass} type="password" label="รหัสผ่านเดิม" placeholder="old-password" color={color} width="400px" height="30px"/>
             </LRBlock>
             <LRBlock></LRBlock>
             </InputBlock>
             <InputBlock style={{marginTop: "0"}}>
                 <LRBlock >
-                    <InputBox onChange={this.changeNewPassword} correct={this.state.passEqualrepass} error={!this.state.newpasswordPass} type="password" label="รหัสผ่านใหม่" placeholder="new-password" color={color} width="400px" height="30px"/>
+                    <InputBox onChange={this.changeNewPassword} correct={this.state.passEqualrepass} error={!this.state.newPasswordPass} type="password" label="รหัสผ่านใหม่" placeholder="new-password" color={color} width="400px" height="30px"/>
                 </LRBlock>
                 <LRBlock >
-                    <InputBox onChange={this.changeRePassword} correct={this.state.passEqualrepass} error={!this.state.repasswordPass} type="password" label="ยืนยันรหัสผ่าน" placeholder="re-password" color={color} width="400px" height="30px"/>
+                    <InputBox onChange={this.changeVerifyPassword} correct={this.state.passEqualrepass} error={!this.state.verifyPasswordPass} type="password" label="ยืนยันรหัสผ่าน" placeholder="re-password" color={color} width="400px" height="30px"/>
                 </LRBlock>   
             </InputBlock>
             <FooterBlock>
                 <LRBlock style={{flexFlow: "row", alignItems: "center"}}></LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox onClick="" to="/" color={color} 
+                    <LinkAndButtonBox onClick={this.savePassword} to="/" color={color} 
                     height="40px" width="210px" size="18px" sizeLink="18px"
                     linktext="ยกเลิกการแก้ไขรหัสผ่าน" buttontext="ยืนยันการแก้ไขรหัสผ่าน"/>
                 </LRBlock>
@@ -208,7 +249,7 @@ class EditProfilePage extends React.Component {
             </InputBlock>
             <InputBlock style={{marginTop: "0", flexDirection: "column", alignItems: "center"}}>
                 <Label style={{marginBottom: "16px"}} size="24px" weight="bold" color="rgba(220, 68, 68, 0.9)">เมื่อลบบัญชีผู้ใช้แล้วคุณจะไม่สามารถกู้ข้อมูลกลับมาได้อีกไม่ว่ากรณีใด ๆ </Label>
-                <Button style={{marginBottom: "32px"}} onClick="" color="rgba(220, 68, 68, 0.9)" height="50px" width="231px" size="24px">ลบบัญชีผู้ใช้</Button>,
+                <Button style={{marginBottom: "32px"}} onClick={this.deletePassword} color="rgba(220, 68, 68, 0.9)" height="50px" width="231px" size="24px">ลบบัญชีผู้ใช้</Button>,
             </InputBlock>
             <Footer color={color} />
         </InnerWrapper>

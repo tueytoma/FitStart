@@ -1,5 +1,6 @@
 var Request = require('superagent')
 var config = require('./config')
+var auth = require('./auth')
 
 let api = {}
 
@@ -108,7 +109,7 @@ api.editUserById = (id, data) => {
         .set('Accept', 'application/json')
         .send(data)
         .then(res => {
-            return res.body.user
+            return res.body
         },api.err)
 }
 
@@ -118,14 +119,15 @@ api.editServiceById = (id, data) => {
         .set('Accept', 'application/json')
         .send(data)
         .then(res => {
-            return res.body.service
+            return res.body
         },api.err)
 }
 
-api.resetPassword = data => {
+api.renewPassword = data => {
     return Request.post(config.BACKURL + '/renewPassword')
         .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
+        .send(data)
         .then(res => {
             return res.body
         },api.err)
@@ -135,6 +137,7 @@ api.resetPassword = data => {
 
 api.removeUserById = id => {
     return Request.delete(config.BACKURL + '/users/' + id)
+        .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .then(res => {
             return res.body

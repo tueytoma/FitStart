@@ -108,10 +108,14 @@ class RegisterPage extends React.Component {
     }
 
     tick() {
-        if(this.state.password == this.state.repassword && this.state.passwordPass && this.state.passwordPass && this.state.password != '' && this.state.repassword != '') this.setState({passEqualrepass: true})
+        if(this.state.password == this.state.repassword && this.state.passwordPass && this.state.repasswordPass && this.state.password != '' && this.state.repassword != '') this.setState({passEqualrepass: true})
         else this.setState({passEqualrepass: false})
         let check = this.state.checkboxPass && (this.state.trainee || this.state.trainer)
         this.setState({disableCheckbox: !check})
+    }
+
+    componentWillUnmount(){		
+        clearInterval(this.interval)		
     }
 
     traineeSelect = e => {
@@ -268,7 +272,7 @@ class RegisterPage extends React.Component {
                     <InputBlock id="inputblock">
                         <LRBlock style={{marginRight: "8px"}}>
                             <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {col}>1. ข้อมูลบัญชี</Label>
-                            <InputBox value={this.state.username} type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
+                            <InputBox type="text" onChange={this.changeUsername} error={!this.state.usernamePass} label="ชื่อผู้ใช้งาน" placeholder="username" color={col} width="400px" height="30px"/>
                             <InputBox type="text" onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={col} width="400px" height="30px"/>
                             <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changePassword} error={!this.state.passwordPass} label="รหัสผ่าน" placeholder="password" color={col} width="400px" height="30px"/>
                             <InputBox type="password" correct= {this.state.passEqualrepass} onChange={this.changeRepassword} error={!this.state.repasswordPass} label="ยืนยันรหัสผ่าน" placeholder="re-password" color={col} width="400px" height="30px"/>
@@ -280,7 +284,7 @@ class RegisterPage extends React.Component {
                                 <InputBox type="text" onChange={this.changeLastname} error={!this.state.lastNamePass} label="นามสกุล" placeholder="lastname" color={col} width="200px" height="30px"/>
                             </Div>
                             <Div>
-                                <InputBox onChange={this.changeGender} error={!this.state.genderPass} style={{marginRight: "16px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                                <InputBox onChange={this.changeGender} error={!this.state.genderPass} style={{marginRight: "4px"}} dropdown label="เพศ" color={col} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
                                 <InputBox type="text" onChange={this.changeTelephoneNumber} error={!this.state.telPass} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={col} width="200px" height="30px"/>
                             </Div>
                             <InputBox onChange={this.changeAddress} error={!this.state.addressPass} label="ที่อยู่อาศัย" placeholder="location" color={col} textarea/>

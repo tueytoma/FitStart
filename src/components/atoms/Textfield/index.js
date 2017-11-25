@@ -20,7 +20,7 @@ const InputTextStyled = styled.input`
     font-weight: normal;
     line-height: normal;
     font-size: 16px;
-    color: #202020;
+    color: ${props => props.disabled ? "#C4C4C4" : "#202020"};
 
     outline: none;
 
@@ -45,9 +45,9 @@ class Textfield extends React.Component{
 
     render(){
         return (
-            <InputTextStyled type={this.props.type} onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
+            <InputTextStyled disabled={this.props.disabled} type={this.props.type} onChange={this.props.onChange} width={this.props.width} height={this.props.height} 
             placeholder={this.props.placeholder} correct={this.props.correct} error={this.props.error} color={this.props.color}
-            none={this.props.none}/>
+            none={this.props.none} value={this.props.value}/>
         )
     }
 }

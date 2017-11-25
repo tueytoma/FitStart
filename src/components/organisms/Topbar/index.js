@@ -79,7 +79,6 @@ class Topbar extends React.Component {
 
     render() {
         var username = auth.isLoggedIn() ? (auth.getUser() ? auth.getUser().username : '' ) : '';
-        
         return(
 
           <Wrapper color={this.props.color}>

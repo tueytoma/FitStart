@@ -1,44 +1,142 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Label, Textfield, SearchIcon, HeartIcon, SubHeader, QuestionIcon, Button, Footer, LinkStyle, ServiceBox } from 'components'
+import { Topbar, Label, InputBox, Footer, LinkAndButtonBox, Button } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
 
 const Wrapper = styled.div`
-  background-color: #F9FAFC;
-  width: calc(100vw - 15px);
-  display: flex;
-  justify-content: center;
+    background-color: #F9FAFC;
+    width: calc(100vw - 15px);
+    display: flex;
+    justify-content: center;
 
-  align-self: center;
+    align-self: center;
 `
 const InnerWrapper = styled.div`
-  width: 70vw;
-  display: flex;
-  flex-direction: column;
-  margin-top: 60px;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+`
+
+const HeaderBlock = styled.div`
+    align-self: flex-start;
+    margin: 36px 0 24px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+
+const InputBlock = styled.div`
+    display:flex;
+    justify-content: center;
+    margin-top: 48px;
+`
+
+const LRBlock = styled.div`
+    display:flex;
+    flex-flow: column;
+    flex: 1;
+`
+
+const Div = styled.div`
+    display: flex;
+`
+
+const FooterBlock = styled.div`
+    margin: 16px 0 0 0;
+    display:flex;
 `
 
 class EditProfilePage extends React.Component {
 
   constructor(props) {
-    super(props)
-    this.state = {
-        _id: auth.getUser()._id,
-        role: auth.getUser().role,
-        username : auth.getUser().username,
-        password : auth.getUser().password,
-        email : auth.getUser().email,
-        firstName : auth.getUser().firstName,
-        lastName : auth.getUser().lastName,
-        gender : auth.getUser().gender == 1 ? "ชาย" : (auth.getUser().gender == 2 ? "หญิง" : "อื่น ๆ"),
-        address : auth.getUser().address,
-        telephoneNumber : auth.getUser().telephoneNumber,
-        role : auth.getUser().trainer ? 'Trainer' : 'Trainee'
-    };
-  }
+        super(props)
+        this.state = {
+            _id: auth.getUser()._id,
+            role: auth.getUser().role,
+            username : auth.getUser().username,
+            // password : auth.getUser().password,
+            email : auth.getUser().email,
+            firstName : auth.getUser().firstName,
+            lastName : auth.getUser().lastName,
+            gender : auth.getUser().gender == 1 ? "ชาย" : (auth.getUser().gender == 2 ? "หญิง" : "อื่น ๆ"),
+            address : auth.getUser().address,
+            telephoneNumber : auth.getUser().telephoneNumber,
+            firstNamePass: true,
+            lastNamePass: true,
+            genderPass:true,
+            telPass:true,
+            addressPass:true,
+            usernamePass:true,
+            emailPass:true,
+
+            oldpassword:'',
+            newpassword:'',
+            repassword:'',
+            oldpasswordPass:true,
+            repasswordPass:true,
+            newpasswordPass:true,
+            passEqualrepass:false,
+        };
+    }
+
+    componentDidMount() {
+        if(!this.state.end) {this.interval = setInterval(() => this.tick(), 100)}
+        else {}
+    }
+
+    tick() {
+        if(this.state.newpassword == this.state.repassword && this.state.newpasswordPass && this.state.repasswordPass && this.state.newpassword != '' && this.state.repassword != '') 
+        this.setState({passEqualrepass: true})
+        else this.setState({passEqualrepass: false})
+    }
+
+    componentWillUnmount(){		
+        clearInterval(this.interval)		
+    }
+
+    changeUsername = e => {
+        this.setState({username : e.target.value})
+    }
+
+    changeEmail = e => {
+        this.setState({email : e.target.value})
+    }
+
+    changeFirstname = e => {
+        this.setState({firstName : e.target.value})
+    }
+
+    changeLastname = e => {
+        this.setState({lastName : e.target.value})
+    }
+
+    changeTelephoneNumber = e => {
+        this.setState({telephoneNumber : e.target.value})
+    }
+
+    changeGender = e => {
+        this.setState({gender : e.target.value})
+    }
+
+    changeAddress = e => {
+        this.setState({address : e.target.value})
+    }
+
+    changeOldPassword = e => {
+        this.setState({oldpassword : e.target.value})
+    }
+
+    changeNewPassword = e => {
+        this.setState({newpassword : e.target.value})
+    }
+
+    changeRePassword = e => {
+        this.setState({repassword : e.target.value})
+    }
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
@@ -48,7 +146,70 @@ class EditProfilePage extends React.Component {
         <Topbar color={color}/>
         { this.props.match.params.user == this.state.username ?
         <InnerWrapper >
-          
+            <HeaderBlock>
+                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แก้ไขข้อมูลส่วนตัว</Label>
+            </HeaderBlock>
+            <InputBlock>
+                <LRBlock style={{marginRight: "8px"}}>
+                    <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {color}>1. ข้อมูลบัญชี</Label>
+                    <InputBox disabled={true} value={this.state.role == "Trainee" ? "ผู้ต้องการออกกำลังกาย" : "เทรนเนอร์"} type="text" label="ประเภทของผู้ใช้งาน" placeholder="role" color={color} width="400px" height="30px"/>
+                    <InputBox disabled={true} value={this.state.username} type="text" label="ชื่อผู้ใช้งาน" placeholder="username" color={color} width="400px" height="30px"/>
+                    <InputBox value={this.state.email} type="text" onChange={this.changeEmail} error={!this.state.emailPass} label="อีเมล" placeholder="e-mail" color={color} width="400px" height="30px"/>
+                </LRBlock>
+                <LRBlock >
+                    <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {color}>2. ข้อมูลส่วนตัวผู้ใช้</Label>
+                    <Div>
+                        <InputBox value={this.state.firstName} type="text" onChange={this.changeFirstname} error={!this.state.firstNamePass} label="ชื่อจริง" placeholder="firstname" color={color} width="200px" height="30px"/>
+                        <InputBox value={this.state.lastName} type="text" onChange={this.changeLastname} error={!this.state.lastNamePass} label="นามสกุล" placeholder="lastname" color={color} width="200px" height="30px"/>
+                    </Div>
+                    <Div>
+                        <InputBox value={this.state.gender} onChange={this.changeGender} error={!this.state.genderPass} style={{marginRight: "4px"}} dropdown label="เพศ" color={color} width="240px" height="38px" menu={['ชาย','หญิง','อื่น ๆ ']}/>
+                        <InputBox value={this.state.telephoneNumber} type="text" onChange={this.changeTelephoneNumber} error={!this.state.telPass} label="เบอร์โทรศัพท์" placeholder="xxx-xxx-xxxx" color={color} width="200px" height="30px"/>
+                    </Div>
+                    <InputBox value={this.state.address} onChange={this.changeAddress} error={!this.state.addressPass} label="ที่อยู่อาศัย" placeholder="location" color={color} textarea/>
+                </LRBlock>
+            </InputBlock>
+            <FooterBlock>
+                <LRBlock style={{flexFlow: "row", alignItems: "center"}}></LRBlock>
+                <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
+                    <LinkAndButtonBox onClick="" to="/" color={color} 
+                    height="40px" width="210px" size="18px" sizeLink="18px"
+                    linktext="ยกเลิกการแก้ไข" buttontext="ยืนยันการแก้ไข"/>
+                </LRBlock>
+            </FooterBlock >
+            <InputBlock>
+            <LRBlock style={{marginRight: "8px"}}>
+                <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {color}>3. รหัสผ่านเข้าสู่ระบบ</Label>
+                <InputBox onChange={this.changeOldPassword} error={!this.state.oldpasswordPass} type="password" label="รหัสผ่านเดิม" placeholder="old-password" color={color} width="400px" height="30px"/>
+            </LRBlock>
+            <LRBlock></LRBlock>
+            </InputBlock>
+            <InputBlock style={{marginTop: "0"}}>
+                <LRBlock >
+                    <InputBox onChange={this.changeNewPassword} correct={this.state.passEqualrepass} error={!this.state.newpasswordPass} type="password" label="รหัสผ่านใหม่" placeholder="new-password" color={color} width="400px" height="30px"/>
+                </LRBlock>
+                <LRBlock >
+                    <InputBox onChange={this.changeRePassword} correct={this.state.passEqualrepass} error={!this.state.repasswordPass} type="password" label="ยืนยันรหัสผ่าน" placeholder="re-password" color={color} width="400px" height="30px"/>
+                </LRBlock>   
+            </InputBlock>
+            <FooterBlock>
+                <LRBlock style={{flexFlow: "row", alignItems: "center"}}></LRBlock>
+                <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
+                    <LinkAndButtonBox onClick="" to="/" color={color} 
+                    height="40px" width="210px" size="18px" sizeLink="18px"
+                    linktext="ยกเลิกการแก้ไขรหัสผ่าน" buttontext="ยืนยันการแก้ไขรหัสผ่าน"/>
+                </LRBlock>
+            </FooterBlock >
+            <InputBlock>
+                <LRBlock style={{marginRight: "8px"}}>
+                    <Label style={{marginBottom: "32px"}} size="24px" weight="800" color= {color}>4. การลบบัญชีผู้ใช้</Label>
+                </LRBlock>
+                <LRBlock ></LRBlock>
+            </InputBlock>
+            <InputBlock style={{marginTop: "0", flexDirection: "column", alignItems: "center"}}>
+                <Label style={{marginBottom: "16px"}} size="24px" weight="bold" color="rgba(220, 68, 68, 0.9)">เมื่อลบบัญชีผู้ใช้แล้วคุณจะไม่สามารถกู้ข้อมูลกลับมาได้อีกไม่ว่ากรณีใด ๆ </Label>
+                <Button style={{marginBottom: "32px"}} onClick="" color="rgba(220, 68, 68, 0.9)" height="50px" width="231px" size="24px">ลบบัญชีผู้ใช้</Button>,
+            </InputBlock>
             <Footer color={color} />
         </InnerWrapper>
         :

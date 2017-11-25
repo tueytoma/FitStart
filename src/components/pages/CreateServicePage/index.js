@@ -58,15 +58,15 @@ class CreateServicePage extends React.Component {
     this.state = {
       serviceName: '',
       serviceDetail: '',
-      serviceProvince: 'ps',
+      serviceProvince: '',
       servicePlace: '',
       serviceMinCost: 0,
       serviceMaxCost: 0,
-      experience: 'ps',
-      serviceType: 'ps',
-      serviceDate:'1996-02-08',
-      serviceStartTime:'00:00',
-      serviceEndTime:'00:00',
+      experience: '',
+      serviceType: '',
+      serviceDate:'',
+      serviceStartTime:'',
+      serviceEndTime:'',
       namePass: true,
       detailPass: true,
       provincePass: true,
@@ -110,7 +110,7 @@ class CreateServicePage extends React.Component {
 
       this.setState({timeDesc: tempTimeDesc})
       this.setState({timeSlotTemp: temptimeSlotTemp})
-      console.log(this.state.timeDesc)
+      // console.log(this.state.timeDesc)
     }
   }
   
@@ -201,12 +201,12 @@ class CreateServicePage extends React.Component {
 
     this.setState({timeDesc: tempTimeDesc})
     this.setState({timeSlotTemp: temptimeSlotTemp})
-    console.log(this.state.timeSlotTemp)
+    // console.log(this.state.timeSlotTemp)
   }
 
 createService = e => {
     let priceString = this.state.serviceMinCost + " - " + this.state.serviceMaxCost
-    console.log(this.state.serviceStartTime)
+    // console.log(this.state.serviceStartTime)
     let data = {
       trainerId : auth.getUser()._id,
       name : this.state.serviceName,
@@ -219,8 +219,8 @@ createService = e => {
       timeSlots : this.state.timeSlotTemp,
 
     }
-    console.log(data)
-    this.validate()
+    
+    this.validate() 
     if(this.state.namePass&&this.state.detailPass&&this.state.provincePass&&this.state.placePass&&this.state.minPass&&this.state.maxPass&&this.state.expPass&&this.state.typePass&&this.state.timePass) {
       api.createService(data)
           .then((res)=>{
@@ -231,12 +231,12 @@ createService = e => {
       }
 }
 
-  validate = (e) => {
+  validate = () => {
     if(this.state.serviceName.length<1||this.state.serviceName.length>300 || !this.checkFormat(this.state.serviceName)) this.setState({namePass:false})
     else this.setState({namePass:true})
     if(this.state.serviceDetail.length<1||this.state.serviceDetail.length>300 || !this.checkFormat(this.state.serviceDetail)) this.setState({detailPass:false})
     else this.setState({detailPass:true})
-    if(this.state.serviceProvince == 'ps') this.setState({provincePass:false})
+    if(this.state.serviceProvince == 'ps' || this.state.serviceProvince == '') this.setState({provincePass:false})
     else this.setState({provincePass:true})
     if(this.state.servicePlace.length<1||this.state.servicePlace.length>20) this.setState({placePass:false})
     else this.setState({placePass:true})
@@ -244,9 +244,9 @@ createService = e => {
     else this.setState({minPass:true})
     if(this.state.serviceMaxCost <= 0 || this.state.serviceMaxCost < this.state.serviceMinCost) this.setState({maxPass:false})
     else this.setState({maxPass:true})
-    if(this.state.serviceType == 'ps') this.setState({typePass:false})
+    if(this.state.serviceType == 'ps' || this.state.serviceType == '') this.setState({typePass:false})
     else this.setState({typePass:true})
-    if(this.state.experience == 'ps') this.setState({expPass:false})
+    if(this.state.experience == 'ps' || this.state.experience == '') this.setState({expPass:false})
     else this.setState({expPass:true})
     if(this.state.slot.length == 0) this.setState({timePass:false})
     else this.setState({timePass: true})

@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
+import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -42,6 +42,10 @@ const LRBlock = styled.div`
 const FooterBlock = styled.div`
     margin: 64px 0 0 0;
     display:flex;
+`
+const ButtonBlock = styled.div`
+    margin: 7px 0 0 0;
+    display: flex;
 `
 
 const queryString = require('query-string');
@@ -109,12 +113,20 @@ class StatusServicePage extends React.Component {
                 <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
             </HeaderBlock>
             <LRBlock>
-                <Label>SHOULD BE BOTTON HERE</Label>
+                <ButtonBlock>
+                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>ถูกละทิ้ง</Button2>
+                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>1. ส่งคำขอ</Button2>
+                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>2. รอชำระค่ามัดจำ</Button2>
+                </ButtonBlock>
+                <ButtonBlock>
+                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>3. อยู่ระหว่างการฝึก</Button2>
+                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>4. รอชำระเงิน</Button2>
+                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                </ButtonBlock>
             </LRBlock>
-            <LRBlock>
                 <Label size ="65px" color="#202020">รายการบริการ</Label>
                 <Label size="36px">รายการที่ 1</Label>
-            </LRBlock>
+                <Label size="36px">รายการที่ 2</Label>
             <Footer color={color} />
         </InnerWrapper>
         :

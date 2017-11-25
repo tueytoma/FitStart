@@ -129,7 +129,7 @@ class HomePage extends React.Component {
               {!auth.isLoggedIn() && <Label size="32px" weight="normal" color="#202020">นี่คือระบบศูนย์รวมเทรนเนอร์ที่มีประสิทธิภาพมากมาย</Label>}
               <SearchBox>
                 <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="370px" height="30px" color={color}/>
-                <Link onClick="" to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
+                <Link to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
                     <SearchIcon opacity="0.5" color="#545454"/>
                 </Link>
                   

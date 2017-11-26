@@ -3,6 +3,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Topbar, Label, Footer, LinkStyle, ServiceBox, TrainerBox} from 'components'
 import { font } from 'styled-theme'
+import queryString from 'query-string'
 
 import { Link} from 'react-router-dom';
 import api from '../../../api'
@@ -58,9 +59,6 @@ const SelectSearchButton = styled.button`
   }
 `
 
-const queryString = require('query-string');
-const parsed = queryString.parse(location.search)
-
 class SearchResultPage extends React.Component {
 
   constructor(props) {
@@ -68,54 +66,62 @@ class SearchResultPage extends React.Component {
     this.state = {
         results: '',
         type: this.props.match.params.type,
-        keyword: parsed['keyword'],
+        keyword: queryString.parse(this.props.location.search)['keyword'],
     };
   }
 
   componentDidMount() {
-    if(this.state.type == 'service' ) {
-        api.getServiceByKeyword(this.state.keyword)
-        .then((res)=>{
-          this.setState({results : res})
-        })
-    } else if(this.state.type == 'trainer' ) {
-        api.getTrainerByName(this.state.keyword)
-        .then((res)=>{
-          this.setState({results : res})
-          console.log(res)
-        })
-    } else {
-        this.props.history.push({pathname: '/search/service', search: "?keyword="})
-        this.props.history.push("/404")
-    }
+    this.getSearchResult()
   }
 
-  Search = e => {
-    // console.log(this.state.results)
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      keyword : queryString.parse(nextProps.location.search)['keyword'],
+      type : nextProps.match.params.type
+    },()=>{
+      this.getSearchResult()
+    })
+  }
+
+  getSearchResult = () => {
+    if(this.state.type == 'service' ) {
+      api.getServiceByKeyword(this.state.keyword)
+      .then((res)=>{
+        this.setState({results : res})
+      })
+    } else if(this.state.type == 'trainer' ) {
+      api.getTrainerByName(this.state.keyword)
+      .then((res)=>{
+        this.setState({results : res})
+      })
+    } else {
+      this.props.history.push({pathname: '/search/service', search: "?keyword="})
+      this.props.history.push("/404")
+    }
   }
 
   SelectServiceClick = e => {
     this.props.history.push({pathname: '/search/service', search: "?keyword=" + this.state.keyword})
-    location.reload();
   }
 
   SelectTrainerClick = e => {
     this.props.history.push({pathname: '/search/trainer', search: "?keyword=" + this.state.keyword})
-    location.reload();
   }
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     var resultFeed = []
-    if(this.state.results.length == 0) 
-    resultFeed.push(<Label key={0} style={{marginTop: "48px"}} size="24px" weight="normal" color="#545454">ไม่ค้นพบสิ่งที่ต้องการในหมวดนี้ ...</Label>)
-   
-    if(this.state.type == 'service' ) {
-        for (var i = 0 ; i < this.state.results.length ; i++)
-        resultFeed.push(<ServiceBox service={this.state.results[i]} key={this.state.results[i]._id}/>)
-    } else {
-        for (var i = 0 ; i < this.state.results.length ; i++)
-        resultFeed.push(<TrainerBox trainer={this.state.results[i]} key={this.state.results[i]._id}/>)
+    if(this.state.results){
+      if(this.state.results.length == 0) 
+      resultFeed.push(<Label key={0} style={{marginTop: "48px"}} size="24px" weight="normal" color="#545454">ไม่ค้นพบสิ่งที่ต้องการในหมวดนี้ ...</Label>)
+    
+      if(this.state.type == 'service' ) {
+          for (var i = 0 ; i < this.state.results.length ; i++)
+          resultFeed.push(<ServiceBox service={this.state.results[i]} key={this.state.results[i]._id}/>)
+      } else {
+          for (var i = 0 ; i < this.state.results.length ; i++)
+          resultFeed.push(<TrainerBox trainer={this.state.results[i]} key={this.state.results[i]._id}/>)
+      }
     }
 
     return (

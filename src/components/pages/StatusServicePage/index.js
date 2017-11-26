@@ -130,7 +130,7 @@ class StatusServicePage extends React.Component {
             {!this.state.failure ?
             <InnerWrapper >
                 <HeaderBlock>
-                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ </Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                 </HeaderBlock>
                 <LRBlock>
                     <ButtonBlock>
@@ -143,8 +143,8 @@ class StatusServicePage extends React.Component {
                     <ButtonBlock>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
                         {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                     </ButtonBlock>
                 </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>

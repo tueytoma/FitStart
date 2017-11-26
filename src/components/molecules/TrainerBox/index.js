@@ -45,16 +45,16 @@ const Rating = styled.div`
 
 class TrainerBox extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-        trainerService: '',
-        ServiceID: '',
-    };
-  }
+    constructor(props) {
+        super(props)
+        this.state = {
+            trainerService: '',
+            ServiceID: '',
+        };
+    }
 
-  componentDidMount() {
-    api.getServiceOfTrainer(this.props.trainer._id)
+    componentWillReceiveProps(nextProps){
+        api.getServiceOfTrainer(nextProps.trainer._id)
         .then((res)=>{
             this.setState({trainerService : res[0].name,
                 ServiceID : res[0]._id
@@ -63,32 +63,32 @@ class TrainerBox extends React.Component {
     }
 
 
-  render() {
-    let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
-    let linkService = `/users/` + this.props.trainer.username + `/` + this.state.ServiceID;
-    let linkTrainer = `/users/` + this.props.trainer.username;
+    render() {
+        let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+        let linkService = `/users/` + this.props.trainer.username + `/` + this.state.ServiceID;
+        let linkTrainer = `/users/` + this.props.trainer.username;
 
-    return (
-      <Wrapper>
-        <TrainerPic />
-        <Result>
-            <LinkStyle2 to={linkTrainer} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
-                เทรนเนอร์ {this.props.trainer.firstName} {this.props.trainer.lastName} 
-            </LinkStyle2>
-            <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">เบอร์โทรศัพท์
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.telephoneNumber}</Label>
-            </Label>
-            <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">เพศ
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{utils.getGenderText(this.props.trainer.gender)}</Label>
-            </Label>
-            <Label size="18px" weight="600" color="#202020">บริการที่เคยสร้างมาล่าสุด
-                <LinkStyle2 to={linkService} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
-                    {this.state.trainerService}
-                </LinkStyle2>
-            </Label>
-        </Result>
-      </Wrapper>
-    )
-  }
+        return (
+            <Wrapper>
+                <TrainerPic />
+                <Result>
+                    <LinkStyle2 to={linkTrainer} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
+                        เทรนเนอร์ {this.props.trainer.firstName} {this.props.trainer.lastName} 
+                    </LinkStyle2>
+                    <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">เบอร์โทรศัพท์
+                        <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.trainer.telephoneNumber}</Label>
+                    </Label>
+                    <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">เพศ
+                        <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{utils.getGenderText(this.props.trainer.gender)}</Label>
+                    </Label>
+                    <Label size="18px" weight="600" color="#202020">บริการที่เคยสร้างมาล่าสุด
+                        <LinkStyle2 to={linkService} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
+                            {this.state.trainerService}
+                        </LinkStyle2>
+                    </Label>
+                </Result>
+            </Wrapper>
+            )
+    }
 }
 export default TrainerBox

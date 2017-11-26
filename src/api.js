@@ -192,6 +192,16 @@ api.editTimeSlotOfService = (serviceId, data) => {
         },api.err)
 }
 
+api.editReservationById = (id, data) => {
+    return Request.patch(config.BACKURL + '/reservations/' + id)
+        .set('x-access-token', auth.getToken() || '')
+        .set('Accept', 'application/json')
+        .send(data)
+        .then(res => {
+            return res.body
+        },api.err)
+}
+
 api.renewPassword = data => {
     return Request.post(config.BACKURL + '/renewPassword')
         .set('x-access-token', auth.getToken() || '')
@@ -215,7 +225,7 @@ api.removeUserById = id => {
 
 api.removeServiceById = id => {
     return Request.delete(config.BACKURL + '/services/' + id)
-        .set('x-access-token', auth.getToken() || '')    
+        .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .then(res => {
             return res.body
@@ -227,6 +237,15 @@ api.removeTimeSlotOfService = (serviceId, data) => {
         .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .send(data)
+        .then(res => {
+            return res.body
+        },api.err)
+}
+
+api.removeReservationById = id => {
+    return Request.delete(config.BACKURL + '/reserations/' + id)
+        .set('x-access-token', auth.getToken() || '')
+        .set('Accept', 'application/json')
         .then(res => {
             return res.body
         },api.err)

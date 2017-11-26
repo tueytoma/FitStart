@@ -82,43 +82,43 @@ api.getTimeSlotOfService = serviceId => {
 }
 
 api.getReviewOfReservation = reservationId => {
-  return Request.get(config.BACKURL + '/reviews/reservation/' + reservationId)
-    .set('Accept', 'application/json')
-    .then(res => {
-      return res.body.reviews
-    })
+    return Request.get(config.BACKURL + '/reviews/reservation/' + reservationId)
+        .set('Accept', 'application/json')
+        .then(res => {
+        return res.body.reviews
+        })
 }
 
 api.getReviewById = reviewId => {
-  return Request.get(config.BACKURL + '/reviews/' + reviewId)
-    .set('Accept', 'application/json')
-    .then(res => {
-      return res.body.reviews
-    })
+    return Request.get(config.BACKURL + '/reviews/' + reviewId)
+        .set('Accept', 'application/json')
+        .then(res => {
+        return res.body.reviews
+        })
 }
 
 api.getReviewByTrainerId = trainerId => {
-  return Request.get(config.BACKURL + '/reviews/trainer/' + trainerId)
-    .set('Accept', 'application/json')
-    .then(res => {
-      return res.body.reviews
-    })
+    return Request.get(config.BACKURL + '/reviews/trainer/' + trainerId)
+        .set('Accept', 'application/json')
+        .then(res => {
+        return res.body.reviews
+        })
 }
 
 api.getReportById = reportId => {
-  return Request.get(config.BACKURL + '/reports/' + reportId)
-    .set('Accept', 'application/json')
-    .then(res => {
-      return res.body.reports
-    })
+    return Request.get(config.BACKURL + '/reports/' + reportId)
+        .set('Accept', 'application/json')
+        .then(res => {
+        return res.body.reports
+        })
 }
 
 api.getReportByTrainerId = trainerId => {
-  return Request.get(config.BACKURL + '/reports/trainer/' + trainerId)
-    .set('Accept', 'application/json')
-    .then(res => {
-      return res.body.reports
-    })
+    return Request.get(config.BACKURL + '/reports/trainer/' + trainerId)
+        .set('Accept', 'application/json')
+        .then(res => {
+        return res.body.reports
+        })
 }
 
 /* CREATION PART */
@@ -149,6 +149,16 @@ api.createTimeSlotOfService = (serviceId, data) => {
 			return res.body
 		},api.err)
 }
+
+api.createReservationOfService = (serviceId, data) => {
+	return Request.post(config.BACKURL + '/reservation/' + serviceId)
+        .set('Accept', 'application/json')
+        .send(data)
+		.then(res => {
+			return res.body
+		},api.err)
+}
+
 
 /* PATCH PART */
 
@@ -205,6 +215,7 @@ api.removeUserById = id => {
 
 api.removeServiceById = id => {
     return Request.delete(config.BACKURL + '/services/' + id)
+        .set('x-access-token', auth.getToken() || '')    
         .set('Accept', 'application/json')
         .then(res => {
             return res.body

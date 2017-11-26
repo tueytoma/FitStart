@@ -128,7 +128,7 @@ class EditProfilePage extends React.Component {
             newPassword : this.state.newPassword,
             verifyPassword : this.state.verifyPassword,
         }
-        if(this.state.passEqualrepass){
+        if(this.state.passEqualrepass && this.validate2()){
             api.renewPassword(data).then(res=>{
                 if(res.success){
                     this.setState({currentPasswordPass : true})
@@ -190,7 +190,7 @@ class EditProfilePage extends React.Component {
 
     checkEnglish = (input) => {
         let check = /^[0-9a-zA-Z]+$/;  
-        if(input.match(check)) return true
+        if(String(input).match(check)) return true
         else return false  
     }
 
@@ -234,8 +234,8 @@ class EditProfilePage extends React.Component {
     validate2 = (e) => {
         var check = 0
 
-        if(this.state.newPasswordPass.length <8 || this.state.newPasswordPass.length >20 || !this.checkEnglish(this.state.newPasswordPass)) {check--; this.setState({currentPasswordPass : false}) }
-        else this.setState({currentPasswordPass : true})
+        if(this.state.newPassword.length <8 || this.state.newPassword.length >20 || !this.checkEnglish(this.state.newPasswordPass)) {check--; this.setState({newPasswordPass : false}) }
+        else this.setState({newPasswordPass : true})
         if(this.state.verifyPassword !== this.state.newPasswordPass) {check--; this.setState({verifyPasswordPass : false}) }
         else this.setState({verifyPasswordPass : true})
 

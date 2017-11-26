@@ -89,6 +89,38 @@ api.getReviewOfReservation = reservationId => {
     })
 }
 
+api.getReviewById = reviewId => {
+  return Request.get(config.BACKURL + '/reviews/' + reviewId)
+    .set('Accdept', 'application/json')
+    .then(res => {
+      return res.body.reviews
+    })
+}
+
+api.getReviewByTrainerId = trainerId => {
+  return Request.get(config.BACKURL + '/reviews/trainer/' + trainerId)
+    .set('Accdept', 'application/json')
+    .then(res => {
+      return res.body.reviews
+    })
+}
+
+api.getReportById = reportId => {
+  return Request.get(config.BACKURL + '/reports/' + reportId)
+    .set('Accdept', 'application/json')
+    .then(res => {
+      return res.body.reports
+    })
+}
+
+api.getReportByTrainerId = trainerId => {
+  return Request.get(config.BACKURL + '/reports/trainer/' + trainerId)
+    .set('Accdept', 'application/json')
+    .then(res => {
+      return res.body.reports
+    })
+}
+
 /* CREATION PART */
 
 api.signup = data => {

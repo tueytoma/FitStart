@@ -181,6 +181,7 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label>STATUS == 1</Label>
+                    <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
         )
@@ -205,6 +206,7 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label>STATUS == 2</Label>
+                    <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
         )
@@ -229,6 +231,7 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label>STATUS == 3</Label>
+                    <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
         )
@@ -253,6 +256,7 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label>STATUS == 4</Label>
+                    <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
         )
@@ -278,6 +282,7 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label>STATUS == 5</Label>
+                    <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
         )

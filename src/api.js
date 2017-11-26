@@ -75,7 +75,7 @@ api.getServiceOfTrainer = trainerId =>{
 
 api.getTimeSlotOfService = serviceId => {
     return Request.get(config.BACKURL + '/timeSlots/service/' + serviceId)
-        .set('Accdept','application/json')
+        .set('Accept','application/json')
         .then(res => {
             return res.body.timeSlots
         })
@@ -83,7 +83,7 @@ api.getTimeSlotOfService = serviceId => {
 
 api.getReviewOfReservation = reservationId => {
   return Request.get(config.BACKURL + '/reviews/reservation/' + reservationId)
-    .set('Accdept', 'application/json')
+    .set('Accept', 'application/json')
     .then(res => {
       return res.body.reviews
     })

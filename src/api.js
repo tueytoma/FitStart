@@ -81,6 +81,14 @@ api.getTimeSlotOfService = serviceId => {
         })
 }
 
+api.getReviewOfReservation = reservationId => {
+  return Request.get(config.BACKURL + '/reviews/reservation/' + reservationId)
+    .set('Accdept', 'application/json')
+    .then(res => {
+      return res.body.reviews
+    })
+}
+
 /* CREATION PART */
 
 api.signup = data => {

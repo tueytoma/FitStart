@@ -56,11 +56,6 @@ class Topbar extends React.Component {
             open: false,
         };
     }
-    
-    Search = e => {
-        location.reload();
-        // this.props.history.push({pathname: '/search/service', search: "?keyword=" + this.state.search})
-    }
 
     changeSearch = e => {
         this.setState({search : e.target.value})
@@ -91,7 +86,7 @@ class Topbar extends React.Component {
                     <Div>
                         <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
                     </Div>
-                    <Link onClick={this.Search} to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
+                    <Link to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
                         <SearchIcon opacity="1" color="#F9FAFC"/>
                     </Link>
                     {auth.isLoggedIn() && auth.isTrainer() && <Div>

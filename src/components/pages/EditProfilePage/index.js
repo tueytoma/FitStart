@@ -236,7 +236,7 @@ class EditProfilePage extends React.Component {
 
         if(this.state.newPassword.length <8 || this.state.newPassword.length >20 || !this.checkEnglish(this.state.newPasswordPass)) {check--; this.setState({newPasswordPass : false}) }
         else this.setState({newPasswordPass : true})
-        if(this.state.verifyPassword !== this.state.newPasswordPass) {check--; this.setState({verifyPasswordPass : false}) }
+        if(this.state.verifyPassword !== this.state.newPassword) {check--; this.setState({verifyPasswordPass : false}) }
         else this.setState({verifyPasswordPass : true})
 
         return check==0

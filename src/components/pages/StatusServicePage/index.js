@@ -135,13 +135,16 @@ class StatusServicePage extends React.Component {
                 <LRBlock>
                     <ButtonBlock>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>
+                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
+                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
+                        {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
+                        {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
                     </ButtonBlock>
                     <ButtonBlock>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>
+                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
                     </ButtonBlock>
                 </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>

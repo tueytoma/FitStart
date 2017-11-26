@@ -64,9 +64,28 @@ class StatusServicePage extends React.Component {
         time: '',
         selectedTime: [],
         failure: false,
+        status:0
     };
   }
 
+    statusZeroSelect = e => {
+        this.setState({status:0})
+    }
+    statusOneSelect = e => {
+        this.setState({status:1})
+    }
+    statusTwoSelect = e => {
+        this.setState({status:2})
+    }
+    statusThreeSelect = e => {
+        this.setState({status:3})
+    }
+    statusFourSelect = e => {
+        this.setState({status:4})
+    }
+    statusFiveSelect = e => {
+        this.setState({status:5})
+    }
   changeCheckbox = e => {
     this.setState({checkboxPass : e.target.value})
   }
@@ -104,42 +123,44 @@ class StatusServicePage extends React.Component {
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+    if(this.state.status == 0)
     return (
-      <Wrapper>
-        <Topbar color={color}/>
-        {!this.state.failure ?
-        <InnerWrapper >
-            <HeaderBlock>
-                <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
-            </HeaderBlock>
-            <LRBlock>
-                <ButtonBlock>
-                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>ถูกละทิ้ง</Button2>
-                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>1. ส่งคำขอ</Button2>
-                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>2. รอชำระค่ามัดจำ</Button2>
-                </ButtonBlock>
-                <ButtonBlock>
-                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>3. อยู่ระหว่างการฝึก</Button2>
-                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>4. รอชำระเงิน</Button2>
-                    <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color}>5. การฝึกเสร็จสมบูรณ์</Button2>
-                </ButtonBlock>
-            </LRBlock>
-                <Label size ="65px" color="#202020">รายการบริการ</Label>
-                <Label size="36px">รายการที่ 1</Label>
-                <Label size="36px">รายการที่ 2</Label>
-            <Footer color={color} />
-        </InnerWrapper>
-        :
-        <InnerWrapper >
-            <HeaderBlock>
-                <Label size="48px" weight="bolder" color="#202020">เกิดข้อผิดพลาด</Label>
-            </HeaderBlock>
-            <Footer color={color} />
-        </InnerWrapper>
-        }
-        
-      </Wrapper>
-    )
+        <Wrapper>
+            <Topbar color={color}/>
+            {!this.state.failure ?
+            <InnerWrapper >
+                <HeaderBlock>
+                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                </HeaderBlock>
+                <LRBlock>
+                    <ButtonBlock>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>
+                    </ButtonBlock>
+                    <ButtonBlock>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                    </ButtonBlock>
+                </LRBlock>
+                    <Label size ="65px" color="#202020">รายการบริการ</Label>
+                    <Label size="36px">รายการที่ 1</Label>
+                    <Label size="36px">รายการที่ 2</Label>
+                <Footer color={color} />
+            </InnerWrapper>
+            :
+            <InnerWrapper >
+                <HeaderBlock>
+                    <Label size="48px" weight="bolder" color="#202020">เกิดข้อผิดพลาด</Label>
+                </HeaderBlock>
+                <Footer color={color} />
+            </InnerWrapper>
+            }
+            
+        </Wrapper>
+        )
+    return (<Wrapper><Label>UNDER CONSTRUCTION</Label></Wrapper>)
   }
 }
 export default StatusServicePage

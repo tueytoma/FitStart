@@ -130,7 +130,7 @@ class StatusServicePage extends React.Component {
             {!this.state.failure ?
             <InnerWrapper >
                 <HeaderBlock>
-                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                 </HeaderBlock>
                 <LRBlock>
                     <ButtonBlock>
@@ -147,9 +147,9 @@ class StatusServicePage extends React.Component {
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                     </ButtonBlock>
                 </LRBlock>
-                    <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <Label size="36px">รายการที่ 1</Label>
-                    <Label size="36px">รายการที่ 2</Label>
+                <Label size ="65px" color="#202020">รายการบริการ</Label>
+                <Label size="36px">รายการที่ 1</Label>
+                <Label size="36px">รายการที่ 2</Label>
                 <Footer color={color} />
             </InnerWrapper>
             :
@@ -169,7 +169,7 @@ class StatusServicePage extends React.Component {
                 <Topbar color={color}/>
                 <InnerWrapper>
                     <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                     </HeaderBlock>
                     <LRBlock>
                         <ButtonBlock>
@@ -197,7 +197,7 @@ class StatusServicePage extends React.Component {
                 <Topbar color={color}/>
                 <InnerWrapper>
                     <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                     </HeaderBlock>
                     <LRBlock>
                         <ButtonBlock>
@@ -225,7 +225,7 @@ class StatusServicePage extends React.Component {
                 <Topbar color={color}/>
                 <InnerWrapper>
                     <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                     </HeaderBlock>
                     <LRBlock>
                         <ButtonBlock>
@@ -253,7 +253,7 @@ class StatusServicePage extends React.Component {
                 <Topbar color={color}/>
                 <InnerWrapper>
                     <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                     </HeaderBlock>
                     <LRBlock>
                         <ButtonBlock>
@@ -282,7 +282,7 @@ class StatusServicePage extends React.Component {
                 <Topbar color={color}/>
                 <InnerWrapper>
                     <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                     </HeaderBlock>
                     <LRBlock>
                         <ButtonBlock>

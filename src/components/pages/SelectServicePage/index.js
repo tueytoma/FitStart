@@ -83,8 +83,8 @@ class SelectServicePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        userName: this.props.match.params.user,
-        serviceID: 1, //change this to this.props.match.params.service after fixing params
+        userName: '',
+        serviceID: this.props.match.params.service,
         service: '',
         results: '',
         trainer: '',
@@ -92,7 +92,7 @@ class SelectServicePage extends React.Component {
         time: '',
         selectedTime: [],
         failure: false,
-        status:1
+        status:this.props.match.params.status,
     };
   }
 

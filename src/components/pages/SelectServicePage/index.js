@@ -154,4 +154,4 @@ class SelectServicePage extends React.Component {
     )
   }
 }
-export default SelectervicePage
+export default SelectServicePage

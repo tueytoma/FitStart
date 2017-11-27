@@ -49,7 +49,6 @@ class ServiceBox2 extends React.Component {
         super(props)
         this.state = {
             trainerName: '',
-            trainerRating: '',
             trainerUsername: '',
         }
     }
@@ -58,8 +57,8 @@ class ServiceBox2 extends React.Component {
         api.getUserById(this.props.service.trainerId)
         .then((res)=>{
             let name = `${res.firstName} ${res.lastName}`
-            this.setState({trainerName : name, 
-                trainerRating : res.rating,
+            this.setState({
+                trainerName : name, 
                 trainerUsername : res.username,
             })
         })

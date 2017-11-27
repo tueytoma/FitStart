@@ -85,7 +85,7 @@ class ServiceBox2 extends React.Component {
                     <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.service.price} บาท</Label>
                 </Label>
                 <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงเวลาที่จอง
-                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservations.timeSlot.length} ช่วงเวลา</Label>
+                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.res[].timeSlot.length} ช่วงเวลา</Label>
                 </Label>
             </Result>
             <CalendarIcon/>

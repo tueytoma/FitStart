@@ -147,7 +147,7 @@ class SelectServicePage extends React.Component {
   }
 
   componentDidMount() {
-    api.getReservationByStatus(this.state.status)
+    /*api.getReservationByStatus(this.state.status)
     .then((res)=>{
       this.setState({results : res})
     })
@@ -158,7 +158,7 @@ class SelectServicePage extends React.Component {
     api.getTimeSlotOfService(this.state.serviceID)
     .then((res3)=>{
         this.setState({time : res3})
-    })
+    })*/
   }
 
   render() {
@@ -208,7 +208,7 @@ class SelectServicePage extends React.Component {
                     <Label style={{ margin: "24px 0 16px 0" }} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
                     <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color} />
                     <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={this.state.service.preferredLocation} color={color} />
-                    <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={timeslot} color={color} />
+                    <DataBox textTitle="วันที่และเวลา" textDetail={timeslot} color={color} />
                     <FooterBlock>
                         <LRBlock style={{ flexFlow: "row", justifyContent: "flex-end" }}>
                             <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.onClick} to="/StatusServicePage" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="แก้ไขคำขอ" height="40px" width="122px" size="18px" sizeLink="18px" />

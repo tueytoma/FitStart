@@ -23,6 +23,7 @@ const TrainerPic = styled.div`
     width: 225.28px;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/user' + props.image + '.jpg'})` : ''}
 `
 
 const ServicePic = styled.div`
@@ -30,6 +31,7 @@ const ServicePic = styled.div`
     width: 306px;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/service' + props.image + '.jpg'})` : ''}
 `
 
 const Result = styled.div`
@@ -51,6 +53,7 @@ class ServiceBox extends React.Component {
             trainerName: '',
             trainerRating: '',
             trainerUsername: '',
+            trainerId: '',
         }
     }
 
@@ -61,6 +64,7 @@ class ServiceBox extends React.Component {
             this.setState({trainerName : name, 
                 trainerRating : res.rating,
                 trainerUsername : res.username,
+                trainerId : res._id
             })
         })
     }
@@ -72,11 +76,10 @@ class ServiceBox extends React.Component {
         starBox.push(<StarIcon key={i} height="24px"/>)
         let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.service._id
         let linkTrainer = `/users/` + this.state.trainerUsername
-
         return (
         <Wrapper>
-            <TrainerPic />
-            <ServicePic />
+            <TrainerPic image={this.state.trainerId} />
+            <ServicePic image={this.props.service._id} />
             <Result>
                 <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                     {this.props.service.name}

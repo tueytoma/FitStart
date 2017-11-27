@@ -23,6 +23,7 @@ const TrainerPic = styled.div`
     width: 225.28px;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/user' + props.image + '.jpg'})` : ''}
 `
 
 const ServicePic = styled.div`
@@ -30,6 +31,7 @@ const ServicePic = styled.div`
     width: 306px;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/service' + props.image + '.jpg'})` : ''}
 `
 
 const Result = styled.div`

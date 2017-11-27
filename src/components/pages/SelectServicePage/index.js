@@ -147,7 +147,7 @@ class SelectServicePage extends React.Component {
   }
 
   componentDidMount() {
-    /*api.getReservationByStatus(this.state.status)
+    api.getReservationByStatus(this.state.status)
     .then((res)=>{
       this.setState({results : res})
     })
@@ -158,7 +158,7 @@ class SelectServicePage extends React.Component {
     api.getTimeSlotOfService(this.state.serviceID)
     .then((res3)=>{
         this.setState({time : res3})
-    })*/
+    })
   }
 
   render() {
@@ -247,7 +247,7 @@ class SelectServicePage extends React.Component {
                 <HeaderBlock>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==3}>1</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==3}>2</Button2>
-                    <Button3 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3. อยู่ระหว่างการฝึก</Button3>
+                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3. อยู่ระหว่างการฝึก</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
@@ -264,7 +264,7 @@ class SelectServicePage extends React.Component {
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==4}>1</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==4}>2</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==4}>3</Button2>
-                    <Button3 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>{textButtonSt4}</Button3>
+                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>{textButtonSt4}</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
                 <Footer color={color} />
@@ -281,7 +281,7 @@ class SelectServicePage extends React.Component {
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==5}>2</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==5}>3</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusFourSelect} selected={this.state.status==5}>4</Button2>
-                    <Button3 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5. การฝึกเสร็จสมบูรณ์</Button3>
+                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5. การฝึกเสร็จสมบูรณ์</Button2>
                 </HeaderBlock>
                 <HeaderBlock>
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แสดงความคิดเห็น</Label>

@@ -180,6 +180,9 @@ class StatusServicePage extends React.Component {
                 <Label size ="65px" color="#202020">รายการบริการ</Label>
                 <Label size="36px">รายการที่ 1</Label>
                 <Label size="36px">รายการที่ 2</Label>
+                <ServiceList>
+                    {resultFeed}
+                </ServiceList>
                 <Footer color={color} />
             </InnerWrapper>
             :
@@ -214,7 +217,6 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <Label>STATUS == 1</Label>
                     <ServiceList>
                         {resultFeed}
                     </ServiceList>
@@ -243,7 +245,9 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                     </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <Label>STATUS == 2</Label>
+                    <ServiceList>
+                        {resultFeed}
+                    </ServiceList>
                     <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
@@ -270,6 +274,9 @@ class StatusServicePage extends React.Component {
                     </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 3</Label>
+                    <ServiceList>
+                        {resultFeed}
+                    </ServiceList>
                     <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
@@ -296,6 +303,9 @@ class StatusServicePage extends React.Component {
                     </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 4</Label>
+                    <ServiceList>
+                        {resultFeed}
+                    </ServiceList>
                     <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
@@ -323,6 +333,9 @@ class StatusServicePage extends React.Component {
                     </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 5</Label>
+                    <ServiceList>
+                        {resultFeed}
+                    </ServiceList>
                     <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>

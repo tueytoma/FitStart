@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
+import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -80,21 +80,27 @@ class StatusServicePage extends React.Component {
 
     statusZeroSelect = e => {
         this.setState({status:0})
+        this.getReservationList(0)
     }
     statusOneSelect = e => {
         this.setState({status:1})
+        this.getReservationList(1)
     }
     statusTwoSelect = e => {
         this.setState({status:2})
+        this.getReservationList(2)
     }
     statusThreeSelect = e => {
         this.setState({status:3})
+        this.getReservationList(3)
     }
     statusFourSelect = e => {
         this.setState({status:4})
+        this.getReservationList(4)
     }
     statusFiveSelect = e => {
         this.setState({status:5})
+        this.getReservationList(5)
     }
   changeCheckbox = e => {
     this.setState({checkboxPass : e.target.value})
@@ -131,8 +137,8 @@ class StatusServicePage extends React.Component {
       }
   }
 
-  componentDidMount() {
-    api.getReservationByStatus(this.state.status)
+  getReservationList = (status) => {
+    api.getReservationByStatus(status)
     .then((res)=>{
       this.setState({results : res})
     })
@@ -147,7 +153,7 @@ class StatusServicePage extends React.Component {
     /*just try*/ 
     var resultFeed = []
     for (var i = 0 ; i < this.state.results.length ; i++)
-        resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
+    resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
     /*just try*/
 
     if(this.state.status == 0)

@@ -298,7 +298,7 @@ class SelectServicePage extends React.Component {
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แสดงความคิดเห็น</Label>
                 </HeaderBlock>
                 <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>
-                <InputBox style={{marginLeft: "0"}}  dropdown label="ให้คะแนนบริการนี้" color={color} width="149px" height="30px" menu={['0','1','2','3','4','5']}/>
+                <Div><Label size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

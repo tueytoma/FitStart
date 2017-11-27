@@ -131,6 +131,10 @@ class StatusServicePage extends React.Component {
       }
   }
 
+    .then((res)=>{
+      this.setState({results : res})
+    })
+
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";
@@ -140,7 +144,7 @@ class StatusServicePage extends React.Component {
     /*just try*/ 
     var resultFeed = []
     for (var i = 0 ; i < this.state.results.length ; i++)
-    if(i < 5) resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
+        resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
     /*just try*/
 
     if(this.state.status == 0)

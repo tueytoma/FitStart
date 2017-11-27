@@ -234,6 +234,54 @@ class SelectServicePage extends React.Component {
             </InnerWrapper>
             </Wrapper>
         )
+    else if(this.state.status == 3)
+        return(
+            <Wrapper>
+            <Topbar color={color}/>
+            <InnerWrapper>
+                <HeaderBlock>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2</Button2>
+                    <Button3 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button3>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5</Button2>
+                </HeaderBlock>
+                <Footer color={color} />
+            </InnerWrapper>
+            </Wrapper>
+        )
+    else if(this.state.status == 4)
+        return(
+            <Wrapper>
+            <Topbar color={color}/>
+            <InnerWrapper>
+                <HeaderBlock>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3</Button2>
+                    <Button3 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button3>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5</Button2>
+                </HeaderBlock>
+                <Footer color={color} />
+            </InnerWrapper>
+            </Wrapper>
+        )
+    else if(this.state.status == 5)
+        return(
+            <Wrapper>
+            <Topbar color={color}/>
+            <InnerWrapper>
+                <HeaderBlock>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3</Button2>
+                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4</Button2>
+                    <Button3 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button3>
+                </HeaderBlock>
+                <Footer color={color} />
+            </InnerWrapper>
+            </Wrapper>
+        )
     else
     return(<Wrapper>
         <Topbar color={color}/>

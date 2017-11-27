@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox2 } from 'components'
+import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox2, Button3 } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -167,7 +167,7 @@ class StatusServicePage extends React.Component {
                 </HeaderBlock>
                 <LRBlock>
                     <ButtonBlock>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
+                        <Button3 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button3>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                     </ButtonBlock>
@@ -207,7 +207,7 @@ class StatusServicePage extends React.Component {
                     <LRBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                            <Button3 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button3>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
@@ -236,7 +236,7 @@ class StatusServicePage extends React.Component {
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
+                            <Button3 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button3>
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
@@ -267,7 +267,7 @@ class StatusServicePage extends React.Component {
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
+                            <Button3 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button3>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
@@ -297,7 +297,7 @@ class StatusServicePage extends React.Component {
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
+                            <Button3 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button3>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
@@ -328,7 +328,7 @@ class StatusServicePage extends React.Component {
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                            <Button3 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button3>
                         </ButtonBlock>
                     </LRBlock>
                     <Label size ="65px" color="#202020">รายการบริการ</Label>

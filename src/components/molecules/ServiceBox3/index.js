@@ -34,6 +34,7 @@ class ServiceBox2 extends React.Component {
             trainerName: '',
             trainerUsername: '',
             serviceName:'',
+            open:false,
         }
     }
 

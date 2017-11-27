@@ -10,7 +10,7 @@ const Button2 = styled.button`
     border: 2px solid ${props => props.disabled ? "#c4c4c4" : props.color}; 
     border-radius: ${props => props.radius};
 
-    background-color: #F9FAFC;
+    background-color: ${props => props.selected ? props.color : "#F9FAFC"};
     height: ${props => props.cancelregis ? "40px" : props.loginpage ? "40px" : props.height};
     width: ${props => props.cancelregis ? "175px" : props.loginpage ? "125px" : props.width};
     margin: 0 8px 0 0;
@@ -21,7 +21,7 @@ const Button2 = styled.button`
     font-weight: 800;
     line-height: normal;
     font-size: ${props => props.cancelregis ? "18px" : props.loginpage ? "16px" : props.size};
-    color: ${props => props.disabled ? "#c4c4c4" : props.color}; 
+    color: ${props => props.disabled ? "#c4c4c4" : props.selected ? "#F9FAFC" : props.color}; 
 
     outline: none;
     cursor: pointer;

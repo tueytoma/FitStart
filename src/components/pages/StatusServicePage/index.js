@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox2 } from 'components'
+import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox2, ServiceBox3 } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -78,30 +78,12 @@ class StatusServicePage extends React.Component {
     };
   }
 
-    statusZeroSelect = e => {
-        this.setState({status:0})
-        this.getReservationList(0)
+    statusClick = (status, e) => {
+        this.setState({status:status})
+        this.getReservationList(status)
+        this.props.history.push('/services/' + status)
     }
-    statusOneSelect = e => {
-        this.setState({status:1})
-        this.getReservationList(1)
-    }
-    statusTwoSelect = e => {
-        this.setState({status:2})
-        this.getReservationList(2)
-    }
-    statusThreeSelect = e => {
-        this.setState({status:3})
-        this.getReservationList(3)
-    }
-    statusFourSelect = e => {
-        this.setState({status:4})
-        this.getReservationList(4)
-    }
-    statusFiveSelect = e => {
-        this.setState({status:5})
-        this.getReservationList(5)
-    }
+
   changeCheckbox = e => {
     this.setState({checkboxPass : e.target.value})
   }
@@ -130,7 +112,7 @@ class StatusServicePage extends React.Component {
         // console.log(id + "== false")
     }
     this.setState({selectedTime : temp})
-}
+    }
   validateUsername = () => {
       if(this.state.userName != this.state.trainer.username){
         this.setState({failure : true})
@@ -144,6 +126,10 @@ class StatusServicePage extends React.Component {
     })
   }
 
+  componentDidMount(){
+      this.getReservationList(this.props.match.params.status)
+  }
+
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";
@@ -152,11 +138,14 @@ class StatusServicePage extends React.Component {
 
     /*just try*/ 
     var resultFeed = []
-    for (var i = 0 ; i < this.state.results.length ; i++)
-    resultFeed.push(<ServiceBox2 service={this.state.results[i]} key={i}/>)
+    for (var i = 0 ; i < this.state.results.length ; i++){
+        if(this.state.status==0 || this.state.status==5)
+             resultFeed.push(<ServiceBox3 reservation={this.state.results[i]} key={i}/>)
+        else
+            resultFeed.push(<ServiceBox2 reservation={this.state.results[i]} key={i}/>)
+    }
     /*just try*/
 
-    if(this.state.status == 0)
     return (
         <Wrapper>
             <Topbar color={color}/>
@@ -167,19 +156,17 @@ class StatusServicePage extends React.Component {
                 </HeaderBlock>
                 <LRBlock>
                     <ButtonBlock>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==0} color = {color} onClick={(e) => this.statusClick(0, e)}>ถูกละทิ้ง</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==1} color = {color} onClick={(e) => this.statusClick(1, e)}>{textButtonSt1}</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==2} color = {color} onClick={(e) => this.statusClick(2, e)}>{textButtonSt2}</Button2>
                     </ButtonBlock>
                     <ButtonBlock>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==3} color = {color} onClick={(e) => this.statusClick(3, e)}>3. อยู่ระหว่างการฝึก</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==4} color = {color} onClick={(e) => this.statusClick(4, e)}>{textButtonSt4}</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==5} color = {color} onClick={(e) => this.statusClick(5, e)}>5. การฝึกเสร็จสมบูรณ์</Button2>
                     </ButtonBlock>
                 </LRBlock>
                 <Label size ="65px" color="#202020">รายการบริการ</Label>
-                <Label size="36px">รายการที่ 1</Label>
-                <Label size="36px">รายการที่ 2</Label>
                 <ServiceList>
                     {resultFeed}
                 </ServiceList>
@@ -196,152 +183,7 @@ class StatusServicePage extends React.Component {
             
         </Wrapper>
         )
-    else if (this.state.status == 1)
-        return (
-            <Wrapper>
-                <Topbar color={color}/>
-                <InnerWrapper>
-                    <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
-                    </HeaderBlock>
-                    <LRBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
-                        </ButtonBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
-                        </ButtonBlock>
-                    </LRBlock>
-                    <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <ServiceList>
-                        {resultFeed}
-                    </ServiceList>
-                    <Footer color={color} />
-                </InnerWrapper>
-            </Wrapper>
-        )
-    else if (this.state.status == 2)
-        return (
-            <Wrapper>
-                <Topbar color={color}/>
-                <InnerWrapper>
-                    <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
-                    </HeaderBlock>
-                    <LRBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
-                        </ButtonBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
-                        </ButtonBlock>
-                    </LRBlock>
-                    <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <ServiceList>
-                        {resultFeed}
-                    </ServiceList>
-                    <Footer color={color} />
-                </InnerWrapper>
-            </Wrapper>
-        )
-    else if (this.state.status == 3)
-        return (
-            <Wrapper>
-                <Topbar color={color}/>
-                <InnerWrapper>
-                    <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
-                    </HeaderBlock>
-                    <LRBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
-                        </ButtonBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
-                        </ButtonBlock>
-                    </LRBlock>
-                    <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <Label>STATUS == 3</Label>
-                    <ServiceList>
-                        {resultFeed}
-                    </ServiceList>
-                    <Footer color={color} />
-                </InnerWrapper>
-            </Wrapper>
-        )
-    else if (this.state.status == 4)
-        return (
-            <Wrapper>
-                <Topbar color={color}/>
-                <InnerWrapper>
-                    <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
-                    </HeaderBlock>
-                    <LRBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
-                        </ButtonBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
-                        </ButtonBlock>
-                    </LRBlock>
-                    <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <Label>STATUS == 4</Label>
-                    <ServiceList>
-                        {resultFeed}
-                    </ServiceList>
-                    <Footer color={color} />
-                </InnerWrapper>
-            </Wrapper>
-        )
-    else if (this.state.status == 5)
-        return (
-            <Wrapper>
-                
-                <Topbar color={color}/>
-                <InnerWrapper>
-                    <HeaderBlock>
-                        <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
-                    </HeaderBlock>
-                    <LRBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
-                        </ButtonBlock>
-                        <ButtonBlock>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
-                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
-                        </ButtonBlock>
-                    </LRBlock>
-                    <Label size ="65px" color="#202020">รายการบริการ</Label>
-                    <Label>STATUS == 5</Label>
-                    <ServiceList>
-                        {resultFeed}
-                    </ServiceList>
-                    <Footer color={color} />
-                </InnerWrapper>
-            </Wrapper>
-        )
 
-    return (<Wrapper><Label>UNDER CONSTRUCTION</Label></Wrapper>)
   }
 }
 export default StatusServicePage

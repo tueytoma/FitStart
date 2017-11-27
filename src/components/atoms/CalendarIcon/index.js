@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class QuestionIcon extends React.Component {
+export default class CalendarIcon extends React.Component {
 
     constructor(props) {
         super(props)

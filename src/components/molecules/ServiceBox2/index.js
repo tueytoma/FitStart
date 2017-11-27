@@ -1,10 +1,11 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon } from 'components'
+import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon, EditSuccessIcon, Button, CheckBoxAndLabel} from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
+import Dialog from 'material-ui/Dialog';
 
 const Wrapper = styled.div`
     background-color: #F9FAFC;
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     padding: 24px 0 24px 0;
+    justify-content:space-between;
 
     &:hover {
       background-color: #F0f0f0;
@@ -53,6 +55,9 @@ class ServiceBox2 extends React.Component {
             trainerUsername: '',
             price:'',
             serviceName:'',
+            open:false,
+            open2:false,
+            timeSlots:'',
         }
     }
 
@@ -72,10 +77,43 @@ class ServiceBox2 extends React.Component {
                 serviceName : res.name
             })
         })
+        api.getTimeSlotOfService(this.props.reservation.serviceId)
+        .then(res=>{
+            console.log(res)
+            this.setState({
+                timeSlots : res,
+            })
+        })
     }
 
-    seeTimeSlots = e => {
-        alert('hi')
+    payment = e => {
+        alert('Payment Page')
+    }
+
+    editReservation = e =>{
+        alert('Edit Reservation Page')
+        this.setState({open : false})
+    }
+
+    removeReservation = e =>{
+        alert('Remove Reservation api')
+        this.setState({open2 : false})
+    }
+
+    handleOpen = e =>{
+        this.setState({open : true})
+    }
+
+    handleOpen2 = e =>{
+        this.setState({open2 : true})
+    }
+
+    handleClose = e =>{
+        this.setState({open : false})
+    }
+
+    handleClose2 = e =>{
+        this.setState({open2 : false})
     }
 
     render() {
@@ -83,31 +121,69 @@ class ServiceBox2 extends React.Component {
         let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.reservation._id
         let linkTrainer = `/users/` + this.state.trainerUsername
 
+        const actions = [
+            <Button style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
+        ];
+
+        const actions2 = [
+            <Button style={{marginBottom: "32px"}} onClick={this.removeReservation} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
+        ];
+
+        var timeItems = []
+        for (var i = 0 ; i < this.state.timeSlots.length ; i++) {
+            timeItems.push(<CheckBoxAndLabel isChecked={this.props.reservation.timeSlot.includes(this.state.timeSlots[i]._id)} key={this.state.timeSlots[i]._id} onValue={this.onValue} id={this.state.timeSlots[i]._id} disabled={color != "#F05939"} time={this.state.timeSlots[i]} color={"#F9FAFC"}/>)
+        }
+
         return (
         <Wrapper>
-            <ServicePic image={this.props.reservation._id} />
-            <Result>
-                <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
-                    {this.state.serviceName}
-                </LinkStyle2>
-                <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
-                <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
-                    เทรนเนอร์ {this.state.trainerName}
-                </LinkStyle2>
-                </Label>
-                <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
-                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservation.price ? this.props.reservation.price : this.state.price} บาท</Label>
-                </Label>
-                <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงเวลาที่จอง
-                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservation.timeSlot.length} ช่วงเวลา</Label>
-                </Label>
-            </Result>
-
             <Result2>
-                {(this.props.reservation.status==2 || this.props.reservation.status==4) && <div onClick={this.seeTimeSlots}><BahtIcon width="91.5px" height="39px"/> </div>}
-                {(this.props.reservation.status!=4) && <div onClick={this.seeTimeSlots}><CalendarIcon width="91.5px" height="39px"/> </div>}
-                {(this.props.reservation.status==1|| this.props.reservation.status==2) && <div onClick={this.seeTimeSlots}><TrashIcon width="91.5px" height="39px"/> </div>}
+                <ServicePic image={this.props.reservation._id} />
+                <Result>
+                    <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
+                        {this.state.serviceName}
+                    </LinkStyle2>
+                    <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
+                    <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
+                        เทรนเนอร์ {this.state.trainerName}
+                    </LinkStyle2>
+                    </Label>
+                    <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
+                        <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservation.price ? this.props.reservation.price : this.state.price} บาท</Label>
+                    </Label>
+                    <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงเวลาที่จอง
+                        <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservation.timeSlot.length} ช่วงเวลา</Label>
+                    </Label>
+                </Result>
             </Result2>
+
+            <Result2 style={{margin: "0 100px 0 0"}}>
+                {(this.props.reservation.status==2 || this.props.reservation.status==4) && <div onClick={this.payment}><BahtIcon width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status!=4) && <div onClick={this.handleOpen}><CalendarIcon width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status==1|| this.props.reservation.status==2) && <div onClick={this.handleOpen2}><TrashIcon width="91.5px" height="39px"/> </div>}
+            </Result2>
+            <Dialog
+                actions={this.props.reservation.status==1 && actions}
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.handleClose}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">
+                    {this.props.reservation.status==1 ? 'รายการส่งคำขอ' : 'สรุปคำขอ'}
+                </Label>
+                {timeItems}
+            </Dialog>
+            <Dialog
+                actions={actions2}
+                modal={false}
+                open={this.state.open2}
+                onRequestClose={this.handleClose2}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการลบการจองนี้ ?</Label>
+            </Dialog>
         </Wrapper>
         )
     }

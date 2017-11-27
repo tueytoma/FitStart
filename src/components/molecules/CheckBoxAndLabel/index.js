@@ -22,7 +22,7 @@ class CheckBoxAndLabel extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        checkboxPass: '',
+        checkboxPass: this.props.isChecked ? this.props.isChecked : '',
     }
 
   }

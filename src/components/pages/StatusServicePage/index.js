@@ -36,7 +36,7 @@ const HeaderBlock = styled.div`
 const LRBlock = styled.div`
     display:flex;
     flex-flow: column;
-    flex: 1;
+    align-items: center;
 `
 
 const FooterBlock = styled.div`
@@ -167,7 +167,7 @@ class StatusServicePage extends React.Component {
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" selected={this.state.status==5} color = {color} onClick={(e) => this.statusClick(5, e)}>5. การฝึกเสร็จสมบูรณ์</Button2>
                     </ButtonBlock>
                 </LRBlock>
-                <Label size ="65px" color="#202020">รายการบริการ</Label>
+                <Label size ="65px" color="#202020">รายการการจอง</Label>
                 <ServiceList>
                     {resultFeed}
                 </ServiceList>

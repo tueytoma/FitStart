@@ -17,7 +17,8 @@ import { HomePage,
   EditProfilePage,
   StatusServicePage,
   EditServiceListPage,
-  EditServicePage } from 'components'
+  EditServicePage,
+  SelectServicePage } from 'components'
 import { withCookies, Cookies } from 'react-cookie'
 import PropTypes, { instanceOf } from 'prop-types'
 
@@ -60,6 +61,7 @@ class App extends React.Component{
           <Route path="/newpassword/:token" component={NewPasswordPage} exact/>
           <Route path="/search/:type" component={SearchResultPage} exact/>
 
+          <Route path="/SelectServicePage" component={SelectServicePage} exact/>
           <Route path="/serviceedit/:service" component={NotFoundPage} exact/>
           <Route path="/servicewarning" component={NotFoundPage} exact/>
           <Route path="/servicesuccess" component={NotFoundPage} exact/>

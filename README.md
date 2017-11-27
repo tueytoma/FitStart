@@ -135,8 +135,9 @@ localhost:3000
 * `Demo Atomic Design` https://github.com/diegohaz/arc
 
 ### Back-End
-* `MongoDB` 
-
+* `Express` https://expressjs.com/en/4x/api.html
+* `MongoDB` https://docs.mongodb.com/v3.4/
+* `Mongoose` http://mongoosejs.com/docs/
 
 ## License
 

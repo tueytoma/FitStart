@@ -40,7 +40,6 @@ const Result = styled.div`
 `
 
 const Result2 = styled.div`
-    width: 15vw;
     display:flex;
     align-items:center;
 `

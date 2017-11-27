@@ -127,6 +127,7 @@ class StatusServicePage extends React.Component {
   }
 
   componentDidMount(){
+      this.setState({status : this.props.match.params.status})
       this.getReservationList(this.props.match.params.status)
   }
 

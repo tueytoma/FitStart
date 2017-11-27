@@ -211,7 +211,7 @@ class SelectServicePage extends React.Component {
                     <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={timeslot} color={color} />
                     <FooterBlock>
                         <LRBlock style={{ flexFlow: "row", justifyContent: "flex-end" }}>
-                            <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.onClick} to="/StatusServicePage" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px" />
+                            <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.onClick} to="/StatusServicePage" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="แก้ไขคำขอ" height="40px" width="122px" size="18px" sizeLink="18px" />
                         </LRBlock>
                     </FooterBlock >
                     <Footer color={color} />

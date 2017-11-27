@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Label, LinkStyle2 } from 'components'
+import { Label, LinkStyle2, CalendarIcon } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -43,7 +43,7 @@ const Rating = styled.div`
     align-items: center;
 `
 
-class ServiceBox extends React.Component {
+class ServiceBox2 extends React.Component {
 
     constructor(props) {
         super(props)
@@ -89,9 +89,9 @@ class ServiceBox extends React.Component {
                     <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservation.timeSlot.lenght} ช่วงเวลา</Label>
                 </Label>
             </Result>
-            <Label>SHOULD BE ICON</Label>
+            <CalendarIcon/>
         </Wrapper>
         )
     }
 }
-export default ServiceBox
+export default ServiceBox2

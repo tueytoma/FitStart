@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
     &:hover {
       background-color: #F0f0f0;
+    }
 `
 
 const TrainerPic = styled.div`
@@ -52,11 +53,6 @@ class ServiceBox extends React.Component {
         trainerUsername: '',
     };
   }
-
-  componentDidMount() {
-
-
-    }
 
     componentWillReceiveProps(nextProps){
         api.getUserById(nextProps.service.trainerId)

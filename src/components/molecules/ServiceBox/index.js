@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 
     &:hover {
       background-color: #F0f0f0;
+    }
 `
 
 const TrainerPic = styled.div`
@@ -44,63 +45,57 @@ const Rating = styled.div`
 
 class ServiceBox extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-        trainerName: '',
-        trainerRating: '',
-        trainerUsername: '',
-    };
-  }
-
-  componentDidMount() {
-
-
+    constructor(props) {
+        super(props)
+        this.state = {
+            trainerName: '',
+            trainerRating: '',
+            trainerUsername: '',
+        }
     }
 
-    componentWillReceiveProps(nextProps){
-        api.getUserById(nextProps.service.trainerId)
+    componentDidMount() {
+        api.getUserById(this.props.service.trainerId)
         .then((res)=>{
             let name = `${res.firstName} ${res.lastName}`
             this.setState({trainerName : name, 
                 trainerRating : res.rating,
                 trainerUsername : res.username,
-             })
+            })
         })
     }
 
+    render() {
+        let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+        var starBox = []
+        for (var i = 0 ; i < this.state.trainerRating ; i++)
+        starBox.push(<StarIcon key={i} height="24px"/>)
+        let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.service._id
+        let linkTrainer = `/users/` + this.state.trainerUsername
 
-  render() {
-    let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
-    var starBox = []
-    for (var i = 0 ; i < this.state.trainerRating ; i++)
-    starBox.push(<StarIcon key={i} height="24px"/>)
-    let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.service._id;
-    let linkTrainer = `/users/` + this.state.trainerUsername;
-
-    return (
-      <Wrapper>
-        <TrainerPic />
-        <ServicePic />
-        <Result>
-            <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
-                {this.props.service.name}
-            </LinkStyle2>
-            <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
-            <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
-                เทรนเนอร์ {this.state.trainerName}
-            </LinkStyle2>
-            </Label>
-            <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
-                <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.service.price} บาท</Label>
-            </Label>
-            <Rating>
-                <Label style={{margin: "0 16px 0 0"}} size="18px" weight="600" color="#202020">คะแนน</Label>
-            {starBox}
-            </Rating>
-        </Result>
-      </Wrapper>
-    )
-  }
+        return (
+        <Wrapper>
+            <TrainerPic />
+            <ServicePic />
+            <Result>
+                <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
+                    {this.props.service.name}
+                </LinkStyle2>
+                <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
+                <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
+                    เทรนเนอร์ {this.state.trainerName}
+                </LinkStyle2>
+                </Label>
+                <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
+                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.service.price} บาท</Label>
+                </Label>
+                <Rating>
+                    <Label style={{margin: "0 16px 0 0"}} size="18px" weight="600" color="#202020">คะแนน</Label>
+                {starBox}
+                </Rating>
+            </Result>
+        </Wrapper>
+        )
+    }
 }
 export default ServiceBox

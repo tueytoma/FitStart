@@ -74,13 +74,9 @@ class SelectServicePage extends React.Component {
         time: '',
         selectedTime: [],
         failure: false,
-        status:0
+        status:1
     };
   }
-
-    statusZeroSelect = e => {
-        this.setState({status:0})
-    }
     statusOneSelect = e => {
         this.setState({status:1})
     }
@@ -144,14 +140,32 @@ class SelectServicePage extends React.Component {
     let textButtonSt2 = auth.isTrainee() ? "2. รอชำระค่ามัดจำ" : auth.isTrainer() ? "2. ผลชำระค่ามัดจำ" : "";
     let textButtonSt4 = auth.isTrainee() ? "4. รอชำระเงิน" : auth.isTrainer() ? "4. ผลชำระเงิน" : "";
 
-    return(
-        <Wrapper>
-            <Topbar color={color}/>
-            <InnerWrapper>
-                <Footer color={color}/>
-            </InnerWrapper>
-        </Wrapper>
-    )
+    if(this.state.status == 1)
+        return(
+            <Wrapper>
+                <Topbar color={color}/>
+                <InnerWrapper>
+                    <HeaderBlock>
+                        <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2</Button2>
+                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3</Button2>
+                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4</Button2>
+                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5</Button2>
+                    </HeaderBlock>
+                    <Footer color={color}/>
+                </InnerWrapper>
+            </Wrapper>
+        )
+    else
+    return(<Wrapper>
+        <Topbar color={color}/>
+        <InnerWrapper>
+            <HeaderBlock>
+                <Label>UNDER CONSTRCUCTION</Label>
+            </HeaderBlock>
+            <Footer color={color}/>
+        </InnerWrapper>
+    </Wrapper>)
   }
 }
 export default SelectServicePage

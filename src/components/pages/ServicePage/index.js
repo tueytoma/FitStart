@@ -177,7 +177,7 @@ class ServicePage extends React.Component {
             <Label style={{margin: "24px 0 16px 0"}} size="32px" weight="bolder" color="#202020">3. สถานที่และวันเวลาของบริการ</Label>
             <DataBox textTitle="จังหวัด" textDetail={this.state.service.province} color={color}/>
             <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={this.state.service.preferredLocation} color={color}/>
-            <DataBox textTitle="บริเวณที่ให้บริการ" textDetail={timeslot} color={color}/> 
+            <DataBox textTitle="วันที่และเวลา" textDetail={timeslot} color={color}/> 
             <FooterBlock>
                 <LRBlock style={{flexFlow: "row", alignItems: "center"}}>
                     {auth.isLoggedIn() && auth.isTrainee() && <Checkbox checked={this.state.checkboxPass} onClick={this.toggleIsChecked}/> }

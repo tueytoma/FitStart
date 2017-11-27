@@ -46,12 +46,14 @@ const TrainerPic = styled.div`
     width: 56.32vh;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/user' + props.image + '.jpg'})` : ''}
 `
 
 const ServicePic = styled.div`
     height: 40vh;
     width: 76.5vh;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/service' + props.image + '.jpg'})` : ''}
 `
 
 const LRBlock = styled.div`
@@ -159,8 +161,8 @@ class ServicePage extends React.Component {
                 {starBox}
             </HeaderBlock>
             <PicBlock>
-                <TrainerPic />
-                <ServicePic />
+                <TrainerPic image={this.state.trainer._id} />
+                <ServicePic image={this.state.service._id}/>
             </PicBlock>
             <Label style={{marginBottom: "16px"}} size="32px" weight="bolder" color="#202020">1. ข้อมูลบริการ</Label>
             <DataBox textTitle="ชื่อบริการ" textDetail={this.state.service.name} color={color}/>

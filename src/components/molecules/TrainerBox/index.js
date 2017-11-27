@@ -23,13 +23,7 @@ const TrainerPic = styled.div`
     width: 225.28px;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
-`
-
-const ServicePic = styled.div`
-    height: 160px;
-    width: 306px;
-    margin: 0 24px 0 0;
-    background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/user' + props.image + '.jpg'})` : ''}
 `
 
 const Result = styled.div`
@@ -69,7 +63,7 @@ class TrainerBox extends React.Component {
 
         return (
             <Wrapper>
-                <TrainerPic />
+                <TrainerPic image={this.props.trainer._id} />
                 <Result>
                     <LinkStyle2 to={linkTrainer} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                         เทรนเนอร์ {this.props.trainer.firstName} {this.props.trainer.lastName} 

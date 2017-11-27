@@ -46,12 +46,7 @@ const TrainerPic = styled.div`
     width: 56.32vh;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
-`
-
-const ServicePic = styled.div`
-    height: 40vh;
-    width: 76.5vh;
-    background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/user' + props.image + '.jpg'})` : ''}
 `
 
 const LRBlock = styled.div`
@@ -116,7 +111,7 @@ class UserPage extends React.Component {
                 {starBox}
             </HeaderBlock>
             <PicBlock>
-                <TrainerPic />
+                <TrainerPic image={this.state.trainer._id} />
             </PicBlock>
             <DataBox style={{marginBottom: "16px"}} textTitle="ชื่อผู้งาน" textDetail={this.state.trainer.username} color={color}/>
             <DataBox styled={{marginTop: "16px"}} textTitle="ชื่อจริง" textDetail={this.state.trainer.firstName}  color={color}/>

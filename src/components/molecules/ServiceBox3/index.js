@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Label, LinkStyle, LinkStyle2, CalendarIcon } from 'components'
+import { Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -72,7 +72,7 @@ class ServiceBox2 extends React.Component {
             </LinkStyle2>
             </Label>
             </Result>
-            <div onClick={this.seeTimeSlots}><CalendarIcon/></div>
+            <div onClick={this.seeTimeSlots}><TrashIcon/></div>
         </Wrapper>
         )
     }

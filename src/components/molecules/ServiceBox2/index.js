@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Label, LinkStyle, LinkStyle2, CalendarIcon } from 'components'
+import { Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -39,7 +39,7 @@ const Result = styled.div`
     flex-direction: column;
 `
 
-const Rating = styled.div`
+const Result2 = styled.div`
     display:flex;
     flex-direction; row;
     align-items: center;
@@ -103,7 +103,13 @@ class ServiceBox2 extends React.Component {
                     <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.reservation.timeSlot.length} ช่วงเวลา</Label>
                 </Label>
             </Result>
-            <div onClick={this.seeTimeSlots}><CalendarIcon/></div>
+
+                
+            <Result2>
+                <div onClick={this.seeTimeSlots}><BahtIcon/></div>
+                <div onClick={this.seeTimeSlots}><CalendarIcon/></div>
+                <div onClick={this.seeTimeSlots}><TrashIcon/></div>
+            </Result2>
         </Wrapper>
         )
     }

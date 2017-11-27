@@ -97,11 +97,6 @@ class ServiceBox2 extends React.Component {
         alert('Payment Page')
     }
 
-    editReservation = e =>{
-        alert('Edit Reservation Page')
-        this.setState({open : false})
-    }
-
     removeReservation = e =>{
         api.removeReservationById(this.props.reservation._id)
         .then(res=>{
@@ -132,7 +127,9 @@ class ServiceBox2 extends React.Component {
         let linkTrainer = `/users/` + this.state.trainerUsername
 
         const actions = [
-            <Button style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
+            <Link onClick={this.handleClose} to={'/services/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
+                <Button style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
+            </Link>
         ];
 
         const actions2 = [

@@ -97,19 +97,34 @@ class SelectServicePage extends React.Component {
   }
 
     statusOneSelect = e => {
-        this.setState({status:1})
+        if(this.state.results.status >= 1){
+            this.setState({status:1})
+            this.props.history.push('/services/' + this.props.match.params.service + '/' + 1)
+        }
     }
     statusTwoSelect = e => {
-        this.setState({status:2})
+        if(this.state.results.status >= 2){
+            this.setState({status:2})
+            this.props.history.push('/services/' + this.props.match.params.service + '/' + 2)
+        }
     }
     statusThreeSelect = e => {
-        this.setState({status:3})
+        if(this.state.results.status >= 3){
+            this.setState({status:3})
+            this.props.history.push('/services/' + this.props.match.params.service + '/' + 3)
+            }
     }
     statusFourSelect = e => {
-        this.setState({status:4})
+        if(this.state.results.status >= 4){
+            this.setState({status:4})
+            this.props.history.push('/services/' + this.props.match.params.service + '/' + 4)
+            }
     }
     statusFiveSelect = e => {
-        this.setState({status:5})
+        if(this.state.results.status >= 5){
+            this.setState({status:5})
+            this.props.history.push('/services/' + this.props.match.params.service + '/' + 5)
+        }
     }
   changeCheckbox = e => {
     this.setState({checkboxPass : e.target.value})

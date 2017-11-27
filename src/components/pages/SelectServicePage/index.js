@@ -147,7 +147,7 @@ class SelectServicePage extends React.Component {
   }
 
   componentDidMount() {
-    api.getReservationByStatus(this.state.status)
+    /*api.getReservationByStatus(this.state.status)
     .then((res)=>{
       this.setState({results : res})
     })
@@ -158,7 +158,7 @@ class SelectServicePage extends React.Component {
     api.getTimeSlotOfService(this.state.serviceID)
     .then((res3)=>{
         this.setState({time : res3})
-    })
+    })*/
   }
 
   render() {

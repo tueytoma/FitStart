@@ -261,7 +261,7 @@ api.removeTimeSlotOfService = (serviceId, data) => {
 }
 
 api.removeReservationById = id => {
-    return Request.delete(config.BACKURL + '/reserations/' + id)
+    return Request.delete(config.BACKURL + '/reservations/' + id)
         .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .then(res => {

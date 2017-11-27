@@ -103,7 +103,10 @@ class ServiceBox2 extends React.Component {
     }
 
     removeReservation = e =>{
-        alert('Remove Reservation api')
+        api.removeReservationById(this.props.reservation._id)
+        .then(res=>{
+            setTimeout(()=>location.reload(),300);
+        })
         this.setState({open2 : false})
     }
 

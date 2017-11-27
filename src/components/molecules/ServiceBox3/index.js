@@ -39,6 +39,14 @@ class ServiceBox2 extends React.Component {
     }
 
     componentDidMount() {
+        this.getData()
+    }
+
+    componentWillReceiveProps(){
+        this.getData()
+    }
+
+    getData = () => {
         api.getUserById(this.props.reservation.trainerId)
         .then((res)=>{
             let name = `${res.firstName} ${res.lastName}`
@@ -46,11 +54,11 @@ class ServiceBox2 extends React.Component {
                 trainerName : name, 
                 trainerUsername : res.username,
             })
-        })
-        api.getServiceById(this.props.reservation._id)
-        .then((res)=>{
-            this.setState({
-                serviceName : res.name,
+            api.getServiceById(this.props.reservation._id)
+            .then((res)=>{
+                this.setState({
+                    serviceName : res.name,
+                })
             })
         })
     }

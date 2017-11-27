@@ -128,7 +128,7 @@ class ServiceBox2 extends React.Component {
 
         const actions = [
             <Link onClick={this.handleClose} to={'/services/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
-                <Button style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
+                <Button dark style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
             </Link>
         ];
 

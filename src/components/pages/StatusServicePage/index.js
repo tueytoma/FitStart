@@ -123,6 +123,10 @@ class StatusServicePage extends React.Component {
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
+    let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";
+    let textButtonSt2 = auth.isTrainee() ? "2. รอชำระค่ามัดจำ" : auth.isTrainer() ? "2. ผลชำระค่ามัดจำ" : "";
+    let textButtonSt4 = auth.isTrainee() ? "4. รอชำระเงิน" : auth.isTrainer() ? "4. ผลชำระเงิน" : "";
+
     if(this.state.status == 0)
     return (
         <Wrapper>
@@ -135,15 +139,12 @@ class StatusServicePage extends React.Component {
                 <LRBlock>
                     <ButtonBlock>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
-                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
-                        {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
-                        {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                     </ButtonBlock>
                     <ButtonBlock>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                        {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                        {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                         <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                     </ButtonBlock>
                 </LRBlock>
@@ -173,19 +174,17 @@ class StatusServicePage extends React.Component {
                     </HeaderBlock>
                     <LRBlock>
                         <ButtonBlock>
-                        <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
+
                     <Label>STATUS == 1</Label>
                     <Footer color={color} />
                 </InnerWrapper>
@@ -202,15 +201,12 @@ class StatusServicePage extends React.Component {
                     <LRBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
@@ -230,15 +226,12 @@ class StatusServicePage extends React.Component {
                     <LRBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
@@ -258,15 +251,12 @@ class StatusServicePage extends React.Component {
                     <LRBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
@@ -287,15 +277,12 @@ class StatusServicePage extends React.Component {
                     <LRBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusZeroSelect}>ถูกละทิ้ง</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ส่งคำขอ</Button2>}
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. รอชำระค่ามัดจำ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>1. ตรวจสอบคำขอ</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>2. ผลชำระค่ามัดจำ</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect}>{textButtonSt1}</Button2>
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect}>{textButtonSt2}</Button2>
                         </ButtonBlock>
                         <ButtonBlock>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect}>3. อยู่ระหว่างการฝึก</Button2>
-                            {auth.isTrainee() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. รอชำระเงิน</Button2>}
-                            {auth.isTrainer() && <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4. ผลชำระเงิน</Button2>}
+                            <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>{textButtonSt4}</Button2>
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>

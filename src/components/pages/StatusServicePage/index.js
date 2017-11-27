@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox } from 'components'
+import { Topbar, Footer, Label, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, ServiceBox2 } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -153,7 +153,7 @@ class StatusServicePage extends React.Component {
     /*just try*/ 
     var resultFeed = []
     for (var i = 0 ; i < this.state.results.length ; i++)
-    resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
+    resultFeed.push(<ServiceBox2 service={this.state.results[i]} key={i}/>)
     /*just try*/
 
     if(this.state.status == 0)

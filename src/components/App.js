@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import { Switch, Route } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 import { HomePage, 
@@ -38,8 +39,13 @@ class App extends React.Component{
   
   componentWillMount() {
 		global.cookies = this.props.cookies
-	}
-
+  }
+  
+  componentWillReceiveProps(nextProps){
+    if (nextProps.location.pathname != this.props.location.pathname) {
+      window.scrollTo(0,0)
+		}
+  }
 
   render() {
     return (
@@ -76,4 +82,4 @@ class App extends React.Component{
 }
 
 
-export default withCookies(App)
+export default withRouter(withCookies(App))

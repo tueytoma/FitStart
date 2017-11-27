@@ -100,7 +100,6 @@ class ServicePage extends React.Component {
         api.getTimeSlotOfService(this.state.serviceID)
         .then((res3)=>{
             this.setState({time : res3})
-            console.log(this.state.time)
         })
     })
   }

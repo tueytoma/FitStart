@@ -53,15 +53,14 @@ class TrainerBox extends React.Component {
         };
     }
 
-    componentWillReceiveProps(nextProps){
-        api.getServiceOfTrainer(nextProps.trainer._id)
+    componentDidMount(){
+        api.getServiceOfTrainer(this.props.trainer._id)
         .then((res)=>{
             this.setState({trainerService : res[0].name,
                 ServiceID : res[0]._id
             })
         })
     }
-
 
     render() {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";

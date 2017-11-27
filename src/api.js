@@ -81,6 +81,32 @@ api.getTimeSlotOfService = serviceId => {
         })
 }
 
+api.getReservationById = reservationId => {
+    return Request.get(config.BACKURL + '/reservations/' + reservationId)
+        .set('Accept','application/json')
+        .then(res => {
+            return res.body.reservation
+        })
+}
+
+api.getReservationOfTrainerId = (status, trainerId) => {
+    return Request.get(config.BACKURL + '/reservations/trainer/' + trainerId)
+        .set('Accept','application/json')
+        .query({status : status})
+        .then(res=>{
+            return res.body.reservations
+        })
+}
+
+api.getReservationOfTraineeId = (status, traineeId) => {
+    return Request.get(config.BACKURL + '/reservations/trainee/' + traineeId)
+        .set('Accept','application/json')
+        .query({status : status})
+        .then(res=>{
+            return res.body.reservations
+        })
+}
+
 api.getReviewOfReservation = reservationId => {
     return Request.get(config.BACKURL + '/reviews/reservation/' + reservationId)
         .set('Accept', 'application/json')

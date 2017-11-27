@@ -87,7 +87,6 @@ class UserPage extends React.Component {
         api.getServiceOfTrainer(this.state.trainer._id)
         .then((res2)=>{
             this.setState({service: res2});
-            console.log(this.state.service)
         })
         
     })

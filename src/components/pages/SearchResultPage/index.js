@@ -77,7 +77,8 @@ class SearchResultPage extends React.Component {
   componentWillReceiveProps(nextProps){
     this.setState({
       keyword : queryString.parse(nextProps.location.search)['keyword'],
-      type : nextProps.match.params.type
+      type : nextProps.match.params.type,
+      results: '',
     },()=>{
       this.getSearchResult()
     })

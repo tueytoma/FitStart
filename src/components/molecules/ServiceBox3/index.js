@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 const Result = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
 `
 
 class ServiceBox2 extends React.Component {
@@ -63,7 +64,7 @@ class ServiceBox2 extends React.Component {
         return (
         <Wrapper>
             <Result>
-            <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
+            <LinkStyle2 to={linkService}  style={{margin: "0 16px 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                     {this.state.serviceName}
             </LinkStyle2>
             <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
@@ -72,7 +73,7 @@ class ServiceBox2 extends React.Component {
             </LinkStyle2>
             </Label>
             </Result>
-            <div onClick={this.seeTimeSlots}><TrashIcon/></div>
+            <div onClick={this.seeTimeSlots}><TrashIcon width="91.5px" height="39px"/></div>
         </Wrapper>
         )
     }

@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon } from 'components'
+import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon } from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -40,9 +40,9 @@ const Result = styled.div`
 `
 
 const Result2 = styled.div`
+    width: 15vw;
     display:flex;
-    flex-direction; row;
-    align-items: center;
+    align-items:center;
 `
 
 class ServiceBox2 extends React.Component {
@@ -104,11 +104,10 @@ class ServiceBox2 extends React.Component {
                 </Label>
             </Result>
 
-                
             <Result2>
-                <div onClick={this.seeTimeSlots}><BahtIcon/></div>
-                <div onClick={this.seeTimeSlots}><CalendarIcon/></div>
-                <div onClick={this.seeTimeSlots}><TrashIcon/></div>
+                {(this.props.reservation.status==2 || this.props.reservation.status==4) && <div onClick={this.seeTimeSlots}><BahtIcon width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status!=4) && <div onClick={this.seeTimeSlots}><CalendarIcon width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status==1|| this.props.reservation.status==2) && <div onClick={this.seeTimeSlots}><TrashIcon width="91.5px" height="39px"/> </div>}
             </Result2>
         </Wrapper>
         )

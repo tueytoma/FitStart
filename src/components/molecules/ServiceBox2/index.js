@@ -50,6 +50,7 @@ class ServiceBox2 extends React.Component {
         this.state = {
             trainerName: '',
             trainerUsername: '',
+            timeSlot:'',
         }
     }
 
@@ -60,6 +61,12 @@ class ServiceBox2 extends React.Component {
             this.setState({
                 trainerName : name, 
                 trainerUsername : res.username,
+            })
+        })
+        api.getTimeSlotOfService(this.props.reservation._id)
+        .then((res)=>{
+            this.setState({
+                timeSlot : res.timeSlot.length,
             })
         })
     }
@@ -85,7 +92,7 @@ class ServiceBox2 extends React.Component {
                     <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.service.price} บาท</Label>
                 </Label>
                 <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงเวลาที่จอง
-                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.props.res[].timeSlot.length} ช่วงเวลา</Label>
+                    <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">{this.state.timeSlot} ช่วงเวลา</Label>
                 </Label>
             </Result>
             <CalendarIcon/>

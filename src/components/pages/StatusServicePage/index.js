@@ -131,9 +131,12 @@ class StatusServicePage extends React.Component {
       }
   }
 
+  componentDidMount() {
+    api.getReservationByStatus(this.state.status)
     .then((res)=>{
       this.setState({results : res})
     })
+  }
 
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";

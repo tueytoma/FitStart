@@ -230,6 +230,11 @@ class SelectServicePage extends React.Component {
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect}>4</Button2>
                     <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5</Button2>
                 </HeaderBlock>
+                <HeaderBlock>
+                    <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่ามัดจำ</Label>
+                </HeaderBlock>
+                <DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด แก้ตรงนี้ด้วย' color={color} />
+                <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail='ยังไม่ได้ชำระเงิน' color='#202020' />
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

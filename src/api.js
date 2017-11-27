@@ -89,17 +89,9 @@ api.getReservationById = reservationId => {
         })
 }
 
-api.getReservationOfTrainerId = (status, trainerId) => {
-    return Request.get(config.BACKURL + '/reservations/trainer/' + trainerId)
-        .set('Accept','application/json')
-        .query({status : status})
-        .then(res=>{
-            return res.body.reservations
-        })
-}
-
-api.getReservationOfTraineeId = (status, traineeId) => {
-    return Request.get(config.BACKURL + '/reservations/trainee/' + traineeId)
+api.getReservationByStatus = status => {
+    return Request.get(config.BACKURL + '/reservations/user/' + auth.getUser()._id)
+        .set('x-access-token', auth.getToken() || '')
         .set('Accept','application/json')
         .query({status : status})
         .then(res=>{

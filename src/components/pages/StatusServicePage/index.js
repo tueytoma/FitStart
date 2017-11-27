@@ -48,6 +48,15 @@ const ButtonBlock = styled.div`
     display: flex;
 `
 
+const ServiceList = styled.div`
+    margin-Bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+
 const queryString = require('query-string');
 const parsed = queryString.parse(location.search)
 
@@ -59,6 +68,7 @@ class StatusServicePage extends React.Component {
         userName: this.props.match.params.user,
         serviceID: this.props.match.params.service,
         service: '',
+        results: '',
         trainer: '',
         checkTrainerHaveService: true,
         time: '',
@@ -127,6 +137,12 @@ class StatusServicePage extends React.Component {
     let textButtonSt2 = auth.isTrainee() ? "2. รอชำระค่ามัดจำ" : auth.isTrainer() ? "2. ผลชำระค่ามัดจำ" : "";
     let textButtonSt4 = auth.isTrainee() ? "4. รอชำระเงิน" : auth.isTrainer() ? "4. ผลชำระเงิน" : "";
 
+    /*just try*/ 
+    var resultFeed = []
+    for (var i = 0 ; i < this.state.results.length ; i++)
+    if(i < 5) resultFeed.push(<ServiceBox service={this.state.results[i]} key={i}/>)
+    /*just try*/
+
     if(this.state.status == 0)
     return (
         <Wrapper>
@@ -184,8 +200,11 @@ class StatusServicePage extends React.Component {
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
-
+                    <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 1</Label>
+                    <ServiceList>
+                        {resultFeed}
+                    </ServiceList>
                     <Footer color={color} />
                 </InnerWrapper>
             </Wrapper>
@@ -210,6 +229,7 @@ class StatusServicePage extends React.Component {
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
+                    <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 2</Label>
                     <Footer color={color} />
                 </InnerWrapper>
@@ -235,6 +255,7 @@ class StatusServicePage extends React.Component {
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
+                    <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 3</Label>
                     <Footer color={color} />
                 </InnerWrapper>
@@ -260,6 +281,7 @@ class StatusServicePage extends React.Component {
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
+                    <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 4</Label>
                     <Footer color={color} />
                 </InnerWrapper>
@@ -286,6 +308,7 @@ class StatusServicePage extends React.Component {
                             <Button2 size = "18px" width="241.59px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect}>5. การฝึกเสร็จสมบูรณ์</Button2>
                         </ButtonBlock>
                     </LRBlock>
+                    <Label size ="65px" color="#202020">รายการบริการ</Label>
                     <Label>STATUS == 5</Label>
                     <Footer color={color} />
                 </InnerWrapper>

@@ -96,6 +96,14 @@ const Report = styled.div`
     width: 100vw;
     height: 190px;
 `
+const Pay = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F05939;
+    width: 100vw;
+    height: 190px;
+`
 
 const queryString = require('query-string');
 const parsed = queryString.parse(location.search)
@@ -278,7 +286,7 @@ class SelectServicePage extends React.Component {
                 <HeaderBlock>
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่ามัดจำ</Label>
                 </HeaderBlock>
-                <DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด แก้ตรงนี้ด้วย' color={color} />
+                <DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด' color={color} />
                 <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail='ยังไม่ได้ชำระเงิน' color='#202020' />
                 <Footer color={color} />
             </InnerWrapper>
@@ -315,7 +323,16 @@ class SelectServicePage extends React.Component {
                 <HeaderBlock>
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่าบริการ</Label>
                 </HeaderBlock>
-                <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด แก้ตรงนี้ด้วย' color={color} />
+                <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด' color={color} />
+                <InnerWrapper style={{alignItems: "center"}}>
+                    <Pay>
+                        <InnerWrapper style={{alignItems: "flex-end"}}>
+                            <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
+                                <Label size="72px" color="#F9FAFC">{this.state.results.price} บาท</Label>
+                            </Label>
+                        </InnerWrapper>
+                    </Pay>
+                </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

@@ -96,6 +96,14 @@ const Report = styled.div`
     width: 100vw;
     height: 190px;
 `
+const Pay = styled.div`
+    display: flex;
+    align-items: right;
+    flex-direction: column;
+    background-color: #F05939;
+    width: 100vw;
+    height: 190px;
+`
 
 const queryString = require('query-string');
 const parsed = queryString.parse(location.search)
@@ -316,6 +324,11 @@ class SelectServicePage extends React.Component {
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่าบริการ</Label>
                 </HeaderBlock>
                 <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด แก้ตรงนี้ด้วย' color={color} />
+                <InnerWrapper style={{alignItems: "center"}}>
+                    <Pay>
+                        <Label>จ่ายค่าบริการทั้งสิ้น</Label>
+                    </Pay>
+                </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

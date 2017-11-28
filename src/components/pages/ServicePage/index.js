@@ -1,13 +1,14 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel } from 'components'
+import { Topbar, Footer, Label, DataBox, StarIcon, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, Button} from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
 import utils from '../../../utils'
+import Dialog from 'material-ui/Dialog';
 
 const Wrapper = styled.div`
   background-color: #F9FAFC;
@@ -83,8 +84,19 @@ class ServicePage extends React.Component {
         time: '',
         selectedTime: [],
         failure: false,
+        open: false,
     };
   }
+
+  handleOpen = e =>{
+    if(this.state.selectedTime.length>0){
+    this.setState({open : true})
+    }
+}
+
+  handleClose = e =>{
+    this.setState({open : false})
+}
 
   componentWillMount() {
     api.getServiceById(this.state.serviceID)
@@ -115,7 +127,6 @@ class ServicePage extends React.Component {
   }
 
   onClick = e => {
-    if(this.state.selectedTime.length>0){
         let data = {
             traineeId : auth.getUser()._id,
             trainerId : this.state.trainer._id,
@@ -124,7 +135,6 @@ class ServicePage extends React.Component {
         api.createReservationOfService(this.state.serviceID, data)
         .then(res=>{console.log(res)
         })
-    }
     
   }
 
@@ -161,6 +171,11 @@ class ServicePage extends React.Component {
         timeslot.push(<CheckBoxAndLabel key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
+    const actions = [
+        <Link onClick={this.handleClose} to={'/'} style={{textDecoration: "none"}}>
+            <Button dark style={{marginBottom: "32px"}} onClick={this.onClick} color={color} height="40px" width="231px" size="18px">ตกลง</Button>,
+        </Link>
+    ];
     return (
       <Wrapper>
         <Topbar color={color}/>
@@ -195,7 +210,7 @@ class ServicePage extends React.Component {
                     {auth.isLoggedIn() && auth.isTrainee() && <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle> }
                 </LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.onClick} to="/StatusServicePage" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
+                    <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.handleOpen} to="/StatusServicePage" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
                 </LRBlock>
             </FooterBlock >
             <Footer color={color} />
@@ -209,6 +224,16 @@ class ServicePage extends React.Component {
         </InnerWrapper>
     
         }
+        <Dialog
+                actions={actions}
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.handleClose}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ยืนยันการจองเวลา</Label>
+            </Dialog>
         
       </Wrapper>
     )

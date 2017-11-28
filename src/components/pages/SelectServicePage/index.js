@@ -178,7 +178,9 @@ class SelectServicePage extends React.Component {
     if(this.state.results.status==3){
         api.editReservationById(this.state.reservationId, {status : 4})
         .then(res=>{
-            alert('finish')
+            if(res)
+                this.setState({status:4})
+                this.props.history.push('/reservations/' + this.props.match.params.reservationId + '/' + 4)
         })
     }
   }

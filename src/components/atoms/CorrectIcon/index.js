@@ -1,4 +1,11 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const SVG = styled.svg`
+&:hover {
+  cursor:pointer;
+}
+`
 
 export default class CorrectIcon extends React.Component {
 

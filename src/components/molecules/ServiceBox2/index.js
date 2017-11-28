@@ -192,7 +192,7 @@ class ServiceBox2 extends React.Component {
                     </div>
                 </Link>}
                 {(this.props.reservation.status!=4) && <div onClick={this.handleOpen}><CalendarIcon width="91.5px" height="39px"/> </div>}
-                {(this.props.reservation.status==1|| this.props.reservation.status==2) && <div onClick={this.handleOpen2}><TrashIcon width="91.5px" height="39px"/> </div>}
+                {((this.props.reservation.status==1|| this.props.reservation.status==2)&&auth.isTrainee()) && <div onClick={this.handleOpen2}><TrashIcon width="91.5px" height="39px"/> </div>}
             </Result2>
             <Dialog
                 actions={this.props.reservation.status==1 && actions}

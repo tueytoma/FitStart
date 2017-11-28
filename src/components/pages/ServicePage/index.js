@@ -115,7 +115,17 @@ class ServicePage extends React.Component {
   }
 
   onClick = e => {
-    console.log(this.state.selectedTime)  
+    if(this.state.selectedTime.length>0){
+        let data = {
+            traineeId : auth.getUser()._id,
+            trainerId : this.state.trainer._id,
+            timeSlot : this.state.selectedTime
+        }
+        api.createReservationOfService(this.state.serviceID, data)
+        .then(res=>{console.log(res)
+        })
+    }
+    
   }
 
   onValue = (id, check) => {

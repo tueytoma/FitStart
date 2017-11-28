@@ -119,12 +119,12 @@ class ServiceBox2 extends React.Component {
 
     render() {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
-        let linkService = `/users/` + this.state.trainerUsername + `/` + this.props.reservation._id
+        let linkService = `/services/` + this.props.reservation._id + `/` + this.props.reservation.status
         let linkTrainer = `/users/` + this.state.trainerUsername
 
         const actions = [
             <Link onClick={this.handleClose} to={'/services/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
-                <Button style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
+                <Button dark style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
             </Link>
         ];
 

@@ -65,7 +65,6 @@ class App extends React.Component{
           <Route path="/servicewarning" component={NotFoundPage} exact/>
           <Route path="/servicesuccess" component={NotFoundPage} exact/>
           <Route path="/services/:status" component={StatusServicePage} exact/>
-          <Route path="/StatusServicePage" component={StatusServicePage} exact/>
           <Route path="/services/:service/:status" component={SelectServicePage} exact/>
 
           <Route path="/createservice" component={CreateServicePage} exact/>

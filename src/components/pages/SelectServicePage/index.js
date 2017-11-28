@@ -1,13 +1,14 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label,InputBox, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
+import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
 import utils from '../../../utils'
+import { EALREADY } from 'constants';
 
 const Wrapper = styled.div`
   background-color: #F9FAFC;
@@ -22,11 +23,13 @@ const InnerWrapper = styled.div`
   width: 70vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 60px;
 `
 
 const HeaderBlock = styled.div`
     align-self: flex-start;
+    width: 100%;
     margin: 36px 0 24px 0;
     display: flex;
     flex-direction: row;
@@ -86,6 +89,15 @@ const Div = styled.div`
 display: flex;
 `
 
+const Report = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #DC4444;
+    width: 100vw;
+    height: 190px;
+`
+
 const queryString = require('query-string');
 const parsed = queryString.parse(location.search)
 
@@ -108,31 +120,31 @@ class SelectServicePage extends React.Component {
   }
 
     statusOneSelect = e => {
-        if(this.state.results.status >= 1){
+        if(this.state.results[0].status >= 1){
             this.setState({status:1})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 1)
         }
     }
     statusTwoSelect = e => {
-        if(this.state.results.status >= 2){
+        if(this.state.results[0].status >= 2){
             this.setState({status:2})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 2)
         }
     }
     statusThreeSelect = e => {
-        if(this.state.results.status >= 3){
+        if(this.state.results[0].status >= 3){
             this.setState({status:3})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 3)
             }
     }
     statusFourSelect = e => {
-        if(this.state.results.status >= 4){
+        if(this.state.results[0].status >= 4){
             this.setState({status:4})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 4)
-            }
+        }
     }
     statusFiveSelect = e => {
-        if(this.state.results.status >= 5){
+        if(this.state.results[0].status >= 5){
             this.setState({status:5})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 5)
         }
@@ -147,6 +159,10 @@ class SelectServicePage extends React.Component {
 
   onClick = e => {
     console.log(this.state.selectedTime)  
+  }
+
+  report = e =>{
+      alert("report")
   }
 
   onValue = (id, check) => {
@@ -207,11 +223,11 @@ class SelectServicePage extends React.Component {
                 <Topbar color={color}/>
                 <InnerWrapper>
                     <HeaderBlock>
-                        <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect} selected={this.state.status==1}>{textButtonSt1}</Button2>
-                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect} selected={this.state.status==2}>2</Button2>
-                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3</Button2>
-                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
-                        <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
+                        <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusOneSelect} selected={this.state.status==1}>{textButtonSt1}</Button2>
+                        <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect} selected={this.state.status==2}>2</Button2>
+                        <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3</Button2>
+                        <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
+                        <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                     </HeaderBlock>
                     <HeaderBlock>
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">ข้อมูลบริการ</Label>
@@ -250,11 +266,11 @@ class SelectServicePage extends React.Component {
             <Topbar color={color}/>
             <InnerWrapper>
                 <HeaderBlock>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==2}>1</Button2>
-                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect} selected={this.state.status==2}>{textButtonSt2}</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==2}>1</Button2>
+                    <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusTwoSelect} selected={this.state.status==2}>{textButtonSt2}</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
                 <HeaderBlock>
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่ามัดจำ</Label>
@@ -271,11 +287,11 @@ class SelectServicePage extends React.Component {
             <Topbar color={color}/>
             <InnerWrapper>
                 <HeaderBlock>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==3}>1</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==3}>2</Button2>
-                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3. อยู่ระหว่างการฝึก</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==3}>1</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==3}>2</Button2>
+                    <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusThreeSelect} selected={this.state.status==3}>3. อยู่ระหว่างการฝึก</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
                 <Footer color={color} />
             </InnerWrapper>
@@ -287,11 +303,11 @@ class SelectServicePage extends React.Component {
             <Topbar color={color}/>
             <InnerWrapper>
                 <HeaderBlock>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==4}>1</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==4}>2</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==4}>3</Button2>
-                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>{textButtonSt4}</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==4}>1</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==4}>2</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==4}>3</Button2>
+                    <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>{textButtonSt4}</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
                 <Footer color={color} />
             </InnerWrapper>
@@ -301,19 +317,25 @@ class SelectServicePage extends React.Component {
         return(
             <Wrapper>
             <Topbar color={color}/>
-            <InnerWrapper>
+            <InnerWrapper> 
                 <HeaderBlock>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==5}>1</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==5}>2</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==5}>3</Button2>
-                    <Button2 size = "18px" width="100px" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusFourSelect} selected={this.state.status==5}>4</Button2>
-                    <Button2 size = "18px" width="241px" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==5}>1</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==5}>2</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==5}>3</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusFourSelect} selected={this.state.status==5}>4</Button2>
+                    <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5. การฝึกเสร็จสมบูรณ์</Button2>
                 </HeaderBlock>
                 <HeaderBlock>
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แสดงความคิดเห็น</Label>
                 </HeaderBlock>
                 <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>
-                <Div><Label size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
+                <Div><Label text-align="center" center size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
+                <InnerWrapper>
+                    <Report>
+                        <Label size ="48px" color="#F9FAFC">หรือ</Label>
+                        <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
+                    </Report>
+                </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

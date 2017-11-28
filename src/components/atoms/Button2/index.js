@@ -13,7 +13,7 @@ const Button2 = styled.button`
     background-color: ${props => props.selected ? props.color : "#F9FAFC"};
     height: ${props => props.cancelregis ? "40px" : props.loginpage ? "40px" : props.height};
     width: ${props => props.cancelregis ? "175px" : props.loginpage ? "125px" : props.width};
-    margin: 0 8px 0 0;
+    margin: ${props => props.mar ? "0 2% 0 0" : "0 8px 0 0"};
     
 
     font-family: ${font('primary')};

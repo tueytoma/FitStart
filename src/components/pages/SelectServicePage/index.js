@@ -23,7 +23,6 @@ const InnerWrapper = styled.div`
   width: 70vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-top: 60px;
 `
 
@@ -334,7 +333,7 @@ class SelectServicePage extends React.Component {
                 </HeaderBlock>
                 <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>
                 <Div><Label text-align="center" center size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
-                <InnerWrapper>
+                <InnerWrapper style={{alignItems: "center"}}>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>
                         <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>

@@ -292,7 +292,17 @@ class SelectServicePage extends React.Component {
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่ามัดจำ</Label>
                 </HeaderBlock>
                 <DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด' color={color} />
-                <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail='ยังไม่ได้ชำระเงิน' color='#202020' />
+                <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail={this.state.results.status > 2 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
+                <InnerWrapper style={{alignItems: "center"}}>
+                    <Pay>
+                        <InnerWrapper style={{alignItems: "flex-end"}}>
+                            <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
+                                <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price/10} บาท</Label>
+                            </Label>
+                            <Label size="18px" color="#F9FAFC">คิดค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
+                        </InnerWrapper>
+                    </Pay>
+                </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>
@@ -339,12 +349,14 @@ class SelectServicePage extends React.Component {
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่าบริการ</Label>
                 </HeaderBlock>
                 <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด' color={color} />
+                <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail={this.state.results.status > 4 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Pay>
                         <InnerWrapper style={{alignItems: "flex-end"}}>
                             <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
-                                <Label size="72px" color="#F9FAFC">{this.state.results.price} บาท</Label>
+                                <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price*0.9} บาท</Label>
                             </Label>
+                            <Label size="18px" color="#F9FAFC">คิดบริการหลังหักค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
                 </InnerWrapper>

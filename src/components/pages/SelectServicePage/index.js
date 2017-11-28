@@ -69,12 +69,14 @@ const TrainerPic = styled.div`
     width: 56.32vh;
     margin: 0 24px 0 0;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/user' + props.image + '.jpg'})` : ''}
 `
 
 const ServicePic = styled.div`
     height: 40vh;
     width: 76.5vh;
     background-color: #C4C4C4;
+    ${props => props.image ? `content: url(${'/service' + props.image + '.jpg'})` : ''}
 `
 
 const InputBlock = styled.div`
@@ -100,9 +102,9 @@ const Pay = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: #F05939;
+    background-color: ${props=>props.color};
     width: 100vw;
-    height: 190px;
+    height: 220px;
 `
 
 const queryString = require('query-string');
@@ -173,7 +175,12 @@ class SelectServicePage extends React.Component {
   }
 
   endEx = e => {
-      
+    if(this.state.results.status==3){
+        api.editReservationById(this.state.reservationId, {status : 4})
+        .then(res=>{
+            alert('finish')
+        })
+    }
   }
 
   onValue = (id, check) => {
@@ -229,7 +236,7 @@ class SelectServicePage extends React.Component {
     starBox.push(<StarIcon key={i} height="40px"/>)
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
-        timeslot.push(<CheckBoxAndLabel key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
+        timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
 
@@ -250,8 +257,8 @@ class SelectServicePage extends React.Component {
                         {starBox}
                     </HeaderBlock>
                     <PicBlock>
-                        <TrainerPic />
-                        <ServicePic />
+                        <TrainerPic image={this.state.results.trainerId}  />
+                        <ServicePic image={this.state.results.serviceId} />
                     </PicBlock>
                     <Label style={{ marginBottom: "16px" }} size="32px" weight="bolder" color="#202020">1. ข้อมูลบริการ</Label>
                     <DataBox textTitle="ชื่อบริการ" textDetail={this.state.service.name} color={color} />
@@ -294,7 +301,7 @@ class SelectServicePage extends React.Component {
                 <DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด' color={color} />
                 <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail={this.state.results.status > 2 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
                 <InnerWrapper style={{alignItems: "center"}}>
-                    <Pay>
+                    <Pay color={color} >
                         <InnerWrapper style={{alignItems: "flex-end"}}>
                             <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
                                 <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price/10} บาท</Label>
@@ -320,13 +327,23 @@ class SelectServicePage extends React.Component {
                     <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
                 <InnerWrapper style={{alignItems: "center"}}>
-                    <Pay style={{height: "30vh", marginBottom: "32px"}}>
-                        <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
-                            <Label size="36px" color="#F9FAFC">กดเมื่อฝึกกับเทรนเนอร์ของท่านเสร็จเรียบร้อยแล้ว</Label>
-                            <Label size="36px" color="#F9FAFC">เพื่อเป็นการยืนยันว่าท่านได้ใช้บริการแล้ว</Label>
-                        </InnerWrapper>
-                    </Pay>
-                    <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>
+                    {this.state.results.status==3 ?
+                        <Pay color={color} style={{height: "30vh", marginBottom: "32px"}}>
+                            <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                                <Label size="36px" color="#F9FAFC">กดเมื่อฝึกกับเทรนเนอร์ของท่านเสร็จเรียบร้อยแล้ว</Label>
+                                <Label size="36px" color="#F9FAFC">เพื่อเป็นการยืนยันว่าท่านได้ใช้บริการแล้ว</Label>
+                            </InnerWrapper>
+                        </Pay> :  
+                        <Pay color={color} style={{height: "30vh", marginBottom: "32px"}}>
+                            <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                            {auth.isTrainee() ?
+                            <Label size="36px" color="#F9FAFC">ท่านได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label> :
+                            <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกายได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label>
+                            }
+                            </InnerWrapper>
+                        </Pay>
+                    }
+                    {this.state.results.status==3 && <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>}
                 </InnerWrapper>
                 
                 <Footer color={color} />
@@ -351,7 +368,7 @@ class SelectServicePage extends React.Component {
                 <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด' color={color} />
                 <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail={this.state.results.status > 4 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
                 <InnerWrapper style={{alignItems: "center"}}>
-                    <Pay>
+                    <Pay color={color} >
                         <InnerWrapper style={{alignItems: "flex-end"}}>
                             <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
                                 <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price*0.9} บาท</Label>

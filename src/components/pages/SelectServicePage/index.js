@@ -88,6 +88,9 @@ display: flex;
 `
 
 const Report = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
     background-color: #DC4444;
     width: 1028px;
     height: 190px;
@@ -320,9 +323,12 @@ class SelectServicePage extends React.Component {
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แสดงความคิดเห็น</Label>
                 </HeaderBlock>
                 <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>
-                <Div><Label size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
+                <Div><Label text-align="center" center size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
                 <InnerWrapper>
-                    <Report></Report>
+                    <Report>
+                        <Label size ="48px" color="#F9FAFC">หรือ</Label>
+                        <Button2 mar size = "36px" width="557px" height="66px" radius = "100px" color="#F9FAFC">TEST</Button2>
+                    </Report>
                 </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>

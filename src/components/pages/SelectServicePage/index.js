@@ -87,6 +87,12 @@ const Div = styled.div`
 display: flex;
 `
 
+const Report = styled.div`
+    background-color: #DC4444;
+    width: 1028px;
+    height: 190px;
+`
+
 const queryString = require('query-string');
 const parsed = queryString.parse(location.search)
 
@@ -315,6 +321,9 @@ class SelectServicePage extends React.Component {
                 </HeaderBlock>
                 <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>
                 <Div><Label size = "18px">ให้คะแนนบริการนี้</Label><DropdownMenu width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
+                <InnerWrapper>
+                    <Report></Report>
+                </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

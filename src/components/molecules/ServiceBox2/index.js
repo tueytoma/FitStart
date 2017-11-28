@@ -66,7 +66,6 @@ class ServiceBox2 extends React.Component {
     }
 
     getData = () =>{
-        console.log(this.props.reservation)
         api.getUserById(this.props.reservation.trainerId)
         .then((res)=>{
             let name = `${res.firstName} ${res.lastName}`
@@ -157,15 +156,16 @@ class ServiceBox2 extends React.Component {
     }
 
     accept = e => {
-            api.editReservationById(this.state.reservationId, {status : 2})
+            api.editReservationById(this.props.reservation._id, {status : 2})
             .then(res=>{
-                if(res)
+                if(res){
                 setTimeout(()=>location.reload(),300);
+                }
             })
       }
 
       deny = e => {
-            api.editReservationById(this.state.reservationId, {status : 0})
+            api.editReservationById(this.props.reservation._id, {status : 0})
             .then(res=>{
                 if(res)
                 setTimeout(()=>location.reload(),300);
@@ -216,7 +216,7 @@ class ServiceBox2 extends React.Component {
                     <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา
                         <Label style={{margin: "0 0 0 16px"}} size="18px" weight="normal" color="rgba(32, 32, 32, 0.8)">
                             {this.props.reservation.price ? this.props.reservation.price : this.state.price} บาท
-                            {this.props.reservation.status==2 ? ' (' + this.props.reservation.price / 10 + ' บาท)' : ''}
+                            {this.props.reservation.status==2 ? this.props.reservation.price ? ' (' + this.props.reservation.price / 10 + ' บาท)' : '' : ''}
                         </Label>
                     </Label>
                     <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงเวลาที่จอง

@@ -8,6 +8,7 @@ import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
 import utils from '../../../utils'
+import { EALREADY } from 'constants';
 
 const Wrapper = styled.div`
   background-color: #F9FAFC;
@@ -157,6 +158,10 @@ class SelectServicePage extends React.Component {
 
   onClick = e => {
     console.log(this.state.selectedTime)  
+  }
+
+  report = e =>{
+      alert("report")
   }
 
   onValue = (id, check) => {
@@ -327,7 +332,7 @@ class SelectServicePage extends React.Component {
                 <InnerWrapper>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>
-                        <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444">ส่งคำร้องเรียนเทรนเนอร์</Button>
+                        <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
                     </Report>
                 </InnerWrapper>
                 <Footer color={color} />

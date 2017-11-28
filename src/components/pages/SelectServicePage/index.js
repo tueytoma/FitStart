@@ -295,7 +295,7 @@ class SelectServicePage extends React.Component {
                             <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
                                 <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price/10} บาท</Label>
                             </Label>
-                            <Label size="18px" color="#F9FAFC">คิดเป็น 10% ของราคาทั้งหมด</Label>
+                            <Label size="18px" color="#F9FAFC">คิดค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
                 </InnerWrapper>
@@ -342,6 +342,7 @@ class SelectServicePage extends React.Component {
                             <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
                                 <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price*0.9} บาท</Label>
                             </Label>
+                            <Label size="18px" color="#F9FAFC">คิดบริการหลังหักค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
                 </InnerWrapper>

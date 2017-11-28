@@ -181,6 +181,7 @@ class SelectServicePage extends React.Component {
             if(res)
                 this.setState({status:4})
                 this.props.history.push('/reservations/' + this.props.match.params.reservationId + '/' + 4)
+                this.state.results.status = 4
         })
     }
   }
@@ -238,7 +239,7 @@ class SelectServicePage extends React.Component {
     starBox.push(<StarIcon key={i} height="40px"/>)
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
-        timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
+        timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={this.state.results.status>1} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
 
@@ -278,7 +279,7 @@ class SelectServicePage extends React.Component {
                     <DataBox textTitle="วันที่และเวลา" textDetail={timeslot} color={color} />
                     <FooterBlock>
                         <LRBlock style={{ flexFlow: "row", justifyContent: "flex-end" }}>
-                            <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.onClick} to="/reservations/1" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="แก้ไขคำขอ" height="40px" width="122px" size="18px" sizeLink="18px" />
+                            <LinkAndButtonBox disabled={this.state.results.status>1} onClick={this.onClick} to="/reservations/1" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="แก้ไขคำขอ" height="40px" width="122px" size="18px" sizeLink="18px" />
                         </LRBlock>
                     </FooterBlock >
                     <Footer color={color} />

@@ -23,6 +23,7 @@ const InnerWrapper = styled.div`
   width: 70vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: 60px;
 `
 
@@ -93,7 +94,7 @@ const Report = styled.div`
     align-items: center;
     flex-direction: column;
     background-color: #DC4444;
-    width: 1028px;
+    width: 100vw;
     height: 190px;
 `
 

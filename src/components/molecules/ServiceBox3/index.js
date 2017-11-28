@@ -54,11 +54,11 @@ class ServiceBox2 extends React.Component {
                 trainerName : name, 
                 trainerUsername : res.username,
             })
-            api.getServiceById(this.props.reservation.serviceId)
-            .then((res)=>{
-                this.setState({
-                    serviceName : res.name,
-                })
+        })
+        api.getServiceById(this.props.reservation.serviceId)
+        .then((res)=>{
+            this.setState({
+                serviceName : res.name,
             })
         })
     }

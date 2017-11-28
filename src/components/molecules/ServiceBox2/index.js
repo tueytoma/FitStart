@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon, EditSuccessIcon, Button, CheckBoxAndLabel} from 'components'
+import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon, EditSuccessIcon, Button, CheckBoxAndLabel, SelectServiceIcon, DeleteServiceIcon} from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -132,6 +132,14 @@ class ServiceBox2 extends React.Component {
         this.setState({open2 : true})
     }
 
+    handleOpen3 = e =>{
+        this.setState({open3 : true})
+    }
+
+    handleOpen4 = e =>{
+        this.setState({open4 : true})
+    }
+
     handleClose = e =>{
         this.setState({open : false})
     }
@@ -139,6 +147,30 @@ class ServiceBox2 extends React.Component {
     handleClose2 = e =>{
         this.setState({open2 : false})
     }
+
+    handleClose3 = e =>{
+        this.setState({open3 : false})
+    }
+
+    handleClose4 = e =>{
+        this.setState({open4 : false})
+    }
+
+    accept = e => {
+            api.editReservationById(this.state.reservationId, {status : 2})
+            .then(res=>{
+                if(res)
+                setTimeout(()=>location.reload(),300);
+            })
+      }
+
+      deny = e => {
+            api.editReservationById(this.state.reservationId, {status : 0})
+            .then(res=>{
+                if(res)
+                setTimeout(()=>location.reload(),300);
+            })
+      }
 
     render() {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
@@ -152,7 +184,15 @@ class ServiceBox2 extends React.Component {
         ];
 
         const actions2 = [
-            <Button style={{marginBottom: "32px"}} onClick={this.removeReservation} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
+            <Button dark style={{marginBottom: "32px"}} onClick={this.removeReservation} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
+        ];
+
+        const actions3 = [
+            <Button dark style={{marginBottom: "32px"}} onClick={this.accept} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
+        ];
+
+        const actions4 = [
+            <Button dark style={{marginBottom: "32px"}} onClick={this.deny} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
         ];
 
         var timeItems = []
@@ -193,6 +233,8 @@ class ServiceBox2 extends React.Component {
                 </Link>}
                 {(this.props.reservation.status!=4) && <div onClick={this.handleOpen}><CalendarIcon width="91.5px" height="39px"/> </div>}
                 {((this.props.reservation.status==1|| this.props.reservation.status==2)&&auth.isTrainee()) && <div onClick={this.handleOpen2}><TrashIcon width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status==1 && auth.isTrainer()) && <div onClick={this.handleOpen3}><SelectServiceIcon width="91.5px" height="39px"/></div> }
+                {(this.props.reservation.status==1 && auth.isTrainer()) && <div onClick={this.handleOpen4}><DeleteServiceIcon width="91.5px" height="39px"/></div> }
             </Result2>
             <Dialog
                 actions={this.props.reservation.status==1 && actions}
@@ -216,6 +258,26 @@ class ServiceBox2 extends React.Component {
                 bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
                 contentStyle={{width:'60%',maxWidth: 'none'}}>
                 <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการลบการจองนี้ ?</Label>
+            </Dialog>
+            <Dialog
+                actions={actions3}
+                modal={false}
+                open={this.state.open3}
+                onRequestClose={this.handleClose3}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการยืนยันคำขอการจองนี้ ?</Label>
+            </Dialog>
+            <Dialog
+                actions={actions4}
+                modal={false}
+                open={this.state.open4}
+                onRequestClose={this.handleClose4}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการละทิ้งคำขอการจองนี้ ?</Label>
             </Dialog>
         </Wrapper>
         )

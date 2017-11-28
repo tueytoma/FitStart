@@ -93,10 +93,6 @@ class ServiceBox2 extends React.Component {
         this.getData()
     }
 
-    payment = e => {
-        alert('Payment Page')
-    }
-
     removeReservation = e =>{
         api.removeReservationById(this.props.reservation._id)
         .then(res=>{
@@ -167,7 +163,11 @@ class ServiceBox2 extends React.Component {
             </Result2>
 
             <Result2 style={{margin: "0 100px 0 0"}}>
-                {(this.props.reservation.status==2 || this.props.reservation.status==4) && <div onClick={this.payment}><BahtIcon width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status==2 || this.props.reservation.status==4) && 
+                <Link onClick={this.handleClose} to={'/services/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
+                    <div onClick={this.payment}><BahtIcon width="91.5px" height="39px"/> 
+                    </div>
+                </Link>}
                 {(this.props.reservation.status!=4) && <div onClick={this.handleOpen}><CalendarIcon width="91.5px" height="39px"/> </div>}
                 {(this.props.reservation.status==1|| this.props.reservation.status==2) && <div onClick={this.handleOpen2}><TrashIcon width="91.5px" height="39px"/> </div>}
             </Result2>

@@ -188,7 +188,7 @@ class SelectServicePage extends React.Component {
   }
 
   componentDidMount() {
-    api.getReservationByStatus(this.state.status)
+    api.getReservationById(this.state.serviceID)
     .then((res)=>{
       this.setState({results : res})
     })

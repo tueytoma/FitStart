@@ -118,31 +118,31 @@ class SelectServicePage extends React.Component {
   }
 
     statusOneSelect = e => {
-        if(this.state.results.status >= 1){
+        if(this.state.results[0].status >= 1){
             this.setState({status:1})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 1)
         }
     }
     statusTwoSelect = e => {
-        if(this.state.results.status >= 2){
+        if(this.state.results[0].status >= 2){
             this.setState({status:2})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 2)
         }
     }
     statusThreeSelect = e => {
-        if(this.state.results.status >= 3){
+        if(this.state.results[0].status >= 3){
             this.setState({status:3})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 3)
             }
     }
     statusFourSelect = e => {
-        if(this.state.results.status >= 4){
+        if(this.state.results[0].status >= 4){
             this.setState({status:4})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 4)
-            }
+        }
     }
     statusFiveSelect = e => {
-        if(this.state.results.status >= 5){
+        if(this.state.results[0].status >= 5){
             this.setState({status:5})
             this.props.history.push('/services/' + this.props.match.params.service + '/' + 5)
         }

@@ -332,10 +332,16 @@ class SelectServicePage extends React.Component {
                 <InnerWrapper style={{alignItems: "center"}}>
                     {this.state.results.status==3 ?
                         <Pay color={color} style={{height: "30vh", marginBottom: "32px"}}>
+                            {auth.isTrainee() ?
                             <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
                                 <Label size="36px" color="#F9FAFC">กดเมื่อฝึกกับเทรนเนอร์ของท่านเสร็จเรียบร้อยแล้ว</Label>
                                 <Label size="36px" color="#F9FAFC">เพื่อเป็นการยืนยันว่าท่านได้ใช้บริการแล้ว</Label>
+                            </InnerWrapper> :
+                            <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                                <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกาย</Label>
+                                <Label size="48px" color="#F9FAFC">ยังไม่ได้กดจบการออกกำลังกาย</Label>
                             </InnerWrapper>
+                            }
                         </Pay> :  
                         <Pay color={color} style={{height: "30vh", marginBottom: "32px"}}>
                             <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
@@ -346,7 +352,7 @@ class SelectServicePage extends React.Component {
                             </InnerWrapper>
                         </Pay>
                     }
-                    {this.state.results.status==3 && <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>}
+                    {this.state.results.status==3 && auth.isTrainee() && <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>}
                 </InnerWrapper>
                 
                 <Footer color={color} />

@@ -172,6 +172,10 @@ class SelectServicePage extends React.Component {
       alert("report")
   }
 
+  endEx = e => {
+      
+  }
+
   onValue = (id, check) => {
      var temp = this.state.selectedTime
      if(check == false) {
@@ -305,6 +309,16 @@ class SelectServicePage extends React.Component {
                     <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>4</Button2>
                     <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
+                <InnerWrapper style={{alignItems: "center"}}>
+                    <Pay style={{height: "30vh", marginBottom: "32px"}}>
+                        <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                            <Label size="36px" color="#F9FAFC">กดเมื่อฝึกกับเทรนเนอร์ของท่านเสร็จเรียบร้อยแล้ว</Label>
+                            <Label size="36px" color="#F9FAFC">เพื่อเป็นการยืนยันว่าท่านได้ใช้บริการแล้ว</Label>
+                        </InnerWrapper>
+                    </Pay>
+                    <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>
+                </InnerWrapper>
+                
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

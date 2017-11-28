@@ -312,6 +312,10 @@ class SelectServicePage extends React.Component {
                     <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusFourSelect} selected={this.state.status==4}>{textButtonSt4}</Button2>
                     <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5</Button2>
                 </HeaderBlock>
+                <HeaderBlock>
+                    <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่าบริการ</Label>
+                </HeaderBlock>
+                <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด แก้ตรงนี้ด้วย' color={color} />
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

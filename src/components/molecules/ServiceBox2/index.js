@@ -142,11 +142,11 @@ class ServiceBox2 extends React.Component {
 
     render() {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
-        let linkService = `/services/` + this.props.reservation._id + `/` + this.props.reservation.status
+        let linkService = `/reservations/` + this.props.reservation._id + `/` + this.props.reservation.status
         let linkTrainer = `/users/` + this.state.trainerUsername
 
         const actions = [
-            <Link onClick={this.handleClose} to={'/services/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
+            <Link onClick={this.handleClose} to={'/reservations/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
                 <Button dark style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
             </Link>
         ];
@@ -187,7 +187,7 @@ class ServiceBox2 extends React.Component {
 
             <Result2 style={{margin: "0 100px 0 0"}}>
                 {(this.props.reservation.status==2 || this.props.reservation.status==4) && 
-                <Link onClick={this.handleClose} to={'/services/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
+                <Link onClick={this.handleClose} to={'/reservations/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
                     <div onClick={this.payment}><BahtIcon width="91.5px" height="39px"/> 
                     </div>
                 </Link>}

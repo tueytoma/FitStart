@@ -64,8 +64,8 @@ class App extends React.Component{
           <Route path="/serviceedit/:service" component={NotFoundPage} exact/>
           <Route path="/servicewarning" component={NotFoundPage} exact/>
           <Route path="/servicesuccess" component={NotFoundPage} exact/>
-          <Route path="/services/:status" component={StatusServicePage} exact/>
-          <Route path="/services/:service/:status" component={SelectServicePage} exact/>
+          <Route path="/reservations/:status" component={StatusServicePage} exact/>
+          <Route path="/reservations/:reservationId/:status" component={SelectServicePage} exact/>
 
           <Route path="/createservice" component={CreateServicePage} exact/>
           <Route path="/edit/users/:user" component={EditProfilePage} exact/>

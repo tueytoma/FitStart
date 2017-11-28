@@ -81,7 +81,7 @@ class StatusServicePage extends React.Component {
     statusClick = (status, e) => {
         this.setState({status:status})
         this.getReservationList(status)
-        this.props.history.push('/services/' + status)
+        this.props.history.push('/reservations/' + status)
     }
 
   changeCheckbox = e => {

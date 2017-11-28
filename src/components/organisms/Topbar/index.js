@@ -128,7 +128,7 @@ class Topbar extends React.Component {
                             <MenuItem text="แก้ไขข้อมูลบริการ"/>
                         </LinkStyle2>
                         }
-                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/services/1">
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/reservations/1">
                            <MenuItem text="รายการบริการ"/>
                         </LinkStyle2>
                         <Div style={{height:"100%", display:"flex", flexDirection: "column", justifyContent: "flex-end"}} margin="0">

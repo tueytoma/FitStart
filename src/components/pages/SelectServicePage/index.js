@@ -114,7 +114,7 @@ class SelectServicePage extends React.Component {
     super(props)
     this.state = {
         userName: '',
-        serviceID: this.props.match.params.service,
+        reservationId: this.props.match.params.reservationId,
         service: '',
         results: '',
         trainer: '',
@@ -129,31 +129,31 @@ class SelectServicePage extends React.Component {
     statusOneSelect = e => {
         if(this.state.results.status >= 1){
             this.setState({status:1})
-            this.props.history.push('/services/' + this.props.match.params.service + '/' + 1)
+            this.props.history.push('/reservations/' + this.props.match.params.service + '/' + 1)
         }
     }
     statusTwoSelect = e => {
         if(this.state.results.status >= 2){
             this.setState({status:2})
-            this.props.history.push('/services/' + this.props.match.params.service + '/' + 2)
+            this.props.history.push('/reservations/' + this.props.match.params.service + '/' + 2)
         }
     }
     statusThreeSelect = e => {
         if(this.state.results.status >= 3){
             this.setState({status:3})
-            this.props.history.push('/services/' + this.props.match.params.service + '/' + 3)
+            this.props.history.push('/reservations/' + this.props.match.params.service + '/' + 3)
             }
     }
     statusFourSelect = e => {
         if(this.state.results.status >= 4){
             this.setState({status:4})
-            this.props.history.push('/services/' + this.props.match.params.service + '/' + 4)
+            this.props.history.push('/reservations/' + this.props.match.params.service + '/' + 4)
         }
     }
     statusFiveSelect = e => {
         if(this.state.results.status >= 5){
             this.setState({status:5})
-            this.props.history.push('/services/' + this.props.match.params.service + '/' + 5)
+            this.props.history.push('/reservations/' + this.props.match.params.service + '/' + 5)
         }
     }
   changeCheckbox = e => {
@@ -196,8 +196,9 @@ class SelectServicePage extends React.Component {
   }
 
   componentDidMount() {
-    api.getReservationById(this.state.serviceID)
+    api.getReservationById(this.state.reservationId)
     .then((res)=>{
+        console.log(res)
       this.setState({results : res})
       api.getServiceById(this.state.results.serviceId)
       .then((res2) => {

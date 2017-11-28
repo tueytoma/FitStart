@@ -73,18 +73,19 @@ class ServiceBox2 extends React.Component {
                 trainerName : name, 
                 trainerUsername : res.username,
             })
-            api.getServiceById(this.props.reservation._id)
-            .then((res)=>{
-                this.setState({
-                    price : res.price,
-                    serviceName : res.name
-                })
-                api.getTimeSlotOfService(this.props.reservation.serviceId)
-                .then(res=>{
-                    this.setState({
-                        timeSlots : res,
-                    })
-                })
+        })
+        api.getServiceById(this.props.reservation.serviceId)
+        .then((res)=>{
+            this.setState({
+                price : res.price,
+                serviceName : res.name
+            })
+           
+        })
+        api.getTimeSlotOfService(this.props.reservation.serviceId)
+        .then(res=>{
+            this.setState({
+                timeSlots : res,
             })
         })
     }
@@ -140,7 +141,7 @@ class ServiceBox2 extends React.Component {
         return (
         <Wrapper>
             <Result2>
-                <ServicePic image={this.props.reservation._id} />
+                <ServicePic image={this.props.reservation.serviceId} />
                 <Result>
                     <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                         {this.state.serviceName}

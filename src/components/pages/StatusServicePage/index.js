@@ -131,6 +131,11 @@ class StatusServicePage extends React.Component {
       this.getReservationList(this.props.match.params.status)
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({status : nextProps.match.params.status})
+    this.getReservationList(nextProps.match.params.status)
+  }
+
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";

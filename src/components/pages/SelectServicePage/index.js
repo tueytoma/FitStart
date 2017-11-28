@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label,InputBox, Button2, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
+import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -89,8 +89,8 @@ display: flex;
 
 const Report = styled.div`
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    align-items: center;
+    flex-direction: column;
     background-color: #DC4444;
     width: 1028px;
     height: 190px;
@@ -327,7 +327,7 @@ class SelectServicePage extends React.Component {
                 <InnerWrapper>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>
-                        <Button2 mar size = "36px" width="557px" height="66px" radius = "100px" color="#F9FAFC">TEST</Button2>
+                        <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444">ส่งคำร้องเรียนเทรนเนอร์</Button>
                     </Report>
                 </InnerWrapper>
                 <Footer color={color} />

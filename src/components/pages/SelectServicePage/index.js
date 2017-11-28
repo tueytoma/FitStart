@@ -191,10 +191,10 @@ class SelectServicePage extends React.Component {
     api.getReservationById(this.state.serviceID)
     .then((res)=>{
       this.setState({results : res})
-      api.getServiceById(this.state.serviceID)
+      api.getServiceById(this.state.results.serviceId)
       .then((res2) => {
           this.setState({ service : res2 })
-          api.getTimeSlotOfService(this.state.serviceID)
+          api.getTimeSlotOfService(this.state.results.serviceId)
           .then((res3)=>{
               this.setState({time : res3})
               api.getUserById(this.state.results.trainerId)

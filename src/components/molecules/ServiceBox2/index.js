@@ -66,6 +66,7 @@ class ServiceBox2 extends React.Component {
     }
 
     getData = () =>{
+        console.log(this.props.reservation)
         api.getUserById(this.props.reservation.trainerId)
         .then((res)=>{
             let name = `${res.firstName} ${res.lastName}`
@@ -91,7 +92,28 @@ class ServiceBox2 extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.getData()
+        api.getUserById(nextProps.reservation.trainerId)
+        .then((res)=>{
+            let name = `${res.firstName} ${res.lastName}`
+            this.setState({
+                trainerName : name, 
+                trainerUsername : res.username,
+            })
+        })
+        api.getServiceById(nextProps.reservation.serviceId)
+        .then((res)=>{
+            this.setState({
+                price : res.price,
+                serviceName : res.name
+            })
+           
+        })
+        api.getTimeSlotOfService(nextProps.reservation.serviceId)
+        .then(res=>{
+            this.setState({
+                timeSlots : res,
+            })
+        })
     }
 
     removeReservation = e =>{

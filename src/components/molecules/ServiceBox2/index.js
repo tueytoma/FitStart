@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon, EditSuccessIcon, Button, CheckBoxAndLabel, SelectServiceIcon, DeleteServiceIcon} from 'components'
+import { Logo, Label, LinkStyle, LinkStyle2, CalendarIcon, TrashIcon, BahtIcon, EditSuccessIcon, Button, CheckBoxAndLabel, SelectServiceIcon, DeleteServiceIcon, Textfield} from 'components'
 import { Link} from 'react-router-dom';
 import api from '../../../api'
 import auth from '../../../auth'
@@ -58,8 +58,13 @@ class ServiceBox2 extends React.Component {
             open:false,
             open2:false,
             timeSlots:'',
+            InputPrice:0,
         }
     }
+
+    changePrice = e => {
+        this.setState({InputPrice : e.target.value})
+      }
 
     componentDidMount() {
         this.getData()
@@ -165,6 +170,13 @@ class ServiceBox2 extends React.Component {
 
     accept = e => {
             api.editReservationById(this.props.reservation._id, {status : 2})
+            .then(res=>{
+                if(res){
+                setTimeout(()=>location.reload(),300);
+                }
+            })
+
+            api.editReservationById(this.props.reservation._id, {price : InputPrice})
             .then(res=>{
                 if(res){
                 setTimeout(()=>location.reload(),300);
@@ -276,6 +288,7 @@ class ServiceBox2 extends React.Component {
                 bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
                 contentStyle={{width:'60%',maxWidth: 'none'}}>
                 <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการยืนยันคำขอการจองนี้ ?</Label>
+                <Label style={{margin: "8px 0 4px 0"}} size="20px" weight="600" color="#F9FAFC">ต้องการคิดค่าบริการ <Textfield onChange ={this.changePrice}></Textfield> บาท</Label>
             </Dialog>
             <Dialog
                 actions={actions4}

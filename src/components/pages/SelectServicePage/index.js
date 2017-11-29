@@ -2,6 +2,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
+import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu, Textfield } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -279,6 +280,14 @@ class SelectServicePage extends React.Component {
 
   }
 
+  getComment=()=>{
+    api.getReservationByStatus(5).then((res)=>{
+        this.setState({comment : res.comment})
+    })
+  }
+
+
+
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";
@@ -293,6 +302,7 @@ class SelectServicePage extends React.Component {
         timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={this.state.results.status>1} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
+
 
     if(this.state.status == 1)
         return(
@@ -394,17 +404,20 @@ class SelectServicePage extends React.Component {
                             </InnerWrapper> :
                             <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
                                 <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกาย</Label>
-                                <Label size="48px" color="#F9FAFC">ยังไม่ได้กดจบการออกกำลังกาย</Label>
+                                <Label size="60px" color="#F9FAFC">ยังไม่ได้กดจบการออกกำลังกาย</Label>
                             </InnerWrapper>
                             }
                         </Pay> :  
                         <Pay color={color} style={{height: "30vh", marginBottom: "32px"}}>
-                            <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
                             {auth.isTrainee() ?
-                            <Label size="36px" color="#F9FAFC">ท่านได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label> :
-                            <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกายได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label>
+                                <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                                    <Label size="48px" color="#F9FAFC">ท่านได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label> 
+                                </InnerWrapper> :
+                                <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                                    <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกาย</Label> 
+                                    <Label size="60px" color="#F9FAFC">ได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label>
+                                </InnerWrapper>
                             }
-                            </InnerWrapper>
                         </Pay>
                     }
                     {this.state.results.status==3 && auth.isTrainee() && <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>}

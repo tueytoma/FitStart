@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
+import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu, Textfield } from 'components'
 import { font } from 'styled-theme'
 
 import { Link} from 'react-router-dom'
@@ -125,6 +125,7 @@ class SelectServicePage extends React.Component {
         selectedTime: [],
         failure: false,
         status:this.props.match.params.status,
+        comment: ''
     };
   }
 
@@ -186,8 +187,6 @@ class SelectServicePage extends React.Component {
     }
   }
 
-  
-
   onValue = (id, check) => {
      var temp = this.state.selectedTime
      if(check == false) {
@@ -231,6 +230,12 @@ class SelectServicePage extends React.Component {
     })
   }
 
+  getComment=()=>{
+    api.getReservationByStatus(5).then((res)=>{
+        this.setState({comment : res.comment})
+    })
+  }
+
 
 
   render() {
@@ -246,6 +251,7 @@ class SelectServicePage extends React.Component {
         timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={this.state.results.status>1} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
+
 
     if(this.state.status == 1)
         return(
@@ -343,7 +349,7 @@ class SelectServicePage extends React.Component {
                             </InnerWrapper> :
                             <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
                                 <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกาย</Label>
-                                <Label size="48px" color="#F9FAFC">ยังไม่ได้กดจบการออกกำลังกาย</Label>
+                                <Label size="60px" color="#F9FAFC">ยังไม่ได้กดจบการออกกำลังกาย</Label>
                             </InnerWrapper>
                             }
                         </Pay> :  
@@ -415,8 +421,14 @@ class SelectServicePage extends React.Component {
                     </HeaderBlock>
                 }
                 {auth.isTrainee() && <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>}
-                {auth.isTrainer() && <Label color={color} width="734px" height="131px">{/**/}</Label>}
-                <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px">ให้คะแนนบริการนี้  </Label>{auth.isTrainee() && <DropdownMenu style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu>}</Div>
+                {auth.isTrainer() && <Label color={color} width="734px" height="131px">{this.state.comment}</Label>}
+                <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px">ให้คะแนนบริการนี้ &nbsp;</Label>{auth.isTrainee() && <DropdownMenu style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu>}{auth.isTrainer() && starBox}</Div>
+                <FooterBlock>
+                    <LRBlock style={{ flexFlow: "row", justifyContent: "flex-end" }}>
+                        {auth.isTrainee() && <LinkAndButtonBox onClick={this.onClick} to="/reservations/1" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น" height="40px" width="130px" size="18px" sizeLink="18px" />}
+                        {auth.isTrainer() && <LinkAndButtonBox onClick={this.onClick} to="/reservations/1" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="กดรับค่าบริการ" height="40px" width="155px" size="18px" sizeLink="18px" />}
+                    </LRBlock>
+                </FooterBlock >
                 {auth.isTrainee() && <InnerWrapper style={{alignItems: "center"}}>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>

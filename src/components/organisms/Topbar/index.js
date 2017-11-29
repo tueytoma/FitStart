@@ -76,7 +76,7 @@ class Topbar extends React.Component {
         var username = auth.isLoggedIn() ? (auth.getUser() ? auth.getUser().username : '' ) : '';
         return(
 
-          <Wrapper color={this.props.color}>
+          <Wrapper color={this.props.color ? this.props.color : "#202020"}>
           <WrapperSide>
                     <Div margin="4.5px 5px 0 22px">
                         <LinkStyle to= "/" style={{opacity: "1"}}> <Logo color="#F9FAFC" width="91.5px" height="39px"/> </LinkStyle>
@@ -128,9 +128,10 @@ class Topbar extends React.Component {
                             <MenuItem text="แก้ไขข้อมูลบริการ"/>
                         </LinkStyle2>
                         }
-                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/reservations/1">
-                           <MenuItem text="รายการบริการ"/>
+                        {auth.isLoggedIn() && auth.isAdmin() && <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/admin">
+                           <MenuItem text="รายการคำร้องเรียน"/>
                         </LinkStyle2>
+                        }
                         <Div style={{height:"100%", display:"flex", flexDirection: "column", justifyContent: "flex-end"}} margin="0">
                             <LinkStyle2 onClick={(e) => this.handleToggle("logout", e)} color="rgba(32, 32, 32, 0.8)" to="/">
                                 <MenuItem text="ออกจากระบบ" linkto="/listofservices"/>

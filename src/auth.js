@@ -38,6 +38,12 @@ auth = {
             return true
         } else 
             return false
+    },
+    isAdmin(){
+        if(cookieService.get('user').role == 'Admin'){
+            return true
+        } else 
+            return false
     }
 
 }

@@ -57,6 +57,14 @@ api.getUserByUsername = username =>{
         })
 }
 
+api.getUserByStatus = status =>{
+    return Request.get(config.BACKURL + '/users/status/' + status)
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body.users
+        })
+}
+
 api.getServiceById = serviceId =>{
     return Request.get(config.BACKURL + '/services/' + serviceId)
         .set('Accept', 'application/json')
@@ -120,6 +128,15 @@ api.getReviewByTrainerId = trainerId => {
         .set('Accept', 'application/json')
         .then(res => {
         return res.body.reviews
+        })
+}
+
+api.getAllReports = () => {
+    return Request.get(config.BACKURL + '/reports')
+        .set('x-access-token', auth.getToken() || '')
+        .set('Accept', 'application/json')
+        .then(res => {
+        return res.body.reports
         })
 }
 
@@ -220,6 +237,16 @@ api.editReservationById = (id, data) => {
         },api.err)
 }
 
+api.editReportById = (id, data) => {
+    return Request.patch(config.BACKURL + '/reports/' + id)
+        .set('x-access-token', auth.getToken() || '')
+        .set('Accept', 'application/json')
+        .send(data)
+        .then(res => {
+            return res.body
+        },api.err)
+}
+
 api.renewPassword = data => {
     return Request.post(config.BACKURL + '/renewPassword')
         .set('x-access-token', auth.getToken() || '')
@@ -262,6 +289,15 @@ api.removeTimeSlotOfService = (serviceId, data) => {
 
 api.removeReservationById = id => {
     return Request.delete(config.BACKURL + '/reservations/' + id)
+        .set('x-access-token', auth.getToken() || '')
+        .set('Accept', 'application/json')
+        .then(res => {
+            return res.body
+        },api.err)
+}
+
+api.removeReportById = id => {
+    return Request.delete(config.BACKURL + '/reports/' + id)
         .set('x-access-token', auth.getToken() || '')
         .set('Accept', 'application/json')
         .then(res => {

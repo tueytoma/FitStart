@@ -164,6 +164,16 @@ class SelectServicePage extends React.Component {
     })
     this.props.history.push('/reservations/' + 3)
 }
+
+pay2 = e => {
+    api.editReservationById(this.props.match.params.reservationId, {status : 5})
+    .then(res=>{
+        if(res){
+        setTimeout(()=>location.reload(),300);
+        }
+    })
+    this.props.history.push('/reservations/' + 5)
+}
     statusOneSelect = e => {
         if(this.state.results.status >= 1){
             this.setState({status:1})
@@ -373,8 +383,8 @@ class SelectServicePage extends React.Component {
                             <Label size="18px" color="#F9FAFC">คิดค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
-                    {( auth.isTrainee()) && <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.pay} show="false">ชำระเงิน</Button2> }
-                    
+                    {/* {( auth.isTrainee()) && <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="139px" height="40px" radius = "5px" color = {color} onClick={this.pay} show="false">จ่ายค่ามัดจำ</Button> } */}
+                    {( auth.isTrainee()) && <LinkAndButtonBox style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.pay} to={'/reservations/' + 3} size = "18px" width="139px" height="40px" radius = "5px" color = {color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="จ่ายค่ามัดจำ"/>}
                 </InnerWrapper>
                
                 <Footer color={color} />
@@ -452,6 +462,8 @@ class SelectServicePage extends React.Component {
                             <Label size="18px" color="#F9FAFC">คิดบริการหลังหักค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
+                    {( auth.isTrainee()) && <LinkAndButtonBox style={{marginTop: "32px", alignSelf: "flex-end"}} to={'/reservations/' + 5} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ชำระเงิน"/>}
+                    {/* {( auth.isTrainee()) && <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} show="false">ชำระเงิน</Button> } */}
                 </InnerWrapper>
                 <Footer color={color} />
             </InnerWrapper>
@@ -476,7 +488,8 @@ class SelectServicePage extends React.Component {
                 </HeaderBlock>
                 <Textarea placeholder = "Comments" width="734px" height="131px" onChange ={this.changeComment}></Textarea>
                 <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px" >ให้คะแนนบริการนี้  </Label><DropdownMenu  onChange ={this.changeRating} style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
-                <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.sendcomment}>ส่งความคิดเห็น</Button>
+                {/* <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="130px" height="40px" radius = "100px" color={color} onClick={this.sendcomment}>ส่งความเห็น</Button> */}
+                <LinkAndButtonBox style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.sendcomment} to={'/reservations/' + 5} size = "18px" width="130px" height="40px" radius = "100px" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น"/>
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>

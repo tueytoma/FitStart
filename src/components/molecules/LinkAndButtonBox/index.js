@@ -15,7 +15,7 @@ class LinkAndButtonBox extends React.Component {
     }
     render() {
         return (
-            <Wrapper>
+            <Wrapper style={this.props.style}> 
                 <LinkStyle size={this.props.sizeLink} to={this.props.to} loginpage={this.props.loginpage} cancelregis={this.props.cancelregis}> <p>{this.props.linktext}</p> </LinkStyle> 
                 <Button disabled={this.props.disabled} onClick={this.props.onClick} color={this.props.color} style={{marginLeft: "16px"}} loginpage={this.props.loginpage} cancelregis={this.props.cancelregis} height={this.props.height} width={this.props.width} size={this.props.size}> {this.props.buttontext} </Button>
             </Wrapper>

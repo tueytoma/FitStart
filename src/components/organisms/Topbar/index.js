@@ -128,6 +128,11 @@ class Topbar extends React.Component {
                             <MenuItem text="แก้ไขข้อมูลบริการ"/>
                         </LinkStyle2>
                         }
+                        {auth.isLoggedIn() && !auth.isAdmin()  &&
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/reservations/1"}>
+                            <MenuItem text="รายการบริการ"/>
+                        </LinkStyle2>
+                        }
                         {auth.isLoggedIn() && auth.isAdmin() && <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to="/admin">
                            <MenuItem text="รายการคำร้องเรียน"/>
                         </LinkStyle2>

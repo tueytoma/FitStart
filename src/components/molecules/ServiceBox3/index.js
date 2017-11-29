@@ -26,7 +26,7 @@ const Result = styled.div`
     align-items: center;
 `
 
-class ServiceBox2 extends React.Component {
+class ServiceBox3 extends React.Component {
 
     constructor(props) {
         super(props)
@@ -77,7 +77,11 @@ class ServiceBox2 extends React.Component {
     }
 
     removeReservation = e => {
-       alert('remove api here')
+        api.removeReservationById(this.props.reservation._id)
+        .then(res=>{
+            if(res)
+            setTimeout(()=>location.reload(),300);
+        })
     }
 
     handleOpen = e => {
@@ -87,6 +91,8 @@ class ServiceBox2 extends React.Component {
     handleClose = e =>{
         this.setState({open : false})
     }
+
+  
 
     render() {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
@@ -124,4 +130,4 @@ class ServiceBox2 extends React.Component {
         )
     }
 }
-export default ServiceBox2
+export default ServiceBox3

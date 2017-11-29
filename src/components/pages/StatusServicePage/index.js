@@ -139,7 +139,7 @@ class StatusServicePage extends React.Component {
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";
-    let textButtonSt2 = auth.isTrainee() ? "2. รอชำระค่ามัดจำ" : auth.isTrainer() ? "2. ผลชำระค่ามัดจำ" : "";
+    let textButtonSt2 = auth.isTrainee() ? "2. รอการชำระค่ามัดจำ" : auth.isTrainer() ? "2. รอการชำระค่ามัดจำ" : "";
     let textButtonSt4 = auth.isTrainee() ? "4. รอชำระเงิน" : auth.isTrainer() ? "4. ผลชำระเงิน" : "";
 
     /*just try*/ 

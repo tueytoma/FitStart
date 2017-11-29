@@ -176,7 +176,7 @@ class ServiceBox2 extends React.Component {
                 }
             })
 
-            api.editReservationById(this.props.reservation._id, {price : InputPrice})
+            api.editReservationById(this.props.reservation._id, {price : Number(this.state.InputPrice)})
             .then(res=>{
                 if(res){
                 setTimeout(()=>location.reload(),300);

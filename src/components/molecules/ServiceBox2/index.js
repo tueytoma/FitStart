@@ -196,7 +196,19 @@ class ServiceBox2 extends React.Component {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
         let linkService = `/reservations/` + this.props.reservation._id + `/` + this.props.reservation.status
         let linkTrainer = `/users/` + this.state.trainerUsername
+        let textwho;
+        let texttopic;
+         if(auth.isTrainee() ){
+            texttopic= "เทรนโดย";
+            textwho = "เทรนเนอร์ " + this.state.trainerName
+           
+         }
+         else {
+            texttopic= "จองโดย";
+            textwho = "ผู้ต้องการออกกำลังกาย " + this.state.traineeName
 
+         }
+  
         const actions = [
             <Link onClick={this.handleClose} to={'/reservations/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
                 <Button dark style={{marginBottom: "32px"}} onClick={this.editReservation} color={color} height="40px" width="231px" size="18px">แก้ไขคำขอ</Button>,
@@ -228,9 +240,9 @@ class ServiceBox2 extends React.Component {
                     <LinkStyle2 to={linkService} style={{margin: "4px 0 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                         {this.state.serviceName}
                     </LinkStyle2>
-                    <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">จองโดย
+                    <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">{texttopic}
                     <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
-                        ผู้ต้องการออกกำลังกาย {this.state.traineeName}
+                        {textwho}
                     </LinkStyle2>
                     </Label>
                     <Label style={{margin: "4px 0 8px 0"}} size="18px" weight="600" color="#202020">ช่วงราคา

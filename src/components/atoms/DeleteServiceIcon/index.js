@@ -16,7 +16,7 @@ export default class DeletetServiceIcon extends React.Component {
             <g id="Canvas" transform="translate(-4987 -6685)">
                 <g id="forbidden-mark">
                     <g id="Vector">
-                        <use href="#path0_fill" transform="translate(4987 6685)" fill="#202020" fill-opacity="0.2"/>
+                        <use href="#path0_fill" transform="translate(4987 6685)" fill="#202020" fillOpacity="0.2"/>
                     </g>
                 </g>
             </g>

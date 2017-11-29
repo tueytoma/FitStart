@@ -18,7 +18,8 @@ import { HomePage,
   StatusServicePage,
   EditServiceListPage,
   EditServicePage,
-  SelectServicePage } from 'components'
+  SelectServicePage,
+  AdminPage } from 'components'
 import { withCookies, Cookies } from 'react-cookie'
 import PropTypes, { instanceOf } from 'prop-types'
 
@@ -73,6 +74,7 @@ class App extends React.Component{
           <Route path="/edit/service/:serviceid" component={EditServicePage} exact/>
           <Route path="/users/:user" component={UserPage} exact/>
           <Route path="/users/:user/:service" component={ServicePage} exact/>
+          <Route path="/admin" component={AdminPage} exact/>
           <Route component={NotFoundPage} />
           
         </Switch>

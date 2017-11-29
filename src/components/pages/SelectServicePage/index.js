@@ -370,12 +370,15 @@ class SelectServicePage extends React.Component {
                             }
                         </Pay> :  
                         <Pay color={color} style={{height: "30vh", marginBottom: "32px"}}>
-                            <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
                             {auth.isTrainee() ?
-                            <Label size="36px" color="#F9FAFC">ท่านได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label> :
-                            <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกายได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label>
+                                <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                                    <Label size="48px" color="#F9FAFC">ท่านได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label> 
+                                </InnerWrapper> :
+                                <InnerWrapper style={{alignItems: "center", paddingBottom: "24px"}}>
+                                    <Label size="36px" color="#F9FAFC">ผู้ต้องการออกกำลังกาย</Label> 
+                                    <Label size="60px" color="#F9FAFC">ได้ยืนยันการใช้บริการเรียบร้อยแล้ว</Label>
+                                </InnerWrapper>
                             }
-                            </InnerWrapper>
                         </Pay>
                     }
                     {this.state.results.status==3 && auth.isTrainee() && <Button onClick={this.endEx} color={color} height="66px" width="557px" size="25px">จบการออกกำลังกาย</Button>}

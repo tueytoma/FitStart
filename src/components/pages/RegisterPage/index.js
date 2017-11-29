@@ -183,7 +183,7 @@ class RegisterPage extends React.Component {
             role : this.state.trainer ? 'Trainer' : 'Trainee'
         }
         console.log(data)
-        this.validate()
+        if(this.validate()){
         api.signup(data)
             .then((res)=>{
                 console.log(res)
@@ -191,6 +191,7 @@ class RegisterPage extends React.Component {
                     && this.state.usernamePass && this.state.passwordPass && this.state.repasswordPass && this.state.emailPass && this.state.passEqualrepass 
                     && this.state.checkboxPass ) this.props.history.push('/registersuccess')
             })
+        }
     }
 
     checkEnglish = (input) => {
@@ -231,25 +232,44 @@ class RegisterPage extends React.Component {
     */
     //validate
     validate = (e) => {
-        if(this.state.firstName.length<1 || this.state.firstName.length>20 || !this.checkEnglish(this.state.firstName)) this.setState({firstNamePass : false}) 
-        else this.setState({firstNamePass : true})
-        if(this.state.lastName.length<1 || this.state.lastName.length>20 || !this.checkEnglish(this.state.lastName)) this.setState({lastNamePass : false}) 
-        else this.setState({lastNamePass : true})
-        //if(this.state.gender != 'ชาย' && this.state.gender != 'หญิง' && this.state.gender != 'อื่น ๆ')this.setState({genderPass : false}) 
-        if(this.state.gender == 'ps')this.setState({genderPass : false})
-        else this.setState({genderPass : true})
-        if(this.state.address.length<1 || this.state.address.length >300 || !this.checkAddress(this.state.address)) this.setState({addressPass : false}) 
-        else this.setState({addressPass : true})
-        if(!this.checkTelephoneNumber(this.state.telephoneNumber)) this.setState({telPass : false}) 
-        else this.setState({telPass : true})
-        if(this.state.username.length <8 || this.state.username.length>15  || !this.checkEnglish(this.state.username)) this.setState({usernamePass : false}) 
-        else this.setState({usernamePass : true}) 
-        if(this.state.password.length <8 || this.state.password.length >20 || !this.checkEnglish(this.state.password)) this.setState({passwordPass : false}) 
-        else this.setState({passwordPass : true})
-        if(this.state.repassword !== this.state.password) this.setState({repasswordPass : false}) 
-        else this.setState({repasswordPass : true})
-        if(!this.checkEmail(this.state.email)) this.setState({emailPass:false})
-        else this.setState({emailPass:true})
+        var check = 0
+        if(this.state.firstName.length<1 || this.state.firstName.length>20 || !this.checkEnglish(this.state.firstName)) {
+            this.setState({firstNamePass : false}) 
+            check--
+        } else this.setState({firstNamePass : true})
+        if(this.state.lastName.length<1 || this.state.lastName.length>20 || !this.checkEnglish(this.state.lastName)) {
+            this.setState({lastNamePass : false}) 
+            check--
+        } else this.setState({lastNamePass : true})
+        if(this.state.gender == 'ps') {
+            this.setState({genderPass : false})
+            check--
+        } else this.setState({genderPass : true})
+        if(this.state.address.length<1 || this.state.address.length >300 || !this.checkAddress(this.state.address)){ 
+            this.setState({addressPass : false}) 
+            check--
+        } else this.setState({addressPass : true})
+        if(!this.checkTelephoneNumber(this.state.telephoneNumber)) {
+            this.setState({telPass : false}) 
+            check--
+        } else this.setState({telPass : true})
+        if(this.state.username.length <8 || this.state.username.length>15  || !this.checkEnglish(this.state.username)){ 
+            this.setState({usernamePass : false}) 
+            check--
+        } else this.setState({usernamePass : true}) 
+        if(this.state.password.length <8 || this.state.password.length >20 || !this.checkEnglish(this.state.password)) {
+            this.setState({passwordPass : false}) 
+            check--
+        } else this.setState({passwordPass : true})
+        if(this.state.repassword !== this.state.password){ 
+            this.setState({repasswordPass : false})
+            check--
+        } else this.setState({repasswordPass : true})
+        if(!this.checkEmail(this.state.email)) { 
+            this.setState({emailPass:false})
+            check--
+        } else this.setState({emailPass:true})
+        return check==0
     }
 
     render() {

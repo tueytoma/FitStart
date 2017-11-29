@@ -117,6 +117,9 @@ class Topbar extends React.Component {
                             <a onClick={this.handleToggle}><Label style={{margin: "auto 16px auto 16px"}} hover colorhover={this.props.color} size="32px" weight="bold" color="#a9a9a9"> X </Label></a>
                             <Label size="16px" weight="bolder" color= "#a9a9a9">แถบเมนูหลัก</Label>
                         </Div>
+                        <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/"}>
+                            <MenuItem text="หน้าหลัก"/>
+                        </LinkStyle2>
                         <LinkStyle2 onClick={this.handleToggle} color="rgba(32, 32, 32, 0.8)" to={"/users/" + username}>
                             <MenuItem text="ภาพรวมของคุณ"/>
                         </LinkStyle2>

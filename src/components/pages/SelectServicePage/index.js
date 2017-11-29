@@ -1,7 +1,6 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu } from 'components'
 import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu, Textfield } from 'components'
 import { font } from 'styled-theme'
 

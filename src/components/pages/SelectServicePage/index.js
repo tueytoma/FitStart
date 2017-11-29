@@ -125,9 +125,31 @@ class SelectServicePage extends React.Component {
         selectedTime: [],
         failure: false,
         status:this.props.match.params.status,
+        comment:'',
+        commentin:''
     };
   }
 
+  changeComment = e => {
+    this.setState({comment : e.target.value})
+  }
+  sendcomment = e => {
+      
+    let data = {
+        trainerId:this.state.trainer._id,
+        reservationId:this.state.reservationId,
+        comment:this.state.comment,
+        rating:4
+    }
+    console.log(data);
+    api.createReview(data)
+    .then(res=>{
+        if(res){
+        setTimeout(()=>location.reload(),300);
+        }
+    })
+    this.props.history.push('/reservations/' + 5)
+}
   pay = e => {
     api.editReservationById(this.props.match.params.reservationId, {status : 3})
     .then(res=>{
@@ -236,6 +258,17 @@ class SelectServicePage extends React.Component {
           })
       })
     })
+
+    api.getReviewOfReservation(this.state.reservationId)
+    .then((res)=>{
+        this.setState({
+            commentin : res[0].comment
+        })
+        console.log("hello"+this.state.commentin);
+        console.log(res)
+    })
+
+
 
 
   }
@@ -406,7 +439,7 @@ class SelectServicePage extends React.Component {
             </InnerWrapper>
             </Wrapper>
         )
-    else if(this.state.status == 5)
+    else if(this.state.status == 5&&auth.isTrainee())
         return(
             <Wrapper>
             <Topbar color={color}/>
@@ -418,21 +451,64 @@ class SelectServicePage extends React.Component {
                     <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusFourSelect} selected={this.state.status==5}>4</Button2>
                     <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5. การฝึกเสร็จสมบูรณ์</Button2>
                 </HeaderBlock>
+
+                
                 <HeaderBlock>
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แสดงความคิดเห็น</Label>
                 </HeaderBlock>
-                <Textarea placeholder = "Comments" width="734px" height="131px"></Textarea>
+                <Textarea placeholder = "Comments" width="734px" height="131px" onChange ={this.changeComment}></Textarea>
                 <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px">ให้คะแนนบริการนี้  </Label><DropdownMenu style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
+                <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.sendcomment}>ส่งความคิดเห็น</Button>
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>
                         <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
                     </Report>
                 </InnerWrapper>
+                
+
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>
         )
+    else if(this.state.status == 5){
+        return(
+            <Wrapper>
+            <Topbar color={color}/>
+            <InnerWrapper> 
+                <HeaderBlock>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusOneSelect} selected={this.state.status==5}>1</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusTwoSelect} selected={this.state.status==5}>2</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusThreeSelect} selected={this.state.status==5}>3</Button2>
+                    <Button2 mar size = "18px" width="15%" height="43px" radius = "5px" color = "rgba(115, 194, 118, 0.8)" onClick={this.statusFourSelect} selected={this.state.status==5}>4</Button2>
+                    <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.statusFiveSelect} selected={this.state.status==5}>5. การฝึกเสร็จสมบูรณ์</Button2>
+                </HeaderBlock>
+
+                
+                <HeaderBlock>
+                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การฝึกเสร็จสมบูรณ์แล้ว  </Label>
+                </HeaderBlock>
+                <HeaderBlock>
+
+                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020"> มาฟังคอมเม้นกันเถอะ! </Label>
+                </HeaderBlock>
+                <HeaderBlock>
+
+                        <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">Comment : {this.state.commentin}</Label>
+                </HeaderBlock>
+               
+                
+
+                <Footer color={color} />
+            </InnerWrapper>
+            </Wrapper>
+        )
+
+
+
+
+
+    }
     else
     return(<Wrapper>
         <Topbar color={color}/>

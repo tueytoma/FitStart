@@ -194,6 +194,15 @@ api.createReservationOfService = (serviceId, data) => {
 		},api.err)
 }
 
+api.createReview= data => {
+	return Request.post(config.BACKURL + '/review')
+        .set('Accept', 'application/json')
+        .send(data)
+		.then(res => {
+			return res.body
+		},api.err)
+}
+
 
 /* PATCH PART */
 

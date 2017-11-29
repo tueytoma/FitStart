@@ -53,6 +53,14 @@ class ServiceBox3 extends React.Component {
                 serviceName : res.name,
             })
         })
+        api.getUserById(this.props.reservation.traineeId)
+        .then((res)=>{
+            let name = `${res.firstName} ${res.lastName}`
+            this.setState({
+                traineeName : name, 
+                traineeUsername : res.username,
+            })
+        })
     }
 
     componentWillReceiveProps(nextProps){
@@ -98,6 +106,19 @@ class ServiceBox3 extends React.Component {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
         let linkService = this.props.reservation.status==5 ? `/reservations/` + this.props.reservation._id + `/` + this.props.reservation.status : `/users/` + this.state.trainerUsername + `/` + this.props.reservation._id
         let linkTrainer = `/users/` + this.state.trainerUsername
+        let textwho;
+        let texttopic;
+         if(auth.isTrainee() ){
+            texttopic= "เทรนโดย";
+            textwho = "เทรนเนอร์ " + this.state.trainerName
+           
+         }
+         else {
+            texttopic= "จองโดย";
+            textwho = "ผู้ต้องการออกกำลังกาย " + this.state.traineeName
+
+         }
+  
 
         const actions = [
             <Button style={{marginBottom: "32px"}} onClick={this.removeReservation} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
@@ -109,9 +130,9 @@ class ServiceBox3 extends React.Component {
                 <LinkStyle2 to={linkService}  style={{margin: "0 16px 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
                         {this.state.serviceName}
                 </LinkStyle2>
-                <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">สอนโดย
+                <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020"> {texttopic}
                 <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
-                    เทรนเนอร์ {this.state.trainerName}
+                {textwho}
                 </LinkStyle2>
                 </Label>
             </Result>

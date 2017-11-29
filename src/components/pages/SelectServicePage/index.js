@@ -128,6 +128,15 @@ class SelectServicePage extends React.Component {
     };
   }
 
+  pay = e => {
+    api.editReservationById(this.props.match.params.reservationId, {status : 3})
+    .then(res=>{
+        if(res){
+        setTimeout(()=>location.reload(),300);
+        }
+    })
+    this.props.history.push('/reservations/' + 3)
+}
     statusOneSelect = e => {
         if(this.state.results.status >= 1){
             this.setState({status:1})
@@ -227,6 +236,8 @@ class SelectServicePage extends React.Component {
           })
       })
     })
+
+
   }
 
   render() {
@@ -234,6 +245,7 @@ class SelectServicePage extends React.Component {
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";
     let textButtonSt2 = auth.isTrainee() ? "2. รอชำระค่ามัดจำ" : auth.isTrainer() ? "2. ผลชำระค่ามัดจำ" : "";
     let textButtonSt4 = auth.isTrainee() ? "4. รอชำระเงิน" : auth.isTrainer() ? "4. ผลชำระเงิน" : "";
+    let paytext =  auth.isTrainee() ? ' <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.pay} >ชำระเงิน</Button2>' : "";
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
     starBox.push(<StarIcon key={i} height="40px"/>)
@@ -306,13 +318,17 @@ class SelectServicePage extends React.Component {
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Pay color={color} >
                         <InnerWrapper style={{alignItems: "flex-end"}}>
+                        
                             <Label size="18px" color="rgba(249, 250, 252, 0.5)">จ่ายค่าบริการทั้งสิ้น 
                                 <Label size="72px" color="#F9FAFC">&nbsp; {this.state.results.price/10} บาท</Label>
                             </Label>
                             <Label size="18px" color="#F9FAFC">คิดค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
+                    {( auth.isTrainee()) && <Button2 mar size = "18px" width="32%" height="43px" radius = "5px" color = {color} onClick={this.pay} show="false">ชำระเงิน</Button2> }
+                    
                 </InnerWrapper>
+               
                 <Footer color={color} />
             </InnerWrapper>
             </Wrapper>

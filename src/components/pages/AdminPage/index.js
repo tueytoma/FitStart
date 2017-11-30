@@ -115,7 +115,7 @@ class AdminPage extends React.Component {
         bans.push(<BanBox user={this.state.bans[i]} key={i}/>)
     }
     else {
-        bans.push(<Label style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีผู้ใช้ที่ถูกแบน</Label>)
+        bans.push(<Label key={0} style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีผู้ใช้ที่ถูกแบน</Label>)
     }
 
     return (

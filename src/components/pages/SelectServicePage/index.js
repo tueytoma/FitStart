@@ -3,7 +3,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { Topbar, Footer, Label,InputBox, Button2, Button, Checkbox, LinkStyle, LinkStyle2, LinkAndButtonBox, CheckBoxAndLabel, DataBox, StarIcon, Button3, Textarea, DropdownMenu, Textfield } from 'components'
 import { font } from 'styled-theme'
-
+import Dialog from 'material-ui/Dialog';
 import { Link} from 'react-router-dom'
 import api from '../../../api'
 import auth from '../../../auth'
@@ -107,6 +107,12 @@ const Pay = styled.div`
     height: 220px;
 `
 
+const A = styled.div`
+    &:hover {
+        cursor: pointer;
+    }
+`
+
 const queryString = require('query-string');
 const parsed = queryString.parse(location.search)
 
@@ -129,7 +135,9 @@ class SelectServicePage extends React.Component {
         commentin:'',
         ratingin:'-',
         rating:0,
-        end: false
+        end: false,
+
+        open: false,
     };
   }
 
@@ -298,6 +306,15 @@ pay2 = e => {
     })
   }
 
+  openDownload = e => {
+    this.setState({open: true})
+}
+
+closeDownload = e => {
+    this.setState({open: false})
+}
+   
+
 
 
   render() {
@@ -314,8 +331,9 @@ pay2 = e => {
     for (var i = 0 ; i < this.state.ratingin ; i++)
     starBox2.push(<StarIcon key={i} height="20px"/>)
 
-    
-
+    const actions = [
+        <Button dark style={{marginBottom: "32px"}} onClick={this.closeDownload} color={color} height="40px" width="231px" size="18px">รับทราบ</Button>, 
+    ];
 
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
@@ -370,6 +388,17 @@ pay2 = e => {
     else if(this.state.status == 2)
         return(
             <Wrapper>
+                <Dialog
+                actions={actions}
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.closeDownload}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ยังไม่สามารถดาวน์โหลดได้ในขณะนี้</Label>
+                <Label style={{margin: "8px 0 4px 0"}} size="24px" weight="600" color="#F9FAFC">กรุณาติดต่ออีเมล fitstart_co@gmail.com</Label>
+            </Dialog>
             <Topbar color={color}/>
             <InnerWrapper>
                 <HeaderBlock>
@@ -382,8 +411,9 @@ pay2 = e => {
                 <HeaderBlock>
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่ามัดจำ</Label>
                 </HeaderBlock>
-                <DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด' color={color} />
-                <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail={this.state.results.status > 2 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
+                <A onClick={this.openDownload}><DataBox textTitle="ใบเสนอราคา" textDetail='ดาวน์โหลด' color={color} /></A>
+                <DataBox textTitle="สถานะการจ่ายค่ามัดจำ" textDetail={this.state.results.status > 2 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
+                {this.state.results.status > 4 && <A onClick={this.openDownload}><DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail="ดาวน์โหลด" color={color} /></A>}
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Pay color={color} >
                         <InnerWrapper style={{alignItems: "flex-end"}}>
@@ -450,6 +480,17 @@ pay2 = e => {
     else if(this.state.status == 4)
         return(
             <Wrapper>
+                <Dialog
+                actions={actions}
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.closeDownload}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ยังไม่สามารถดาวน์โหลดได้ในขณะนี้</Label>
+                <Label style={{margin: "8px 0 4px 0"}} size="24px" weight="600" color="#F9FAFC">กรุณาติดต่ออีเมล fitstart_co@gmail.com</Label>
+            </Dialog>
             <Topbar color={color}/>
             <InnerWrapper>
                 <HeaderBlock>
@@ -462,8 +503,8 @@ pay2 = e => {
                 <HeaderBlock>
                     <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การชำระค่าบริการ</Label>
                 </HeaderBlock>
-                <DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail='ดาวน์โหลด' color={color} />
-                <DataBox textTitle="ใบเสร็จค่ามัดจำ" textDetail={this.state.results.status > 4 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
+                <DataBox textTitle="สถานะการชำระเงินส่วนที่เหลือ" textDetail={this.state.results.status > 4 ?'ชำระเรียบร้อยแล้ว' : 'ยังไม่ได้ชำระเงิน'} color='#202020' />
+                {this.state.results.status > 4 && <A onClick={this.openDownload}><DataBox textTitle="ใบเสร็จค่าบริการส่วนที่เหลือ" textDetail="ดาวน์โหลด" color={color} /></A>}
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Pay color={color} >
                         <InnerWrapper style={{alignItems: "flex-end"}}>

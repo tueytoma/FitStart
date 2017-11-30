@@ -121,7 +121,7 @@ class ServiceBox3 extends React.Component {
   
 
         const actions = [
-            <Button style={{marginBottom: "32px"}} onClick={this.removeReservation} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
+            <Button dark style={{marginBottom: "32px"}} onClick={this.removeReservation} color={color} height="40px" width="231px" size="18px">ยืนยัน</Button>,
         ];
 
         return (

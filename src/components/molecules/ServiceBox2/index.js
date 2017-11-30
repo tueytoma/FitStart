@@ -229,7 +229,7 @@ class ServiceBox2 extends React.Component {
 
         var timeItems = []
         for (var i = 0 ; i < this.state.timeSlots.length ; i++) {
-            timeItems.push(<CheckBoxAndLabel isChecked={this.props.reservation.timeSlot.includes(this.state.timeSlots[i]._id)} key={this.state.timeSlots[i]._id} onValue={this.onValue} id={this.state.timeSlots[i]._id} disabled={color != "#F05939"} time={this.state.timeSlots[i]} color={"#F9FAFC"}/>)
+            timeItems.push(<CheckBoxAndLabel isChecked={this.props.reservation.timeSlot.includes(this.state.timeSlots[i]._id)} key={this.state.timeSlots[i]._id} onValue={this.onValue} id={this.state.timeSlots[i]._id} disabled={true} time={this.state.timeSlots[i]} color={"#F9FAFC"}/>)
         }
 
         return (

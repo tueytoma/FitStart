@@ -161,7 +161,6 @@ class SelectServicePage extends React.Component {
             comment:this.state.comment,
             rating:this.state.rating
         }
-        console.log(data);
         api.createReview(data)
         .then(res=>{
             if(res){
@@ -244,7 +243,7 @@ class SelectServicePage extends React.Component {
         }
         api.createReport(data)
         .then(res=>{
-            console.log(res)
+            
         })
         this.setState({end: true})
     }
@@ -263,19 +262,12 @@ class SelectServicePage extends React.Component {
     onValue = (id, check) => {
         var temp = this.state.selectedTime
         if(check == false) {
-            temp.push(id)
-            // console.log(id + "== true")
-            
+            temp.push(id)     
         } else {
-            // console.log(this.state.selectedTime.indexOf(id) + "ddd");
-            // console.log(temp.indexOf(id))
             if(temp.indexOf(id)!=-1){
-                console.log(temp.indexOf(id))
                 temp.splice(temp.indexOf(id),1)
             }
-            // console.log(id + "== false")
         }
-        console.log(temp)
         this.setState({selectedTime : temp})
     }
     validateUsername = () => {
@@ -296,8 +288,7 @@ class SelectServicePage extends React.Component {
     getData(){
         api.getReservationById(this.state.reservationId)
         .then((res)=>{
-            console.log(res)
-        this.setState({results : res, selectedTime : res.timeSlot})
+            this.setState({results : res, selectedTime : res.timeSlot})
         api.getServiceById(this.state.results.serviceId)
         .then((res2) => {
             this.setState({ service : res2 })
@@ -319,8 +310,6 @@ class SelectServicePage extends React.Component {
                 ratingin: res.length > 0 ? res[0].rating : '-',
                 end: res.length>0 ? true : false
             })
-            console.log(this.state.commentin);
-            console.log(res.length>0)
         })
     }
 
@@ -353,7 +342,6 @@ class SelectServicePage extends React.Component {
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
         timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={this.state.results.status>1} time={this.state.time[i]} color={color}/>)
-        // console.log(this.state.time[i]._id)
     }
 
 

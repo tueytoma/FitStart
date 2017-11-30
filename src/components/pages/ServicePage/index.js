@@ -85,18 +85,19 @@ class ServicePage extends React.Component {
         selectedTime: [],
         failure: false,
         open: false,
+        open2: false,
         checkboxPass:false,
     };
   }
 
   handleOpen = e =>{
     if(this.state.selectedTime.length>0){
-    this.setState({open : true})
-    }
+        this.setState({open : true})
+    } else {this.setState({open2 : true})}
 }
 
   handleClose = e =>{
-    this.setState({open : false})
+    this.setState({open : false, open2: false})
 }
 
   componentWillMount() {
@@ -168,7 +169,9 @@ class ServicePage extends React.Component {
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
     starBox.push(<StarIcon key={i} height="40px"/>)
     var timeslot = []
+    var isFull =this.state.time.length
     for (var i = 0 ; i < this.state.time.length ; i++) {
+        if(this.state.time[i].status==1) isFull--
         timeslot.push(<CheckBoxAndLabel isChecked={this.state.time[i].status==1}key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={!auth.isTrainee() || this.state.time[i].status==1} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
@@ -177,6 +180,10 @@ class ServicePage extends React.Component {
             <Button dark style={{marginBottom: "32px"}} onClick={this.onClick} color={color} height="40px" width="231px" size="18px">ตกลง</Button>,
         </Link>
     ];
+    const actions2 = [
+        <Button dark style={{marginBottom: "32px"}} onClick={this.handleClose} color={color} height="40px" width="231px" size="18px">ตกลง</Button>,
+    ];
+
     return (
       <Wrapper>
         <Topbar color={color}/>
@@ -211,7 +218,7 @@ class ServicePage extends React.Component {
                     {auth.isLoggedIn() && auth.isTrainee() && <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle> }
                 </LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox disabled={!this.state.checkboxPass || !auth.isTrainee()} onClick={this.handleOpen} to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
+                    <LinkAndButtonBox disabled={!this.state.checkboxPass || !auth.isTrainee() || isFull==0} onClick={this.handleOpen} to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
                 </LRBlock>
             </FooterBlock >
             <Footer color={color} />
@@ -226,15 +233,26 @@ class ServicePage extends React.Component {
     
         }
         <Dialog
-                actions={actions}
-                modal={false}
-                open={this.state.open}
-                onRequestClose={this.handleClose}
-                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
-                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
-                contentStyle={{width:'60%',maxWidth: 'none'}}>
-                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ยืนยันการจองเวลา</Label>
-            </Dialog>
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleClose}
+            actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+            bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+            contentStyle={{width:'60%',maxWidth: 'none'}}>
+            <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ยืนยันการจองเวลา</Label>
+        </Dialog>
+
+        <Dialog
+            actions={actions2}
+            modal={false}
+            open={this.state.open2}
+            onRequestClose={this.handleClose}
+            actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
+            bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
+            contentStyle={{width:'60%',maxWidth: 'none'}}>
+            <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ยังไม่มีการเลือกเวลาที่จอง</Label>
+        </Dialog>
         
       </Wrapper>
     )

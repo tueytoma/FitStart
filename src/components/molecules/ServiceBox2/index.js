@@ -57,6 +57,8 @@ class ServiceBox2 extends React.Component {
             serviceName:'',
             open:false,
             open2:false,
+            open3:false,
+            open4:false,
             timeSlots:'',
             InputPrice:0,
         }
@@ -110,6 +112,14 @@ class ServiceBox2 extends React.Component {
             this.setState({
                 trainerName : name, 
                 trainerUsername : res.username,
+            })
+        })
+        api.getUserById(nextProps.reservation.traineeId)
+        .then((res)=>{
+            let name = `${res.firstName} ${res.lastName}`
+            this.setState({
+                traineeName : name, 
+                traineeUsername : res.username,
             })
         })
         api.getServiceById(nextProps.reservation.serviceId)
@@ -196,6 +206,7 @@ class ServiceBox2 extends React.Component {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
         let linkService = `/reservations/` + this.props.reservation._id + `/` + this.props.reservation.status
         let linkTrainer = `/users/` + this.state.trainerUsername
+        let linkTrainee = `/users/` + this.state.traineeUsername
         let textwho;
         let texttopic;
          if(auth.isTrainee() ){
@@ -241,7 +252,7 @@ class ServiceBox2 extends React.Component {
                         {this.state.serviceName}
                     </LinkStyle2>
                     <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">{texttopic}
-                    <LinkStyle2 to={linkTrainer} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
+                    <LinkStyle2 to={linkTrainee} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
                         {textwho}
                     </LinkStyle2>
                     </Label>

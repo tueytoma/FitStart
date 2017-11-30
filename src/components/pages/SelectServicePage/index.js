@@ -140,6 +140,7 @@ class SelectServicePage extends React.Component {
             selectedTime: [],
 
             open: false,
+            openReport: false,
         };
     }
 
@@ -243,7 +244,7 @@ class SelectServicePage extends React.Component {
         }
         api.createReport(data)
         .then(res=>{
-            
+            this.setState({openReport: true})
         })
         this.setState({end: true})
     }
@@ -320,6 +321,14 @@ class SelectServicePage extends React.Component {
     closeDownload = e => {
         this.setState({open: false})
     }
+
+    openReport = e => {
+        this.setState({openReport: true})
+    }
+
+    closeReport = e => {
+        this.setState({openReport: false})
+    }
     
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
@@ -337,6 +346,10 @@ class SelectServicePage extends React.Component {
 
     const actions = [
         <Button dark style={{marginBottom: "32px"}} onClick={this.closeDownload} color={color} height="40px" width="231px" size="18px">รับทราบ</Button>, 
+    ];
+
+    const actions2 = [
+        <Button dark style={{marginBottom: "32px"}} onClick={this.closeReport} color="#DC4444" height="40px" width="231px" size="18px">รับทราบ</Button>, 
     ];
 
     var timeslot = []
@@ -527,6 +540,16 @@ class SelectServicePage extends React.Component {
     else if(this.state.status == 5&&auth.isTrainee())
         return(
             <Wrapper>
+                <Dialog
+                actions={actions2}
+                modal={false}
+                open={this.state.openReport}
+                onRequestClose={this.closeReport}
+                actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: "#D44444"}}
+                bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#D44444"}}
+                contentStyle={{width:'60%',maxWidth: 'none'}}>
+                <Label style={{margin: "8px 0 4px 0"}} size="24px" weight="600" color="#F9FAFC">คำร้องเรียนได้ถูกถึงผู้ดูแลระบบแล้ว</Label>
+            </Dialog>
             <Topbar color={color}/>
             <InnerWrapper> 
                 <HeaderBlock>
@@ -547,9 +570,9 @@ class SelectServicePage extends React.Component {
                 <LinkAndButtonBox disabled={this.state.end} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.sendcomment} to={'/reservations/' + 5} size = "18px" width="130px" height="40px" radius = "100px" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น"/>
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Report style={{height: "auto"}}>
-                        <Label style={{margin: "16px 0 16px 0"}}size ="48px" color="#F9FAFC">หรือ</Label>
+                        <Label style={{margin: "16px 0 0 0"}}size ="48px" color="#F9FAFC">หรือ</Label>
                         <Textarea style={{marginBottom: "16px"}} placeholder = "report" width="734px" height="131px" color={color} onChange ={this.changeReportComment}></Textarea>
-                        <Button style={{marginBottom: "16px"}} dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
+                        <Button style={{marginBottom: "16px"}} dark size = "18px" width="300px" height="40px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
                     </Report>
                 </InnerWrapper>
                 

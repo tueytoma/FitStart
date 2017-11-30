@@ -105,17 +105,17 @@ class AdminPage extends React.Component {
             reports2.push(<ReportBox report={this.state.reports[i]} key={i}/>)
     }
     if(reports.length==0){
-        reports.push(<Label style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีรายการคำร้องเรียน</Label>)
+        reports.push(<Label key={0} style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีรายการคำร้องเรียน</Label>)
     }
     if(reports2.length==0){
-        reports2.push(<Label style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีรายการคำร้องเรียนที่ถูกจัดการแล้ว</Label>)
+        reports2.push(<Label key={0} style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีรายการคำร้องเรียนที่ถูกจัดการแล้ว</Label>)
     }
     if(this.state.bans.length > 0)
     for (var i = 0 ; i < this.state.bans.length ; i++){
         bans.push(<BanBox user={this.state.bans[i]} key={i}/>)
     }
     else {
-        bans.push(<Label style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีผู้ใช้ที่ถูกแบน</Label>)
+        bans.push(<Label key={0} style={{margin: "16px 0 16px 0"}} size="24px" weight="600" color="#202020">ไม่มีผู้ใช้ที่ถูกแบน</Label>)
     }
 
     return (

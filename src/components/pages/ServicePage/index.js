@@ -85,6 +85,7 @@ class ServicePage extends React.Component {
         selectedTime: [],
         failure: false,
         open: false,
+        checkboxPass:false,
     };
   }
 
@@ -168,7 +169,7 @@ class ServicePage extends React.Component {
     starBox.push(<StarIcon key={i} height="40px"/>)
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
-        timeslot.push(<CheckBoxAndLabel key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939"} time={this.state.time[i]} color={color}/>)
+        timeslot.push(<CheckBoxAndLabel key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={!auth.isTrainee() || this.state.time[i].status==1} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
     const actions = [
@@ -210,7 +211,7 @@ class ServicePage extends React.Component {
                     {auth.isLoggedIn() && auth.isTrainee() && <LinkStyle to="/detail" size="13px"><p>คลิกที่นี่</p></LinkStyle> }
                 </LRBlock>
                 <LRBlock style={{flexFlow: "row", justifyContent: "flex-end"}}>
-                    <LinkAndButtonBox disabled={color != "#F05939"} onClick={this.handleOpen} to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
+                    <LinkAndButtonBox disabled={!this.state.checkboxPass || !auth.isTrainee()} onClick={this.handleOpen} to="/" color={color} linktext="ยกเลิกการเลือกบริการนี้" buttontext="ส่งคำขอ" height="40px" width="122px" size="18px" sizeLink="18px"/>
                 </LRBlock>
             </FooterBlock >
             <Footer color={color} />

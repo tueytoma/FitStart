@@ -118,78 +118,79 @@ const parsed = queryString.parse(location.search)
 
 class SelectServicePage extends React.Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-        userName: '',
-        reservationId: this.props.match.params.reservationId,
-        service: '',
-        results: '',
-        trainer: '',
-        checkTrainerHaveService: true,
-        time: '',
-        selectedTime: [],
-        failure: false,
-        status:this.props.match.params.status,
-        comment:'',
-        reportcomment:'',
-        commentin:'',
-        ratingin:'-',
-        rating:0,
-        end: false,
-        selectedTime: [],
+    constructor(props) {
+        super(props)
+        this.state = {
+            userName: '',
+            reservationId: this.props.match.params.reservationId,
+            service: '',
+            results: '',
+            trainer: '',
+            checkTrainerHaveService: true,
+            time: '',
+            selectedTime: [],
+            failure: false,
+            status:this.props.match.params.status,
+            comment:'',
+            reportcomment:'',
+            commentin:'',
+            ratingin:'-',
+            rating:0,
+            end: false,
+            selectedTime: [],
 
-        open: false,
-    };
-  }
-
-  changeComment = e => {
-    this.setState({comment : e.target.value})
-  }
-
-  changeReportComment = e => {
-    this.setState({reportcomment : e.target.value})
-  }
-  changeRating= e => {
-    this.setState({rating: e.target.value})
-  }
-  sendcomment = e => {
-      
-    let data = {
-        trainerId:this.state.trainer._id,
-        reservationId:this.state.reservationId,
-        comment:this.state.comment,
-        rating:this.state.rating
+            open: false,
+        };
     }
-    console.log(data);
-    api.createReview(data)
-    .then(res=>{
-        if(res){
-        setTimeout(()=>location.reload(),300);
-        }
-    })
-    this.setState({end: true})
-    this.props.history.push('/reservations/' + 5)
-}
-  pay = e => {
-    api.editReservationById(this.props.match.params.reservationId, {status : 3})
-    .then(res=>{
-        if(res){
-        setTimeout(()=>location.reload(),300);
-        }
-    })
-    this.props.history.push('/reservations/' + 3)
-}
 
-pay2 = e => {
-    api.editReservationById(this.props.match.params.reservationId, {status : 5})
-    .then(res=>{
-        if(res){
-        setTimeout(()=>location.reload(),300);
+    changeComment = e => {
+        this.setState({comment : e.target.value})
+    }
+
+    changeReportComment = e => {
+        this.setState({reportcomment : e.target.value})
+    }
+    changeRating= e => {
+        this.setState({rating: e.target.value})
+    }
+    sendcomment = e => {
+        
+        let data = {
+            trainerId:this.state.trainer._id,
+            reservationId:this.state.reservationId,
+            comment:this.state.comment,
+            rating:this.state.rating
         }
-    })
-    this.props.history.push('/reservations/' + 5)
-}
+        console.log(data);
+        api.createReview(data)
+        .then(res=>{
+            if(res){
+            setTimeout(()=>location.reload(),300);
+            }
+        })
+        this.setState({end: true})
+        this.props.history.push('/reservations/' + 5)
+    }
+    pay = e => {
+        api.editReservationById(this.props.match.params.reservationId, {status : 3})
+        .then(res=>{
+            if(res){
+            setTimeout(()=>location.reload(),300);
+            }
+        })
+        this.props.history.push('/reservations/' + 3)
+    }
+
+    pay2 = e => {
+        api.editReservationById(this.props.match.params.reservationId, {status : 5})
+        .then(res=>{
+            if(res){
+            setTimeout(()=>location.reload(),300);
+            }
+        })
+        this.props.history.push('/reservations/' + 5)
+    }
+
     statusOneSelect = e => {
         if(this.state.results.status >= 1){
             this.setState({status:1})
@@ -220,114 +221,117 @@ pay2 = e => {
             this.props.history.push('/reservations/' + this.props.match.params.reservationId + '/' + 5)
         }
     }
-  changeCheckbox = e => {
-    this.setState({checkboxPass : e.target.value})
-  }
+    changeCheckbox = e => {
+        this.setState({checkboxPass : e.target.value})
+    }
 
-  toggleIsChecked = e => {
-    this.setState({checkboxPass: !this.state.checkboxPass});
-  }
+    toggleIsChecked = e => {
+        this.setState({checkboxPass: !this.state.checkboxPass});
+    }
 
-  onClick = e => {
-    api.editReservationById(this.state.results._id,{ timeSlot : this.state.selectedTime})
-    .then(res=>{
-        if(res) setTimeout(()=>location.reload(),300);
-    })
-  }
-
-  report = e =>{
-      let data = {
-          trainerId : this.state.results.trainerId,
-          traineeId : this.state.results.traineeId,
-          comment : this.state.reportcomment
-      }
-      api.createReport(data)
-      .then(res=>{
-        console.log(res)
-      })
-      this.setState({end: true})
-  }
-
-  endEx = e => {
-    if(this.state.results.status==3){
-        api.editReservationById(this.state.reservationId, {status : 4})
+    onClick = e => {
+        api.editReservationById(this.state.results._id,{ timeSlot : this.state.selectedTime})
         .then(res=>{
-            if(res)
-                this.setState({status:4})
-                this.props.history.push('/reservations/' + this.props.match.params.reservationId + '/' + 4)
-                this.state.results.status = 4
+            if(res) setTimeout(()=>location.reload(),300);
         })
     }
-  }
 
-  onValue = (id, check) => {
-     var temp = this.state.selectedTime
-     if(check == false) {
-        temp.push(id)
-        // console.log(id + "== true")
-        
-    } else {
-        // console.log(this.state.selectedTime.indexOf(id) + "ddd");
-        // console.log(temp.indexOf(id))
-        if(temp.indexOf(id)!=-1){
-            console.log(temp.indexOf(id))
-            temp.splice(temp.indexOf(id),1)
+    report = e =>{
+        let data = {
+            trainerId : this.state.results.trainerId,
+            traineeId : this.state.results.traineeId,
+            comment : this.state.reportcomment
         }
-        // console.log(id + "== false")
-    }
-    console.log(temp)
-    this.setState({selectedTime : temp})
-}
-  validateUsername = () => {
-      if(this.state.userName != this.state.trainer.username){
-        this.setState({failure : true})
-      }
-  }
-
-  componentDidMount() {
-    api.getReservationById(this.state.reservationId)
-    .then((res)=>{
-        console.log(res)
-      this.setState({results : res, selectedTime : res.timeSlot})
-      api.getServiceById(this.state.results.serviceId)
-      .then((res2) => {
-          this.setState({ service : res2 })
-          api.getTimeSlotOfService(this.state.results.serviceId)
-          .then((res3)=>{
-              this.setState({time : res3})
-              api.getUserById(this.state.results.trainerId)
-              .then((res4)=>{
-                  this.setState({trainer : res4})
-              })
-          })
-      })
-    })
-
-    api.getReviewOfReservation(this.state.reservationId)
-    .then((res)=>{
-        this.setState({
-            commentin : res.length > 0 ? res[0].comment : '',
-            ratingin: res.length > 0 ? res[0].rating : '-',
-            end: res.length>0 ? true : false
+        api.createReport(data)
+        .then(res=>{
+            console.log(res)
         })
-        console.log(this.state.commentin);
-        console.log(res.length>0)
-    })
+        this.setState({end: true})
+    }
 
+    endEx = e => {
+        if(this.state.results.status==3){
+            api.editReservationById(this.state.reservationId, {status : 4})
+            .then(res=>{
+                if(res)
+                    this.props.history.push('/reservations/' + this.props.match.params.reservationId + '/' + 4)
+                    this.state.results.status = 4
+            })
+        }
+    }
 
-  }
+    onValue = (id, check) => {
+        var temp = this.state.selectedTime
+        if(check == false) {
+            temp.push(id)
+            // console.log(id + "== true")
+            
+        } else {
+            // console.log(this.state.selectedTime.indexOf(id) + "ddd");
+            // console.log(temp.indexOf(id))
+            if(temp.indexOf(id)!=-1){
+                console.log(temp.indexOf(id))
+                temp.splice(temp.indexOf(id),1)
+            }
+            // console.log(id + "== false")
+        }
+        console.log(temp)
+        this.setState({selectedTime : temp})
+    }
+    validateUsername = () => {
+        if(this.state.userName != this.state.trainer.username){
+            this.setState({failure : true})
+        }
+    }
 
-  openDownload = e => {
-    this.setState({open: true})
-}
+    componentDidMount() {
+        this.getData()
+    }
 
-closeDownload = e => {
-    this.setState({open: false})
-}
-   
+    componentWillReceiveProps(nextProps){
+        this.setState({status : nextProps.match.params.status})
+        this.getData()
+    }
 
+    getData(){
+        api.getReservationById(this.state.reservationId)
+        .then((res)=>{
+            console.log(res)
+        this.setState({results : res, selectedTime : res.timeSlot})
+        api.getServiceById(this.state.results.serviceId)
+        .then((res2) => {
+            this.setState({ service : res2 })
+            api.getTimeSlotOfService(this.state.results.serviceId)
+            .then((res3)=>{
+                this.setState({time : res3})
+                api.getUserById(this.state.results.trainerId)
+                .then((res4)=>{
+                    this.setState({trainer : res4})
+                })
+            })
+        })
+        })
 
+        api.getReviewOfReservation(this.state.reservationId)
+        .then((res)=>{
+            this.setState({
+                commentin : res.length > 0 ? res[0].comment : '',
+                ratingin: res.length > 0 ? res[0].rating : '-',
+                end: res.length>0 ? true : false
+            })
+            console.log(this.state.commentin);
+            console.log(res.length>0)
+        })
+    }
 
+    openDownload = e => {
+        this.setState({open: true})
+    }
+
+    closeDownload = e => {
+        this.setState({open: false})
+    }
+    
   render() {
     let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
     let textButtonSt1 = auth.isTrainee() ? "1. ส่งคำขอ" : auth.isTrainer() ? "1. ตรวจสอบคำขอ" : "";

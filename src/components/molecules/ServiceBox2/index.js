@@ -53,6 +53,8 @@ class ServiceBox2 extends React.Component {
         this.state = {
             trainerName: '',
             trainerUsername: '',
+            traineeName: '',
+            traineeUsername: '',
             price:'',
             serviceName:'',
             open:false,
@@ -205,19 +207,18 @@ class ServiceBox2 extends React.Component {
     render() {
         let color = auth.isLoggedIn() ? auth.isTrainer() ? "#211F5E" : auth.isTrainee() ? "#F05939" : "" : "#202020";
         let linkService = `/reservations/` + this.props.reservation._id + `/` + this.props.reservation.status
-        let linkTrainer = `/users/` + this.state.trainerUsername
-        let linkTrainee = `/users/` + this.state.traineeUsername
-        let textwho;
-        let texttopic;
+        let textwho
+        let texttopic
+        let linkwho
          if(auth.isTrainee() ){
             texttopic= "เทรนโดย";
             textwho = "เทรนเนอร์ " + this.state.trainerName
-           
+            linkwho = `/users/` + this.state.trainerUsername
          }
          else {
             texttopic= "จองโดย";
             textwho = "คุณ " + this.state.traineeName
-
+            linkwho = `/users/` + this.state.traineeUsername
          }
   
         const actions = [
@@ -252,7 +253,7 @@ class ServiceBox2 extends React.Component {
                         {this.state.serviceName}
                     </LinkStyle2>
                     <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020">{texttopic}
-                    <LinkStyle2 to={linkTrainee} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
+                    <LinkStyle2 to={linkwho} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="normal">
                         {textwho}
                     </LinkStyle2>
                     </Label>

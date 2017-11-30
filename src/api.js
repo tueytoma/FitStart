@@ -203,6 +203,15 @@ api.createReview= data => {
 		},api.err)
 }
 
+api.createReport= data => {
+	return Request.post(config.BACKURL + '/report')
+        .set('Accept', 'application/json')
+        .send(data)
+		.then(res => {
+			return res.body
+		},api.err)
+}
+
 
 /* PATCH PART */
 

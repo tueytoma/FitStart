@@ -137,6 +137,7 @@ class SelectServicePage extends React.Component {
         ratingin:'-',
         rating:0,
         end: false,
+        selectedTime: [],
 
         open: false,
     };
@@ -228,7 +229,10 @@ pay2 = e => {
   }
 
   onClick = e => {
-    console.log(this.state.selectedTime)  
+    api.editReservationById(this.state.results._id,{ timeSlot : this.state.selectedTime})
+    .then(res=>{
+        if(res) setTimeout(()=>location.reload(),300);
+    })
   }
 
   report = e =>{
@@ -271,6 +275,7 @@ pay2 = e => {
         }
         // console.log(id + "== false")
     }
+    console.log(temp)
     this.setState({selectedTime : temp})
 }
   validateUsername = () => {
@@ -283,7 +288,7 @@ pay2 = e => {
     api.getReservationById(this.state.reservationId)
     .then((res)=>{
         console.log(res)
-      this.setState({results : res})
+      this.setState({results : res, selectedTime : res.timeSlot})
       api.getServiceById(this.state.results.serviceId)
       .then((res2) => {
           this.setState({ service : res2 })
@@ -301,8 +306,8 @@ pay2 = e => {
     api.getReviewOfReservation(this.state.reservationId)
     .then((res)=>{
         this.setState({
-            commentin : res[0].comment,
-            ratingin: res[0].rating,
+            commentin : res.length > 0 ? res[0].comment : '',
+            ratingin: res.length > 0 ? res[0].rating : '-',
             end: res.length>0 ? true : false
         })
         console.log(this.state.commentin);

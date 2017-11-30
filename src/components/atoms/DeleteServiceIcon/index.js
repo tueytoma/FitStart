@@ -4,6 +4,8 @@ import styled from 'styled-components'
 const SVG = styled.svg`
 &:hover {
   cursor:pointer;
+  fill: ${props => props.color};
+  fill-opacity:1;
 }
 `
 
@@ -12,11 +14,11 @@ export default class DeletetServiceIcon extends React.Component {
 
   render() {
     return (
-        <SVG width={this.props.width} height={this.props.height} viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+        <SVG fill="#202020"  fillOpacity="0.2" color={this.props.color} width={this.props.width} height={this.props.height} viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
             <g id="Canvas" transform="translate(-4987 -6685)">
                 <g id="forbidden-mark">
                     <g id="Vector">
-                        <use href="#path0_fill" transform="translate(4987 6685)" fill="#202020" fillOpacity="0.2"/>
+                        <use href="#path0_fill" transform="translate(4987 6685)"/>
                     </g>
                 </g>
             </g>

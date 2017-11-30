@@ -544,15 +544,15 @@ closeDownload = e => {
                 <HeaderBlock>
                         <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">แสดงความคิดเห็น</Label>
                 </HeaderBlock>
-                <Textarea color={color} placeholder = "Comments" width="734px" height="131px" onChange ={this.changeComment}></Textarea>
-                <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px" >ให้คะแนนบริการนี้  </Label><DropdownMenu  onChange ={this.changeRating} style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
+                <Textarea disabled={this.state.end} color={color} placeholder = "Comments" width="734px" height="131px" onChange ={this.changeComment}></Textarea>
+                <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px" >ให้คะแนนบริการนี้  </Label><DropdownMenu  disabled={this.state.end}onChange ={this.changeRating} style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
                 {/* <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="130px" height="40px" radius = "100px" color={color} onClick={this.sendcomment}>ส่งความเห็น</Button> */}
-                <LinkAndButtonBox disable={this.state.end} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.sendcomment} to={'/reservations/' + 5} size = "18px" width="130px" height="40px" radius = "100px" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น"/>
+                <LinkAndButtonBox disabled={this.state.end} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.sendcomment} to={'/reservations/' + 5} size = "18px" width="130px" height="40px" radius = "100px" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น"/>
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Report style={{height: "auto"}}>
                         <Label style={{margin: "16px 0 16px 0"}}size ="48px" color="#F9FAFC">หรือ</Label>
                         <Textarea style={{marginBottom: "16px"}} placeholder = "report" width="734px" height="131px" color={color} onChange ={this.changeReportComment}></Textarea>
-                        <Button style={{marginBottom: "16px"}}disable={this.state.end} dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
+                        <Button style={{marginBottom: "16px"}} dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
                     </Report>
                 </InnerWrapper>
                 

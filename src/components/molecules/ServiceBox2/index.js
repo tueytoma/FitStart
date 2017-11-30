@@ -260,13 +260,13 @@ class ServiceBox2 extends React.Component {
             <Result2 style={{margin: "0 100px 0 0"}}>
                 {(this.props.reservation.status==2 || this.props.reservation.status==4) && 
                 <Link onClick={this.handleClose} to={'/reservations/'+this.props.reservation._id + '/' +this.props.reservation.status} style={{textDecoration: "none"}}>
-                    <div onClick={this.payment}><BahtIcon width="91.5px" height="39px"/> 
+                    <div onClick={this.payment}><BahtIcon color={color} width="91.5px" height="39px"/> 
                     </div>
                 </Link>}
-                {(this.props.reservation.status!=4) && <div onClick={this.handleOpen}><CalendarIcon width="91.5px" height="39px"/> </div>}
-                {((this.props.reservation.status==1|| this.props.reservation.status==2)&&auth.isTrainee()) && <div onClick={this.handleOpen2}><TrashIcon width="91.5px" height="39px"/> </div>}
-                {(this.props.reservation.status==1 && auth.isTrainer()) && <div onClick={this.handleOpen3}><SelectServiceIcon width="91.5px" height="39px"/></div> }
-                {(this.props.reservation.status==1 && auth.isTrainer()) && <div onClick={this.handleOpen4}><DeleteServiceIcon width="91.5px" height="39px"/></div> }
+                {(this.props.reservation.status!=4) && <div onClick={this.handleOpen}><CalendarIcon color={color} width="91.5px" height="39px"/> </div>}
+                {((this.props.reservation.status==1|| this.props.reservation.status==2)&&auth.isTrainee()) && <div onClick={this.handleOpen2}><TrashIcon color={color} width="91.5px" height="39px"/> </div>}
+                {(this.props.reservation.status==1 && auth.isTrainer()) && <div onClick={this.handleOpen3}><SelectServiceIcon color={color} width="91.5px" height="39px"/></div> }
+                {(this.props.reservation.status==1 && auth.isTrainer()) && <div onClick={this.handleOpen4}><DeleteServiceIcon color={color} width="91.5px" height="39px"/></div> }
             </Result2>
             <Dialog
                 actions={this.props.reservation.status==1 && actions}

@@ -174,7 +174,7 @@ class StatusServicePage extends React.Component {
                 </LRBlock>
                 <Label size ="65px" color="#202020">รายการการจอง</Label>
                 <ServiceList>
-                    {resultFeed}
+                    {this.state.results.length != 0 ? resultFeed : <Label size ="24px" color="#c4c4c4">ไม่มีข้อมูลในรายการนี้</Label>}
                 </ServiceList>
                 <Footer color={color} />
             </InnerWrapper>

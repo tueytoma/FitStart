@@ -115,7 +115,7 @@ class ServiceBox3 extends React.Component {
          }
          else {
             texttopic= "จองโดย";
-            textwho = "ผู้ต้องการออกกำลังกาย " + this.state.traineeName
+            textwho = "คุณ " + this.state.traineeName
 
          }
   
@@ -127,7 +127,7 @@ class ServiceBox3 extends React.Component {
         return (
         <Wrapper>
             <Result>
-                <LinkStyle2 to={linkService}  style={{margin: "0 16px 0 0"}} color="#202020" colorhover={color} size="32px" weight="bolder">
+                <LinkStyle2 to={linkService}  style={{margin: "0 16px 0 0"}} color="#202020" colorhover={color} size="24px" weight="bolder">
                         {this.state.serviceName}
                 </LinkStyle2>
                 <Label style={{margin: "8px 0 4px 0"}} size="18px" weight="600" color="#202020"> {texttopic}

@@ -205,7 +205,7 @@ class ServiceBox2 extends React.Component {
          }
          else {
             texttopic= "จองโดย";
-            textwho = "ผู้ต้องการออกกำลังกาย " + this.state.traineeName
+            textwho = "คุณ " + this.state.traineeName
 
          }
   

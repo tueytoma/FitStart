@@ -158,7 +158,7 @@ class StatusServicePage extends React.Component {
             {!this.state.failure ?
             <InnerWrapper >
                 <HeaderBlock>
-                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
+                    <Label size = "24px" color={color}>โปรดเลือกประเภทรายการที่ต้องการตรวจสอบ &nbsp;</Label><LinkStyle color="#202020" to="/whatisstatus">คุณไม่ทราบแต่ละสถานะคืออะไร?</LinkStyle>
                 </HeaderBlock>
                 <LRBlock>
                     <ButtonBlock>

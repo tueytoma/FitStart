@@ -136,7 +136,7 @@ class ServiceBox3 extends React.Component {
                 </LinkStyle2>
                 </Label>
             </Result>
-            <div style={{margin: "0 100px 0 0"}} onClick={this.handleOpen}><TrashIcon width="91.5px" height="39px"/></div>
+            <div style={{margin: "0 100px 0 0"}} onClick={this.handleOpen}><TrashIcon color={color} width="91.5px" height="39px"/></div>
             <Dialog
                 actions={actions}
                 modal={false}

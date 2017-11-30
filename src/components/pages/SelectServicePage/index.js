@@ -128,7 +128,8 @@ class SelectServicePage extends React.Component {
         comment:'',
         commentin:'',
         ratingin:'-',
-        rating:0
+        rating:0,
+        end: false
     };
   }
 
@@ -153,6 +154,7 @@ class SelectServicePage extends React.Component {
         setTimeout(()=>location.reload(),300);
         }
     })
+    this.setState({end: true})
     this.props.history.push('/reservations/' + 5)
 }
   pay = e => {
@@ -218,6 +220,7 @@ pay2 = e => {
 
   report = e =>{
       alert("report")
+      this.setState({end: true})
   }
 
   endEx = e => {
@@ -306,6 +309,14 @@ pay2 = e => {
     var starBox = []
     for (var i = 0 ; i < this.state.trainer.rating ; i++)
     starBox.push(<StarIcon key={i} height="40px"/>)
+
+    var starBox2 = []
+    for (var i = 0 ; i < this.state.ratingin ; i++)
+    starBox2.push(<StarIcon key={i} height="20px"/>)
+
+    
+
+
     var timeslot = []
     for (var i = 0 ; i < this.state.time.length ; i++) {
         timeslot.push(<CheckBoxAndLabel isChecked={this.state.results.timeSlot.includes(this.state.time[i]._id)} key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={this.state.results.status>1} time={this.state.time[i]} color={color}/>)
@@ -384,7 +395,7 @@ pay2 = e => {
                         </InnerWrapper>
                     </Pay>
                     {/* {( auth.isTrainee()) && <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="139px" height="40px" radius = "5px" color = {color} onClick={this.pay} show="false">จ่ายค่ามัดจำ</Button> } */}
-                    {( auth.isTrainee()) && <LinkAndButtonBox style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.pay} to={'/reservations/' + 3} size = "18px" width="139px" height="40px" radius = "5px" color = {color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="จ่ายค่ามัดจำ"/>}
+                    {( auth.isTrainee()) && <LinkAndButtonBox  disabled={this.state.results.status>2} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.pay} to={'/reservations/' + 3} size = "18px" width="139px" height="40px" radius = "5px" color = {color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="จ่ายค่ามัดจำ"/>}
                 </InnerWrapper>
                
                 <Footer color={color} />
@@ -462,7 +473,7 @@ pay2 = e => {
                             <Label size="18px" color="#F9FAFC">คิดบริการหลังหักค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
-                    {( auth.isTrainee()) && <LinkAndButtonBox style={{marginTop: "32px", alignSelf: "flex-end"}} to={'/reservations/' + 5} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ชำระเงิน"/>}
+                    {( auth.isTrainee()) && <LinkAndButtonBox  disabled={this.state.results.status>4} style={{marginTop: "32px", alignSelf: "flex-end"}} to={'/reservations/' + 5} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ชำระเงิน"/>}
                     {/* {( auth.isTrainee()) && <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} show="false">ชำระเงิน</Button> } */}
                 </InnerWrapper>
                 <Footer color={color} />
@@ -489,11 +500,11 @@ pay2 = e => {
                 <Textarea placeholder = "Comments" width="734px" height="131px" onChange ={this.changeComment}></Textarea>
                 <Div style={{flexDirection: "row", alignItems:"center", width: "100%", marginTop: "16px"}}><Label style={{marginRight: "8px"}} text-align="center" center size = "18px" >ให้คะแนนบริการนี้  </Label><DropdownMenu  onChange ={this.changeRating} style={{margin: "0"}} width="149px" height="30px" menu={['0','1','2','3','4','5']}></DropdownMenu></Div>
                 {/* <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="130px" height="40px" radius = "100px" color={color} onClick={this.sendcomment}>ส่งความเห็น</Button> */}
-                <LinkAndButtonBox style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.sendcomment} to={'/reservations/' + 5} size = "18px" width="130px" height="40px" radius = "100px" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น"/>
+                <LinkAndButtonBox disable={!this.state.end} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.sendcomment} to={'/reservations/' + 5} size = "18px" width="130px" height="40px" radius = "100px" color={color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ส่งความเห็น"/>
                 <InnerWrapper style={{alignItems: "center"}}>
                     <Report>
                         <Label size ="48px" color="#F9FAFC">หรือ</Label>
-                        <Button dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
+                        <Button disable={!this.state.end} dark size = "36px" width="557px" height="66px" radius = "100px" color="#DC4444" onClick={this.report}>ส่งคำร้องเรียนเทรนเนอร์</Button>
                     </Report>
                 </InnerWrapper>
                 
@@ -516,18 +527,27 @@ pay2 = e => {
                 </HeaderBlock>
 
                 
-                <HeaderBlock>
-                <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">การฝึกเสร็จสมบูรณ์แล้ว  </Label>
+                <HeaderBlock style={{marginBottom: "0"}}>
+                <Label size="48px" weight="bolder" color="#202020">ความเห็นจากผู้ต้องการออกกำลัง</Label>
                 </HeaderBlock>
-                <HeaderBlock>
+                {/* <HeaderBlock>
 
                 <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020"> มาฟังคอมเม้นกันเถอะ! </Label>
-                </HeaderBlock>
-                <HeaderBlock>
-
-                        <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">Comment : {this.state.commentin}</Label>
-                        <Label style={{marginRight: "32px"}} size="48px" weight="bolder" color="#202020">Rating: {this.state.ratingin}</Label>
-                </HeaderBlock>
+                </HeaderBlock> */}
+                {this.state.commentin == "" &&
+                    <InnerWrapper style={{marginTop: "16px"}} >
+                        <Label style={{marginLeft: "32px"}} size="18px" weight="bolder" color="#c4c4c4">ยังไม่มีความเห็นจากผู้ต้องการออกกำลัง</Label>
+                    </InnerWrapper>
+                }
+                {this.state.commentin != "" &&
+                <InnerWrapper style={{marginTop: "16px"}} >
+                        <Label style={{marginLeft: "32px"}} size="18px" weight="bolder" color="#202020">{this.state.commentin}</Label>
+                        <Div style={{marginTop: "16px", display: "flex", flexDirection: "row", alignItems: "center"}} >
+                        <Label style={{marginRight: "16px"}} size="18px" weight="bolder" color="#545454">ให้คะแนนบริการนี้</Label> 
+                        {starBox2}
+                        </Div>
+                </InnerWrapper>
+                }
                
                 
 

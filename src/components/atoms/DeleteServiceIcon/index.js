@@ -14,7 +14,7 @@ export default class DeletetServiceIcon extends React.Component {
 
   render() {
     return (
-        <SVG fill="#202020"  fillOpacity="0.2" color={this.props.color} width={this.props.width} height={this.props.height} viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+        <SVG fill="#202020"  fillOpacity="0.2" color="#D44444" width={this.props.width} height={this.props.height} viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
             <g id="Canvas" transform="translate(-4987 -6685)">
                 <g id="forbidden-mark">
                     <g id="Vector">

@@ -358,7 +358,7 @@ class SelectServicePage extends React.Component {
     }
 
 
-    if(this.state.status == 1)
+    if(this.state.status == 1 && this.state.results.status >= 1)
         return(
             <Wrapper>
                 <Topbar color={color}/>
@@ -401,7 +401,7 @@ class SelectServicePage extends React.Component {
                 </InnerWrapper>
             </Wrapper>
         )
-    else if(this.state.status == 2)
+    else if(this.state.status == 2 && this.state.results.status >= 2)
         return(
             <Wrapper>
                 <Dialog
@@ -448,7 +448,7 @@ class SelectServicePage extends React.Component {
             </InnerWrapper>
             </Wrapper>
         )
-    else if(this.state.status == 3)
+    else if(this.state.status == 3 && this.state.results.status >= 3)
         return(
             <Wrapper>
             <Topbar color={color}/>
@@ -493,7 +493,7 @@ class SelectServicePage extends React.Component {
             </InnerWrapper>
             </Wrapper>
         )
-    else if(this.state.status == 4)
+    else if(this.state.status == 4 && this.state.results.status >= 4)
         return(
             <Wrapper>
                 <Dialog
@@ -537,7 +537,7 @@ class SelectServicePage extends React.Component {
             </InnerWrapper>
             </Wrapper>
         )
-    else if(this.state.status == 5&&auth.isTrainee())
+    else if(this.state.status == 5 && auth.isTrainee() && this.state.results.status >= 5)
         return(
             <Wrapper>
                 <Dialog
@@ -581,7 +581,7 @@ class SelectServicePage extends React.Component {
             </InnerWrapper>
             </Wrapper>
         )
-    else if(this.state.status == 5){
+    else if(this.state.status == 5 && this.state.results.status >= 5){
         return(
             <Wrapper>
             <Topbar color={color}/>
@@ -634,7 +634,7 @@ class SelectServicePage extends React.Component {
         <Topbar color={color}/>
         <InnerWrapper>
             <HeaderBlock>
-                <Label>UNDER CONSTRCUCTION</Label>
+                <Label size="32px" weight="bolder">ไม่สามารถทำรายการนี้ได้</Label>
             </HeaderBlock>
             <Footer color={color}/>
         </InnerWrapper>

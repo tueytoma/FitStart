@@ -314,8 +314,8 @@ class EditServicePage extends React.Component {
         let tempTimeSlotTemp  = this.state.tempTimeSlotTemp2
         let tempTimeDescOld = this.state.tempTimeDesc
         let tempTimeSlotTempOld  = this.state.tempTimeSlotTemp
-        let dateStart  =  (new Date(this.state.serviceDate + " " + this.state.serviceStartTime).getUTCFullYear()) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceStartTime).getUTCMonth())).slice(-2) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceStartTime).getUTCDate())).slice(-2)
-        let dateEnd =  (new Date(this.state.serviceDate + " " + this.state.serviceEndTime).getUTCFullYear()) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceEndTime).getUTCMonth())).slice(-2) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceEndTime).getUTCDate())).slice(-2)
+        let dateStart  =  ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceStartTime).getUTCFullYear())).slice(-4) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceStartTime).getUTCMonth())).slice(-2) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceStartTime).getUTCDate())).slice(-2)
+        let dateEnd =  ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceEndTime).getUTCFullYear())).slice(-4) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceEndTime).getUTCMonth())).slice(-2) + "-" + ("0" + (new Date(this.state.serviceDate + " " + this.state.serviceEndTime).getUTCDate())).slice(-2)
         let start = ("0" + (new Date(this.state.serviceDate +" "+ this.state.serviceStartTime).getUTCHours())).slice(-2) + ":" +  ("0" + (new Date(this.state.serviceDate +" "+ this.state.serviceStartTime).getUTCMinutes())).slice(-2)
         let end = ("0" + (new Date(this.state.serviceDate +" "+ this.state.serviceEndTime).getUTCHours())).slice(-2) + ":" +  ("0" + (new Date(this.state.serviceDate +" "+ this.state.serviceEndTime).getUTCMinutes())).slice(-2)
         let startTemp = dateStart + "T" + start + ":00.000Z"

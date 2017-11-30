@@ -395,7 +395,7 @@ pay2 = e => {
                         </InnerWrapper>
                     </Pay>
                     {/* {( auth.isTrainee()) && <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="139px" height="40px" radius = "5px" color = {color} onClick={this.pay} show="false">จ่ายค่ามัดจำ</Button> } */}
-                    {( auth.isTrainee()) && <LinkAndButtonBox  disabled={this.state.results.status>2} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.pay} to={'/reservations/' + 3} size = "18px" width="139px" height="40px" radius = "5px" color = {color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="จ่ายค่ามัดจำ"/>}
+                    {( auth.isTrainee()) && <LinkAndButtonBox  disabled={this.state.results.status>2} style={{marginTop: "32px", alignSelf: "flex-end"}} onClick={this.pay} to={'/reservations/' + 2} size = "18px" width="139px" height="40px" radius = "5px" color = {color} linktext="ไปหน้าแสดงรายการบริการ" buttontext="จ่ายค่ามัดจำ"/>}
                 </InnerWrapper>
                
                 <Footer color={color} />
@@ -473,7 +473,7 @@ pay2 = e => {
                             <Label size="18px" color="#F9FAFC">คิดบริการหลังหักค่ามัดจำล่วงหน้า 10% จากราคาเต็ม {this.state.results.price} บาท</Label>
                         </InnerWrapper>
                     </Pay>
-                    {( auth.isTrainee()) && <LinkAndButtonBox  disabled={this.state.results.status>4} style={{marginTop: "32px", alignSelf: "flex-end"}} to={'/reservations/' + 5} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ชำระเงิน"/>}
+                    {( auth.isTrainee()) && <LinkAndButtonBox  disabled={this.state.results.status>4} style={{marginTop: "32px", alignSelf: "flex-end"}} to={'/reservations/' + 4} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} linktext="ไปหน้าแสดงรายการบริการ" buttontext="ชำระเงิน"/>}
                     {/* {( auth.isTrainee()) && <Button style={{marginTop: "32px", alignSelf: "flex-end"}} size = "18px" width="105px" height="40px" radius = "5px" color = {color} onClick={this.pay2} show="false">ชำระเงิน</Button> } */}
                 </InnerWrapper>
                 <Footer color={color} />

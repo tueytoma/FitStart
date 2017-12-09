@@ -75,7 +75,6 @@ class Topbar extends React.Component {
     render() {
         var username = auth.isLoggedIn() ? (auth.getUser() ? auth.getUser().username : '' ) : '';
         return(
-
           <Wrapper color={this.props.color ? this.props.color : "#202020"}>
           <WrapperSide>
                     <Div margin="4.5px 5px 0 22px">
@@ -86,7 +85,7 @@ class Topbar extends React.Component {
                     <Div>
                         <Textfield onChange={this.changeSearch} placeholder="อยากฝึกฝนร่างกายเกี่ยวกับ... / อยากฝึกกับ..." width="45vw" height="32px" color="#F9FAFC"/>
                     </Div>
-                    <Link to= {'/search/service?keyword=' + this.state.search} style={{textDecoration: "none"}}>
+                    <Link to= {(this.props.trainer ? '/search/trainer?keyword=' : '/search/service?keyword=')  + this.state.search} style={{textDecoration: "none"}}>
                         <SearchIcon opacity="1" color="#F9FAFC"/>
                     </Link>
                     {auth.isLoggedIn() && auth.isTrainer() && <Div>

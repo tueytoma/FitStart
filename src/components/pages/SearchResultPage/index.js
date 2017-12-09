@@ -127,7 +127,7 @@ class SearchResultPage extends React.Component {
 
     return (
       <Wrapper id="top">
-        <Topbar color={color}/>
+        <Topbar color={color} trainer={this.state.type == "trainer"}/>
         <InnerWrapper >
             <ButtonBox>
               <SelectSearchButton onClick={this.SelectServiceClick} disabled={this.state.type == 'service'} active={this.state.type == 'service'} color={color}>บริการ</SelectSearchButton>

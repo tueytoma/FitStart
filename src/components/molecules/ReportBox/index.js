@@ -169,7 +169,7 @@ class ServiceBox2 extends React.Component {
                 actionsContainerStyle={{display: "flex", justifyContent: "center", backgroundColor: color}}
                 bodyStyle={{display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: color}}
                 contentStyle={{width:'60%',maxWidth: 'none'}}>
-                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการลบคำขอการแบนเทรนเนอร์คนนี้ ?</Label>
+                <Label style={{margin: "8px 0 4px 0"}} size="48px" weight="600" color="#F9FAFC">ต้องการลบคำร้องเรียนอันนี้ ?</Label>
             </Dialog>
         </Wrapper>
         )

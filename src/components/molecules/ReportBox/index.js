@@ -140,7 +140,7 @@ class ServiceBox2 extends React.Component {
                     </Label>
                     <Label style={{margin: "4px 0 8px 16px"}} size="18px" weight="600" color="#202020">โดย
                         <LinkStyle2 to={linkTrainee} style={{margin: "0 0 0 16px"}} color="rgba(32, 32, 32, 0.8)" colorhover={color} size="18px" weight="600">
-                            {this.state.trainerName}
+                            {this.state.traineeName}
                         </LinkStyle2>
                     </Label>
                     

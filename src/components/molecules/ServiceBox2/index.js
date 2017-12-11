@@ -67,7 +67,7 @@ class ServiceBox2 extends React.Component {
     }
 
     changePrice = e => {
-        this.setState({InputPrice : e.target.value})
+        this.setState({InputPrice : Math.ceil(e.target.value)})
       }
 
     componentDidMount() {
@@ -181,6 +181,8 @@ class ServiceBox2 extends React.Component {
     }
 
     accept = e => {
+        let p = this.state.price.split(" - ");
+        if(this.state.InputPrice > 0 && this.state.InputPrice >= Number(p[0]) && this.state.InputPrice <= Number(p[1])) {
             api.editReservationById(this.props.reservation._id, {status : 2})
             .then(res=>{
                 if(res){
@@ -194,6 +196,7 @@ class ServiceBox2 extends React.Component {
                 setTimeout(()=>location.reload(),300);
                 }
             })
+        }
       }
 
       deny = e => {

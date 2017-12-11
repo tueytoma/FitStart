@@ -172,7 +172,7 @@ class ServicePage extends React.Component {
     var isFull =this.state.time.length
     for (var i = 0 ; i < this.state.time.length ; i++) {
         if(this.state.time[i].status==1) isFull--
-        timeslot.push(<CheckBoxAndLabel isChecked={this.state.time[i].status==1}key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={!auth.isTrainee() || this.state.time[i].status==1} time={this.state.time[i]} color={color}/>)
+        timeslot.push(<CheckBoxAndLabel isChecked={this.state.time[i].status==1}key={this.state.time[i]._id} onValue={this.onValue} id={this.state.time[i]._id} disabled={color != "#F05939" || this.state.time[i].status==1} time={this.state.time[i]} color={color}/>)
         // console.log(this.state.time[i]._id)
     }
     const actions = [
